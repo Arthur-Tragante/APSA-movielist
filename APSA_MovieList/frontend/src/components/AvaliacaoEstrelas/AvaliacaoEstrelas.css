@@ -1,0 +1,53 @@
+.avaliacao-estrelas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.estrelas-container {
+  display: flex;
+  gap: 2px;
+}
+
+.estrela {
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  user-select: none;
+  display: inline-block;
+  position: relative;
+}
+
+.estrela:hover:not(.somente-leitura) {
+  transform: scale(1.15);
+}
+
+.estrela.vazia {
+  color: #dadce0;
+}
+
+.estrela.meia {
+  color: #ffc107;
+  filter: brightness(0.9);
+}
+
+.estrela.cheia {
+  color: #ffc107;
+}
+
+.estrela.somente-leitura {
+  cursor: default;
+}
+
+.estrela.somente-leitura:hover {
+  transform: none;
+}
+
+.nota-texto {
+  margin-left: 4px;
+  font-size: 16px;
+  color: var(--text-color);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
