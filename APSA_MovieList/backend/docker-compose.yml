@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: moicanos-backend
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - REDIS_URL=redis://redis:6379
+      - REDIS_ENABLED=true
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    networks:
+      - moicanos-network
+    volumes:
+      - ./logs:/app/logs
+
+  # Redis para cache
+  redis:
+    image: redis:7-alpine
+    container_name: moicanos-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - moicanos-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+networks:
+  moicanos-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+

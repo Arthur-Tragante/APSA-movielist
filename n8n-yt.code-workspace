@@ -1,0 +1,26 @@
+{
+  "folders": [
+    {
+      "name": "Frontend",
+      "path": "APSA_MovieList/frontend"
+    },
+    {
+      "name": "Backend",
+      "path": "APSA_MovieList/backend"
+    },
+    {
+      "name": "Documentação",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "APSA_MovieList/frontend/node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/.git": true,
+      "**/dist": true
+    }
+  }
+}
+
