@@ -1,6 +1,7 @@
 import { firestore } from '../config/firebase.config';
 import { COLECOES_FIRESTORE } from '../constants/api.constants';
 import { Filme, CriarFilmeDTO, AtualizarFilmeDTO } from '../types';
+import { filmeFirestoreParaApp, filmeAppParaFirestore, atualizacaoFilmeParaFirestore } from '../utils/mappers.util';
 
 /**
  * Repository para operações de filmes no Firestore
@@ -13,14 +14,13 @@ class FilmeRepository {
    */
   async buscarPorUsuario(emailUsuario: string): Promise<Filme[]> {
     const snapshot = await this.colecao
-      .where('usuario', '==', emailUsuario)
-      .orderBy('criadoEm', 'desc')
+      .where('user', '==', emailUsuario)
+      .orderBy('createdAt', 'desc')
       .get();
 
-    return snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as Filme[];
+    return snapshot.docs.map((doc) => 
+      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
+    );
   }
 
   /**
@@ -33,10 +33,7 @@ class FilmeRepository {
       return null;
     }
 
-    return {
-      id: doc.id,
-      ...doc.data(),
-    } as Filme;
+    return filmeFirestoreParaApp({ id: doc.id, ...doc.data() });
   }
 
   /**
@@ -44,14 +41,20 @@ class FilmeRepository {
    */
   async criar(emailUsuario: string, dadosFilme: CriarFilmeDTO): Promise<string> {
     const agora = new Date().toISOString();
-
-    const docRef = await this.colecao.add({
+    
+    // Converte para formato do Firestore (EN)
+    const filmeFirestore = filmeAppParaFirestore({
       ...dadosFilme,
       usuario: emailUsuario,
-      criadoEm: agora,
-      atualizadoEm: agora,
-      avaliacoesUsuarios: [],
-      mediaAvaliacaoUsuarios: 0,
+    });
+
+    const docRef = await this.colecao.add({
+      ...filmeFirestore,
+      user: emailUsuario,
+      createdAt: agora,
+      updatedAt: agora,
+      userRatings: [],
+      averageUserRating: 0,
     });
 
     return docRef.id;
@@ -62,10 +65,13 @@ class FilmeRepository {
    */
   async atualizar(id: string, dadosFilme: AtualizarFilmeDTO): Promise<void> {
     const agora = new Date().toISOString();
+    
+    // Converte para formato do Firestore (EN)
+    const dadosFirestore = atualizacaoFilmeParaFirestore(dadosFilme);
 
     await this.colecao.doc(id).update({
-      ...dadosFilme,
-      atualizadoEm: agora,
+      ...dadosFirestore,
+      updatedAt: agora,
     });
   }
 
@@ -117,9 +123,14 @@ class FilmeRepository {
       : 0;
 
     await this.colecao.doc(idFilme).update({
-      avaliacoesUsuarios: avaliacoesAtualizadas,
-      mediaAvaliacaoUsuarios: media,
-      atualizadoEm: new Date().toISOString(),
+      userRatings: avaliacoesAtualizadas.map(av => ({
+        user: av.usuario,
+        email: av.email,
+        rating: av.nota,
+        comment: av.comentario || '',
+      })),
+      averageUserRating: media,
+      updatedAt: new Date().toISOString(),
     });
   }
 
@@ -144,9 +155,14 @@ class FilmeRepository {
       : 0;
 
     await this.colecao.doc(idFilme).update({
-      avaliacoesUsuarios: avaliacoesAtualizadas,
-      mediaAvaliacaoUsuarios: media,
-      atualizadoEm: new Date().toISOString(),
+      userRatings: avaliacoesAtualizadas.map(av => ({
+        user: av.usuario,
+        email: av.email,
+        rating: av.nota,
+        comment: av.comentario || '',
+      })),
+      averageUserRating: media,
+      updatedAt: new Date().toISOString(),
     });
   }
 }

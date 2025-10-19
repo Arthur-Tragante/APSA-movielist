@@ -12,14 +12,23 @@ const ListaFilmes: React.FC = () => {
   const navigate = useNavigate();
   const { filmes, carregando } = useFilmes();
   const [termoBusca, setTermoBusca] = useState('');
+  const [navegando, setNavegando] = useState(false);
   const [ordenacao, setOrdenacao] = useState<{
     campo: keyof Filme | null;
     direcao: 'asc' | 'desc';
   }>({ campo: null, direcao: 'asc' });
 
-  const handleEditar = (id: string) => {
-    navigate(`/editar/${id}`);
-  };
+  const handleEditar = React.useCallback((id: string) => {
+    if (navegando) return; // Previne cliques múltiplos
+    
+    setNavegando(true);
+    try {
+      navigate(`/editar/${id}`);
+    } catch (error) {
+      console.error('Erro ao navegar:', error);
+      setNavegando(false);
+    }
+  }, [navigate, navegando]);
 
   const handleOrdenar = (campo: keyof Filme) => {
     setOrdenacao((prev) => ({
@@ -163,9 +172,10 @@ const ListaFilmes: React.FC = () => {
                       <button
                         className="btn-editar"
                         onClick={() => handleEditar(filme.id)}
+                        disabled={navegando}
                         title="Editar filme"
                       >
-                        Editar
+                        {navegando ? 'Abrindo...' : 'Editar'}
                       </button>
                     </td>
                   </tr>

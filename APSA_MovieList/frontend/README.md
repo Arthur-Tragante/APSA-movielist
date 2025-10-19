@@ -1,4 +1,4 @@
-# 🎬 Moicanos Toolkit - Frontend
+# 🎬 Our Horror Story - Frontend
 
 Frontend em React + TypeScript para gerenciador colaborativo de filmes.
 

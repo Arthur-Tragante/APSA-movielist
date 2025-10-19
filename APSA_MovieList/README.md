@@ -226,7 +226,7 @@ Este projeto está sob a licença MIT.
 
 ## 👨‍💻 Autor
 
-**The Moicanos Toolkit**
+**Arthur Tragante**
 
 ---
 

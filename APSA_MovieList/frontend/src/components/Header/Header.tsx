@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-content">
         <div className="header-logo" onClick={() => handleNavegar('/lista')}>
-          <h1>Moicanos Toolkit</h1>
+          <h1>Our Horror Story</h1>
         </div>
 
         <nav className="header-nav">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Login, ListaFilmes, AdicionarFilme, EditarFilme } from './pages';
+import { ErrorBoundary } from './components';
 import { authService } from './services';
 
 /**
@@ -26,8 +27,9 @@ const RotaProtegida: React.FC<RotaProtegidaProps> = ({ children }) => {
  */
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
         <Route path="/" element={<Login />} />
         <Route
           path="/lista"
@@ -56,6 +58,7 @@ const App: React.FC = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
+    </ErrorBoundary>
   );
 };
 

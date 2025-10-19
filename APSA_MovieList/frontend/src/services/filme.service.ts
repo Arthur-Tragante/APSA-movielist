@@ -1,5 +1,5 @@
 import { filmeRepository } from '../repositories';
-import { Filme, FilmeCadastro, FilmeEdicao, AvaliacaoUsuario } from '../types';
+import { Filme, FilmeCadastro, FilmeEdicao } from '../types';
 
 /**
  * Service para lógica de negócio relacionada a filmes

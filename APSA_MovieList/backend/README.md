@@ -1,6 +1,6 @@
 # 🎬 Moicanos Backend API
 
-Backend profissional em Node.js + Express + TypeScript para o gerenciador de filmes Moicanos Toolkit.
+Backend profissional em Node.js + Express + TypeScript para o gerenciador de filmes Our Horror Story.
 
 ## ✨ Funcionalidades
 

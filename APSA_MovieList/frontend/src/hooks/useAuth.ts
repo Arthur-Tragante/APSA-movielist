@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../services';
 import { DadosLogin, DadosRegistro } from '../types';
-import { MENSAGENS_ERRO, MENSAGENS_SUCESSO } from '../constants';
+import { MENSAGENS_ERRO } from '../constants';
 
 /**
  * Hook customizado para autenticação

@@ -10,6 +10,7 @@ import {
 import { db } from '../config/firebase.config';
 import { COLECOES } from '../constants';
 import { Usuario } from '../types';
+import { usuarioFirestoreParaApp, usuarioAppParaFirestore } from '../utils/mappers.util';
 
 /**
  * Repository para operações de usuários no Firestore
@@ -27,10 +28,7 @@ class UsuarioRepository {
 
     if (!querySnapshot.empty) {
       const doc = querySnapshot.docs[0];
-      return {
-        id: doc.id,
-        ...doc.data(),
-      } as Usuario;
+      return usuarioFirestoreParaApp({ id: doc.id, ...doc.data() });
     }
 
     return null;
@@ -41,17 +39,17 @@ class UsuarioRepository {
    */
   async buscarTodos(): Promise<Usuario[]> {
     const querySnapshot = await getDocs(this.colecao);
-    return querySnapshot.docs.map((doc: QueryDocumentSnapshot) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as Usuario[];
+    return querySnapshot.docs.map((doc: QueryDocumentSnapshot) => 
+      usuarioFirestoreParaApp({ id: doc.id, ...doc.data() })
+    );
   }
 
   /**
    * Cria um novo usuário
    */
   async criar(usuario: Omit<Usuario, 'id'>): Promise<string> {
-    const docRef = await addDoc(this.colecao, usuario);
+    const usuarioFirestore = usuarioAppParaFirestore(usuario);
+    const docRef = await addDoc(this.colecao, usuarioFirestore);
     return docRef.id;
   }
 }

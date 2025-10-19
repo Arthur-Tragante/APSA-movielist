@@ -17,6 +17,7 @@ export interface DetalhesFilmeTMDB {
   release_date: string;
   overview: string;
   original_title: string;
+  imdb_id?: string;
 }
 
 export interface RespostaOMDB {
