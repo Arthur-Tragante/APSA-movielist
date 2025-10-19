@@ -13,7 +13,7 @@ import './AdicionarFilme.css';
 const AdicionarFilme: React.FC = () => {
   const navigate = useNavigate();
   const { obterUsuarioLogado } = useAuth();
-  const { resultados, buscarPorTitulo, buscarInformacoesCompletas, limparResultados, carregando: carregandoApi } = useApiExterna();
+  const { resultados, buscarPorTitulo, buscarInformacoesCompletas, limparResultados, carregando: carregandoApi, erro: erroApi } = useApiExterna();
 
   const [titulo, setTitulo] = useState('');
   const [duracao, setDuracao] = useState('');
@@ -149,9 +149,21 @@ const AdicionarFilme: React.FC = () => {
               type="text"
               value={titulo}
               onChange={(e) => handleBuscarFilme(e.target.value)}
-              placeholder="Digite o título do filme"
+              placeholder="Digite o título do filme (mínimo 2 caracteres)"
               disabled={carregando}
             />
+
+            {erroApi && (
+              <div className="mensagem-erro-busca">
+                {erroApi}
+              </div>
+            )}
+
+            {carregandoApi && titulo.length >= 2 && (
+              <div className="mensagem-carregando">
+                Buscando filmes...
+              </div>
+            )}
 
             {resultados.length > 0 && (
               <div className="dropdown-resultados">

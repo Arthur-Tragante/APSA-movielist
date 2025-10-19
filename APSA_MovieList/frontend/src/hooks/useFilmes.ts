@@ -12,10 +12,9 @@ export const useFilmes = () => {
   const [erro, setErro] = useState<string | null>(null);
 
   const buscarTodos = useCallback(async () => {
-    setCarregando(true);
-    setErro(null);
-
     try {
+      setCarregando(true);
+      setErro(null);
       const filmesData = await filmeService.buscarTodos();
       setFilmes(filmesData);
     } catch (error) {
@@ -26,11 +25,10 @@ export const useFilmes = () => {
     }
   }, []);
 
-  const buscarPorId = async (id: string): Promise<Filme | null> => {
-    setCarregando(true);
-    setErro(null);
-
+  const buscarPorId = useCallback(async (id: string): Promise<Filme | null> => {
     try {
+      setCarregando(true);
+      setErro(null);
       const filme = await filmeService.buscarPorId(id);
       return filme;
     } catch (error) {
@@ -40,7 +38,7 @@ export const useFilmes = () => {
     } finally {
       setCarregando(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     buscarTodos();

@@ -4,4 +4,5 @@
 
 export * from './validacoes.util';
 export * from './formatadores.util';
+export * from './mappers.util';
 

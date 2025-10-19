@@ -1,7 +1,7 @@
 {
   "name": "moicanos-backend",
   "version": "1.0.0",
-  "description": "Backend API para Moicanos Toolkit - Gerenciador de Filmes",
+  "description": "Backend API para Our Horror Story- Gerenciador de Filmes",
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon",

@@ -1,8 +1,8 @@
-# 📊 Resumo Executivo - Backend Moicanos
+# 📊 Resumo Executivo - Backend Our Horror Story
 
 ## ✅ O Que Foi Criado
 
-Um **backend completo, profissional e pronto para produção** para o gerenciador de filmes Moicanos Toolkit.
+Um **backend completo, profissional e pronto para produção** para o gerenciador de filmes Our Horror Story.
 
 ---
 

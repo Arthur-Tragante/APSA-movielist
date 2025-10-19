@@ -83,7 +83,7 @@ const Login: React.FC = () => {
   return (
     <div className="login-pagina">
       <div className="login-container">
-        <h1 className="login-titulo">Moicanos Toolkit</h1>
+        <h1 className="login-titulo">Our Horror Story</h1>
         <p className="login-subtitulo">Gerenciador de Filmes</p>
 
         {/* Formulário de Login */}

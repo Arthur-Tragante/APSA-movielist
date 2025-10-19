@@ -52,4 +52,4 @@ n8n-yt/
 
 ---
 
-**Desenvolvido com ❤️ por The Moicanos Toolkit**
+**Desenvolvido com ❤️ por Arthur Tragante**

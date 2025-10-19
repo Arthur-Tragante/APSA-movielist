@@ -16,12 +16,35 @@ export const createApp = (): Application => {
   // Segurança
   app.use(helmet());
 
-  // CORS
+  // CORS - Múltiplas origens permitidas
+  const allowedOrigins = [
+    'http://localhost:5173',                    // Desenvolvimento local
+    'http://localhost:5174',                    // Desenvolvimento local (porta alternativa)
+    'http://localhost:5175',                    // Desenvolvimento local (porta alternativa)
+    'https://apsa-movielist.web.app',          // Firebase Hosting
+    'https://apsa-movielist.firebaseapp.com',  // Firebase Hosting (alternativo)
+    'https://ourhorrorstory.com.br',           // Domínio customizado
+    'http://ourhorrorstory.com.br',            // Domínio customizado (HTTP)
+    env.CORS_ORIGIN,                            // Configurável via .env
+  ];
+
   app.use(
     cors({
-      origin: env.CORS_ORIGIN,
+      origin: (origin, callback) => {
+        // Permite requisições sem origin (ex: Postman, curl)
+        if (!origin) return callback(null, true);
+        
+        // Permite se estiver na lista ou for ngrok
+        if (allowedOrigins.includes(origin) || origin.includes('ngrok')) {
+          console.log('✅ CORS permitido para:', origin);
+          callback(null, true);
+        } else {
+          console.warn('⚠️ CORS bloqueado para:', origin);
+          callback(new Error('Origem não permitida pelo CORS'));
+        }
+      },
       credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization'],
     })
   );
@@ -50,7 +73,7 @@ export const createApp = (): Application => {
   app.get('/', (_req, res) => {
     res.json({
       sucesso: true,
-      mensagem: 'API Moicanos Toolkit',
+      mensagem: 'API Our Horror Story',
       versao: '1.0.0',
       documentacao: '/api/health',
     });
