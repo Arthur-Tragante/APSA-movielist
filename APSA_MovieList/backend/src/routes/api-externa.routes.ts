@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { apiExternaController } from '../controllers';
-import { autenticar, rateLimiterApiExterna } from '../middlewares';
+import { rateLimiterApiExterna } from '../middlewares';
 
 const router = Router();
 
 /**
- * Todas as rotas de API externa requerem autenticação
+ * Rotas de API externa são públicas (não requerem autenticação)
+ * Apenas rate limiting aplicado
  */
-router.use(autenticar);
 router.use(rateLimiterApiExterna);
 
 /**
