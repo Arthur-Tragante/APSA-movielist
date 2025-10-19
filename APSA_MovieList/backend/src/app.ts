@@ -13,8 +13,10 @@ import { rateLimiterGlobal, tratarErros, rotaNaoEncontrada } from './middlewares
 export const createApp = (): Application => {
   const app = express();
 
-  // Segurança
-  app.use(helmet());
+  // Segurança (ajustado para permitir CORS)
+  app.use(helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  }));
 
   // CORS - Múltiplas origens permitidas
   const allowedOrigins = [
@@ -48,6 +50,9 @@ export const createApp = (): Application => {
       allowedHeaders: ['Content-Type', 'Authorization'],
     })
   );
+
+  // Handler específico para OPTIONS (preflight)
+  app.options('*', cors());
 
   // Compressão de respostas
   app.use(compression());
