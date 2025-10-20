@@ -197,108 +197,111 @@ const AdicionarFilme: React.FC = () => {
             )}
           </div>
 
-          {poster && (
-            <div className="filme-poster-preview">
-              <label>Capa do Filme</label>
-              <img src={poster} alt={titulo} className="poster-imagem" />
-            </div>
-          )}
+          <div className="filme-info-layout">
+            {poster && (
+              <div className="filme-poster-preview">
+                <img src={poster} alt={titulo} className="poster-imagem" />
+              </div>
+            )}
 
-          <button
-            type="button"
-            className={`form-grupo-checkbox ${carregando ? 'disabled' : ''}`}
-            disabled={carregando}
-            onPointerDown={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              
-              if (carregando || checkboxLockRef.current) return;
-              
-              checkboxLockRef.current = true;
-              console.log('🔘 Checkbox clicado! Estado atual:', assistido);
-              
-              setAssistido(prev => {
-                const novoValor = !prev;
-                console.log('🔄 Mudando de', prev, 'para', novoValor);
-                return novoValor;
-              });
-              
-              setTimeout(() => {
-                checkboxLockRef.current = false;
-              }, 500);
-            }}
-          >
-            <div className={`checkbox-custom ${assistido ? 'checked' : ''}`}>
-              {assistido && (
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13.5 4L6 11.5L2.5 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              )}
-            </div>
-            <span className="checkbox-label">Assistido {assistido ? '✓' : ''}</span>
-          </button>
-
-          <div className="form-linha">
-            <div className="form-grupo">
-              <label htmlFor="ano">Ano *</label>
-              <input
-                id="ano"
-                type="text"
-                value={ano}
-                onChange={(e) => setAno(e.target.value)}
-                placeholder="Ex: 2024"
+            <div className="filme-dados">
+              <button
+                type="button"
+                className={`form-grupo-checkbox ${carregando ? 'disabled' : ''}`}
                 disabled={carregando}
-              />
-            </div>
+                onPointerDown={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  
+                  if (carregando || checkboxLockRef.current) return;
+                  
+                  checkboxLockRef.current = true;
+                  console.log('🔘 Checkbox clicado! Estado atual:', assistido);
+                  
+                  setAssistido(prev => {
+                    const novoValor = !prev;
+                    console.log('🔄 Mudando de', prev, 'para', novoValor);
+                    return novoValor;
+                  });
+                  
+                  setTimeout(() => {
+                    checkboxLockRef.current = false;
+                  }, 500);
+                }}
+              >
+                <div className={`checkbox-custom ${assistido ? 'checked' : ''}`}>
+                  {assistido && (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M13.5 4L6 11.5L2.5 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                </div>
+                <span className="checkbox-label">Assistido {assistido ? '✓' : ''}</span>
+              </button>
 
-            <div className="form-grupo">
-              <label htmlFor="duracao">Duração (min) *</label>
-              <input
-                id="duracao"
-                type="text"
-                value={duracao}
-                onChange={(e) => setDuracao(e.target.value)}
-                placeholder="Ex: 120"
-                disabled={carregando}
-              />
-            </div>
-          </div>
+              <div className="form-linha">
+                <div className="form-grupo">
+                  <label htmlFor="ano">Ano *</label>
+                  <input
+                    id="ano"
+                    type="text"
+                    value={ano}
+                    onChange={(e) => setAno(e.target.value)}
+                    placeholder="Ex: 2024"
+                    disabled={carregando}
+                  />
+                </div>
 
-          <div className="form-grupo">
-            <label htmlFor="genero">Gênero *</label>
-            <input
-              id="genero"
-              type="text"
-              value={genero}
-              onChange={(e) => setGenero(e.target.value)}
-              placeholder="Ex: Ação, Drama"
-              disabled={carregando}
-            />
-          </div>
+                <div className="form-grupo">
+                  <label htmlFor="duracao">Duração (min) *</label>
+                  <input
+                    id="duracao"
+                    type="text"
+                    value={duracao}
+                    onChange={(e) => setDuracao(e.target.value)}
+                    placeholder="Ex: 120"
+                    disabled={carregando}
+                  />
+                </div>
+              </div>
 
-          <div className="form-linha">
-            <div className="form-grupo">
-              <label htmlFor="notaImdb">Nota IMDB</label>
-              <input
-                id="notaImdb"
-                type="text"
-                value={notaImdb}
-                onChange={(e) => setNotaImdb(e.target.value)}
-                placeholder="Ex: 8.5"
-                disabled={carregando}
-              />
-            </div>
+              <div className="form-grupo">
+                <label htmlFor="genero">Gênero *</label>
+                <input
+                  id="genero"
+                  type="text"
+                  value={genero}
+                  onChange={(e) => setGenero(e.target.value)}
+                  placeholder="Ex: Ação, Drama"
+                  disabled={carregando}
+                />
+              </div>
 
-            <div className="form-grupo">
-              <label htmlFor="metascore">Metascore</label>
-              <input
-                id="metascore"
-                type="text"
-                value={metascore}
-                onChange={(e) => setMetascore(e.target.value)}
-                placeholder="Ex: 85"
-                disabled={carregando}
-              />
+              <div className="form-linha">
+                <div className="form-grupo">
+                  <label htmlFor="notaImdb">Nota IMDB</label>
+                  <input
+                    id="notaImdb"
+                    type="text"
+                    value={notaImdb}
+                    onChange={(e) => setNotaImdb(e.target.value)}
+                    placeholder="Ex: 8.5"
+                    disabled={carregando}
+                  />
+                </div>
+
+                <div className="form-grupo">
+                  <label htmlFor="metascore">Metascore</label>
+                  <input
+                    id="metascore"
+                    type="text"
+                    value={metascore}
+                    onChange={(e) => setMetascore(e.target.value)}
+                    placeholder="Ex: 85"
+                    disabled={carregando}
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
