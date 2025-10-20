@@ -30,29 +30,32 @@ export const createApp = (): Application => {
     env.CORS_ORIGIN,                            // Configurável via .env
   ];
 
-  app.use(
-    cors({
-      origin: (origin, callback) => {
-        // Permite requisições sem origin (ex: Postman, curl)
-        if (!origin) return callback(null, true);
-        
-        // Permite se estiver na lista ou for ngrok
-        if (allowedOrigins.includes(origin) || origin.includes('ngrok')) {
-          console.log('✅ CORS permitido para:', origin);
-          callback(null, true);
-        } else {
-          console.warn('⚠️ CORS bloqueado para:', origin);
-          callback(new Error('Origem não permitida pelo CORS'));
-        }
-      },
-      credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
-    })
-  );
+  const corsOptions = {
+    origin: (origin: any, callback: any) => {
+      // Permite requisições sem origin (ex: Postman, curl)
+      if (!origin) return callback(null, true);
+      
+      // Permite se estiver na lista ou for ngrok
+      if (allowedOrigins.includes(origin) || origin.includes('ngrok')) {
+        console.log('✅ CORS permitido para:', origin);
+        callback(null, true);
+      } else {
+        console.warn('⚠️ CORS bloqueado para:', origin);
+        callback(new Error('Origem não permitida pelo CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning', 'X-Requested-With'],
+    exposedHeaders: ['Content-Length', 'Content-Type'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  };
 
-  // Handler específico para OPTIONS (preflight)
-  app.options('*', cors());
+  app.use(cors(corsOptions));
+
+  // Handler específico para OPTIONS (preflight) com as mesmas configurações
+  app.options('*', cors(corsOptions));
 
   // Compressão de respostas
   app.use(compression());
