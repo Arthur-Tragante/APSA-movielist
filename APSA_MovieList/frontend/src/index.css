@@ -59,3 +59,28 @@ a {
   color: inherit;
 }
 
+/* Mobile improvements */
+@media (max-width: 768px) {
+  /* Evita zoom ao focar inputs no iOS */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  /* Melhora toque em botões */
+  button {
+    min-height: 44px; /* iOS touch target */
+  }
+
+  /* Smooth scroll em mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove tap highlight no iOS */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+

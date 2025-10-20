@@ -24,6 +24,7 @@ export interface Filme {
   notaImdb: string;
   metascore: string;
   sinopse: string;
+  poster?: string;
   avaliacoes: Avaliacao[];
   usuario: string;
   assistido: boolean;
@@ -41,6 +42,7 @@ export interface FilmeCadastro {
   notaImdb: string;
   metascore: string;
   sinopse: string;
+  poster?: string;
   avaliacoes: Avaliacao[];
   usuario: string;
   assistido: boolean;

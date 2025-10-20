@@ -35,19 +35,16 @@ class AuthService {
     // Busca e salva o nome do usuário
     try {
       const usuario = await usuarioRepository.buscarPorEmail(email);
-      console.log('👤 Usuário do Firestore:', usuario);
       
       if (usuario && usuario.nome) {
         Cookies.set(COOKIES.NOME, usuario.nome, { expires: VALIDADE_COOKIE_DIAS });
-        console.log('✅ Nome salvo nos cookies:', usuario.nome);
       } else {
         // Fallback: usa parte do email como nome
         const nomeFallback = email.split('@')[0];
         Cookies.set(COOKIES.NOME, nomeFallback, { expires: VALIDADE_COOKIE_DIAS });
-        console.warn('⚠️ Nome não encontrado, usando fallback:', nomeFallback);
       }
     } catch (error) {
-      console.error('❌ Erro ao buscar usuário:', error);
+      console.error('Erro ao buscar usuário:', error);
       // Fallback: usa parte do email como nome
       const nomeFallback = email.split('@')[0];
       Cookies.set(COOKIES.NOME, nomeFallback, { expires: VALIDADE_COOKIE_DIAS });
@@ -113,8 +110,6 @@ class AuthService {
   obterUsuarioLogado(): Usuario | null {
     const email = Cookies.get(COOKIES.EMAIL);
     const nome = Cookies.get(COOKIES.NOME);
-    
-    console.log('🍪 Cookies - Email:', email, 'Nome:', nome);
     
     if (email) {
       return { 

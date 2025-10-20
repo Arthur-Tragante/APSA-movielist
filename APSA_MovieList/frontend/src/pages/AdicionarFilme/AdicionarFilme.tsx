@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Modal, Carregando, AvaliacaoEstrelas } from '../../components';
 import { useApiExterna, useAuth } from '../../hooks';
@@ -22,6 +22,7 @@ const AdicionarFilme: React.FC = () => {
   const [sinopse, setSinopse] = useState('');
   const [notaImdb, setNotaImdb] = useState('');
   const [metascore, setMetascore] = useState('');
+  const [poster, setPoster] = useState('');
   const [avaliacoes, setAvaliacoes] = useState<Avaliacao[]>([]);
   const [assistido, setAssistido] = useState(false);
   const [notaUsuario, setNotaUsuario] = useState(0);
@@ -30,7 +31,8 @@ const AdicionarFilme: React.FC = () => {
   const [exibirModal, setExibirModal] = useState(false);
   const [mensagemModal, setMensagemModal] = useState('');
   const [tipoModal, setTipoModal] = useState<'sucesso' | 'erro' | 'informacao'>('informacao');
-
+  
+  const checkboxLockRef = useRef(false);
   const usuario = obterUsuarioLogado();
 
   const handleBuscarFilme = (termoBusca: string) => {
@@ -54,6 +56,7 @@ const AdicionarFilme: React.FC = () => {
         setSinopse(info.sinopse);
         setNotaImdb(info.notaImdb);
         setMetascore(info.metascore);
+        setPoster(filme.poster_path ? `${TMDB_IMAGE_BASE_URL}${filme.poster_path}` : '');
         setAvaliacoes(info.avaliacoes.map((av: { fonte: string; valor: string }) => ({
           fonte: av.fonte,
           valor: av.valor,
@@ -100,6 +103,7 @@ const AdicionarFilme: React.FC = () => {
         sinopse,
         notaImdb,
         metascore,
+        poster,
         avaliacoes,
         assistido,
         usuario: usuario.email,
@@ -143,7 +147,7 @@ const AdicionarFilme: React.FC = () => {
 
         <div className="adicionar-form">
           <div className="form-grupo">
-            <label htmlFor="titulo">Título * TESTE PRA VALIDAR DEPLOY</label>
+            <label htmlFor="titulo">Título *</label>
             <input
               id="titulo"
               type="text"
@@ -193,16 +197,46 @@ const AdicionarFilme: React.FC = () => {
             )}
           </div>
 
-          <div className="form-grupo-checkbox">
-            <input
-              id="assistido"
-              type="checkbox"
-              checked={assistido}
-              onChange={(e) => setAssistido(e.target.checked)}
-              disabled={carregando}
-            />
-            <label htmlFor="assistido">Assistido</label>
-          </div>
+          {poster && (
+            <div className="filme-poster-preview">
+              <label>Capa do Filme</label>
+              <img src={poster} alt={titulo} className="poster-imagem" />
+            </div>
+          )}
+
+          <button
+            type="button"
+            className={`form-grupo-checkbox ${carregando ? 'disabled' : ''}`}
+            disabled={carregando}
+            onPointerDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              if (carregando || checkboxLockRef.current) return;
+              
+              checkboxLockRef.current = true;
+              console.log('🔘 Checkbox clicado! Estado atual:', assistido);
+              
+              setAssistido(prev => {
+                const novoValor = !prev;
+                console.log('🔄 Mudando de', prev, 'para', novoValor);
+                return novoValor;
+              });
+              
+              setTimeout(() => {
+                checkboxLockRef.current = false;
+              }, 500);
+            }}
+          >
+            <div className={`checkbox-custom ${assistido ? 'checked' : ''}`}>
+              {assistido && (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M13.5 4L6 11.5L2.5 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </div>
+            <span className="checkbox-label">Assistido {assistido ? '✓' : ''}</span>
+          </button>
 
           <div className="form-linha">
             <div className="form-grupo">
