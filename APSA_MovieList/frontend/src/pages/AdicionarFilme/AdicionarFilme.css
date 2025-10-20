@@ -278,28 +278,44 @@
   cursor: not-allowed;
 }
 
+.filme-info-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  margin: 24px 0;
+  align-items: start;
+}
+
 .filme-poster-preview {
-  margin-bottom: 24px;
-  padding: 16px;
-  background-color: var(--surface-color);
-  border-radius: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  background: transparent;
 }
 
 .filme-poster-preview label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-color);
-  margin-bottom: 12px;
+  display: none;
 }
 
 .poster-imagem {
-  max-width: 200px;
-  width: 100%;
+  width: 150px;
   height: auto;
   border-radius: 8px;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.poster-imagem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.filme-dados {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .form-acoes {
