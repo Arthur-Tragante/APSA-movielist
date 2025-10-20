@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Header, Modal, AvaliacaoEstrelas, Carregando } from '../../components';
 import { useAuth } from '../../hooks';
@@ -32,7 +32,10 @@ const EditarFilme: React.FC = () => {
   const [exibirModal, setExibirModal] = useState(false);
   const [mensagemModal, setMensagemModal] = useState('');
   const [tipoModal, setTipoModal] = useState<'sucesso' | 'erro' | 'informacao'>('informacao');
-
+  
+  const checkboxLockRef = useRef(false);
+  const comentarioCarregadoRef = useRef(false);
+  const dadosCarregadosRef = useRef(false);
   const usuario = obterUsuarioLogado();
 
   useEffect(() => {
@@ -55,23 +58,29 @@ const EditarFilme: React.FC = () => {
         }
 
         setFilme(filmeData);
-        setTitulo(filmeData.titulo);
-        setDuracao(filmeData.duracao);
-        setGenero(filmeData.genero);
-        setAno(filmeData.ano);
-        setSinopse(filmeData.sinopse);
-        setNotaImdb(filmeData.notaImdb);
-        setMetascore(filmeData.metascore);
-        setAvaliacoes(filmeData.avaliacoes || []);
-        setAssistido(filmeData.assistido);
+        
+        // Carrega dados apenas uma vez
+        if (!dadosCarregadosRef.current) {
+          setTitulo(filmeData.titulo);
+          setDuracao(filmeData.duracao);
+          setGenero(filmeData.genero);
+          setAno(filmeData.ano);
+          setSinopse(filmeData.sinopse);
+          setNotaImdb(filmeData.notaImdb);
+          setMetascore(filmeData.metascore);
+          setAvaliacoes(filmeData.avaliacoes || []);
+          setAssistido(filmeData.assistido);
+          dadosCarregadosRef.current = true;
+        }
 
-        if (usuario && filmeData.avaliacoesUsuarios) {
+        if (usuario && filmeData.avaliacoesUsuarios && !comentarioCarregadoRef.current) {
           const avaliacaoExistente = filmeData.avaliacoesUsuarios.find(
             (av) => av.email === usuario.email || av.usuario === usuario.nome
           );
           if (avaliacaoExistente) {
             setNotaUsuario(avaliacaoExistente.nota);
             setComentarioUsuario(avaliacaoExistente.comentario || '');
+            comentarioCarregadoRef.current = true;
           }
         }
       } catch (error) {
@@ -177,63 +186,93 @@ const EditarFilme: React.FC = () => {
 
         <div className="editar-form">
           <div className="form-grupo">
-            <label htmlFor="titulo">Título *</label>
+            <label htmlFor="titulo">Título</label>
             <input
               id="titulo"
               type="text"
               value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
               placeholder="Digite o título do filme"
-              disabled={salvando}
+              disabled
+              readOnly
             />
           </div>
 
-          <div className="form-grupo-checkbox">
-            <input
-              id="assistido"
-              type="checkbox"
-              checked={assistido}
-              onChange={(e) => setAssistido(e.target.checked)}
-              disabled={salvando}
-            />
-            <label htmlFor="assistido">Assistido</label>
-          </div>
+          {filme?.poster && (
+            <div className="filme-poster-preview">
+              <label>Capa do Filme</label>
+              <img src={filme.poster} alt={titulo} className="poster-imagem" />
+            </div>
+          )}
+
+          <button
+            type="button"
+            className={`form-grupo-checkbox ${salvando ? 'disabled' : ''}`}
+            disabled={salvando}
+            onPointerDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              if (salvando || checkboxLockRef.current) return;
+              
+              checkboxLockRef.current = true;
+              console.log('🔘 Checkbox clicado! Estado atual:', assistido);
+              
+              setAssistido(prev => {
+                const novoValor = !prev;
+                console.log('🔄 Mudando de', prev, 'para', novoValor);
+                return novoValor;
+              });
+              
+              setTimeout(() => {
+                checkboxLockRef.current = false;
+              }, 500);
+            }}
+          >
+            <div className={`checkbox-custom ${assistido ? 'checked' : ''}`}>
+              {assistido && (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M13.5 4L6 11.5L2.5 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </div>
+            <span className="checkbox-label">Assistido {assistido ? '✓' : ''}</span>
+          </button>
 
           <div className="form-linha">
             <div className="form-grupo">
-              <label htmlFor="ano">Ano *</label>
+              <label htmlFor="ano">Ano</label>
               <input
                 id="ano"
                 type="text"
                 value={ano}
-                onChange={(e) => setAno(e.target.value)}
                 placeholder="Ex: 2024"
-                disabled={salvando}
+                disabled
+                readOnly
               />
             </div>
 
             <div className="form-grupo">
-              <label htmlFor="duracao">Duração (min) *</label>
+              <label htmlFor="duracao">Duração (min)</label>
               <input
                 id="duracao"
                 type="text"
                 value={duracao}
-                onChange={(e) => setDuracao(e.target.value)}
                 placeholder="Ex: 120"
-                disabled={salvando}
+                disabled
+                readOnly
               />
             </div>
           </div>
 
           <div className="form-grupo">
-            <label htmlFor="genero">Gênero *</label>
+            <label htmlFor="genero">Gênero</label>
             <input
               id="genero"
               type="text"
               value={genero}
-              onChange={(e) => setGenero(e.target.value)}
               placeholder="Ex: Ação, Drama"
-              disabled={salvando}
+              disabled
+              readOnly
             />
           </div>
 
@@ -244,9 +283,9 @@ const EditarFilme: React.FC = () => {
                 id="notaImdb"
                 type="text"
                 value={notaImdb}
-                onChange={(e) => setNotaImdb(e.target.value)}
                 placeholder="Ex: 8.5"
-                disabled={salvando}
+                disabled
+                readOnly
               />
             </div>
 
@@ -256,9 +295,9 @@ const EditarFilme: React.FC = () => {
                 id="metascore"
                 type="text"
                 value={metascore}
-                onChange={(e) => setMetascore(e.target.value)}
                 placeholder="Ex: 85"
-                disabled={salvando}
+                disabled
+                readOnly
               />
             </div>
           </div>
@@ -282,10 +321,10 @@ const EditarFilme: React.FC = () => {
             <textarea
               id="sinopse"
               value={sinopse}
-              onChange={(e) => setSinopse(e.target.value)}
               placeholder="Digite a sinopse do filme"
               rows={5}
-              disabled={salvando}
+              disabled
+              readOnly
             />
           </div>
 

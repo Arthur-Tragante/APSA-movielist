@@ -97,6 +97,30 @@
   cursor: not-allowed;
 }
 
+.filme-poster-preview {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.filme-poster-preview label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 12px;
+}
+
+.poster-imagem {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+}
+
 .erro-container {
   max-width: 600px;
   margin: 64px auto;
@@ -128,11 +152,28 @@
 
 @media (max-width: 768px) {
   .editar-container {
-    padding: 24px 16px;
+    padding: 20px 16px;
+  }
+
+  .editar-titulo {
+    font-size: 26px;
+    text-align: center;
   }
 
   .editar-form {
-    padding: 24px 16px;
+    padding: 24px 20px;
+  }
+
+  .form-linha-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .avaliacoes-usuarios {
+    max-height: 350px;
+  }
+
+  .textarea-comentario {
+    font-size: 16px; /* Evita zoom no iOS */
   }
 }
 

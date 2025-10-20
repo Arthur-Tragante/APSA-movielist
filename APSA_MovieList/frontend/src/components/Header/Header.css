@@ -81,17 +81,41 @@
 
 @media (max-width: 768px) {
   .header-content {
-    flex-direction: column;
-    gap: 12px;
+    padding: 16px;
+    flex-wrap: wrap;
+  }
+
+  .header-logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .header-logo h1 {
+    font-size: 22px;
   }
 
   .header-nav {
-    justify-content: flex-start;
-    width: 100%;
+    flex: 1;
+    gap: 8px;
+  }
+
+  .btn-nav {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .header-usuario {
+    gap: 12px;
   }
 
   .nome-usuario {
-    display: none;
+    display: none; /* Oculta nome em telas pequenas */
+  }
+
+  .btn-sair {
+    padding: 10px 16px;
+    font-size: 14px;
   }
 }
 

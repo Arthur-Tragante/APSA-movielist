@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Carregando } from '../../components';
-import { useFilmes } from '../../hooks';
+import { useFilmes, useAuth } from '../../hooks';
 import { Filme } from '../../types';
 import './ListaFilmes.css';
 
@@ -11,10 +11,14 @@ import './ListaFilmes.css';
 const ListaFilmes: React.FC = () => {
   const navigate = useNavigate();
   const { filmes, carregando } = useFilmes();
+  const { obterUsuarioLogado } = useAuth();
+  const usuario = obterUsuarioLogado();
+  
   const [termoBusca, setTermoBusca] = useState('');
   const [navegando, setNavegando] = useState(false);
+  const [abaAtiva, setAbaAtiva] = useState<'todos' | 'assistidos' | 'nao-assistidos'>('todos');
   const [ordenacao, setOrdenacao] = useState<{
-    campo: keyof Filme | null;
+    campo: keyof Filme | 'votos' | 'usuarioVotou' | null;
     direcao: 'asc' | 'desc';
   }>({ campo: null, direcao: 'asc' });
 
@@ -30,7 +34,7 @@ const ListaFilmes: React.FC = () => {
     }
   }, [navigate, navegando]);
 
-  const handleOrdenar = (campo: keyof Filme) => {
+  const handleOrdenar = (campo: keyof Filme | 'votos' | 'usuarioVotou') => {
     setOrdenacao((prev) => ({
       campo,
       direcao: prev.campo === campo && prev.direcao === 'asc' ? 'desc' : 'asc',
@@ -41,34 +45,76 @@ const ListaFilmes: React.FC = () => {
     if (!ordenacao.campo) return filmes;
 
     return [...filmes].sort((a, b) => {
-      const valorA = a[ordenacao.campo!];
-      const valorB = b[ordenacao.campo!];
-
-      if (valorA === undefined || valorB === undefined) return 0;
-
       let comparacao = 0;
 
-      if (typeof valorA === 'string' && typeof valorB === 'string') {
-        comparacao = valorA.localeCompare(valorB);
-      } else if (typeof valorA === 'number' && typeof valorB === 'number') {
-        comparacao = valorA - valorB;
-      } else if (typeof valorA === 'boolean' && typeof valorB === 'boolean') {
-        comparacao = valorA === valorB ? 0 : valorA ? 1 : -1;
+      // Ordenação customizada para campos calculados
+      if (ordenacao.campo === 'votos') {
+        const votosA = a.avaliacoesUsuarios?.length || 0;
+        const votosB = b.avaliacoesUsuarios?.length || 0;
+        comparacao = votosA - votosB;
+      } else if (ordenacao.campo === 'usuarioVotou') {
+        const votouA = usuario && a.avaliacoesUsuarios?.some(
+          (av) => av.email === usuario.email || av.usuario === usuario.nome
+        ) ? 1 : 0;
+        const votouB = usuario && b.avaliacoesUsuarios?.some(
+          (av) => av.email === usuario.email || av.usuario === usuario.nome
+        ) ? 1 : 0;
+        comparacao = votouA - votouB;
+      } else {
+        // Ordenação normal para campos do tipo Filme
+        const valorA = a[ordenacao.campo as keyof Filme];
+        const valorB = b[ordenacao.campo as keyof Filme];
+
+        if (valorA === undefined || valorB === undefined) return 0;
+
+        if (typeof valorA === 'string' && typeof valorB === 'string') {
+          comparacao = valorA.localeCompare(valorB);
+        } else if (typeof valorA === 'number' && typeof valorB === 'number') {
+          comparacao = valorA - valorB;
+        } else if (typeof valorA === 'boolean' && typeof valorB === 'boolean') {
+          comparacao = valorA === valorB ? 0 : valorA ? 1 : -1;
+        }
       }
 
       return ordenacao.direcao === 'asc' ? comparacao : -comparacao;
     });
-  }, [filmes, ordenacao]);
+  }, [filmes, ordenacao, usuario]);
 
   const filmesFiltrados = React.useMemo(() => {
-    if (!termoBusca) return filmesOrdenados;
+    let resultado = filmesOrdenados;
 
-    return filmesOrdenados.filter((filme) =>
-      filme.titulo.toLowerCase().includes(termoBusca.toLowerCase())
+    // Filtro por aba
+    if (abaAtiva === 'assistidos') {
+      resultado = resultado.filter((filme) => filme.assistido);
+    } else if (abaAtiva === 'nao-assistidos') {
+      resultado = resultado.filter((filme) => !filme.assistido);
+    }
+
+    // Filtro por busca
+    if (termoBusca) {
+      resultado = resultado.filter((filme) =>
+        filme.titulo.toLowerCase().includes(termoBusca.toLowerCase())
+      );
+    }
+
+    return resultado;
+  }, [filmesOrdenados, termoBusca, abaAtiva]);
+
+  // Verifica se o usuário logado votou no filme
+  const usuarioVotou = (filme: Filme): boolean => {
+    if (!usuario || !filme.avaliacoesUsuarios) return false;
+    return filme.avaliacoesUsuarios.some(
+      (av) => av.email === usuario.email || av.usuario === usuario.nome
     );
-  }, [filmesOrdenados, termoBusca]);
+  };
 
-  const renderIconeOrdenacao = (campo: keyof Filme) => {
+  // Conta quantos usuários votaram
+  const contarVotos = (filme: Filme): string => {
+    const totalVotos = filme.avaliacoesUsuarios?.length || 0;
+    return `${totalVotos}/4`;
+  };
+
+  const renderIconeOrdenacao = (campo: keyof Filme | 'votos' | 'usuarioVotou') => {
     if (ordenacao.campo !== campo) return null;
     return ordenacao.direcao === 'asc' ? ' ▲' : ' ▼';
   };
@@ -87,7 +133,7 @@ const ListaFilmes: React.FC = () => {
       <Header />
       <div className="lista-container">
         <div className="lista-cabecalho">
-          <h2>Meus Filmes</h2>
+          <h2>Nossos Filmes</h2>
           <div className="lista-busca">
             <input
               type="text"
@@ -97,6 +143,27 @@ const ListaFilmes: React.FC = () => {
               className="input-busca"
             />
           </div>
+        </div>
+
+        <div className="lista-abas">
+          <button
+            className={`aba ${abaAtiva === 'todos' ? 'aba-ativa' : ''}`}
+            onClick={() => setAbaAtiva('todos')}
+          >
+            Todos ({filmes.length})
+          </button>
+          <button
+            className={`aba ${abaAtiva === 'assistidos' ? 'aba-ativa' : ''}`}
+            onClick={() => setAbaAtiva('assistidos')}
+          >
+            Assistidos ({filmes.filter(f => f.assistido).length})
+          </button>
+          <button
+            className={`aba ${abaAtiva === 'nao-assistidos' ? 'aba-ativa' : ''}`}
+            onClick={() => setAbaAtiva('nao-assistidos')}
+          >
+            Não Assistidos ({filmes.filter(f => !f.assistido).length})
+          </button>
         </div>
 
         {filmesFiltrados.length === 0 ? (
@@ -135,6 +202,12 @@ const ListaFilmes: React.FC = () => {
                   <th onClick={() => handleOrdenar('notaRottenTomatoes')}>
                     Rotten{renderIconeOrdenacao('notaRottenTomatoes')}
                   </th>
+                  <th onClick={() => handleOrdenar('votos')}>
+                    Votos{renderIconeOrdenacao('votos')}
+                  </th>
+                  <th onClick={() => handleOrdenar('usuarioVotou')}>
+                    Você Votou?{renderIconeOrdenacao('usuarioVotou')}
+                  </th>
                   <th onClick={() => handleOrdenar('assistido')}>
                     Assistido{renderIconeOrdenacao('assistido')}
                   </th>
@@ -155,6 +228,18 @@ const ListaFilmes: React.FC = () => {
                     <td>{filme.metascore || 'N/A'}</td>
                     <td>{filme.notaRottenTomatoes || 'N/A'}</td>
                     <td>
+                      <span className="badge badge-info">{contarVotos(filme)}</span>
+                    </td>
+                    <td>
+                      <span
+                        className={`badge ${
+                          usuarioVotou(filme) ? 'badge-sim' : 'badge-nao'
+                        }`}
+                      >
+                        {usuarioVotou(filme) ? 'Sim' : 'Não'}
+                      </span>
+                    </td>
+                    <td>
                       <span
                         className={`badge ${
                           filme.assistido ? 'badge-sim' : 'badge-nao'
@@ -164,8 +249,8 @@ const ListaFilmes: React.FC = () => {
                       </span>
                     </td>
                     <td>
-                      {filme.mediaAvaliacaoUsuarios
-                        ? `${filme.mediaAvaliacaoUsuarios.toFixed(1)}/10`
+                      {filme.avaliacoesUsuarios && filme.avaliacoesUsuarios.length > 0
+                        ? `${(filme.mediaAvaliacaoUsuarios || 0).toFixed(1)}/10`
                         : 'N/A'}
                     </td>
                     <td>
