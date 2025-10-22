@@ -1,0 +1,10 @@
+# Coloque seus certificados SSL aqui
+# 
+# Arquivos necessários:
+# - key.pem (chave privada)
+# - cert.pem (certificado)
+#
+# NUNCA commite os arquivos reais no Git!
+
+
+

@@ -1,0 +1,358 @@
+.pagina-editar-show {
+  min-height: 100vh;
+  background-color: var(--surface-color);
+}
+
+.editar-show-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.editar-show-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.editar-show-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.btn-voltar {
+  padding: 8px 16px;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+  background-color: var(--border-color);
+  transform: translateX(-2px);
+}
+
+.formulario-show {
+  background-color: var(--background-color);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-grupo {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.form-grupo label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  font-family: inherit;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-grupo input:disabled,
+.form-grupo textarea:disabled {
+  background-color: var(--surface-color);
+  cursor: not-allowed;
+  color: var(--text-secondary);
+}
+
+.form-grupo textarea {
+  resize: vertical;
+}
+
+.form-grupo-inline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.show-info-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  margin: 24px 0;
+  align-items: start;
+}
+
+.show-poster-preview {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  background: transparent;
+}
+
+.poster-imagem {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.poster-imagem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.show-dados {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.secao-avaliacao-usuario {
+  margin-top: 32px;
+  padding: 24px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.secao-avaliacao-usuario h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 20px 0;
+}
+
+.form-grupo-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  touch-action: manipulation;
+}
+
+.checkbox-custom {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  color: white;
+  touch-action: manipulation;
+}
+
+.checkbox-custom.checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.checkbox-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  flex: 1;
+}
+
+.secao-avaliacoes-outros {
+  margin-top: 32px;
+  padding: 24px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.secao-avaliacoes-outros h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 20px 0;
+}
+
+.lista-avaliacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.avaliacao-card {
+  padding: 16px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary-color);
+}
+
+.avaliacao-usuario-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.avaliacao-usuario-info strong {
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.avaliacao-comentario {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.form-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn-cancelar,
+.btn-salvar {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-cancelar {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-cancelar:hover:not(:disabled) {
+  background-color: var(--border-color);
+}
+
+.btn-salvar {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-salvar:hover:not(:disabled) {
+  background-color: #1557b0;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-salvar:disabled,
+.btn-cancelar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.editar-erro {
+  max-width: 600px;
+  margin: 64px auto;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.editar-erro p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .editar-show-container {
+    padding: 20px 16px;
+  }
+
+  .editar-show-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .editar-show-header h1 {
+    font-size: 24px;
+  }
+
+  .formulario-show {
+    padding: 24px 20px;
+  }
+
+  .form-grupo input,
+  .form-grupo textarea {
+    font-size: 16px;
+  }
+
+  .form-grupo-inline {
+    grid-template-columns: 1fr;
+  }
+
+  .show-info-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .show-poster-preview {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .form-acoes {
+    flex-direction: column;
+  }
+
+  .btn-cancelar,
+  .btn-salvar {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .lista-avaliacoes {
+    max-height: 300px;
+  }
+}
+
+
