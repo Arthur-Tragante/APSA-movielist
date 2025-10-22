@@ -39,6 +39,18 @@ const Header: React.FC = () => {
           >
             Adicionar Filme
           </button>
+          <button
+            className="btn-nav"
+            onClick={() => handleNavegar('/series')}
+          >
+            Séries
+          </button>
+          <button
+            className="btn-nav"
+            onClick={() => handleNavegar('/series/adicionar')}
+          >
+            Adicionar Série
+          </button>
         </nav>
 
         <div className="header-usuario">

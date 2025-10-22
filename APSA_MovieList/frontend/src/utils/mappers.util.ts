@@ -2,7 +2,7 @@
  * Mapeadores para converter entre o formato do código (PT) e Firestore (EN)
  */
 
-import { Filme, FilmeCadastro } from '../types';
+import { Filme, FilmeCadastro, Show, ShowCadastro } from '../types';
 
 /**
  * Converte filme do Firestore (EN) para o formato da aplicação (PT)
@@ -92,25 +92,76 @@ export const usuarioAppParaFirestore = (usuario: any): any => {
 };
 
 /**
+ * Converte série do Firestore (EN) para o formato da aplicação (PT)
+ */
+export const showFirestoreParaApp = (doc: any): Show => {
+  const mediaCalculada = doc.averageUserRating !== undefined 
+    ? doc.averageUserRating 
+    : calcularMediaAvaliacoes(doc.userRatings || []);
+  
+  return {
+    id: doc.id,
+    titulo: doc.title || '',
+    genero: doc.genre || '',
+    ano: doc.year || '',
+    temporadas: doc.seasons || '',
+    notaImdb: doc.imdbRating || 'N/A',
+    metascore: doc.metascore || 'N/A',
+    sinopse: doc.synopsis || '',
+    poster: doc.poster || '',
+    avaliacoes: (doc.ratings || []).map((r: any) => ({
+      fonte: r.Source || '',
+      valor: r.Value || '',
+    })),
+    usuario: doc.user || '',
+    assistido: doc.watched || false,
+    avaliacoesUsuarios: (doc.userRatings || []).map((ur: any) => ({
+      usuario: ur.user || '',
+      email: ur.email || ur.user || '',
+      nota: typeof ur.rating === 'string' ? parseFloat(ur.rating) : (ur.rating || 0),
+      assistido: doc.watched || false,
+      comentario: ur.comment || '',
+    })),
+    mediaAvaliacaoUsuarios: mediaCalculada,
+  };
+};
+
+/**
+ * Converte série da aplicação (PT) para Firestore (EN)
+ */
+export const showAppParaFirestore = (show: ShowCadastro): any => {
+  return {
+    title: show.titulo,
+    genre: show.genero,
+    year: show.ano,
+    seasons: show.temporadas,
+    imdbRating: show.notaImdb,
+    metascore: show.metascore,
+    synopsis: show.sinopse,
+    poster: show.poster || '',
+    ratings: show.avaliacoes.map((av) => ({
+      Source: av.fonte,
+      Value: av.valor,
+    })),
+    user: show.usuario,
+    watched: show.assistido,
+  };
+};
+
+/**
  * Calcula média de avaliações
  */
 const calcularMediaAvaliacoes = (avaliacoes: any[]): number => {
   if (!avaliacoes || avaliacoes.length === 0) {
-    console.log('📊 Sem avaliações para calcular média');
     return 0;
   }
   
-  console.log('📊 Calculando média de', avaliacoes.length, 'avaliações:', avaliacoes);
-  
   const soma = avaliacoes.reduce((acc, av) => {
-    // Converte string para número se necessário
     const rating = typeof av.rating === 'string' ? parseFloat(av.rating) : (av.rating || 0);
-    console.log('  - Avaliação:', av.user || av.email, '→', rating, `(tipo: ${typeof av.rating})`);
     return acc + rating;
   }, 0);
   
   const media = Math.round((soma / avaliacoes.length) * 10) / 10;
-  console.log('📊 Média calculada:', media, '(soma:', soma, '/ total:', avaliacoes.length, ')');
   
   return media;
 };

@@ -1,0 +1,236 @@
+.pagina-adicionar-show {
+  min-height: 100vh;
+  background-color: var(--surface-color);
+}
+
+.adicionar-show-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.adicionar-show-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.adicionar-show-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.btn-voltar {
+  padding: 8px 16px;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+  background-color: var(--border-color);
+  transform: translateX(-2px);
+}
+
+.formulario-show {
+  background-color: var(--background-color);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-grupo {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.form-grupo label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  font-family: inherit;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-grupo textarea {
+  resize: vertical;
+}
+
+.form-grupo-inline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-grupo-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  touch-action: manipulation;
+}
+
+.checkbox-custom {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  color: white;
+  touch-action: manipulation;
+}
+
+.checkbox-custom.checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.checkbox-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  flex: 1;
+}
+
+.secao-avaliacao-usuario {
+  margin-top: 24px;
+  padding: 24px;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.secao-avaliacao-usuario h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 20px 0;
+}
+
+.form-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn-cancelar,
+.btn-salvar {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-cancelar {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-cancelar:hover:not(:disabled) {
+  background-color: var(--border-color);
+}
+
+.btn-salvar {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-salvar:hover:not(:disabled) {
+  background-color: #1557b0;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-salvar:disabled,
+.btn-cancelar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .adicionar-show-container {
+    padding: 20px 16px;
+  }
+
+  .adicionar-show-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .adicionar-show-header h1 {
+    font-size: 24px;
+  }
+
+  .formulario-show {
+    padding: 24px 20px;
+  }
+
+  .form-grupo input,
+  .form-grupo textarea {
+    font-size: 16px; /* Evita zoom no iOS */
+  }
+
+  .form-grupo-inline {
+    grid-template-columns: 1fr;
+  }
+
+  .form-acoes {
+    flex-direction: column;
+  }
+
+  .btn-cancelar,
+  .btn-salvar {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+}
+
+

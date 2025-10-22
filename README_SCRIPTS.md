@@ -82,4 +82,3 @@ npm run script:capas
 - Se persistir, aumente o delay no código (linha com `aguardar(250)`)
 
 
-

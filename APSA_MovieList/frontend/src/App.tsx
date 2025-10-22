@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Login, ListaFilmes, AdicionarFilme, EditarFilme } from './pages';
+import { Login, ListaFilmes, AdicionarFilme, EditarFilme, ListaShows, AdicionarShow, EditarShow } from './pages';
 import { ErrorBoundary } from './components';
 import { authService } from './services';
 
@@ -52,6 +52,30 @@ const App: React.FC = () => {
           element={
             <RotaProtegida>
               <EditarFilme />
+            </RotaProtegida>
+          }
+        />
+        <Route
+          path="/series"
+          element={
+            <RotaProtegida>
+              <ListaShows />
+            </RotaProtegida>
+          }
+        />
+        <Route
+          path="/series/adicionar"
+          element={
+            <RotaProtegida>
+              <AdicionarShow />
+            </RotaProtegida>
+          }
+        />
+        <Route
+          path="/series/editar/:id"
+          element={
+            <RotaProtegida>
+              <EditarShow />
             </RotaProtegida>
           }
         />
