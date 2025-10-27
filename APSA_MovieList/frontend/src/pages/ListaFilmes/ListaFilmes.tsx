@@ -20,7 +20,7 @@ const ListaFilmes: React.FC = () => {
   const [ordenacao, setOrdenacao] = useState<{
     campo: keyof Filme | 'votos' | 'usuarioVotou' | null;
     direcao: 'asc' | 'desc';
-  }>({ campo: null, direcao: 'asc' });
+  }>({ campo: 'mediaAvaliacaoUsuarios', direcao: 'desc' });
 
   const handleEditar = React.useCallback((id: string) => {
     if (navegando) return; // Previne cliques múltiplos
@@ -65,9 +65,22 @@ const ListaFilmes: React.FC = () => {
         const valorA = a[ordenacao.campo as keyof Filme];
         const valorB = b[ordenacao.campo as keyof Filme];
 
-        if (valorA === undefined || valorB === undefined) return 0;
-
-        if (typeof valorA === 'string' && typeof valorB === 'string') {
+        // Tratamento especial para mediaAvaliacaoUsuarios: filmes sem nota vão para o final
+        if (ordenacao.campo === 'mediaAvaliacaoUsuarios') {
+          const notaA = valorA as number | undefined;
+          const notaB = valorB as number | undefined;
+          
+          const temNotaA = notaA !== undefined && notaA !== null && notaA > 0;
+          const temNotaB = notaB !== undefined && notaB !== null && notaB > 0;
+          
+          if (!temNotaA && !temNotaB) return 0;
+          if (!temNotaA) return 1; // A sem nota vai para o final
+          if (!temNotaB) return -1; // B sem nota vai para o final
+          
+          comparacao = notaA! - notaB!;
+        } else if (valorA === undefined || valorB === undefined) {
+          return 0;
+        } else if (typeof valorA === 'string' && typeof valorB === 'string') {
           comparacao = valorA.localeCompare(valorB);
         } else if (typeof valorA === 'number' && typeof valorB === 'number') {
           comparacao = valorA - valorB;

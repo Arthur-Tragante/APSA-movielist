@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Modal, Carregando, AvaliacaoEstrelas } from '../../components';
-import { useAuth } from '../../hooks';
+import { useAuth, useApiExternaSeries } from '../../hooks';
 import { showService } from '../../services';
-import { Avaliacao } from '../../types';
-import { MENSAGENS_ERRO, MENSAGENS_SUCESSO } from '../../constants';
+import { MENSAGENS_ERRO, MENSAGENS_SUCESSO, TMDB_IMAGE_BASE_URL } from '../../constants';
+import { ResultadoSerieTMDB } from '../../types';
 import './AdicionarShow.css';
 
 /**
@@ -13,7 +13,16 @@ import './AdicionarShow.css';
 const AdicionarShow: React.FC = () => {
   const navigate = useNavigate();
   const { obterUsuarioLogado } = useAuth();
+  const {
+    resultados,
+    buscarPorTitulo,
+    buscarInformacoesCompletas,
+    limparResultados,
+    carregando: carregandoBusca,
+    erro: erroBusca,
+  } = useApiExternaSeries();
 
+  const [tituloBusca, setTituloBusca] = useState('');
   const [titulo, setTitulo] = useState('');
   const [temporadas, setTemporadas] = useState('');
   const [genero, setGenero] = useState('');
@@ -22,7 +31,6 @@ const AdicionarShow: React.FC = () => {
   const [notaImdb, setNotaImdb] = useState('');
   const [metascore, setMetascore] = useState('');
   const [poster, setPoster] = useState('');
-  const [avaliacoes, setAvaliacoes] = useState<Avaliacao[]>([]);
   const [assistido, setAssistido] = useState(false);
   const [notaUsuario, setNotaUsuario] = useState(0);
   const [comentarioUsuario, setComentarioUsuario] = useState('');
@@ -33,6 +41,37 @@ const AdicionarShow: React.FC = () => {
   
   const checkboxLockRef = useRef(false);
   const usuario = obterUsuarioLogado();
+
+  const handleBuscarSerie = () => {
+    buscarPorTitulo(tituloBusca);
+  };
+
+  const handleSelecionarSerie = async (serie: ResultadoSerieTMDB) => {
+    limparResultados();
+    setCarregando(true);
+
+    try {
+      const info = await buscarInformacoesCompletas(serie.id);
+
+      if (info) {
+        setTitulo(`${info.tituloPt} / ${info.tituloEn}`);
+        setTemporadas(info.temporadas?.toString() || '');
+        setGenero(info.generos);
+        setAno(info.ano);
+        setSinopse(info.sinopse);
+        setNotaImdb(info.notaImdb);
+        setMetascore(info.metascore);
+        setPoster(serie.poster_path ? `${TMDB_IMAGE_BASE_URL}${serie.poster_path}` : '');
+      }
+    } catch (error) {
+      console.error('Erro ao buscar informações da série:', error);
+      setMensagemModal('Erro ao buscar informações da série');
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setCarregando(false);
+    }
+  };
 
   const validarCampos = (): boolean => {
     if (!titulo || !temporadas || !genero || !ano) {
@@ -66,7 +105,7 @@ const AdicionarShow: React.FC = () => {
         notaImdb: notaImdb || 'N/A',
         metascore: metascore || 'N/A',
         poster: poster || '',
-        avaliacoes,
+        avaliacoes: [],
         usuario: usuario.nome,
         assistido,
       });
@@ -143,6 +182,54 @@ const AdicionarShow: React.FC = () => {
         </div>
 
         <form className="formulario-show" onSubmit={(e) => e.preventDefault()}>
+          {/* Seção de Busca em APIs Externas */}
+          <div className="secao-busca-api">
+            <h3>Buscar Série (TMDb)</h3>
+            <div className="form-grupo-busca">
+              <input
+                type="text"
+                className="input-busca-api"
+                placeholder="Digite o nome da série para buscar..."
+                value={tituloBusca}
+                onChange={(e) => {
+                  setTituloBusca(e.target.value);
+                  if (e.target.value.length >= 2) {
+                    handleBuscarSerie();
+                  } else {
+                    limparResultados();
+                  }
+                }}
+              />
+              {carregandoBusca && <span className="loading-busca">Buscando...</span>}
+              {erroBusca && <span className="erro-busca">{erroBusca}</span>}
+            </div>
+
+            {resultados.length > 0 && (
+              <div className="resultados-busca">
+                {resultados.map((serie) => (
+                  <div
+                    key={serie.id}
+                    className="resultado-item"
+                    onClick={() => handleSelecionarSerie(serie)}
+                  >
+                    {serie.poster_path && (
+                      <img
+                        src={`${TMDB_IMAGE_BASE_URL}${serie.poster_path}`}
+                        alt={serie.name}
+                        className="resultado-poster"
+                      />
+                    )}
+                    <div className="resultado-info">
+                      <h4>{serie.name}</h4>
+                      <p>{serie.first_air_date?.split('-')[0]}</p>
+                      <p className="resultado-sinopse">{serie.overview}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           <div className="form-grupo">
             <label htmlFor="titulo">Título *</label>
             <input
@@ -260,8 +347,7 @@ const AdicionarShow: React.FC = () => {
                 <label>Nota</label>
                 <AvaliacaoEstrelas
                   nota={notaUsuario}
-                  tamanho={30}
-                  onChange={setNotaUsuario}
+                  aoMudarNota={setNotaUsuario}
                 />
               </div>
 
@@ -300,9 +386,10 @@ const AdicionarShow: React.FC = () => {
 
       {exibirModal && (
         <Modal
+          exibir={exibirModal}
           mensagem={mensagemModal}
           tipo={tipoModal}
-          onFechar={fecharModal}
+          aoFechar={fecharModal}
         />
       )}
     </div>
@@ -310,5 +397,6 @@ const AdicionarShow: React.FC = () => {
 };
 
 export default AdicionarShow;
+
 
 
