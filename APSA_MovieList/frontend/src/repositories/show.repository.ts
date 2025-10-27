@@ -2,7 +2,8 @@
  * Repository de séries - gerencia interação com Firestore
  */
 
-import { firestore } from '../config/firebase.config';
+import { collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { db } from '../config/firebase.config';
 import { ShowCadastro, Show, ShowEdicao } from '../types';
 import { showFirestoreParaApp, showAppParaFirestore } from '../utils/mappers.util';
 
@@ -14,7 +15,7 @@ const COLLECTION = 'shows';
 export const criar = async (show: ShowCadastro): Promise<string> => {
   const showFirestore = showAppParaFirestore(show);
   
-  const docRef = await firestore.collection(COLLECTION).add({
+  const docRef = await addDoc(collection(db, COLLECTION), {
     ...showFirestore,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -27,10 +28,10 @@ export const criar = async (show: ShowCadastro): Promise<string> => {
  * Busca todas as séries
  */
 export const buscarTodos = async (): Promise<Show[]> => {
-  const snapshot = await firestore.collection(COLLECTION).get();
+  const snapshot = await getDocs(collection(db, COLLECTION));
 
-  return snapshot.docs.map((doc) =>
-    showFirestoreParaApp({ id: doc.id, ...doc.data() })
+  return snapshot.docs.map((docSnapshot) =>
+    showFirestoreParaApp({ id: docSnapshot.id, ...docSnapshot.data() })
   );
 };
 
@@ -38,13 +39,14 @@ export const buscarTodos = async (): Promise<Show[]> => {
  * Busca série por ID
  */
 export const buscarPorId = async (id: string): Promise<Show | null> => {
-  const doc = await firestore.collection(COLLECTION).doc(id).get();
+  const docRef = doc(db, COLLECTION, id);
+  const docSnapshot = await getDoc(docRef);
 
-  if (!doc.exists) {
+  if (!docSnapshot.exists()) {
     return null;
   }
 
-  return showFirestoreParaApp({ id: doc.id, ...doc.data() });
+  return showFirestoreParaApp({ id: docSnapshot.id, ...docSnapshot.data() });
 };
 
 /**
@@ -53,7 +55,8 @@ export const buscarPorId = async (id: string): Promise<Show | null> => {
 export const atualizar = async (id: string, show: Partial<ShowEdicao>): Promise<void> => {
   const showFirestore = showAppParaFirestore(show as ShowCadastro);
   
-  await firestore.collection(COLLECTION).doc(id).update({
+  const docRef = doc(db, COLLECTION, id);
+  await updateDoc(docRef, {
     ...showFirestore,
     updatedAt: new Date().toISOString(),
   });
@@ -63,7 +66,8 @@ export const atualizar = async (id: string, show: Partial<ShowEdicao>): Promise<
  * Deleta série
  */
 export const deletar = async (id: string): Promise<void> => {
-  await firestore.collection(COLLECTION).doc(id).delete();
+  const docRef = doc(db, COLLECTION, id);
+  await deleteDoc(docRef);
 };
 
 export default {

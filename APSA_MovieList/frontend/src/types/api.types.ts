@@ -20,6 +20,26 @@ export interface DetalhesFilmeTMDB {
   imdb_id?: string;
 }
 
+export interface ResultadoSerieTMDB {
+  id: string;
+  name: string;
+  poster_path: string;
+  first_air_date: string;
+  overview: string;
+}
+
+export interface DetalhesSerieTMDB {
+  name: string;
+  number_of_seasons: number;
+  genres: { id: number; name: string }[];
+  first_air_date: string;
+  overview: string;
+  original_name: string;
+  external_ids?: {
+    imdb_id?: string;
+  };
+}
+
 export interface RespostaOMDB {
   Title: string;
   Year: string;
@@ -31,5 +51,6 @@ export interface RespostaOMDB {
   Metascore: string;
   Ratings: { Source: string; Value: string }[];
   Response: string;
+  totalSeasons?: string;
 }
 

@@ -9,4 +9,5 @@ export { default as EditarFilme } from './EditarFilme/EditarFilme';
 export { default as ListaShows } from './ListaShows/ListaShows';
 export { default as AdicionarShow } from './AdicionarShow/AdicionarShow';
 export { default as EditarShow } from './EditarShow/EditarShow';
+export { default as Sorteio } from './Sorteio/Sorteio';
 
