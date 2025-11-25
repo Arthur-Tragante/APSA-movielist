@@ -1,0 +1,20 @@
+### Test Series Creation
+POST http://localhost:3001/api/series
+Content-Type: application/json
+Authorization: Bearer seu_token_aqui
+
+{
+  "titulo": "American Horror Story",
+  "tituloOriginal": "American Horror Story",
+  "ano": "2011",
+  "temporadas": "12",
+  "genero": "Drama, Mistério, Sci-Fi & Fantasy",
+  "sinopse": "Uma antologia dramática de terror que oferece uma nova história, elenco e cenário a cada temporada.",
+  "poster": "https://image.tmdb.org/t/p/w200/5LLG9bjq0i7V5N4UfRhnab8zHK4.jpg",
+  "notaImdb": "7.9",
+  "votosImdb": "N/A",
+  "metascore": "N/A",
+  "avaliacoes": [],
+  "assistido": false,
+  "temporadasEpisodios": []
+}

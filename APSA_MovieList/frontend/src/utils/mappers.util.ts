@@ -115,6 +115,8 @@ export const showFirestoreParaApp = (doc: any): Show => {
     })),
     usuario: doc.user || '',
     assistido: doc.watched || false,
+    criadoEm: doc.createdAt,
+    atualizadoEm: doc.updatedAt,
     avaliacoesUsuarios: (doc.userRatings || []).map((ur: any) => ({
       usuario: ur.user || ur.usuario || '',
       email: ur.email || ur.user || '',

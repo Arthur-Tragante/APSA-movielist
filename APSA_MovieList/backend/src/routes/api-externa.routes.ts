@@ -28,5 +28,17 @@ router.get('/detalhes/:id', apiExternaController.buscarDetalhes);
  */
 router.get('/ratings/:imdbId', apiExternaController.buscarRatings);
 
+/**
+ * GET /api/buscar/serie?titulo=...
+ * Busca séries no TMDB
+ */
+router.get('/serie', apiExternaController.buscarSerie);
+
+/**
+ * GET /api/buscar/serie/detalhes/:id
+ * Busca detalhes de uma série no TMDB
+ */
+router.get('/serie/detalhes/:id', apiExternaController.buscarDetalhesSerie);
+
 export default router;
 

@@ -15,6 +15,28 @@ export interface AvaliacaoShow {
   valor: string;
 }
 
+export interface AvaliacaoEpisodio {
+  usuario: string;
+  email: string;
+  nota: number;
+  comentario?: string;
+  criadoEm: string;
+  atualizadoEm: string;
+}
+
+export interface Episodio {
+  numero: number;
+  titulo: string;
+  sinopse?: string;
+  dateLançamento?: string;
+  avaliações?: AvaliacaoEpisodio[];
+}
+
+export interface Temporada {
+  numero: number;
+  episodios: Episodio[];
+}
+
 export interface Show {
   id: string;
   titulo: string;
@@ -28,10 +50,13 @@ export interface Show {
   avaliacoes: AvaliacaoShow[];
   usuario: string;
   assistido: boolean;
+  criadoEm?: string;
+  atualizadoEm?: string;
   avaliacoesUsuarios?: AvaliacaoUsuarioShow[];
   mediaAvaliacaoUsuarios?: number;
   notaRottenTomatoes?: string;
   emailsEAvaliacoes?: string;
+  temporadasEpisodios?: Temporada[];
 }
 
 export interface ShowCadastro {
@@ -46,12 +71,15 @@ export interface ShowCadastro {
   avaliacoes: AvaliacaoShow[];
   usuario: string;
   assistido: boolean;
+  temporadasEpisodios?: Temporada[];
 }
 
 export interface ShowEdicao extends ShowCadastro {
   id: string;
   avaliacoesUsuarios?: AvaliacaoUsuarioShow[];
 }
+
+
 
 
 

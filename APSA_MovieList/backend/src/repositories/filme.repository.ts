@@ -15,12 +15,18 @@ class FilmeRepository {
   async buscarPorUsuario(emailUsuario: string): Promise<Filme[]> {
     const snapshot = await this.colecao
       .where('user', '==', emailUsuario)
-      .orderBy('createdAt', 'desc')
       .get();
 
-    return snapshot.docs.map((doc) => 
+    // Ordena localmente por data de criação
+    const filmes = snapshot.docs.map((doc) => 
       filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
     );
+
+    return filmes.sort((a, b) => {
+      const dataA = new Date(a.criadoEm || 0).getTime();
+      const dataB = new Date(b.criadoEm || 0).getTime();
+      return dataB - dataA;
+    });
   }
 
   /**
@@ -34,6 +40,16 @@ class FilmeRepository {
     }
 
     return filmeFirestoreParaApp({ id: doc.id, ...doc.data() });
+  }
+
+  /**
+   * Busca todos os filmes do sistema
+   */
+  async buscarTodos(): Promise<Filme[]> {
+    const snapshot = await this.colecao.get();
+    return snapshot.docs.map((doc) =>
+      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
+    );
   }
 
   /**

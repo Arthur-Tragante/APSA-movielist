@@ -124,7 +124,6 @@ const EditarShow: React.FC = () => {
           usuario.email,
           usuario.nome,
           notaUsuario,
-          assistido,
           comentarioUsuario
         );
       }

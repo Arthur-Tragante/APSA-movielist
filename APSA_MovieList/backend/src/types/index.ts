@@ -3,6 +3,7 @@
  */
 
 export * from './filme.types';
+export * from './serie.types';
 export * from './usuario.types';
 export * from './api.types';
 export * from './http.types';

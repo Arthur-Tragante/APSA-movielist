@@ -92,6 +92,68 @@ class ApiExternaController {
       next(erro);
     }
   }
+
+  /**
+   * Busca séries no TMDB
+   * GET /api/buscar/serie?titulo=...
+   */
+  async buscarSerie(req: Request, res: Response, next: NextFunction): Promise<any> {
+    try {
+      const { titulo } = req.query;
+
+      if (!titulo || typeof titulo !== 'string') {
+        return res.status(400).json({
+          sucesso: false,
+          erro: 'Parâmetro "titulo" é obrigatório',
+        });
+      }
+
+      const resultados = await apiExternaService.buscarSerie(titulo);
+
+      return res.json({
+        sucesso: true,
+        dados: resultados,
+      });
+    } catch (erro) {
+      next(erro);
+    }
+  }
+
+  /**
+   * Busca detalhes de uma série específica no TMDB
+   * GET /api/buscar/serie/detalhes/:id
+   */
+  async buscarDetalhesSerie(req: Request, res: Response, next: NextFunction): Promise<any> {
+    try {
+      const { id } = req.params;
+      const { idioma } = req.query;
+      const idTmdb = parseInt(id, 10);
+
+      if (isNaN(idTmdb)) {
+        return res.status(400).json({
+          sucesso: false,
+          erro: 'ID inválido',
+        });
+      }
+
+      const idiomaString = typeof idioma === 'string' ? idioma : 'pt-BR';
+      const detalhes = await apiExternaService.buscarDetalhesSerie(idTmdb, idiomaString);
+
+      if (!detalhes) {
+        return res.status(404).json({
+          sucesso: false,
+          erro: 'Série não encontrada',
+        });
+      }
+
+      return res.json({
+        sucesso: true,
+        dados: detalhes,
+      });
+    } catch (erro) {
+      next(erro);
+    }
+  }
 }
 
 export default new ApiExternaController();
