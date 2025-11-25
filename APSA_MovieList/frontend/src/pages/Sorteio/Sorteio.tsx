@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ref, push, onValue, remove, set } from 'firebase/database';
+import { ref, push, onValue, remove } from 'firebase/database';
 import { Header, Modal, Carregando } from '../../components';
 import { useAuth } from '../../hooks';
 import { database } from '../../config/firebase.config';
 import './Sorteio.css';
+import apiClient from '../../services/api.client';
 
 interface FilmeSorteio {
   id: string;
@@ -148,47 +149,40 @@ const Sorteio: React.FC = () => {
     }
   };
 
-  const embaralharArray = <T,>(array: T[]): T[] => {
-    const novoArray = [...array];
-    for (let i = novoArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [novoArray[i], novoArray[j]] = [novoArray[j], novoArray[i]];
-    }
-    return novoArray;
-  };
-
   const handleSortear = async () => {
-    if (filmesSorteio.length === 0) {
-      setMensagemModal('Não há filmes para sortear');
-      setTipoModal('informacao');
-      setExibirModal(true);
-      return;
-    }
+    setCarregando(true);
+    setMensagemModal('');
+    setTipoModal('informacao');
+    setExibirModal(false);
 
     try {
-      setCarregando(true);
-
-      // Embaralha a lista de filmes
-      const filmesEmbaralhados = embaralharArray(filmesSorteio.map(f => f.titulo));
-      const vencedor = filmesEmbaralhados[0];
-
-      // Salva o resultado
-      const resultadoRef = ref(database, 'Results');
-      await set(resultadoRef, {
-        allPicks: filmesEmbaralhados,
-        winner: vencedor,
+      const resposta = await apiClient.post('/filmes/sortear', {
+        filmes: filmesSorteio,
+        webhook: 'https://discordapp.com/api/webhooks/1438341625326604423/AJ3Qr7X4PxzogGkUNZYouF-99l59x8OsfiIQ5WjJT8j25bzdyL4LHdNtM8887_GNfYpY'
       });
+      if (resposta.data && resposta.data.sucesso) {
+        // Salva o resultado no Firebase para que todos os usuários vejam
+        const resultadoRef = ref(database, 'Results');
+        await push(resultadoRef, {
+          allPicks: resposta.data.dados.sorteios,
+          winner: resposta.data.dados.vencedor,
+          timestamp: new Date().toISOString(),
+        });
 
-      // Remove todos os filmes
-      const filmesRef = ref(database, 'Movies');
-      await remove(filmesRef);
-
-      setMensagemModal(`Filme sorteado: ${vencedor}`);
-      setTipoModal('sucesso');
-      setExibirModal(true);
+        setResultado({
+          allPicks: resposta.data.dados.sorteios,
+          winner: resposta.data.dados.vencedor
+        });
+        setMensagemModal(`Filme sorteado: ${resposta.data.dados.vencedor}`);
+        setTipoModal('sucesso');
+        setExibirModal(true);
+      } else {
+        setMensagemModal(resposta.data.mensagem || 'Erro inesperado no sorteio.');
+        setTipoModal('erro');
+        setExibirModal(true);
+      }
     } catch (erro: any) {
-      console.error('Erro ao sortear:', erro);
-      setMensagemModal(`Erro ao sortear: ${erro.message}`);
+      setMensagemModal(erro.message || 'Erro ao sortear filme.');
       setTipoModal('erro');
       setExibirModal(true);
     } finally {

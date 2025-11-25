@@ -116,12 +116,11 @@ const AdicionarShow: React.FC = () => {
           usuario.email,
           usuario.nome,
           notaUsuario,
-          assistido,
           comentarioUsuario
         );
       }
 
-      setMensagemModal(MENSAGENS_SUCESSO.FILME_SALVO);
+      setMensagemModal(MENSAGENS_SUCESSO.SERIE_SALVA);
       setTipoModal('sucesso');
       setExibirModal(true);
       

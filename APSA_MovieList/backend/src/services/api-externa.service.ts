@@ -156,6 +156,89 @@ class ApiExternaService {
       };
     }
   }
+
+  /**
+   * Busca séries no TMDB
+   */
+  async buscarSerie(titulo: string): Promise<ResultadoBusca[]> {
+    const chaveCache = `${CACHE_PREFIXES.TMDB_SEARCH_SERIES}${titulo.toLowerCase()}`;
+
+    // Verifica cache
+    const cacheado = await cacheService.obter(chaveCache);
+    if (cacheado) {
+      return JSON.parse(cacheado);
+    }
+
+    try {
+      const resposta = await axios.get(API_URLS.TMDB_SEARCH_SERIES, {
+        params: {
+          query: titulo,
+          language: 'pt-BR',
+          include_adult: false,
+        },
+        headers: {
+          Authorization: `Bearer ${env.TMDB_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Retorna os resultados no formato original do TMDB (compatível com frontend)
+      const resultados = resposta.data.results.slice(0, 10);
+
+      // Salva no cache
+      await cacheService.definir(
+        chaveCache,
+        JSON.stringify(resultados),
+        env.CACHE_TTL_TMDB
+      );
+
+      return resultados;
+    } catch (erro) {
+      console.error('Erro ao buscar série no TMDB:', erro);
+      throw new Error(MENSAGENS_ERRO.ERRO_BUSCAR_TMDB);
+    }
+  }
+
+  /**
+   * Busca detalhes de uma série específica no TMDB
+   */
+  async buscarDetalhesSerie(idTmdb: number, idioma: string = 'pt-BR'): Promise<DetalhesFilme | null> {
+    const chaveCache = `${CACHE_PREFIXES.TMDB_SERIES}${idTmdb}_${idioma}`;
+
+    // Verifica cache
+    const cacheado = await cacheService.obter(chaveCache);
+    if (cacheado) {
+      return JSON.parse(cacheado);
+    }
+
+    try {
+      const resposta = await axios.get(`${API_URLS.TMDB_SERIES_DETAILS}/${idTmdb}`, {
+        params: {
+          language: idioma,
+          append_to_response: 'external_ids',
+        },
+        headers: {
+          Authorization: `Bearer ${env.TMDB_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Retorna os dados no formato original do TMDB (compatível com frontend)
+      const serie = resposta.data;
+
+      // Salva no cache
+      await cacheService.definir(
+        chaveCache,
+        JSON.stringify(serie),
+        env.CACHE_TTL_TMDB
+      );
+
+      return serie;
+    } catch (erro) {
+      console.error('Erro ao buscar detalhes da série:', erro);
+      return null;
+    }
+  }
 }
 
 export default new ApiExternaService();

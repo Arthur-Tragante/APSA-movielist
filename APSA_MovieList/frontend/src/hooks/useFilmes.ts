@@ -20,6 +20,7 @@ export const useFilmes = () => {
     } catch (error) {
       console.error('Erro ao buscar filmes:', error);
       setErro(MENSAGENS_ERRO.ERRO_BUSCAR_FILME);
+      setFilmes([]);
     } finally {
       setCarregando(false);
     }

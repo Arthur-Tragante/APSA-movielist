@@ -18,5 +18,7 @@ export const MENSAGENS_SUCESSO = {
   RECUPERACAO_SENHA_ENVIADA: 'Email de recuperação de senha enviado!',
   FILME_SALVO: 'Filme salvo com sucesso!',
   FILME_ATUALIZADO: 'Filme atualizado com sucesso!',
+  SERIE_SALVA: 'Série salva com sucesso!',
+  SERIE_ATUALIZADA: 'Série atualizada com sucesso!',
 } as const;
 

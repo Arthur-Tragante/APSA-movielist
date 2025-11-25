@@ -14,6 +14,10 @@ export const rateLimiterGlobal = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => {
+    // Não aplica rate limit em requisições GET (apenas leitura)
+    return req.method === 'GET';
+  },
 });
 
 /**

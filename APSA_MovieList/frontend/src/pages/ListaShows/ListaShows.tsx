@@ -79,7 +79,22 @@ const ListaShows: React.FC = () => {
         } else if (valorA === undefined || valorB === undefined) {
           return 0;
         } else if (typeof valorA === 'string' && typeof valorB === 'string') {
-          comparacao = valorA.localeCompare(valorB);
+          // Campos numéricos armazenados como strings devem ser comparados numericamente
+          const camposNumericos = ['ano', 'temporadas', 'notaImdb', 'metascore', 'notaRottenTomatoes'];
+          if (camposNumericos.includes(ordenacao.campo as string)) {
+            const numA = parseFloat(valorA);
+            const numB = parseFloat(valorB);
+            
+            // Se ambos são N/A ou inválidos, são iguais
+            if (isNaN(numA) && isNaN(numB)) return 0;
+            // Se um é N/A, coloca no final
+            if (isNaN(numA)) return 1;
+            if (isNaN(numB)) return -1;
+            
+            comparacao = numA - numB;
+          } else {
+            comparacao = valorA.localeCompare(valorB);
+          }
         } else if (typeof valorA === 'number' && typeof valorB === 'number') {
           comparacao = valorA - valorB;
         } else if (typeof valorA === 'boolean' && typeof valorB === 'boolean') {

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import filmeRoutes from './filme.routes';
+import serieRoutes from './serie.routes';
 import apiExternaRoutes from './api-externa.routes';
 
 const router = Router();
@@ -19,6 +20,11 @@ router.get('/health', (_req, res) => {
  * Rotas de filmes
  */
 router.use('/filmes', filmeRoutes);
+
+/**
+ * Rotas de séries
+ */
+router.use('/series', serieRoutes);
 
 /**
  * Rotas de APIs externas
