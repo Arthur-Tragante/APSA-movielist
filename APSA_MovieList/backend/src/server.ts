@@ -5,6 +5,8 @@ import path from 'path';
 import { createApp } from './app';
 import { env, validateEnv } from './config/env.config';
 import { initializeRedis, closeRedis } from './config/redis.config';
+import { connectMongoDB, disconnectMongoDB } from './config/mongo.config';
+import { initializeWebSocket } from './config/websocket.config';
 
 /**
  * Inicializa o servidor
@@ -14,6 +16,9 @@ const startServer = async () => {
     // Valida variáveis de ambiente
     validateEnv();
     console.log('✅ Variáveis de ambiente validadas');
+
+    // Conecta ao MongoDB
+    await connectMongoDB();
 
     // Inicializa Redis (opcional)
     await initializeRedis();
@@ -44,6 +49,10 @@ const startServer = async () => {
         console.log('✅ SSL/TLS habilitado');
         console.log('');
       });
+
+      // Inicializa WebSocket
+      initializeWebSocket(server);
+      console.log('✅ WebSocket inicializado');
     } else {
       // Fallback para HTTP
       server = http.createServer(app).listen(env.PORT, '0.0.0.0', () => {
@@ -55,6 +64,10 @@ const startServer = async () => {
         console.log('⚠️  SSL não encontrado - usando HTTP');
         console.log('');
       });
+
+      // Inicializa WebSocket
+      initializeWebSocket(server);
+      console.log('✅ WebSocket inicializado');
     }
 
     // Graceful shutdown
@@ -64,6 +77,9 @@ const startServer = async () => {
       server.close(async () => {
         console.log('✅ Servidor encerrado');
 
+        // Fecha conexão MongoDB
+        await disconnectMongoDB();
+        
         // Fecha conexão Redis
         await closeRedis();
         console.log('✅ Conexões fechadas');

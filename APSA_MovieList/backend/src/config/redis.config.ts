@@ -20,7 +20,7 @@ export const initializeRedis = async () => {
       password: process.env.REDIS_PASSWORD,
     });
 
-    redisClient.on('error', (err) => {
+    redisClient.on('error', (err: Error) => {
       console.error('Erro no Redis:', err);
     });
 

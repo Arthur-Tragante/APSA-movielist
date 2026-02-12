@@ -73,9 +73,10 @@ const EditarFilme: React.FC = () => {
           dadosCarregadosRef.current = true;
         }
 
-        if (usuario && filmeData.avaliacoesUsuarios && !comentarioCarregadoRef.current) {
+        const usuarioAtual = obterUsuarioLogado();
+        if (usuarioAtual && filmeData.avaliacoesUsuarios && !comentarioCarregadoRef.current) {
           const avaliacaoExistente = filmeData.avaliacoesUsuarios.find(
-            (av) => av.email === usuario.email || av.usuario === usuario.nome
+            (av) => av.email === usuarioAtual.email || av.usuario === usuarioAtual.nome
           );
           if (avaliacaoExistente) {
             setNotaUsuario(avaliacaoExistente.nota);
@@ -94,7 +95,8 @@ const EditarFilme: React.FC = () => {
     };
 
     carregarFilme();
-  }, [id, usuario]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const validarCampos = (): boolean => {
     if (!titulo || !duracao || !genero || !ano) {
@@ -284,11 +286,11 @@ const EditarFilme: React.FC = () => {
                     id="notaImdb"
                     type="text"
                     value={notaImdb}
-                placeholder="Ex: 8.5"
-                disabled
-                readOnly
-              />
-            </div>
+                    placeholder="Ex: 8.5"
+                    disabled
+                    readOnly
+                  />
+                </div>
 
                 <div className="form-grupo">
                   <label htmlFor="metascore">Metascore</label>

@@ -1,55 +1,53 @@
-import { firestore } from '../config/firebase.config';
-import { COLECOES_FIRESTORE } from '../constants/api.constants';
+import { FilmeModel } from '../models';
 import { Filme, CriarFilmeDTO, AtualizarFilmeDTO } from '../types';
-import { filmeFirestoreParaApp, filmeAppParaFirestore, atualizacaoFilmeParaFirestore } from '../utils/mappers.util';
+import { filmeMongoParaApp, filmeAppParaMongo, atualizacaoFilmeParaMongo } from '../utils/mappers.util';
 
 /**
- * Repository para operações de filmes no Firestore
+ * Repository para operações de filmes no MongoDB
  */
 class FilmeRepository {
-  private colecao = firestore.collection(COLECOES_FIRESTORE.FILMES);
 
   /**
    * Busca todos os filmes de um usuário
    */
   async buscarPorUsuario(emailUsuario: string): Promise<Filme[]> {
-    const snapshot = await this.colecao
-      .where('user', '==', emailUsuario)
-      .get();
+    const filmes = await FilmeModel.find({ user: emailUsuario }).sort({ createdAt: -1 }).lean();
 
-    // Ordena localmente por data de criação
-    const filmes = snapshot.docs.map((doc) => 
-      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
+    return filmes.map((filme) => 
+      filmeMongoParaApp({ id: filme._id.toString(), ...filme })
     );
-
-    return filmes.sort((a, b) => {
-      const dataA = new Date(a.criadoEm || 0).getTime();
-      const dataB = new Date(b.criadoEm || 0).getTime();
-      return dataB - dataA;
-    });
   }
 
   /**
    * Busca filme por ID
    */
   async buscarPorId(id: string): Promise<Filme | null> {
-    const doc = await this.colecao.doc(id).get();
+    const filme = await FilmeModel.findById(id).lean();
 
-    if (!doc.exists) {
+    if (!filme) {
       return null;
     }
 
-    return filmeFirestoreParaApp({ id: doc.id, ...doc.data() });
+    return filmeMongoParaApp({ id: filme._id.toString(), ...filme });
   }
 
   /**
    * Busca todos os filmes do sistema
    */
   async buscarTodos(): Promise<Filme[]> {
-    const snapshot = await this.colecao.get();
-    return snapshot.docs.map((doc) =>
-      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
-    );
+    const filmes = await FilmeModel.find().sort({ createdAt: -1 }).lean();
+  
+    const resultado = filmes.map((filme) => {
+      const docParaMapper = { 
+        id: filme._id.toString(), 
+        ...filme 
+      };
+     
+      const filmeMapeado = filmeMongoParaApp(docParaMapper);
+      return filmeMapeado;
+    });
+    
+    return resultado;
   }
 
   /**
@@ -58,22 +56,24 @@ class FilmeRepository {
   async criar(emailUsuario: string, dadosFilme: CriarFilmeDTO): Promise<string> {
     const agora = new Date().toISOString();
     
-    // Converte para formato do Firestore (EN)
-    const filmeFirestore = filmeAppParaFirestore({
+    // Converte para formato do MongoDB (EN)
+    const filmeMongo = filmeAppParaMongo({
       ...dadosFilme,
       usuario: emailUsuario,
     });
 
-    const docRef = await this.colecao.add({
-      ...filmeFirestore,
+    const novoFilme = new FilmeModel({
+      ...filmeMongo,
       user: emailUsuario,
       createdAt: agora,
       updatedAt: agora,
       userRatings: [],
       averageUserRating: 0,
     });
+    
+    await novoFilme.save();
 
-    return docRef.id;
+    return novoFilme._id.toString();
   }
 
   /**
@@ -82,11 +82,11 @@ class FilmeRepository {
   async atualizar(id: string, dadosFilme: AtualizarFilmeDTO): Promise<void> {
     const agora = new Date().toISOString();
     
-    // Converte para formato do Firestore (EN)
-    const dadosFirestore = atualizacaoFilmeParaFirestore(dadosFilme);
+    // Converte para formato do MongoDB (EN)
+    const dadosMongo = atualizacaoFilmeParaMongo(dadosFilme);
 
-    await this.colecao.doc(id).update({
-      ...dadosFirestore,
+    await FilmeModel.findByIdAndUpdate(id, {
+      ...dadosMongo,
       updatedAt: agora,
     });
   }
@@ -95,7 +95,7 @@ class FilmeRepository {
    * Deleta um filme
    */
   async deletar(id: string): Promise<void> {
-    await this.colecao.doc(id).delete();
+    await FilmeModel.findByIdAndDelete(id);
   }
 
   /**
@@ -138,7 +138,7 @@ class FilmeRepository {
       ? Number((soma / avaliacoesAtualizadas.length).toFixed(2))
       : 0;
 
-    await this.colecao.doc(idFilme).update({
+    await FilmeModel.findByIdAndUpdate(idFilme, {
       userRatings: avaliacoesAtualizadas.map(av => ({
         user: av.usuario,
         email: av.email,
@@ -170,7 +170,7 @@ class FilmeRepository {
       ? Number((soma / avaliacoesAtualizadas.length).toFixed(2))
       : 0;
 
-    await this.colecao.doc(idFilme).update({
+    await FilmeModel.findByIdAndUpdate(idFilme, {
       userRatings: avaliacoesAtualizadas.map(av => ({
         user: av.usuario,
         email: av.email,

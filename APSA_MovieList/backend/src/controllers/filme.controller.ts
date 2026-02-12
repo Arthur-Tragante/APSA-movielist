@@ -8,13 +8,13 @@ import { MENSAGENS_SUCESSO } from '../constants/mensagens.constants';
  */
 class FilmeController {
   /**
-   * Lista todos os filmes do usuário
+   * Lista todos os filmes do sistema
    * GET /api/filmes
    */
   async listar(req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
     try {
-      const emailUsuario = req.usuario!.email;
-      const filmes = await filmeService.buscarFilmesUsuario(emailUsuario);
+      // Busca TODOS os filmes, não apenas do usuário logado
+      const filmes = await filmeService.buscarTodos();
 
       res.json({
         sucesso: true,

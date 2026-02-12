@@ -1,26 +1,25 @@
-import { firestore } from '../config/firebase.config';
-import { COLECOES_FIRESTORE } from '../constants/api.constants';
+import { UsuarioModel } from '../models';
 import { Usuario } from '../types';
 
 /**
- * Repository para operações de usuários no Firestore
+ * Repository para operações de usuários no MongoDB
  */
 class UsuarioRepository {
-  private colecao = firestore.collection(COLECOES_FIRESTORE.USUARIOS);
 
   /**
    * Busca usuário por ID
    */
   async buscarPorId(id: string): Promise<Usuario | null> {
-    const doc = await this.colecao.doc(id).get();
+    const usuario = await UsuarioModel.findById(id).lean();
 
-    if (!doc.exists) {
+    if (!usuario) {
       return null;
     }
 
     return {
-      id: doc.id,
-      ...doc.data(),
+      id: usuario._id.toString(),
+      nome: usuario.nome || usuario.name,
+      email: usuario.email,
     } as Usuario;
   }
 
@@ -28,19 +27,16 @@ class UsuarioRepository {
    * Busca usuário por email
    */
   async buscarPorEmail(email: string): Promise<Usuario | null> {
-    const snapshot = await this.colecao
-      .where('email', '==', email)
-      .limit(1)
-      .get();
+    const usuario = await UsuarioModel.findOne({ email }).lean();
 
-    if (snapshot.empty) {
+    if (!usuario) {
       return null;
     }
 
-    const doc = snapshot.docs[0];
     return {
-      id: doc.id,
-      ...doc.data(),
+      id: usuario._id.toString(),
+      nome: usuario.nome || usuario.name,
+      email: usuario.email,
     } as Usuario;
   }
 
@@ -48,18 +44,20 @@ class UsuarioRepository {
    * Cria um novo usuário
    */
   async criar(uid: string, nome: string, email: string): Promise<void> {
-    await this.colecao.doc(uid).set({
+    const novoUsuario = new UsuarioModel({
+      _id: uid,
       nome,
       email,
-      criadoEm: new Date().toISOString(),
     });
+    
+    await novoUsuario.save();
   }
 
   /**
    * Atualiza um usuário existente
    */
   async atualizar(id: string, dados: Partial<Omit<Usuario, 'id' | 'criadoEm'>>): Promise<void> {
-    await this.colecao.doc(id).update(dados);
+    await UsuarioModel.findByIdAndUpdate(id, dados);
   }
 
   /**

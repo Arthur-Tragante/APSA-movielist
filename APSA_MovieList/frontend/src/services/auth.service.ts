@@ -1,96 +1,65 @@
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut as firebaseSignOut,
-  UserCredential,
-} from 'firebase/auth';
 import Cookies from 'js-cookie';
-import { auth } from '../config/firebase.config';
-import { usuarioRepository } from '../repositories';
 import { COOKIES, VALIDADE_COOKIE_DIAS } from '../constants';
 import { DadosLogin, DadosRegistro, Usuario } from '../types';
 
 /**
- * Service para lógica de negócio relacionada à autenticação
+ * Service para autenticação simplificada (sem Firebase)
  */
 class AuthService {
   /**
-   * Realiza login com email e senha
+   * Realiza login com email e senha (simplificado)
    */
   async entrar(dados: DadosLogin): Promise<string> {
     const { email, senha } = dados;
-    const userCredential: UserCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      senha
-    );
     
-    const token = await userCredential.user.getIdToken();
+    // TODO: Implementar validação real de senha
+    // Por enquanto, aceita qualquer senha
     
-    // Salva token e email nos cookies
-    Cookies.set(COOKIES.TOKEN, token, { expires: VALIDADE_COOKIE_DIAS });
+    // Salva email nos cookies
     Cookies.set(COOKIES.EMAIL, email, { expires: VALIDADE_COOKIE_DIAS });
     
-    // Busca e salva o nome do usuário
-    try {
-      const usuario = await usuarioRepository.buscarPorEmail(email);
-      
-      if (usuario && usuario.nome) {
-        Cookies.set(COOKIES.NOME, usuario.nome, { expires: VALIDADE_COOKIE_DIAS });
-      } else {
-        // Fallback: usa parte do email como nome
-        const nomeFallback = email.split('@')[0];
-        Cookies.set(COOKIES.NOME, nomeFallback, { expires: VALIDADE_COOKIE_DIAS });
-      }
-    } catch (error) {
-      console.error('Erro ao buscar usuário:', error);
-      // Fallback: usa parte do email como nome
-      const nomeFallback = email.split('@')[0];
-      Cookies.set(COOKIES.NOME, nomeFallback, { expires: VALIDADE_COOKIE_DIAS });
-    }
+    // Usa parte do email como nome
+    const nome = email.split('@')[0];
+    Cookies.set(COOKIES.NOME, nome, { expires: VALIDADE_COOKIE_DIAS });
+    
+    // Token fictício
+    const token = 'mock-token-' + Date.now();
+    Cookies.set(COOKIES.TOKEN, token, { expires: VALIDADE_COOKIE_DIAS });
     
     return token;
   }
 
   /**
-   * Registra um novo usuário
+   * Registra um novo usuário (simplificado)
    */
   async registrar(dados: DadosRegistro): Promise<string> {
-    const { nome, email, senha } = dados;
-    
-    const userCredential: UserCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      senha
-    );
-    
-    const token = await userCredential.user.getIdToken();
+    const { nome, email } = dados;
     
     // Salva dados nos cookies
-    Cookies.set(COOKIES.TOKEN, token, { expires: VALIDADE_COOKIE_DIAS });
     Cookies.set(COOKIES.EMAIL, email, { expires: VALIDADE_COOKIE_DIAS });
     Cookies.set(COOKIES.NOME, nome, { expires: VALIDADE_COOKIE_DIAS });
     
-    // Cria usuário no Firestore
-    await usuarioRepository.criar({ nome, email });
+    // Token fictício
+    const token = 'mock-token-' + Date.now();
+    Cookies.set(COOKIES.TOKEN, token, { expires: VALIDADE_COOKIE_DIAS });
+    
+    // TODO: Criar usuário no MongoDB via API
     
     return token;
   }
 
   /**
-   * Envia email de recuperação de senha
+   * Envia email de recuperação de senha (desabilitado)
    */
   async recuperarSenha(email: string): Promise<void> {
-    await sendPasswordResetEmail(auth, email);
+    console.warn('Recuperação de senha não implementada');
+    // TODO: Implementar recuperação de senha própria
   }
 
   /**
    * Realiza logout
    */
   async sair(): Promise<void> {
-    await firebaseSignOut(auth);
-    
     // Remove cookies
     Cookies.remove(COOKIES.TOKEN);
     Cookies.remove(COOKIES.EMAIL);

@@ -12,9 +12,9 @@ export const API_URLS = {
 };
 
 /**
- * Coleções do Firestore
+ * Coleções do MongoDB
  */
-export const COLECOES_FIRESTORE = {
+export const COLECOES_MONGODB = {
   FILMES: 'filmes',
   SHOWS: 'shows',
   USUARIOS: 'usuarios',

@@ -1,5 +1,5 @@
 /**
- * Script para adicionar capas (posters) aos filmes existentes
+ * Script para adicionar capas (posters) aos filmes existentes no MongoDB
  * Executa: npm run script:capas
  */
 
@@ -9,15 +9,20 @@ import path from 'path';
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
-import { firestore } from '../src/config/firebase.config';
 import axios from 'axios';
+import mongoose from 'mongoose';
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/APSA-movielist';
 
-interface FilmeFirestore {
-  id: string;
+// Schema MongoDB (flexível)
+const movieSchema = new mongoose.Schema({}, { strict: false, collection: 'movies' });
+const Movie = mongoose.model('Movie', movieSchema);
+
+interface FilmeMongoDB {
+  _id: string;
   title: string;
   year?: string;
   poster?: string;
@@ -68,17 +73,18 @@ async function buscarFilmeNoTMDB(titulo: string, ano?: string): Promise<string |
 }
 
 /**
- * Atualiza poster no Firestore
+ * Atualiza poster no MongoDB
  */
 async function atualizarPoster(filmeId: string, posterUrl: string): Promise<boolean> {
   try {
-    await firestore.collection('movies').doc(filmeId).update({
-      poster: posterUrl,
-    });
-    console.log(`   💾 Poster salvo no Firestore`);
+    await Movie.updateOne(
+      { _id: new mongoose.Types.ObjectId(filmeId) },
+      { $set: { poster: posterUrl } }
+    );
+    console.log(`   💾 Poster salvo no MongoDB`);
     return true;
   } catch (error: any) {
-    console.error(`   ❌ Erro ao salvar no Firestore:`, error.message);
+    console.error(`   ❌ Erro ao salvar no MongoDB:`, error.message);
     return false;
   }
 }
@@ -102,20 +108,24 @@ async function adicionarCapas() {
   }
 
   try {
+    // Conecta ao MongoDB
+    await mongoose.connect(MONGODB_URI);
+    console.log('✅ Conectado ao MongoDB\n');
+
     // Busca todos os filmes
-    const snapshot = await firestore.collection('movies').get();
+    const filmes = await Movie.find().lean();
     
-    console.log(`📊 Total de filmes encontrados: ${snapshot.size}\n`);
+    console.log(`📊 Total de filmes encontrados: ${filmes.length}\n`);
 
     let processados = 0;
     let comCapa = 0;
     let adicionados = 0;
     let erros = 0;
 
-    for (const doc of snapshot.docs) {
-      const filme = { id: doc.id, ...doc.data() } as FilmeFirestore;
+    for (const doc of filmes) {
+      const filme = doc as FilmeMongoDB;
       
-      console.log(`\n🎬 [${processados + 1}/${snapshot.size}] ${filme.title}`);
+      console.log(`\n🎬 [${processados + 1}/${filmes.length}] ${filme.title}`);
       
       // Verifica se já tem poster
       if (filme.poster) {
@@ -126,8 +136,8 @@ async function adicionarCapas() {
         const posterUrl = await buscarFilmeNoTMDB(filme.title, filme.year);
         
         if (posterUrl) {
-          // Atualiza no Firestore
-          const sucesso = await atualizarPoster(filme.id, posterUrl);
+          // Atualiza no MongoDB
+          const sucesso = await atualizarPoster(filme._id.toString(), posterUrl);
           if (sucesso) {
             adicionados++;
           } else {
@@ -155,10 +165,15 @@ async function adicionarCapas() {
     console.log('='.repeat(60) + '\n');
     
     console.log('🎉 Script concluído!');
+    
+    // Desconecta do MongoDB
+    await mongoose.disconnect();
+    console.log('✅ Desconectado do MongoDB');
     process.exit(0);
     
   } catch (error: any) {
     console.error('\n❌ Erro fatal:', error.message);
+    await mongoose.disconnect();
     process.exit(1);
   }
 }

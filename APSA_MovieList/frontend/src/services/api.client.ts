@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { auth } from '../config/firebase.config';
 
 /**
  * Cliente HTTP para comunicação com o backend
@@ -8,34 +7,30 @@ import { auth } from '../config/firebase.config';
 // URL do backend (produção ou desenvolvimento)
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
+// Email do usuário (temporário - depois pode vir de um sistema de login simples)
+const USER_EMAIL = import.meta.env.VITE_USER_EMAIL || 'arthur.tragante@gmail.com';
+
 const apiClient = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    'ngrok-skip-browser-warning': 'true', // Bypass ngrok warning page
+    'X-User-Email': USER_EMAIL,
+    'ngrok-skip-browser-warning': 'true',
   },
   timeout: 30000, // 30 segundos
 });
 
 /**
- * Interceptor para adicionar token de autenticação
+ * Interceptor para adicionar headers customizados
  */
 apiClient.interceptors.request.use(
   async (config) => {
-    const user = auth.currentUser;
-    
-    if (user) {
-      try {
-        const token = await user.getIdToken();
-        config.headers.Authorization = `Bearer ${token}`;
-      } catch (error) {
-        console.error('Erro ao obter token:', error);
-      }
-    }
-    
+    // Adiciona email do usuário em todas as requisições
+    config.headers['X-User-Email'] = USER_EMAIL;
     return config;
   },
   (error) => {
+    console.error('❌ Erro ao preparar requisição:', error);
     return Promise.reject(error);
   }
 );

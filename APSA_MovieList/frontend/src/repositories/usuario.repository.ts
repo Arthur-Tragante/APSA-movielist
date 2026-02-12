@@ -1,46 +1,37 @@
-import {
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
-  limit,
-  QueryDocumentSnapshot,
-} from 'firebase/firestore';
-import { db } from '../config/firebase.config';
-import { COLECOES } from '../constants';
+import apiClient from '../services/api.client';
 import { Usuario } from '../types';
-import { usuarioFirestoreParaApp, usuarioAppParaFirestore } from '../utils/mappers.util';
+import { usuarioFirestoreParaApp } from '../utils/mappers.util';
 
 /**
- * Repository para operações de usuários no Firestore
+ * Repository para operações de usuários via API Backend
  * Responsável apenas por queries e manipulação de dados
  */
 class UsuarioRepository {
-  private colecao = collection(db, COLECOES.USUARIOS);
+  private baseUrl = '/usuarios';
 
   /**
    * Busca usuário por email
    */
   async buscarPorEmail(email: string): Promise<Usuario | null> {
-    const q = query(this.colecao, where('email', '==', email), limit(1));
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0];
-      return usuarioFirestoreParaApp({ id: doc.id, ...doc.data() });
+    try {
+      const response = await apiClient.get(`${this.baseUrl}?email=${email}`);
+      if (response.data.dados && response.data.dados.length > 0) {
+        const usuario = response.data.dados[0];
+        return usuarioFirestoreParaApp({ id: usuario._id || usuario.id, ...usuario });
+      }
+      return null;
+    } catch (error) {
+      return null;
     }
-
-    return null;
   }
 
   /**
    * Busca todos os usuários
    */
   async buscarTodos(): Promise<Usuario[]> {
-    const querySnapshot = await getDocs(this.colecao);
-    return querySnapshot.docs.map((doc: QueryDocumentSnapshot) => 
-      usuarioFirestoreParaApp({ id: doc.id, ...doc.data() })
+    const response = await apiClient.get(this.baseUrl);
+    return (response.data.dados || []).map((usuario: any) => 
+      usuarioFirestoreParaApp({ id: usuario._id || usuario.id, ...usuario })
     );
   }
 
@@ -48,9 +39,8 @@ class UsuarioRepository {
    * Cria um novo usuário
    */
   async criar(usuario: Omit<Usuario, 'id'>): Promise<string> {
-    const usuarioFirestore = usuarioAppParaFirestore(usuario);
-    const docRef = await addDoc(this.colecao, usuarioFirestore);
-    return docRef.id;
+    const response = await apiClient.post(this.baseUrl, usuario);
+    return response.data.dados.id || response.data.dados._id;
   }
 }
 

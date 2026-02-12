@@ -187,7 +187,7 @@ const AdicionarFilme: React.FC = () => {
                     <div className="resultado-info">
                       <h4>{filme.title}</h4>
                       <p className="resultado-ano">
-                        {new Date(filme.release_date).getFullYear()}
+                        {filme.release_date ? new Date(filme.release_date).getFullYear() : 'N/A'}
                       </p>
                       <p className="resultado-sinopse">{filme.overview}</p>
                     </div>

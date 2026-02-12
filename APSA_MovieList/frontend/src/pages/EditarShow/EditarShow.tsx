@@ -72,9 +72,10 @@ const EditarShow: React.FC = () => {
           dadosCarregadosRef.current = true;
         }
 
-        if (usuario && showData.avaliacoesUsuarios && !comentarioCarregadoRef.current) {
+        const usuarioAtual = obterUsuarioLogado();
+        if (usuarioAtual && showData.avaliacoesUsuarios && !comentarioCarregadoRef.current) {
           const avaliacaoExistente = showData.avaliacoesUsuarios.find(
-            (av) => av.email === usuario.email || av.usuario === usuario.nome
+            (av) => av.email === usuarioAtual.email || av.usuario === usuarioAtual.nome
           );
           if (avaliacaoExistente) {
             setNotaUsuario(avaliacaoExistente.nota);
@@ -93,7 +94,8 @@ const EditarShow: React.FC = () => {
     };
 
     carregarShow();
-  }, [id, usuario]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const validarCampos = (): boolean => {
     if (!titulo || !temporadas || !genero || !ano) {

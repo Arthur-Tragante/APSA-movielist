@@ -10,10 +10,8 @@ export const env = {
   PORT: parseInt(process.env.PORT || '3001', 10),
   NODE_ENV: process.env.NODE_ENV || 'development',
   
-  // Firebase
-  FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID || '',
-  FIREBASE_CLIENT_EMAIL: process.env.FIREBASE_CLIENT_EMAIL || '',
-  FIREBASE_PRIVATE_KEY: process.env.FIREBASE_PRIVATE_KEY || '',
+  // MongoDB
+  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/apsa-movielist',
   
   // APIs Externas
   TMDB_API_KEY: process.env.TMDB_API_KEY || '',
@@ -41,9 +39,7 @@ export const env = {
  */
 export const validateEnv = () => {
   const required = [
-    'FIREBASE_PROJECT_ID',
-    'FIREBASE_CLIENT_EMAIL',
-    'FIREBASE_PRIVATE_KEY',
+    'MONGODB_URI',
   ];
 
   const missing = required.filter((key) => !process.env[key]);
@@ -59,5 +55,7 @@ export const validateEnv = () => {
   if (!process.env.OMDB_API_KEY) {
     console.warn('⚠️ OMDB_API_KEY não configurada - Ratings externos não estarão disponíveis');
   }
+  
+  console.log('✅ Sistema sem Firebase - usando autenticação simplificada');
 };
 

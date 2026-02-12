@@ -1,54 +1,43 @@
-import { firestore } from '../config/firebase.config';
-import { COLECOES_FIRESTORE } from '../constants/api.constants';
+import { SerieModel } from '../models';
 import { Serie, CriarSerieDTO, AtualizarSerieDTO, Episodio, AvaliacaoEpisodio } from '../types';
-import { serieFirestoreParaApp, serieAppParaFirestore, atualizacaoSerieParaFirestore } from '../utils/mappers.util';
+import { serieMongoParaApp, serieAppParaMongo, atualizacaoSerieParaMongo } from '../utils/mappers.util';
 
 /**
- * Repository para operações de séries no Firestore
+ * Repository para operações de séries no MongoDB
  */
 class SerieRepository {
-  private colecao = firestore.collection(COLECOES_FIRESTORE.SHOWS);
 
   /**
    * Busca todas as séries de um usuário
    */
   async buscarPorUsuario(emailUsuario: string): Promise<Serie[]> {
-    const snapshot = await this.colecao
-      .where('user', '==', emailUsuario)
-      .get();
+    const series = await SerieModel.find({ user: emailUsuario }).sort({ createdAt: -1 }).lean();
 
-    // Ordena localmente por data de criação
-    const series = snapshot.docs.map((doc) => 
-      serieFirestoreParaApp({ id: doc.id, ...doc.data() })
+    return series.map((serie) => 
+      serieMongoParaApp({ id: serie._id.toString(), ...serie })
     );
-
-    return series.sort((a, b) => {
-      const dataA = new Date(a.criadoEm || 0).getTime();
-      const dataB = new Date(b.criadoEm || 0).getTime();
-      return dataB - dataA;
-    });
   }
 
   /**
    * Busca série por ID
    */
   async buscarPorId(id: string): Promise<Serie | null> {
-    const doc = await this.colecao.doc(id).get();
+    const serie = await SerieModel.findById(id).lean();
 
-    if (!doc.exists) {
+    if (!serie) {
       return null;
     }
 
-    return serieFirestoreParaApp({ id: doc.id, ...doc.data() });
+    return serieMongoParaApp({ id: serie._id.toString(), ...serie });
   }
 
   /**
    * Busca todas as séries do sistema
    */
   async buscarTodas(): Promise<Serie[]> {
-    const snapshot = await this.colecao.get();
-    return snapshot.docs.map((doc) =>
-      serieFirestoreParaApp({ id: doc.id, ...doc.data() })
+    const series = await SerieModel.find().lean();
+    return series.map((serie) =>
+      serieMongoParaApp({ id: serie._id.toString(), ...serie })
     );
   }
 
@@ -58,22 +47,24 @@ class SerieRepository {
   async criar(emailUsuario: string, dadosSerie: CriarSerieDTO): Promise<string> {
     const agora = new Date().toISOString();
     
-    // Converte para formato do Firestore (EN)
-    const serieFirestore = serieAppParaFirestore({
+    // Converte para formato do MongoDB (EN)
+    const serieMongo = serieAppParaMongo({
       ...dadosSerie,
       usuario: emailUsuario,
     });
 
-    const docRef = await this.colecao.add({
-      ...serieFirestore,
+    const novaSerie = new SerieModel({
+      ...serieMongo,
       user: emailUsuario,
       createdAt: agora,
       updatedAt: agora,
       userRatings: [],
       averageUserRating: 0,
     });
+    
+    await novaSerie.save();
 
-    return docRef.id;
+    return novaSerie._id.toString();
   }
 
   /**
@@ -82,11 +73,11 @@ class SerieRepository {
   async atualizar(id: string, dadosSerie: AtualizarSerieDTO): Promise<void> {
     const agora = new Date().toISOString();
     
-    // Converte para formato do Firestore (EN)
-    const dadosFirestore = atualizacaoSerieParaFirestore(dadosSerie);
+    // Converte para formato do MongoDB (EN)
+    const dadosMongo = atualizacaoSerieParaMongo(dadosSerie);
 
-    await this.colecao.doc(id).update({
-      ...dadosFirestore,
+    await SerieModel.findByIdAndUpdate(id, {
+      ...dadosMongo,
       updatedAt: agora,
     });
   }
@@ -95,7 +86,7 @@ class SerieRepository {
    * Deleta uma série
    */
   async deletar(id: string): Promise<void> {
-    await this.colecao.doc(id).delete();
+    await SerieModel.findByIdAndDelete(id);
   }
 
   /**
@@ -138,7 +129,7 @@ class SerieRepository {
       ? Number((soma / avaliacoesAtualizadas.length).toFixed(2))
       : 0;
 
-    await this.colecao.doc(idSerie).update({
+    await SerieModel.findByIdAndUpdate(idSerie, {
       userRatings: avaliacoesAtualizadas.map(av => ({
         user: av.usuario,
         email: av.email,
@@ -170,7 +161,7 @@ class SerieRepository {
       ? Number((soma / avaliacoesAtualizadas.length).toFixed(2))
       : 0;
 
-    await this.colecao.doc(idSerie).update({
+    await SerieModel.findByIdAndUpdate(idSerie, {
       userRatings: avaliacoesAtualizadas.map(av => ({
         user: av.usuario,
         email: av.email,
@@ -212,7 +203,7 @@ class SerieRepository {
       // Atualiza o episódio existente mantendo as avaliações
       temporada.episodios[indiceEpisodio] = {
         ...episodio,
-        avaliações: temporada.episodios[indiceEpisodio].avaliações || [],
+        avaliacoesEpisodio: temporada.episodios[indiceEpisodio].avaliacoesEpisodio || [],
       };
     } else {
       // Adiciona novo episódio
@@ -222,7 +213,7 @@ class SerieRepository {
     // Ordena os episódios por número
     temporada.episodios.sort((a, b) => a.numero - b.numero);
 
-    await this.colecao.doc(idSerie).update({
+    await SerieModel.findByIdAndUpdate(idSerie, {
       temporadasEpisodios: temporadasEpisodios.map(t => ({
         numero: t.numero,
         episodios: t.episodios,
@@ -257,7 +248,7 @@ class SerieRepository {
       temporadasEpisodios.splice(indiceTemporada, 1);
     }
 
-    await this.colecao.doc(idSerie).update({
+    await SerieModel.findByIdAndUpdate(idSerie, {
       temporadasEpisodios: temporadasEpisodios,
       updatedAt: new Date().toISOString(),
     });
@@ -296,8 +287,8 @@ class SerieRepository {
       throw new Error('Episódio não encontrado');
     }
 
-    const avaliações = [...(episodio.avaliações || [])];
-    const indiceAvaliacao = avaliações.findIndex(av => av.email === emailUsuario);
+    const avaliacoesEpisodio = [...(episodio.avaliacoesEpisodio || [])];
+    const indiceAvaliacao = avaliacoesEpisodio.findIndex(av => av.email === emailUsuario);
     const agora = new Date().toISOString();
 
     const novaAvaliacao: AvaliacaoEpisodio = {
@@ -305,19 +296,19 @@ class SerieRepository {
       email: emailUsuario,
       nota,
       comentario,
-      criadoEm: indiceAvaliacao > -1 ? avaliações[indiceAvaliacao].criadoEm : agora,
+      criadoEm: indiceAvaliacao > -1 ? avaliacoesEpisodio[indiceAvaliacao].criadoEm : agora,
       atualizadoEm: agora,
     };
 
     if (indiceAvaliacao > -1) {
-      avaliações[indiceAvaliacao] = novaAvaliacao;
+      avaliacoesEpisodio[indiceAvaliacao] = novaAvaliacao;
     } else {
-      avaliações.push(novaAvaliacao);
+      avaliacoesEpisodio.push(novaAvaliacao);
     }
 
-    episodio.avaliações = avaliações;
+    episodio.avaliacoesEpisodio = avaliacoesEpisodio;
 
-    await this.colecao.doc(idSerie).update({
+    await SerieModel.findByIdAndUpdate(idSerie, {
       temporadasEpisodios: temporadasEpisodios,
       updatedAt: new Date().toISOString(),
     });
@@ -353,9 +344,9 @@ class SerieRepository {
       throw new Error('Episódio não encontrado');
     }
 
-    episodio.avaliações = (episodio.avaliações || []).filter(av => av.email !== emailUsuario);
+    episodio.avaliacoesEpisodio = (episodio.avaliacoesEpisodio || []).filter(av => av.email !== emailUsuario);
 
-    await this.colecao.doc(idSerie).update({
+    await SerieModel.findByIdAndUpdate(idSerie, {
       temporadasEpisodios: temporadasEpisodios,
       updatedAt: new Date().toISOString(),
     });
