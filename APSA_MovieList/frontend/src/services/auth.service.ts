@@ -10,7 +10,7 @@ class AuthService {
    * Realiza login com email e senha (simplificado)
    */
   async entrar(dados: DadosLogin): Promise<string> {
-    const { email, senha } = dados;
+    const { email, senha: _senha } = dados;
     
     // TODO: Implementar validação real de senha
     // Por enquanto, aceita qualquer senha
@@ -51,7 +51,7 @@ class AuthService {
   /**
    * Envia email de recuperação de senha (desabilitado)
    */
-  async recuperarSenha(email: string): Promise<void> {
+  async recuperarSenha(_email: string): Promise<void> {
     console.warn('Recuperação de senha não implementada');
     // TODO: Implementar recuperação de senha própria
   }

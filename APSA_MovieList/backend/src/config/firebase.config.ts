@@ -24,6 +24,7 @@ const initializeFirebase = (): admin.app.App | null => {
         clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
         privateKey: privateKey,
       }),
+      databaseURL: process.env.FIREBASE_DATABASE_URL,
     });
   } catch {
     return null;
@@ -32,6 +33,7 @@ const initializeFirebase = (): admin.app.App | null => {
 
 export const firebaseApp = initializeFirebase();
 export const firestore = firebaseApp ? admin.firestore() : null;
+export const realtimeDb = firebaseApp ? admin.database() : null;
 export const auth = firebaseApp ? admin.auth() : null;
 
 export default firebaseApp;
