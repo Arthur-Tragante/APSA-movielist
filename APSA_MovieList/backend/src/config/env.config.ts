@@ -11,6 +11,7 @@ export const env = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   
   // MongoDB
+  MONGODB_ENABLED: process.env.MONGODB_ENABLED === 'true',
   MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/apsa-movielist',
   
   // APIs Externas
@@ -38,9 +39,12 @@ export const env = {
  * Valida variáveis de ambiente obrigatórias
  */
 export const validateEnv = () => {
-  const required = [
-    'MONGODB_URI',
-  ];
+  const required: string[] = [];
+
+  // Se MongoDB estiver habilitado, exige MONGODB_URI
+  if (process.env.MONGODB_ENABLED === 'true') {
+    required.push('MONGODB_URI');
+  }
 
   const missing = required.filter((key) => !process.env[key]);
 

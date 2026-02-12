@@ -5,6 +5,11 @@ import { env } from './env.config';
  * Configuração do MongoDB
  */
 export const connectMongoDB = async (): Promise<void> => {
+  if (!env.MONGODB_ENABLED) {
+    console.log('⚠️ MongoDB desabilitado (MONGODB_ENABLED=false)');
+    return;
+  }
+
   try {
     await mongoose.connect(env.MONGODB_URI);
     
@@ -25,6 +30,8 @@ export const connectMongoDB = async (): Promise<void> => {
 };
 
 export const disconnectMongoDB = async (): Promise<void> => {
+  if (!env.MONGODB_ENABLED) return;
+
   try {
     await mongoose.disconnect();
     console.log('✅ MongoDB desconectado');

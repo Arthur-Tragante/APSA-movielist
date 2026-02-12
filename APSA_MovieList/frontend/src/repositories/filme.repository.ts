@@ -32,7 +32,7 @@ class FilmeRepository {
   /**
    * Busca filmes com filtros personalizados (mantido para compatibilidade)
    */
-  async buscarComFiltros(filtros: any[]): Promise<Filme[]> {
+  async buscarComFiltros(_filtros: any[]): Promise<Filme[]> {
     // Por enquanto, retorna todos os filmes
     // Pode ser implementado com query params no futuro
     return this.buscarTodos();

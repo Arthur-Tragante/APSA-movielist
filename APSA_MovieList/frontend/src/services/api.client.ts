@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import { COOKIES } from '../constants';
 
 /**
  * Cliente HTTP para comunicação com o backend
@@ -7,14 +9,19 @@ import axios from 'axios';
 // URL do backend (produção ou desenvolvimento)
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
-// Email do usuário (temporário - depois pode vir de um sistema de login simples)
-const USER_EMAIL = import.meta.env.VITE_USER_EMAIL || 'arthur.tragante@gmail.com';
+/**
+ * Retorna o email do usuário logado (cookie > env var > fallback)
+ */
+const getUserEmail = (): string => {
+  return Cookies.get(COOKIES.EMAIL)
+    || import.meta.env.VITE_USER_EMAIL
+    || 'arthur.tragante@gmail.com';
+};
 
 const apiClient = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    'X-User-Email': USER_EMAIL,
     'ngrok-skip-browser-warning': 'true',
   },
   timeout: 30000, // 30 segundos
@@ -25,8 +32,8 @@ const apiClient = axios.create({
  */
 apiClient.interceptors.request.use(
   async (config) => {
-    // Adiciona email do usuário em todas as requisições
-    config.headers['X-User-Email'] = USER_EMAIL;
+    // Adiciona email do usuário logado em todas as requisições
+    config.headers['X-User-Email'] = getUserEmail();
     return config;
   },
   (error) => {
