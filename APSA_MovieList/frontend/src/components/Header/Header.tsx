@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks';
 import './Header.css';
@@ -10,13 +10,19 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const { sair, obterUsuarioLogado } = useAuth();
   const usuario = obterUsuarioLogado();
+  const [menuAberto, setMenuAberto] = useState(false);
 
   const handleNavegar = (rota: string) => {
     navigate(rota);
+    setMenuAberto(false); // Fecha o menu após navegar
   };
 
   const handleSair = async () => {
     await sair();
+  };
+
+  const toggleMenu = () => {
+    setMenuAberto(!menuAberto);
   };
 
   return (
@@ -26,7 +32,8 @@ const Header: React.FC = () => {
           <h1>Our Horror Story</h1>
         </div>
 
-        <nav className="header-nav">
+        {/* Menu Desktop */}
+        <nav className="header-nav header-nav-desktop">
           <button
             className="btn-nav"
             onClick={() => handleNavegar('/lista')}
@@ -51,6 +58,12 @@ const Header: React.FC = () => {
           >
             Adicionar Série
           </button>
+          <button
+            className="btn-nav"
+            onClick={() => handleNavegar('/sorteio')}
+          >
+            Sorteio
+          </button>
         </nav>
 
         <div className="header-usuario">
@@ -61,7 +74,54 @@ const Header: React.FC = () => {
             Sair
           </button>
         </div>
+
+        {/* Botão Hambúrguer Mobile */}
+        <button 
+          className={`header-hamburger ${menuAberto ? 'aberto' : ''}`}
+          onClick={toggleMenu}
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
+
+      {/* Menu Mobile */}
+      {menuAberto && (
+        <nav className="header-nav-mobile">
+          <button
+            className="btn-nav-mobile"
+            onClick={() => handleNavegar('/lista')}
+          >
+            Filmes
+          </button>
+          <button
+            className="btn-nav-mobile"
+            onClick={() => handleNavegar('/adicionar')}
+          >
+            Adicionar Filme
+          </button>
+          <button
+            className="btn-nav-mobile"
+            onClick={() => handleNavegar('/series')}
+          >
+            Séries
+          </button>
+          <button
+            className="btn-nav-mobile"
+            onClick={() => handleNavegar('/series/adicionar')}
+          >
+            Adicionar Série
+          </button>
+          <button
+            className="btn-nav-mobile"
+            onClick={() => handleNavegar('/sorteio')}
+          >
+            Sorteio
+          </button>
+        </nav>
+      )}
     </header>
   );
 };

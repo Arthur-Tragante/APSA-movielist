@@ -2,9 +2,10 @@
  * Service de séries - lógica de negócio
  */
 
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import * as showRepository from '../repositories/show.repository';
-import { ShowCadastro, Show, ShowEdicao, AvaliacaoUsuarioShow } from '../types';
-import { firestore } from '../config/firebase.config';
+import { ShowCadastro, Show, ShowEdicao } from '../types';
+import { db } from '../config/firebase.config';
 
 /**
  * Cria uma nova série
@@ -52,10 +53,10 @@ const atualizarAvaliacaoUsuario = async (
   assistido: boolean,
   comentario?: string
 ): Promise<void> => {
-  const showRef = firestore.collection('shows').doc(idShow);
-  const showDoc = await showRef.get();
+  const showRef = doc(db, 'shows', idShow);
+  const showDoc = await getDoc(showRef);
 
-  if (!showDoc.exists) {
+  if (!showDoc.exists()) {
     throw new Error('Série não encontrada');
   }
 
@@ -66,10 +67,11 @@ const atualizarAvaliacaoUsuario = async (
     (av: any) => av.email === emailUsuario || av.user === nomeUsuario
   );
 
-  const novaAvaliacao: AvaliacaoUsuarioShow = {
+  const novaAvaliacao = {
     user: nomeUsuario,
     email: emailUsuario,
     rating: nota,
+    watched: assistido,
     comment: comentario || '',
   };
 
@@ -82,7 +84,7 @@ const atualizarAvaliacaoUsuario = async (
   const soma = userRatings.reduce((acc: number, av: any) => acc + (av.rating || 0), 0);
   const media = userRatings.length > 0 ? Math.round((soma / userRatings.length) * 10) / 10 : 0;
 
-  await showRef.update({
+  await updateDoc(showRef, {
     userRatings,
     averageUserRating: media,
     watched: assistido,

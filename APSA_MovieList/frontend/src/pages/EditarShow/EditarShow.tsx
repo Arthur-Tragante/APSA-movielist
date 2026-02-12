@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Header, Modal, AvaliacaoEstrelas, Carregando } from '../../components';
 import { useAuth } from '../../hooks';
 import { showService } from '../../services';
-import { Show, Avaliacao } from '../../types';
-import { MENSAGENS_ERRO, MENSAGENS_SUCESSO } from '../../constants';
+import { Show } from '../../types';
+import { MENSAGENS_ERRO } from '../../constants';
 import './EditarShow.css';
 
 /**
@@ -24,7 +24,6 @@ const EditarShow: React.FC = () => {
   const [notaImdb, setNotaImdb] = useState('');
   const [metascore, setMetascore] = useState('');
   const [poster, setPoster] = useState('');
-  const [avaliacoes, setAvaliacoes] = useState<Avaliacao[]>([]);
   const [assistido, setAssistido] = useState(false);
   const [notaUsuario, setNotaUsuario] = useState(0);
   const [comentarioUsuario, setComentarioUsuario] = useState('');
@@ -69,7 +68,6 @@ const EditarShow: React.FC = () => {
           setNotaImdb(showData.notaImdb);
           setMetascore(showData.metascore);
           setPoster(showData.poster || '');
-          setAvaliacoes(showData.avaliacoes || []);
           setAssistido(showData.assistido);
           dadosCarregadosRef.current = true;
         }
@@ -379,8 +377,7 @@ const EditarShow: React.FC = () => {
               <label>Nota</label>
               <AvaliacaoEstrelas
                 nota={notaUsuario}
-                tamanho={30}
-                onChange={setNotaUsuario}
+                aoMudarNota={setNotaUsuario}
               />
             </div>
 
@@ -426,7 +423,7 @@ const EditarShow: React.FC = () => {
                   <div key={index} className="avaliacao-card">
                     <div className="avaliacao-usuario-info">
                       <strong>{avaliacao.usuario || avaliacao.email}</strong>
-                      <AvaliacaoEstrelas nota={avaliacao.nota} tamanho={16} somenteLeitura />
+                      <AvaliacaoEstrelas nota={avaliacao.nota} aoMudarNota={() => {}} somenteLeitura />
                     </div>
                     {avaliacao.comentario && (
                       <p className="avaliacao-comentario">{avaliacao.comentario}</p>
@@ -440,9 +437,10 @@ const EditarShow: React.FC = () => {
 
       {exibirModal && (
         <Modal
+          exibir={exibirModal}
           mensagem={mensagemModal}
           tipo={tipoModal}
-          onFechar={fecharModal}
+          aoFechar={fecharModal}
         />
       )}
     </div>
@@ -450,5 +448,6 @@ const EditarShow: React.FC = () => {
 };
 
 export default EditarShow;
+
 
 

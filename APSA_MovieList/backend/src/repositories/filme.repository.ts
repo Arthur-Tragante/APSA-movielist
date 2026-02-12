@@ -37,6 +37,16 @@ class FilmeRepository {
   }
 
   /**
+   * Busca todos os filmes do sistema
+   */
+  async buscarTodos(): Promise<Filme[]> {
+    const snapshot = await this.colecao.get();
+    return snapshot.docs.map((doc) =>
+      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
+    );
+  }
+
+  /**
    * Cria um novo filme
    */
   async criar(emailUsuario: string, dadosFilme: CriarFilmeDTO): Promise<string> {

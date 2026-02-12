@@ -56,5 +56,11 @@ router.post('/:id/avaliar', validarCorpo(filmeSchemas.avaliar), filmeController.
  */
 router.delete('/:id/avaliar', filmeController.removerAvaliacao);
 
+/**
+ * POST /api/filmes/sortear
+ * Sorteia um filme até um ser sorteado 5 vezes
+ */
+router.post('/sortear', filmeController.sortearFilme);
+
 export default router;
 

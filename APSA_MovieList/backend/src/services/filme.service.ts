@@ -3,6 +3,7 @@ import { Filme, CriarFilmeDTO, AtualizarFilmeDTO } from '../types';
 import { MENSAGENS_ERRO } from '../constants/mensagens.constants';
 import cacheService from './cache.service';
 import { CACHE_PREFIXES } from '../constants/api.constants';
+import axios from 'axios';
 
 /**
  * Service com lógica de negócio para filmes
@@ -175,6 +176,161 @@ class FilmeService {
     if (filme) {
       await this.invalidarCacheUsuario(filme.usuario);
     }
+  }
+
+  /**
+   * Sorteia filmes até um deles vencer 5 vezes. Registra no Discord e retorna resultado completo.
+   */
+  async sortearFilme(webhookUrl: string): Promise<{ vencedor: string; sorteios: string[]; totais: Record<string, number>; }> {
+    // Busca todos os filmes salvos (pode-se ajustar para pegar do repositório referente ao sorteio, aqui vou usar todos mesmo)
+    const filmesDoc = await filmeRepository.buscarTodos();
+    const titulos: string[] = filmesDoc.map(filme => filme.titulo);
+
+    if (!titulos.length) {
+      throw new Error('Não há filmes para sortear');
+    }
+
+    const totais: Record<string, number> = {};
+    titulos.forEach(t => { totais[t] = 0; });
+    const sorteios: string[] = [];
+    let vencedor = '';
+    let terminou = false;
+
+    function embaralhar(array: string[]): string[] {
+      const novo = [...array];
+      for (let i = novo.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [novo[i], novo[j]] = [novo[j], novo[i]];
+      }
+      return novo;
+    }
+
+    while (!terminou) {
+      const embaralhados = embaralhar(titulos);
+      const sorteado = embaralhados[0];
+      sorteios.push(sorteado);
+      totais[sorteado]++;
+      if (totais[sorteado] >= 5) {
+        vencedor = sorteado;
+        terminou = true;
+      }
+    }
+
+    // Limpa a coleção após o sorteio
+    for (const filme of filmesDoc) {
+      await filmeRepository.deletar(filme.id);
+    }
+
+    // Dispara resultado no Discord
+    const mensagem = `🎬 Resultado do Sorteio:\n\nVencedor: ${vencedor}\n\nSorteios:\n${sorteios.map((t, i) => `${i + 1}. ${t}`).join(' \n')}`;
+    if (webhookUrl) {
+      console.log('Tentando enviar webhook Discord:', webhookUrl, '\nConteúdo:', mensagem);
+      try {
+        await axios.post(webhookUrl, { content: mensagem });
+        console.log('✅ Webhook Discord enviado com sucesso:', webhookUrl);
+      } catch (error: any) {
+        if (error.response) {
+          console.error('❌ Erro ao enviar webhook Discord:', error.response.status, error.response.data);
+        } else {
+          console.error('❌ Erro ao enviar webhook Discord:', error.message);
+        }
+      }
+    } else {
+      console.warn('Webhook Discord não informado, não será enviado!');
+    }
+
+    return { vencedor, sorteios, totais };
+  }
+
+  /**
+   * Sorteia entre uma lista fornecida de filmes.
+   */
+  async sortearFilmesEnviados(filmes: any[], webhookUrl: string): Promise<{ vencedor: string; sorteios: string[]; totais: Record<string, number> }> {
+    const titulos: string[] = filmes.map(f => typeof f === 'string' ? f : (f.titulo || f.title || f.nome || f));
+    if (!titulos.length) {
+      throw new Error('Nenhum filme para sortear');
+    }
+
+    const totais: Record<string, number> = {};
+    titulos.forEach(t => { totais[t] = 0; });
+    const sorteios: string[] = [];
+    let vencedor = '';
+    let terminou = false;
+
+    function embaralhar(array: string[]): string[] {
+      const novo = [...array];
+      for (let i = novo.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [novo[i], novo[j]] = [novo[j], novo[i]];
+      }
+      return novo;
+    }
+
+    while (!terminou) {
+      const embaralhados = embaralhar(titulos);
+      const sorteado = embaralhados[0];
+      sorteios.push(sorteado);
+      totais[sorteado]++;
+      if (totais[sorteado] >= 5) {
+        vencedor = sorteado;
+        terminou = true;
+      }
+    }
+
+    // Calcula ranking dos mais sorteados
+    const ranking = Object.entries(totais)
+      .sort((a, b) => b[1] - a[1])
+      .map(([titulo, vezes]) => ({ titulo, vezes }));
+
+    // Top sorteados na ordem decrescente
+    const ordemTop = ranking.map(r => r.titulo);
+
+    // Mensagem detalhada para o Discord com embed
+    const rankingText = ranking
+      .map((item, idx) => `${idx + 1}. ${item.titulo} (${item.vezes} vezes)`)
+      .join('\n');
+
+    const embed = {
+      title: '🎬 Resultado do Sorteio',
+      color: 3447003,
+      fields: [
+        {
+          name: '🏆 Vencedor',
+          value: vencedor,
+          inline: false
+        },
+        {
+          name: '📊 Ranking Completo',
+          value: rankingText || 'N/A',
+          inline: false
+        }
+      ],
+      timestamp: new Date().toISOString()
+    };
+
+    // Texto simples com emojis (enviado como conteúdo 'content') para canais que não exibem embeds
+    const mensagemTexto = [
+      `🎬 Resultado do Sorteio:\n`,
+      `🏆 Vencedor: ${vencedor}\n`,
+      `\n📋 Ranking Completo:\n${rankingText || 'N/A'}`
+    ].join('\n');
+
+    if (webhookUrl) {
+      try {
+        // Envia tanto o conteúdo simples (com emojis) quanto o embed para melhor compatibilidade
+        await axios.post(webhookUrl, { content: mensagemTexto, embeds: [embed] });
+        console.log('✅ Webhook Discord enviado com sucesso (content + embed):', webhookUrl);
+      } catch (erro: any) {
+        if (erro.response) {
+          console.error('❌ Erro ao enviar webhook Discord:', erro.response.status, erro.response.data);
+        } else {
+          console.error('❌ Erro ao enviar webhook Discord:', erro.message || erro);
+        }
+        // Não lança erro para não quebrar o sorteio se o webhook falhar
+      }
+    }
+
+    return { vencedor, sorteios: ordemTop, totais };
   }
 
   /**

@@ -36,11 +36,11 @@ export const filmeFirestoreParaApp = (doc: any): Filme => {
     usuario: doc.user || '',
     assistido: doc.watched || false,
     avaliacoesUsuarios: (doc.userRatings || []).map((ur: any) => ({
-      usuario: ur.user || '',
+      usuario: ur.user || ur.usuario || '',
       email: ur.email || ur.user || '',
-      nota: typeof ur.rating === 'string' ? parseFloat(ur.rating) : (ur.rating || 0),
-      assistido: doc.watched || false,
-      comentario: ur.comment || '',
+      nota: typeof ur.rating === 'string' ? parseFloat(ur.rating) : (typeof ur.nota === 'string' ? parseFloat(ur.nota) : (ur.rating || ur.nota || 0)),
+      assistido: ur.watched !== undefined ? ur.watched : (doc.watched || false),
+      comentario: ur.comment || ur.comentario || '',
     })),
     mediaAvaliacaoUsuarios: mediaCalculada,
   };
@@ -116,11 +116,11 @@ export const showFirestoreParaApp = (doc: any): Show => {
     usuario: doc.user || '',
     assistido: doc.watched || false,
     avaliacoesUsuarios: (doc.userRatings || []).map((ur: any) => ({
-      usuario: ur.user || '',
+      usuario: ur.user || ur.usuario || '',
       email: ur.email || ur.user || '',
-      nota: typeof ur.rating === 'string' ? parseFloat(ur.rating) : (ur.rating || 0),
-      assistido: doc.watched || false,
-      comentario: ur.comment || '',
+      nota: typeof ur.rating === 'string' ? parseFloat(ur.rating) : (typeof ur.nota === 'string' ? parseFloat(ur.nota) : (ur.rating || ur.nota || 0)),
+      assistido: ur.watched !== undefined ? ur.watched : (doc.watched || false),
+      comentario: ur.comment || ur.comentario || '',
     })),
     mediaAvaliacaoUsuarios: mediaCalculada,
   };

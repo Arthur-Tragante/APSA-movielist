@@ -22,8 +22,8 @@ const startServer = async () => {
     const app = createApp();
 
     // Verifica se existem certificados SSL
-    const sslKeyPath = path.join(__dirname, '../ssl/key.pem');
-    const sslCertPath = path.join(__dirname, '../ssl/cert.pem');
+    const sslKeyPath  = path.join(__dirname, '../ssl/home.ourhorrorstory.com.br-key.pem');
+    const sslCertPath = path.join(__dirname, '../ssl/home.ourhorrorstory.com.br-chain.pem');
     const hasSSL = fs.existsSync(sslKeyPath) && fs.existsSync(sslCertPath);
 
     let server;

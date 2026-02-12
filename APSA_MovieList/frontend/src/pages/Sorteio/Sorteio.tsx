@@ -1,0 +1,330 @@
+import React, { useState, useEffect } from 'react';
+import { ref, push, onValue, remove } from 'firebase/database';
+import { Header, Modal, Carregando } from '../../components';
+import { useAuth } from '../../hooks';
+import { database } from '../../config/firebase.config';
+import './Sorteio.css';
+import apiClient from '../../services/api.client';
+
+interface FilmeSorteio {
+  id: string;
+  titulo: string;
+  usuario: string;
+  email: string;
+}
+
+interface ResultadoSorteio {
+  allPicks: string[];
+  winner: string;
+}
+
+/**
+ * Página de sorteio de filmes
+ * Cada usuário pode adicionar um filme e depois sortear
+ */
+const Sorteio: React.FC = () => {
+  const { obterUsuarioLogado } = useAuth();
+  const usuario = obterUsuarioLogado();
+  
+  const [tituloFilme, setTituloFilme] = useState('');
+  const [filmesSorteio, setFilmesSorteio] = useState<FilmeSorteio[]>([]);
+  const [resultado, setResultado] = useState<ResultadoSorteio | null>(null);
+  const [carregando, setCarregando] = useState(false);
+  const [exibirModal, setExibirModal] = useState(false);
+  const [mensagemModal, setMensagemModal] = useState('');
+  const [tipoModal, setTipoModal] = useState<'sucesso' | 'erro' | 'informacao'>('informacao');
+
+  useEffect(() => {
+    if (!usuario) return;
+
+    // Listener em tempo real para filmes do sorteio
+    const filmesRef = ref(database, 'Movies');
+    const unsubscribeFilmes = onValue(filmesRef, (snapshot) => {
+      const filmes: FilmeSorteio[] = [];
+      const data = snapshot.val();
+      
+      if (data) {
+        for (const id in data) {
+          filmes.push({ 
+            id, 
+            titulo: data[id].title || data[id].titulo || '',
+            usuario: data[id].user || data[id].usuario || '',
+            email: data[id].email || ''
+          });
+        }
+      }
+      setFilmesSorteio(filmes);
+    }, (error) => {
+      console.error('Erro ao buscar filmes:', error);
+    });
+
+    // Listener em tempo real para resultado
+    const resultadoRef = ref(database, 'Results');
+    const unsubscribeResultado = onValue(resultadoRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setResultado({
+          allPicks: data.allPicks || [],
+          winner: data.winner || '',
+        });
+      } else {
+        setResultado(null);
+      }
+    }, (error) => {
+      console.error('Erro ao buscar resultado:', error);
+    });
+
+    return () => {
+      unsubscribeFilmes();
+      unsubscribeResultado();
+    };
+  }, [usuario]);
+
+  const usuarioJaAdicionou = (): boolean => {
+    return filmesSorteio.some(
+      (filme) => filme.email === usuario?.email || filme.usuario === usuario?.nome
+    );
+  };
+
+  const handleAdicionarFilme = async () => {
+    if (!tituloFilme.trim()) {
+      setMensagemModal('Digite o título do filme');
+      setTipoModal('erro');
+      setExibirModal(true);
+      return;
+    }
+
+    if (!usuario) {
+      setMensagemModal('Usuário não autenticado');
+      setTipoModal('erro');
+      setExibirModal(true);
+      return;
+    }
+
+    if (usuarioJaAdicionou()) {
+      setMensagemModal('Você já adicionou um filme ao sorteio');
+      setTipoModal('informacao');
+      setExibirModal(true);
+      return;
+    }
+
+    try {
+      setCarregando(true);
+      const filmesRef = ref(database, 'Movies');
+      await push(filmesRef, {
+        title: tituloFilme,
+        user: usuario.nome,
+        email: usuario.email,
+      });
+
+      setTituloFilme('');
+      setMensagemModal('Filme adicionado com sucesso!');
+      setTipoModal('sucesso');
+      setExibirModal(true);
+    } catch (erro: any) {
+      console.error('Erro ao adicionar filme:', erro);
+      setMensagemModal(`Erro ao adicionar filme: ${erro.message}`);
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  const handleRemoverFilme = async (id: string) => {
+    try {
+      setCarregando(true);
+      const filmeRef = ref(database, `Movies/${id}`);
+      await remove(filmeRef);
+      setMensagemModal('Filme removido com sucesso!');
+      setTipoModal('sucesso');
+      setExibirModal(true);
+    } catch (erro: any) {
+      console.error('Erro ao remover filme:', erro);
+      setMensagemModal(`Erro ao remover filme: ${erro.message}`);
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  const handleSortear = async () => {
+    setCarregando(true);
+    setMensagemModal('');
+    setTipoModal('informacao');
+    setExibirModal(false);
+
+    try {
+      const resposta = await apiClient.post('/filmes/sortear', {
+        filmes: filmesSorteio,
+        webhook: 'https://discordapp.com/api/webhooks/1438341625326604423/AJ3Qr7X4PxzogGkUNZYouF-99l59x8OsfiIQ5WjJT8j25bzdyL4LHdNtM8887_GNfYpY'
+      });
+      if (resposta.data && resposta.data.sucesso) {
+        setResultado({
+          allPicks: resposta.data.dados.sorteios,
+          winner: resposta.data.dados.vencedor
+        });
+        setMensagemModal(`Filme sorteado: ${resposta.data.dados.vencedor}`);
+        setTipoModal('sucesso');
+        setExibirModal(true);
+      } else {
+        setMensagemModal(resposta.data.mensagem || 'Erro inesperado no sorteio.');
+        setTipoModal('erro');
+        setExibirModal(true);
+      }
+    } catch (erro: any) {
+      setMensagemModal(erro.message || 'Erro ao sortear filme.');
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  const handleLimparResultado = async () => {
+    try {
+      setCarregando(true);
+      const resultadoRef = ref(database, 'Results');
+      await remove(resultadoRef);
+
+      setResultado(null);
+      setMensagemModal('Resultado limpo com sucesso!');
+      setTipoModal('sucesso');
+      setExibirModal(true);
+    } catch (erro: any) {
+      console.error('Erro ao limpar resultado:', erro);
+      setMensagemModal(`Erro ao limpar resultado: ${erro.message}`);
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  const fecharModal = () => {
+    setExibirModal(false);
+  };
+
+  if (carregando && filmesSorteio.length === 0) {
+    return (
+      <>
+        <Header />
+        <Carregando mensagem="Carregando sorteio..." />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Header />
+      <div className="sorteio-container">
+        <div className="sorteio-content">
+          <h1 className="sorteio-titulo">Sortear um Filme</h1>
+
+          <div className="sorteio-input-section">
+            <input
+              type="text"
+              className="sorteio-input"
+              placeholder="Digite o título do filme..."
+              value={tituloFilme}
+              onChange={(e) => setTituloFilme(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleAdicionarFilme()}
+              disabled={carregando || usuarioJaAdicionou()}
+            />
+            <button
+              className="sorteio-btn-adicionar"
+              onClick={handleAdicionarFilme}
+              disabled={carregando || usuarioJaAdicionou()}
+            >
+              {carregando ? 'Adicionando...' : 'Adicionar'}
+            </button>
+          </div>
+
+          {usuarioJaAdicionou() && (
+            <p className="sorteio-aviso">Você já adicionou um filme ao sorteio</p>
+          )}
+
+          <div className="sorteio-secao">
+            <h2>Filmes Participantes ({filmesSorteio.length})</h2>
+            <div className="sorteio-lista">
+              {filmesSorteio.length === 0 ? (
+                <p className="sorteio-vazio">Nenhum filme adicionado ainda</p>
+              ) : (
+                filmesSorteio.map((filme) => (
+                  <div key={filme.id} className="sorteio-item">
+                    <div className="sorteio-item-info">
+                      <span className="sorteio-item-titulo">{filme.titulo}</span>
+                      <span className="sorteio-item-usuario">por {filme.usuario}</span>
+                    </div>
+                    {(filme.email === usuario?.email || filme.usuario === usuario?.nome) && (
+                      <button
+                        className="sorteio-btn-remover"
+                        onClick={() => handleRemoverFilme(filme.id)}
+                        disabled={carregando}
+                      >
+                        Remover
+                      </button>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
+
+            {filmesSorteio.length > 0 && (
+              <button
+                className="sorteio-btn-sortear"
+                onClick={handleSortear}
+                disabled={carregando}
+              >
+                {carregando ? 'Sorteando...' : 'Sortear Filme'}
+              </button>
+            )}
+          </div>
+
+          {resultado && (
+            <>
+              <div className="sorteio-secao">
+                <h2>Ordem de Sorteio</h2>
+                <div className="sorteio-resultado-lista">
+                  {resultado.allPicks.map((filme, index) => (
+                    <div key={index} className="sorteio-resultado-item">
+                      {index + 1}. {filme}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="sorteio-secao sorteio-vencedor-secao">
+                <h2>Filme Sorteado</h2>
+                <div className="sorteio-vencedor">
+                  <span>{resultado.winner}</span>
+                </div>
+              </div>
+
+              <button
+                className="sorteio-btn-limpar"
+                onClick={handleLimparResultado}
+                disabled={carregando}
+              >
+                Limpar Resultado
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+
+      {exibirModal && (
+        <Modal
+          exibir={exibirModal}
+          mensagem={mensagemModal}
+          tipo={tipoModal}
+          aoFechar={fecharModal}
+        />
+      )}
+    </>
+  );
+};
+
+export default Sorteio;
+

@@ -79,30 +79,116 @@
   opacity: 0.9;
 }
 
-@media (max-width: 768px) {
+/* Botão Hambúrguer */
+.header-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+}
+
+.header-hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.header-hamburger.aberto span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+}
+
+.header-hamburger.aberto span:nth-child(2) {
+  opacity: 0;
+}
+
+.header-hamburger.aberto span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* Menu Mobile */
+.header-nav-mobile {
+  display: none;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--border-color);
+  padding: 16px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-nav-mobile {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: transparent;
+  color: var(--text-color);
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.btn-nav-mobile:last-child {
+  margin-bottom: 0;
+}
+
+.btn-nav-mobile:hover {
+  background-color: var(--surface-color);
+}
+
+@media (max-width: 1024px) {
+  /* Esconde menu desktop e mostra hambúrguer */
+  .header-nav-desktop {
+    display: none;
+  }
+
+  .header-hamburger {
+    display: flex;
+  }
+
+  .header-nav-mobile {
+    display: flex;
+  }
+
   .header-content {
-    padding: 16px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .header-logo {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 12px;
+    flex: 1;
   }
 
   .header-logo h1 {
-    font-size: 22px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 16px;
   }
 
-  .header-nav {
-    flex: 1;
-    gap: 8px;
-  }
-
-  .btn-nav {
-    padding: 10px 16px;
-    font-size: 14px;
+  .header-logo h1 {
+    font-size: 18px;
   }
 
   .header-usuario {
@@ -110,12 +196,23 @@
   }
 
   .nome-usuario {
-    display: none; /* Oculta nome em telas pequenas */
+    display: none;
   }
 
   .btn-sair {
     padding: 10px 16px;
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logo h1 {
+    font-size: 16px;
+  }
+
+  .btn-sair {
+    padding: 8px 12px;
+    font-size: 13px;
   }
 }
 

@@ -148,6 +148,27 @@ class FilmeController {
       next(erro);
     }
   }
+
+  /**
+   * POST /api/filmes/sortear
+   * Recebe lista de filmes do frontend e realiza o sorteio
+   */
+  async sortearFilme(req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
+    try {
+      const { filmes, webhook } = req.body;
+      if (!filmes || !Array.isArray(filmes) || filmes.length === 0) {
+        throw new Error('Nenhum filme enviado para o sorteio.');
+      }
+      const resultado = await filmeService.sortearFilmesEnviados(filmes, webhook);
+      res.json({
+        sucesso: true,
+        mensagem: `Sorteio encerrado! O vencedor foi: ${resultado.vencedor}`,
+        dados: resultado
+      });
+    } catch (erro: any) {
+      next(erro);
+    }
+  }
 }
 
 export default new FilmeController();
