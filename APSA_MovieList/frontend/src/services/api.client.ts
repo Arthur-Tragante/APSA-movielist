@@ -10,12 +10,12 @@ import { COOKIES } from '../constants';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
 /**
- * Retorna o email do usuário logado (cookie > env var > fallback)
+ * Retorna o email do usuário logado (cookie > env var)
  */
-const getUserEmail = (): string => {
+const getUserEmail = (): string | null => {
   return Cookies.get(COOKIES.EMAIL)
     || import.meta.env.VITE_USER_EMAIL
-    || 'arthur.tragante@gmail.com';
+    || null;
 };
 
 const apiClient = axios.create({
@@ -33,7 +33,10 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
   async (config) => {
     // Adiciona email do usuário logado em todas as requisições
-    config.headers['X-User-Email'] = getUserEmail();
+    const userEmail = getUserEmail();
+    if (userEmail) {
+      config.headers['X-User-Email'] = userEmail;
+    }
     return config;
   },
   (error) => {

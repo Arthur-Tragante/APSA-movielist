@@ -32,9 +32,9 @@ class FilmeController {
   async buscarPorId(req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
     try {
       const { id } = req.params;
-      const emailUsuario = req.usuario!.email;
 
-      const filme = await filmeService.buscarPorId(id, emailUsuario);
+      // Permite visualizar qualquer filme (sem restrição de proprietário)
+      const filme = await filmeService.buscarPorId(id);
 
       res.json({
         sucesso: true,

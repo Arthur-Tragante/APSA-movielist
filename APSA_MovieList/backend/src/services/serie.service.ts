@@ -31,31 +31,19 @@ class SerieService {
   /**
    * Busca série por ID
    */
-  async buscarPorId(id: string, emailUsuario?: string): Promise<Serie> {
+  async buscarPorId(id: string): Promise<Serie> {
     const chaveCache = `${CACHE_PREFIXES.SERIE}${id}`;
 
     // Verifica cache
     const cacheado = await cacheService.obter(chaveCache);
     if (cacheado) {
-      const serie: Serie = JSON.parse(cacheado);
-      
-      // Valida permissão se email fornecido
-      if (emailUsuario && serie.usuario !== emailUsuario) {
-        throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
-      }
-      
-      return serie;
+      return JSON.parse(cacheado);
     }
 
     const serie = await serieRepository.buscarPorId(id);
 
     if (!serie) {
       throw new Error('Série não encontrada');
-    }
-
-    // Valida permissão se email fornecido
-    if (emailUsuario && serie.usuario !== emailUsuario) {
-      throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
     }
 
     // Salva no cache (5 minutos)
@@ -87,12 +75,8 @@ class SerieService {
     emailUsuario: string,
     dadosSerie: AtualizarSerieDTO
   ): Promise<void> {
-    // Verifica se série existe e se usuário tem permissão
-    const serie = await this.buscarPorId(id, emailUsuario);
-
-    if (serie.usuario !== emailUsuario) {
-      throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
-    }
+    // Verifica se série existe
+    await this.buscarPorId(id);
 
     // Validações parciais
     if (dadosSerie.titulo !== undefined && !dadosSerie.titulo.trim()) {
@@ -117,12 +101,8 @@ class SerieService {
    * Deleta uma série
    */
   async deletar(id: string, emailUsuario: string): Promise<void> {
-    // Verifica se série existe e se usuário tem permissão
-    const serie = await this.buscarPorId(id, emailUsuario);
-
-    if (serie.usuario !== emailUsuario) {
-      throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
-    }
+    // Verifica se série existe
+    await this.buscarPorId(id);
 
     await serieRepository.deletar(id);
 
