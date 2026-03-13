@@ -8,17 +8,23 @@
  */
 
 import mongoose from 'mongoose';
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
 
 dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/apsa-movielist';
 const EXPORT_DIR = path.join(__dirname, 'firestore_export');
-const SALT_ROUNDS = 10;
 const DEFAULT_PASSWORD = 'mudar123';
+
+// Hash com crypto nativo (sem precisar de bcrypt compilado)
+function hashPassword(password: string): string {
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha512').toString('hex');
+  return `pbkdf2:${salt}:${hash}`;
+}
 
 // Schemas flexíveis para importação
 const movieSchema = new mongoose.Schema({}, { strict: false, collection: 'movies' });
@@ -36,7 +42,7 @@ const SorteioResultado = mongoose.model('ImportSorteioResultado', sorteioResulta
 function readJson(filename: string): any | null {
   const filepath = path.join(EXPORT_DIR, filename);
   if (!fs.existsSync(filepath)) {
-    console.log(`   ⚠️  Arquivo não encontrado: ${filename}`);
+    console.log(`   Arquivo nao encontrado: ${filename}`);
     return null;
   }
   return JSON.parse(fs.readFileSync(filepath, 'utf-8'));
@@ -45,9 +51,9 @@ function readJson(filename: string): any | null {
 async function importData() {
   try {
     await mongoose.connect(MONGODB_URI);
-    console.log('✅ Conectado ao MongoDB\n');
+    console.log('Conectado ao MongoDB\n');
 
-    // ── Importar Filmes ─────────────────────────────────────────────────
+    // Importar Filmes
     const moviesData = readJson('movies.json');
     if (moviesData && moviesData.length > 0) {
       await Movie.deleteMany({});
@@ -56,10 +62,10 @@ async function importData() {
         return rest;
       });
       await Movie.insertMany(movies);
-      console.log(`✅ ${movies.length} filmes importados`);
+      console.log(`${movies.length} filmes importados`);
     }
 
-    // ── Importar Séries ─────────────────────────────────────────────────
+    // Importar Series
     const showsData = readJson('shows.json');
     if (showsData && showsData.length > 0) {
       await Show.deleteMany({});
@@ -68,14 +74,14 @@ async function importData() {
         return rest;
       });
       await Show.insertMany(shows);
-      console.log(`✅ ${shows.length} séries importadas`);
+      console.log(`${shows.length} series importadas`);
     }
 
-    // ── Importar Usuários (com senha bcrypt) ────────────────────────────
+    // Importar Usuarios (com senha hash)
     const usersData = readJson('users.json');
     if (usersData && usersData.length > 0) {
       await User.deleteMany({});
-      const hashedPassword = await bcrypt.hash(DEFAULT_PASSWORD, SALT_ROUNDS);
+      const hashedPassword = hashPassword(DEFAULT_PASSWORD);
       const users = usersData.map((user: any) => {
         const { _firebaseId, ...rest } = user;
         return {
@@ -84,11 +90,11 @@ async function importData() {
         };
       });
       await User.insertMany(users);
-      console.log(`✅ ${users.length} usuários importados (senha padrão: "${DEFAULT_PASSWORD}")`);
-      console.log('   ⚠️  IMPORTANTE: Peça aos usuários para trocar a senha no primeiro login!');
+      console.log(`${users.length} usuarios importados (senha padrao: "${DEFAULT_PASSWORD}")`);
+      console.log('   IMPORTANTE: Peca aos usuarios para trocar a senha no primeiro login!');
     }
 
-    // ── Importar dados do Realtime Database (Sorteio) ───────────────────
+    // Importar dados do Realtime Database (Sorteio)
     const realtimeMovies = readJson('realtime_movies.json');
     if (realtimeMovies) {
       await SorteioFilme.deleteMany({});
@@ -101,29 +107,30 @@ async function importData() {
           criadoEm: new Date(),
         }));
         await SorteioFilme.insertMany(sorteioFilmes);
-        console.log(`✅ ${sorteioFilmes.length} filmes do sorteio importados`);
+        console.log(`${sorteioFilmes.length} filmes do sorteio importados`);
       }
     }
 
     const realtimeResultado = readJson('realtime_sorteio_resultado.json');
     if (realtimeResultado) {
       await SorteioResultado.deleteMany({});
-      await SorteioResultado.create({
+      const doc = new SorteioResultado({
         allPicks: realtimeResultado.allPicks || [],
         winner: realtimeResultado.winner || '',
         timestamp: realtimeResultado.timestamp ? new Date(realtimeResultado.timestamp) : new Date(),
-      });
-      console.log('✅ Resultado do sorteio importado');
+      } as any);
+      await doc.save();
+      console.log('Resultado do sorteio importado');
     }
 
-    console.log('\n🎉 Importação concluída com sucesso!');
+    console.log('\nImportacao concluida com sucesso!');
 
   } catch (error) {
-    console.error('❌ Erro na importação:', error);
+    console.error('Erro na importacao:', error);
     process.exit(1);
   } finally {
     await mongoose.disconnect();
-    console.log('✅ Desconectado do MongoDB');
+    console.log('Desconectado do MongoDB');
   }
 }
 

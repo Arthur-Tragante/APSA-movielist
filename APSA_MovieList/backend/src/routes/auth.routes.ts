@@ -1,15 +1,28 @@
 import { Router, Request, Response } from 'express';
-import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import { UsuarioModel } from '../models/usuario.model';
 import { env } from '../config/env.config';
 
 const router = Router();
-const SALT_ROUNDS = 10;
+
+// Funções de hash usando crypto nativo (sem dependência de bcrypt)
+function hashPassword(password: string): string {
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha512').toString('hex');
+  return `pbkdf2:${salt}:${hash}`;
+}
+
+function verifyPassword(password: string, stored: string): boolean {
+  if (!stored) return false;
+  if (!stored.startsWith('pbkdf2:')) return false;
+  const [, salt, storedHash] = stored.split(':');
+  const hash = crypto.pbkdf2Sync(password, salt, 100000, 64, 'sha512').toString('hex');
+  return hash === storedHash;
+}
 
 /**
  * POST /api/auth/login
- * Autentica usuário com email e senha, retorna JWT
  */
 router.post('/login', async (req: Request, res: Response) => {
   try {
@@ -30,7 +43,7 @@ router.post('/login', async (req: Request, res: Response) => {
       });
     }
 
-    const senhaValida = await bcrypt.compare(senha, (usuario as any).password || '');
+    const senhaValida = verifyPassword(senha, (usuario as any).password || '');
     if (!senhaValida) {
       return res.status(401).json({
         sucesso: false,
@@ -63,7 +76,6 @@ router.post('/login', async (req: Request, res: Response) => {
 
 /**
  * POST /api/auth/registrar
- * Cria novo usuário com email, nome e senha
  */
 router.post('/registrar', async (req: Request, res: Response) => {
   try {
@@ -91,7 +103,7 @@ router.post('/registrar', async (req: Request, res: Response) => {
       });
     }
 
-    const hashedPassword = await bcrypt.hash(senha, SALT_ROUNDS);
+    const hashedPassword = hashPassword(senha);
     const novoUsuario = new UsuarioModel({
       nome,
       name: nome,
@@ -126,7 +138,6 @@ router.post('/registrar', async (req: Request, res: Response) => {
 
 /**
  * POST /api/auth/trocar-senha
- * Troca a senha do usuário autenticado
  */
 router.post('/trocar-senha', async (req: Request, res: Response) => {
   try {
@@ -151,12 +162,12 @@ router.post('/trocar-senha', async (req: Request, res: Response) => {
       return res.status(404).json({ sucesso: false, erro: 'Usuário não encontrado' });
     }
 
-    const senhaValida = await bcrypt.compare(senhaAtual, (usuario as any).password || '');
+    const senhaValida = verifyPassword(senhaAtual, (usuario as any).password || '');
     if (!senhaValida) {
       return res.status(401).json({ sucesso: false, erro: 'Senha atual incorreta' });
     }
 
-    const hashedPassword = await bcrypt.hash(novaSenha, SALT_ROUNDS);
+    const hashedPassword = hashPassword(novaSenha);
     await UsuarioModel.findByIdAndUpdate(usuario._id, { password: hashedPassword } as any);
 
     return res.json({ sucesso: true, mensagem: 'Senha alterada com sucesso' });
