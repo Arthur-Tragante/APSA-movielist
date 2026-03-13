@@ -31,9 +31,9 @@ class SerieController {
   async buscarPorId(req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
     try {
       const { id } = req.params;
-      const emailUsuario = req.usuario!.email;
 
-      const serie = await serieService.buscarPorId(id, emailUsuario);
+      // Permite visualizar qualquer série (sem restrição de proprietário)
+      const serie = await serieService.buscarPorId(id);
 
       res.json({
         sucesso: true,

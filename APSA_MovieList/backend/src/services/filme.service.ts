@@ -52,31 +52,19 @@ class FilmeService {
   /**
    * Busca filme por ID
    */
-  async buscarPorId(id: string, emailUsuario?: string): Promise<Filme> {
+  async buscarPorId(id: string): Promise<Filme> {
     const chaveCache = `${CACHE_PREFIXES.FILME}${id}`;
 
     // Verifica cache
     const cacheado = await cacheService.obter(chaveCache);
     if (cacheado) {
-      const filme: Filme = JSON.parse(cacheado);
-      
-      // Valida permissão se email fornecido
-      if (emailUsuario && filme.usuario !== emailUsuario) {
-        throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
-      }
-      
-      return filme;
+      return JSON.parse(cacheado);
     }
 
     const filme = await filmeRepository.buscarPorId(id);
 
     if (!filme) {
       throw new Error(MENSAGENS_ERRO.FILME_NAO_ENCONTRADO);
-    }
-
-    // Valida permissão se email fornecido
-    if (emailUsuario && filme.usuario !== emailUsuario) {
-      throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
     }
 
     // Salva no cache (5 minutos)
@@ -108,12 +96,8 @@ class FilmeService {
     emailUsuario: string,
     dadosFilme: AtualizarFilmeDTO
   ): Promise<void> {
-    // Verifica se filme existe e se usuário tem permissão
-    const filme = await this.buscarPorId(id, emailUsuario);
-
-    if (filme.usuario !== emailUsuario) {
-      throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
-    }
+    // Verifica se filme existe
+    await this.buscarPorId(id);
 
     // Validações parciais
     if (dadosFilme.titulo !== undefined && !dadosFilme.titulo.trim()) {
@@ -131,12 +115,8 @@ class FilmeService {
    * Deleta um filme
    */
   async deletar(id: string, emailUsuario: string): Promise<void> {
-    // Verifica se filme existe e se usuário tem permissão
-    const filme = await this.buscarPorId(id, emailUsuario);
-
-    if (filme.usuario !== emailUsuario) {
-      throw new Error(MENSAGENS_ERRO.USUARIO_NAO_AUTORIZADO);
-    }
+    // Verifica se filme existe
+    await this.buscarPorId(id);
 
     await filmeRepository.deletar(id);
 
