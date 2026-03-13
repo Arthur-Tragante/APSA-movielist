@@ -9,38 +9,35 @@ import { COOKIES } from '../constants';
 // URL do backend (produção ou desenvolvimento)
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
-/**
- * Retorna o email do usuário logado (cookie > env var)
- */
-const getUserEmail = (): string | null => {
-  return Cookies.get(COOKIES.EMAIL)
-    || import.meta.env.VITE_USER_EMAIL
-    || null;
-};
-
 const apiClient = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
     'ngrok-skip-browser-warning': 'true',
   },
-  timeout: 30000, // 30 segundos
+  timeout: 30000,
 });
 
 /**
- * Interceptor para adicionar headers customizados
+ * Interceptor para adicionar Authorization header (JWT)
  */
 apiClient.interceptors.request.use(
   async (config) => {
-    // Adiciona email do usuário logado em todas as requisições
-    const userEmail = getUserEmail();
+    const token = Cookies.get(COOKIES.TOKEN);
+    if (token && token !== '' && !token.startsWith('mock-token-')) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    // Fallback legado: envia email via header para compatibilidade
+    const userEmail = Cookies.get(COOKIES.EMAIL) || import.meta.env.VITE_USER_EMAIL;
     if (userEmail) {
       config.headers['X-User-Email'] = userEmail;
     }
+
     return config;
   },
   (error) => {
-    console.error('❌ Erro ao preparar requisição:', error);
+    console.error('Erro ao preparar requisição:', error);
     return Promise.reject(error);
   }
 );
@@ -52,16 +49,24 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      // Erro retornado pelo backend
+      const status = error.response.status;
       const mensagem = error.response.data?.erro || 'Erro ao comunicar com o servidor';
+
+      // Token expirado ou inválido - redireciona para login
+      if (status === 401) {
+        Cookies.remove(COOKIES.TOKEN);
+        Cookies.remove(COOKIES.EMAIL);
+        Cookies.remove(COOKIES.NOME);
+        window.location.href = '/login';
+        return Promise.reject(new Error('Sessão expirada. Faça login novamente.'));
+      }
+
       console.error('Erro na API:', mensagem);
       throw new Error(mensagem);
     } else if (error.request) {
-      // Erro de rede
       console.error('Erro de rede:', error.message);
       throw new Error('Não foi possível conectar ao servidor. Verifique sua conexão.');
     } else {
-      // Erro desconhecido
       console.error('Erro:', error.message);
       throw new Error('Ocorreu um erro inesperado.');
     }
@@ -69,4 +74,3 @@ apiClient.interceptors.response.use(
 );
 
 export default apiClient;
-

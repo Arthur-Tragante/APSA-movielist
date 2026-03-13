@@ -13,16 +13,40 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
+      - MONGODB_ENABLED=true
+      - MONGODB_URI=mongodb://mongo:27017/apsa-movielist
       - REDIS_URL=redis://redis:6379
       - REDIS_ENABLED=true
     env_file:
       - .env
     depends_on:
-      - redis
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - moicanos-network
     volumes:
       - ./logs:/app/logs
+
+  # MongoDB
+  mongo:
+    image: mongo:7
+    container_name: moicanos-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=apsa-movielist
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - moicanos-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # Redis para cache
   redis:
@@ -47,5 +71,5 @@ networks:
     driver: bridge
 
 volumes:
+  mongo-data:
   redis-data:
-
