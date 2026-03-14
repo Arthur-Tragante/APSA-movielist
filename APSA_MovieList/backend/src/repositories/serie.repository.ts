@@ -1,13 +1,9 @@
 import { SerieModel } from '../models';
 import { Serie, CriarSerieDTO, AtualizarSerieDTO, Episodio, AvaliacaoEpisodio } from '../types';
 import { serieMongoParaApp, serieAppParaMongo, atualizacaoSerieParaMongo } from '../utils/mappers.util';
-import { firestore } from '../config/firebase.config';
-import { env } from '../config/env.config';
-
-const COLECAO_SERIES = 'shows';
 
 /**
- * Repository para operações de séries (MongoDB ou Firestore)
+ * Repository para operações de séries (MongoDB)
  */
 class SerieRepository {
 
@@ -15,46 +11,25 @@ class SerieRepository {
    * Busca todas as séries de um usuário
    */
   async buscarPorUsuario(emailUsuario: string): Promise<Serie[]> {
-    if (env.MONGODB_ENABLED) {
-      const series = await SerieModel.find({ user: emailUsuario }).sort({ createdAt: -1 }).lean();
-      return series.map((serie) => serieMongoParaApp({ id: serie._id.toString(), ...serie }));
-    }
-
-    if (!firestore) return [];
-    const snapshot = await firestore.collection(COLECAO_SERIES)
-      .where('user', '==', emailUsuario)
-      .get();
-    return snapshot.docs.map(doc => serieMongoParaApp({ id: doc.id, ...doc.data() }));
+    const series = await SerieModel.find({ user: emailUsuario }).sort({ createdAt: -1 }).lean();
+    return series.map((serie) => serieMongoParaApp({ id: serie._id.toString(), ...serie }));
   }
 
   /**
    * Busca série por ID
    */
   async buscarPorId(id: string): Promise<Serie | null> {
-    if (env.MONGODB_ENABLED) {
-      const serie = await SerieModel.findById(id).lean();
-      if (!serie) return null;
-      return serieMongoParaApp({ id: serie._id.toString(), ...serie });
-    }
-
-    if (!firestore) return null;
-    const doc = await firestore.collection(COLECAO_SERIES).doc(id).get();
-    if (!doc.exists) return null;
-    return serieMongoParaApp({ id: doc.id, ...doc.data() });
+    const serie = await SerieModel.findById(id).lean();
+    if (!serie) return null;
+    return serieMongoParaApp({ id: serie._id.toString(), ...serie });
   }
 
   /**
    * Busca todas as séries do sistema
    */
   async buscarTodas(): Promise<Serie[]> {
-    if (env.MONGODB_ENABLED) {
-      const series = await SerieModel.find().lean();
-      return series.map((serie) => serieMongoParaApp({ id: serie._id.toString(), ...serie }));
-    }
-
-    if (!firestore) return [];
-    const snapshot = await firestore.collection(COLECAO_SERIES).get();
-    return snapshot.docs.map(doc => serieMongoParaApp({ id: doc.id, ...doc.data() }));
+    const series = await SerieModel.find().lean();
+    return series.map((serie) => serieMongoParaApp({ id: serie._id.toString(), ...serie }));
   }
 
   /**
@@ -64,21 +39,7 @@ class SerieRepository {
     const agora = new Date().toISOString();
     const serieMongo = serieAppParaMongo({ ...dadosSerie, usuario: emailUsuario });
 
-    if (env.MONGODB_ENABLED) {
-      const novaSerie = new SerieModel({
-        ...serieMongo,
-        user: emailUsuario,
-        createdAt: agora,
-        updatedAt: agora,
-        userRatings: [],
-        averageUserRating: 0,
-      });
-      await novaSerie.save();
-      return novaSerie._id.toString();
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    const docRef = await firestore.collection(COLECAO_SERIES).add({
+    const novaSerie = new SerieModel({
       ...serieMongo,
       user: emailUsuario,
       createdAt: agora,
@@ -86,7 +47,8 @@ class SerieRepository {
       userRatings: [],
       averageUserRating: 0,
     });
-    return docRef.id;
+    await novaSerie.save();
+    return novaSerie._id.toString();
   }
 
   /**
@@ -95,39 +57,21 @@ class SerieRepository {
   async atualizar(id: string, dadosSerie: AtualizarSerieDTO): Promise<void> {
     const agora = new Date().toISOString();
     const dadosMongo = atualizacaoSerieParaMongo(dadosSerie);
-
-    if (env.MONGODB_ENABLED) {
-      await SerieModel.findByIdAndUpdate(id, { ...dadosMongo, updatedAt: agora });
-      return;
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    await firestore.collection(COLECAO_SERIES).doc(id).update({ ...dadosMongo, updatedAt: agora });
+    await SerieModel.findByIdAndUpdate(id, { ...dadosMongo, updatedAt: agora });
   }
 
   /**
    * Deleta uma série
    */
   async deletar(id: string): Promise<void> {
-    if (env.MONGODB_ENABLED) {
-      await SerieModel.findByIdAndDelete(id);
-      return;
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    await firestore.collection(COLECAO_SERIES).doc(id).delete();
+    await SerieModel.findByIdAndDelete(id);
   }
 
   /**
-   * Helper para salvar dados EN de volta no storage (Firestore ou MongoDB)
+   * Helper para salvar dados EN de volta no storage (MongoDB)
    */
   private async salvarDadosSerie(id: string, dadosEN: Record<string, any>): Promise<void> {
-    if (env.MONGODB_ENABLED) {
-      await SerieModel.findByIdAndUpdate(id, dadosEN);
-      return;
-    }
-    if (!firestore) throw new Error('Firestore não disponível');
-    await firestore.collection(COLECAO_SERIES).doc(id).update(dadosEN);
+    await SerieModel.findByIdAndUpdate(id, dadosEN);
   }
 
   /**

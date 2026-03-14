@@ -63,6 +63,6 @@ export const validateEnv = () => {
     console.warn('⚠️ OMDB_API_KEY não configurada - Ratings externos não estarão disponíveis');
   }
   
-  console.log('✅ Sistema sem Firebase - usando autenticação simplificada');
+  console.log('✅ Sistema configurado com MongoDB + JWT');
 };
 

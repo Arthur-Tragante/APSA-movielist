@@ -14,10 +14,6 @@ build/
 .env.development
 .env.production
 
-# Firebase
-serviceAccountKey.json
-firebase-debug.log
-
 # SSL Certificates
 APSA_MovieList/backend/ssl/*.pem
 APSA_MovieList/backend/ssl/*.key

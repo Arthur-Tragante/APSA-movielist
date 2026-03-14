@@ -23,10 +23,9 @@ export const createApp = (): Application => {
     'http://localhost:5173',                    // Desenvolvimento local
     'http://localhost:5174',                    // Desenvolvimento local (porta alternativa)
     'http://localhost:5175',                    // Desenvolvimento local (porta alternativa)
-    'https://apsa-movielist.web.app',          // Firebase Hosting
-    'https://apsa-movielist.firebaseapp.com',  // Firebase Hosting (alternativo)
-    'https://ourhorrorstory.com.br',           // Domínio customizado
-    'http://ourhorrorstory.com.br',            // Domínio customizado (HTTP)
+    'https://ourhorrorstory.com.br',           // Domínio produção
+    'https://ourhorrorstory.com.br:8000',      // Domínio produção (porta 8000)
+    'http://ourhorrorstory.com.br',            // Domínio produção (HTTP)
     env.CORS_ORIGIN,                            // Configurável via .env
   ];
 

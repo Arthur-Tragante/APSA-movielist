@@ -1,6 +1,5 @@
 import { serieRepository } from '../repositories';
 import { Serie, CriarSerieDTO, AtualizarSerieDTO, Episodio } from '../types';
-import { MENSAGENS_ERRO } from '../constants/mensagens.constants';
 import cacheService from './cache.service';
 import { CACHE_PREFIXES } from '../constants/api.constants';
 
@@ -206,8 +205,8 @@ class SerieService {
     numeroTemporada: number,
     episodio: Episodio
   ): Promise<void> {
-    // Verifica se série existe e se usuário tem permissão
-    await this.buscarPorId(idSerie, emailUsuario);
+    // Verifica se série existe
+    await this.buscarPorId(idSerie);
 
     await serieRepository.adicionarEpisodio(idSerie, numeroTemporada, episodio);
 
@@ -224,8 +223,8 @@ class SerieService {
     numeroTemporada: number,
     numeroEpisodio: number
   ): Promise<void> {
-    // Verifica se série existe e se usuário tem permissão
-    await this.buscarPorId(idSerie, emailUsuario);
+    // Verifica se série existe
+    await this.buscarPorId(idSerie);
 
     await serieRepository.removerEpisodio(idSerie, numeroTemporada, numeroEpisodio);
 

@@ -1,6 +1,112 @@
 [
   {
-    "_id": "09VbV8QSAZJDxfDecXuH",
+    "_firebaseId": "034lnkl45D6zkK9JaSTN",
+    "title": "Terror em Silent Hill / Silent Hill",
+    "genre": "Terror, Mistério",
+    "year": "2006",
+    "duration": "125",
+    "imdbRating": "6.5",
+    "metascore": "31",
+    "synopsis": "Rose, uma mãe desesperada leva sua filha adotiva, Sharon, para a cidade de Silent Hill na tentativa de curá-la de seu sofrimento. Após um violento acidente de carro, Sharon desaparece e Rose começa sua busca desesperada para recuperá-la. Ela entra em uma neblina de cinzas e vai de encontro ao terrível segredo da cidade. Perseguida por grotescas criaturas deformadas e outras pessoas da cidade presas em um permanente purgatório, Rose começa a desvendar a verdade por trás do apocalíptico desastre que queimou a cidade há 30 anos.",
+    "poster": "https://image.tmdb.org/t/p/w200/7CLiGJbAlJNlbMbgeVbLhaEx8XD.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "33%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "31/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4.5,
+        "comment": "Paia\nOs inimigos tirados do jogo são bem feitos, mas o resto, PAIA"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 5.5,
+        "comment": "Quase passa de ano, a vibe é legal pelo menos"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 4.5,
+        "comment": "Atmosfera do silent hill ta la, o que nao tem é o resto"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 3.5,
+        "comment": "Preferia estudar Português"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "08IPQsCZnv7KcQOpS6rG",
+    "title": "Transformers: O Despertar das Feras / Transformers: Rise of the Beasts",
+    "genre": "Ficção científica, Aventura, Ação",
+    "year": "2023",
+    "duration": "127",
+    "imdbRating": "6.0",
+    "metascore": "42",
+    "synopsis": "Optimus Prime e os Autobots enfrentam seu maior desafio até agora. Quando uma nova ameaça capaz de destruir todo o planeta surge, eles devem se unir a uma poderosa facção de Transformers conhecida como os Maximals para salvar a Terra.",
+    "poster": "https://image.tmdb.org/t/p/w200/9PSKoY98olv7Sru1PWnLpFDqat9.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "51%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "42/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 3,
+        "comment": "GIJoe vei..."
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 5,
+        "comment": "Não me agrediu"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 3,
+        "comment": "Que final cringe, quero autobot, não autoboy"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4.5,
+        "comment": "Paia. A unica coisa que salva é o Mirage\n\nACABOOOOOOOOOOOOOOOOOOOOOOOOOU!!!\nACABOOOOOOOOOOOOOOOOOOOOOOOOOU!!!"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "09VbV8QSAZJDxfDecXuH",
     "title": "O Poderoso Chefão: Parte II / The Godfather Part II",
     "genre": "Drama, Crime",
     "year": "1974",
@@ -27,7 +133,7 @@
     "watched": false
   },
   {
-    "_id": "0PHBrWVgtKePdkC28iaq",
+    "_firebaseId": "0PHBrWVgtKePdkC28iaq",
     "title": "Suspiria / Suspiria",
     "genre": "Terror",
     "year": "1977",
@@ -54,7 +160,7 @@
     "watched": false
   },
   {
-    "_id": "0fN8MLs9hmMvuj9Nyuvj",
+    "_firebaseId": "0fN8MLs9hmMvuj9Nyuvj",
     "title": "Barbie: Escola de Princesas / Barbie: Princess Charm School",
     "genre": "Família, Animação, Fantasia",
     "year": "2011",
@@ -99,7 +205,34 @@
     "watched": true
   },
   {
-    "_id": "0qwN7HWOexC8Mpd1JZYE",
+    "_firebaseId": "0kZU6enikkil5z9vY0n7",
+    "title": "Homem-Aranha: Através do Aranhaverso / Spider-Man: Across the Spider-Verse",
+    "genre": "Animação, Ação, Aventura, Ficção científica",
+    "year": "2023",
+    "duration": "140",
+    "imdbRating": "8.5",
+    "metascore": "86",
+    "synopsis": "Miles Morales retorna para o próximo capítulo da saga do Aranhaverso, uma aventura épica que transportará o Homem-Aranha em tempo integral e amigável do bairro do Brooklyn através do Multiverso para unir forças com Gwen Stacy e uma nova equipe de Homens-Aranha para enfrentar com um vilão mais poderoso do que qualquer coisa que eles já encontraram.",
+    "poster": "https://image.tmdb.org/t/p/w200/4CwKj1fw33BXYzxvrpM3GlAhK4L.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "95%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "86/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "0qwN7HWOexC8Mpd1JZYE",
     "title": "Uma Noite Alucinante: A Morte do Demônio / The Evil Dead",
     "genre": "Terror",
     "year": "1981",
@@ -126,7 +259,60 @@
     "watched": false
   },
   {
-    "_id": "1RfZCTNgSkYwP3IQNELp",
+    "_firebaseId": "18y7PMHZMdUHzew1M7ll",
+    "title": "Silent Hill: Revelação / Silent Hill: Revelation 3D",
+    "genre": "Thriller, Terror, Mistério",
+    "year": "2012",
+    "duration": "94",
+    "imdbRating": "4.9",
+    "metascore": "16",
+    "synopsis": "A jovem Heather Mason passou a vida fugindo, ao lado do pai, de forças que ambos nunca compreenderam muito bem. Mas quando seu pai desaparece misteriosamente, a jovem se depara com uma estranha e terrível realidade que guarda respostas sobre os pesadelos que a infernizam desde a sua infância. Não demora até que Heather descubra que não é a pessoa que imaginava ser, com a ameaça de ficar aprisionada em sofrimento eterno para sempre.",
+    "poster": "https://image.tmdb.org/t/p/w200/7936Tglq1tM3eMXpssyrn0CxjeD.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "4.9/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "8%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "16/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2.5,
+        "comment": "COUNTRY ROOOAAD"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 2.5,
+        "comment": "Meio que nada salva esse filme mesmo!"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 2,
+        "comment": "Ruim demais\nPodia não ter existido"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 2.5,
+        "comment": "A Amanda que assistiu o anterior na escola preferia o final anterior"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "1RfZCTNgSkYwP3IQNELp",
     "title": "Ouija: Origem do Mal / Ouija: Origin of Evil",
     "genre": "Terror",
     "year": "2016",
@@ -179,7 +365,26 @@
     "watched": true
   },
   {
-    "_id": "214klurUCiS8wyPbQxlL",
+    "_firebaseId": "1VUffy8BvkQv9J661liu",
+    "title": "Barbie e o Segredo das Fadas / Barbie: A Fairy Secret",
+    "genre": "Animação, Família, Fantasia",
+    "year": "2011",
+    "duration": "72",
+    "imdbRating": "5.8",
+    "metascore": "N/A",
+    "synopsis": "Uma aventura fantástica, onde Barbie descobre que há fadas vivendo secretamente à nossa volta!  Quando Ken é levado, repentinamente, por um grupo de fadas, as duas amigas estilistas de Barbie revelam que são na realidade fadas e que Ken foi levado para um mundo mágico secreto não muito distante!  Barbie e a sua rival, Raquelle, partem com as suas amigas numa viagem recheada de ação para o trazerem de volta. Pelo caminho elas terão de se manter unidas e aprender que a verdadeira magia não está apenas no mundo das fadas, mas no poder da amizade.",
+    "poster": "https://image.tmdb.org/t/p/w200/u3OiN7HWxi9S8lcRqkmLVJ0BP1u.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.8/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "214klurUCiS8wyPbQxlL",
     "title": "Velozes e Furiosos: Desafio em Tóquio / The Fast and the Furious: Tokyo Drift",
     "genre": "Ação, Crime, Drama, Thriller",
     "year": "2006",
@@ -232,7 +437,50 @@
     ]
   },
   {
-    "_id": "2bg5zAIMRYAMlj6ZdSDm",
+    "_firebaseId": "2TAsS4nnZ2H4jd0k7jUM",
+    "title": "Terror em Silent Hill: Regresso Para o Inferno / Return to Silent Hill",
+    "genre": "Terror, Mistério",
+    "year": "2026",
+    "duration": "106",
+    "imdbRating": "N/A",
+    "metascore": "N/A",
+    "synopsis": "Quando uma carta misteriosa chama James de volta a Silent Hill em busca de seu verdadeiro amor, ele encontra uma cidade antes reconhecível, transformada por um mal desconhecido. À medida que James se aprofunda na escuridão, ele encontra figuras aterrorizantes, tanto familiares quanto novas, e começa a questionar sua própria sanidade enquanto luta para entender a realidade e se manter firme por tempo suficiente para salvar seu amor perdido.",
+    "poster": "https://image.tmdb.org/t/p/w200/mRbdOe5vMnY3HXxLnWgRFJHbCPs.jpg",
+    "ratings": [],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "createdAt": "2026-02-15T02:22:50.980Z",
+    "averageUserRating": 0,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 3,
+        "comment": "Mary Maria Angela Laura Julie Anna Becky Erin Crane"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4,
+        "comment": "Trasheir. Da pra rir, mas é esquecível"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 3,
+        "comment": "Atuações péssimas, cenas aleatórias, mas apesar de tudo foi divertidinho"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 3,
+        "comment": "Gigachad, atuação horrível, doeu. Sorte do filme que não joguei o jogo, então foi minimamente divertido"
+      }
+    ],
+    "updatedAt": "2026-02-15T02:41:07.633Z"
+  },
+  {
+    "_firebaseId": "2bg5zAIMRYAMlj6ZdSDm",
     "title": "Lenda Urbana / Urban Legend",
     "genre": "Terror, Mistério",
     "year": "1998",
@@ -285,7 +533,34 @@
     ]
   },
   {
-    "_id": "2gwtbOG1J1zNVZv2Lodi",
+    "_firebaseId": "2ejUk8iL5a563xUrrzdQ",
+    "title": "10 Coisas Que Eu Odeio em Você / 10 Things I Hate About You",
+    "genre": "Comédia, Romance, Drama",
+    "year": "1999",
+    "duration": "97",
+    "imdbRating": "7.4",
+    "metascore": "70",
+    "synopsis": "Em seu primeiro dia na nova escola, Cameron se apaixona por Bianca. Mas ela só poderá sair com rapazes até que Kat, sua irmã mais velha, arrume um namorado. O problema é que ela é insuportável. Cameron, então, negocia com o único garoto que talvez consiga sair com Kat – um misterioso bad-boy com uma péssima reputação.",
+    "poster": "https://image.tmdb.org/t/p/w200/lRy6impzDHOqTX3A2T5dxI6Lwfu.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "72%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "70/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "2gwtbOG1J1zNVZv2Lodi",
     "title": "Mortal Kombat / Mortal Kombat",
     "genre": "Ação, Fantasia",
     "year": "1995",
@@ -312,7 +587,7 @@
     "watched": false
   },
   {
-    "_id": "36W6L05NDPCrqvuFKpAg",
+    "_firebaseId": "36W6L05NDPCrqvuFKpAg",
     "title": "Navio Fantasma / Ghost Ship",
     "genre": "Terror, Mistério, Thriller",
     "year": "2002",
@@ -339,7 +614,113 @@
     "watched": false
   },
   {
-    "_id": "4c8wkmChceTczj2fFC77",
+    "_firebaseId": "3FnIMS3zTgmJLvGa6VSm",
+    "title": "Zootopia: Essa Cidade é o Bicho / Zootopia",
+    "genre": "Animação, Aventura, Família, Comédia",
+    "year": "2016",
+    "duration": "109",
+    "imdbRating": "8.0",
+    "metascore": "78",
+    "synopsis": "Em uma cidade de animais antropomórficos, uma raposa fugitiva vigarista e um coelho policial recruta precisam trabalhar juntos para desvendar uma conspiração.",
+    "poster": "https://image.tmdb.org/t/p/w200/ncqVGCX9P3EKQfsOXiB3XxQ0Dip.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "98%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "78/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 9,
+        "comment": "WAKA WAKA WA Ê Ê"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9,
+        "comment": "This time for Africa"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9,
+        "comment": "Jã tinha assistido, mas nao lembrava de algumas partes\nMas foi divertido de rever\n"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Muito divertido, amei os personagens shakira shakira"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "4M1PCrm93m2KFEMF5z21",
+    "title": "Procurando Nemo / Finding Nemo",
+    "genre": "Animação, Família",
+    "year": "2003",
+    "duration": "100",
+    "imdbRating": "8.2",
+    "metascore": "90",
+    "synopsis": "Nemo, um jovem peixe-palhaço aventureiro, é inesperadamente levado de sua casa na Grande Barreira de Corais para o aquário do consultório de um dentista. Cabe ao seu preocupado pai Marlin e à simpática mas esquecida peixe Dory trazer Nemo para casa - encontrando tubarões vegetarianos, tartarugas surfistas, medusas hipnóticas, gaivotas esfomeadas e muito mais pelo caminho.",
+    "poster": "https://image.tmdb.org/t/p/w200/djbivExXSZb0sTO8uYaaQC5vMRM.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "99%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "90/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9,
+        "comment": "Eu gosto muito\nUma das animações que mais gosto da pixar"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8,
+        "comment": "O pai que não buscou leite"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9,
+        "comment": "Dormir em berço explendido"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8.5,
+        "comment": "MINHOCA UH HA HA"
+      }
+    ],
+    "watched": true
+  },
+  {
+    "_firebaseId": "4c8wkmChceTczj2fFC77",
     "title": "Hamilton / Hamilton",
     "genre": "História, Drama",
     "year": "2025",
@@ -363,10 +744,36 @@
       }
     ],
     "user": "homurarozen@gmail.com",
-    "watched": false
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 10,
+        "comment": "Absolute broadway"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 10,
+        "comment": "É uma obra boa demais pra uma história muito patética\nMas é bom demais de assistir"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 10,
+        "comment": "How does a BASTARD, ORPHAN, SON OF A WHOOOORE?"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9.5,
+        "comment": "To com medo de apanha no grupo"
+      }
+    ],
+    "watched": true
   },
   {
-    "_id": "5Dbc1LHr9lEbylwnYTtc",
+    "_firebaseId": "5Dbc1LHr9lEbylwnYTtc",
     "title": "O Poderoso Chefão / The Godfather",
     "genre": "Drama, Crime",
     "year": "1972",
@@ -393,7 +800,163 @@
     "watched": false
   },
   {
-    "_id": "6GAJtMDh61eKbetsZTN3",
+    "_firebaseId": "5Uvs2LJXBFZJqlpxP3pW",
+    "title": "A Fuga das Galinhas / Chicken Run",
+    "genre": "Animação, Comédia, Família",
+    "year": "2000",
+    "duration": "84",
+    "imdbRating": "7.1",
+    "metascore": "88",
+    "synopsis": "No galinheiro de uma fazenda inglesa dos anos 1950, galinhas cumprem sua função e vivem pacatamente sonhando com uma vida melhor. Uma delas, Ginger, sonha com a liberdade e planeja sair voando dali junto com suas companheiras.",
+    "poster": "https://image.tmdb.org/t/p/w200/hp5shw8xyuYId322rT9am3HrKCQ.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "97%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "88/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "createdAt": "2026-02-12T01:56:39.125Z",
+    "averageUserRating": 0,
+    "watched": false,
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 7.5,
+        "comment": "Com pouco mais de uma hora, ainda podia ser mais curto do que é"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6.5,
+        "comment": "I told you they was organized"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7,
+        "comment": ""
+      }
+    ],
+    "updatedAt": "2026-03-12T22:33:38.617Z"
+  },
+  {
+    "_firebaseId": "5ZEXyQwhdY7qwbyh4du9",
+    "title": "O Espanta Tubarões / Shark Tale",
+    "genre": "Animação, Ação, Comédia, Família",
+    "year": "2004",
+    "duration": "90",
+    "imdbRating": "6.0",
+    "metascore": "48",
+    "synopsis": "Oscar é um pequeno peixe que tem sonhos grandes, que se torna um herói involuntário após pregar uma grande mentira. Após ser perseguido pelo filho do tubarão-chefe, Oscar presencia sua morte. Querendo bancar o herói, ele assume a autoria do assassinato e, com isso, se torna uma grande celebridade no mundo aquático. Porém a situação se complica quando ele é designado para repetir a façanha, eliminando outros tubarões.",
+    "poster": "https://image.tmdb.org/t/p/w200/1tPhFqGScPYbaLuczBnlFGjNUqj.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "35%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "48/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9,
+        "comment": "Divertido\nGosto muito do Tubarão Gay"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Só erra em algumas piadocas cringe"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8,
+        "comment": "Era tudo verdade"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7.5,
+        "comment": "\"Coco da baleia ai vem voce\""
+      }
+    ]
+  },
+  {
+    "_firebaseId": "5gJYY4zrPMUZj4tgBN0E",
+    "title": "Kung Fu Panda / Kung Fu Panda",
+    "genre": "Animação, Família, Comédia, Ação, Aventura",
+    "year": "2008",
+    "duration": "90",
+    "imdbRating": "7.6",
+    "metascore": "74",
+    "synopsis": "Po é um panda que trabalha na loja de macarrão da sua família e sonha em transformar-se em um mestre de kung fu. Seu sonho se torna realidade quando, inesperadamente, ele deve cumprir uma profecia antiga e estudar a arte marcial com seus ídolos, os Cinco Furiosos. Po precisa de toda a sabedoria, força e habilidade que conseguir reunir para proteger seu povo de um leopardo da neve malvado.",
+    "poster": "https://image.tmdb.org/t/p/w200/1YMs3zCt5kICK28RvVgDL1UUtkA.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "87%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "74/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9.5,
+        "comment": "My time has come. You must continue your journey without me"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 9.5,
+        "comment": "Skadoosh 💥 (boo Paulo hater)"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8,
+        "comment": "Pra MIM o filme não consegue fazer uma balança entre serio e engraçada "
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9.5,
+        "comment": "Humor muito bom, mas o coitado do Tai Lung merecia uma luta maior"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "6GAJtMDh61eKbetsZTN3",
     "title": "Exhuma / Exhuma",
     "genre": "Mistério, Terror, Thriller",
     "year": "2024",
@@ -420,7 +983,156 @@
     "watched": false
   },
   {
-    "_id": "7DanlALjoYefMqkb4Ot8",
+    "_firebaseId": "6QIJiKGcsGSQkKl5l4GR",
+    "title": "Barbie e As Três Mosqueteiras / Barbie and the Three Musketeers",
+    "genre": "Animação, Família",
+    "year": "2009",
+    "duration": "81",
+    "imdbRating": "6.2",
+    "metascore": "N/A",
+    "synopsis": "A jovem Corinne tem um grande sonho - ser uma mosqueteira! O problema é que esse é um trabalho só para homens. Mas, mesmo assim, Corinne decide ir para Paris e lutar por aquilo que quer. Lá, ela conhece Viveca, Aramina e Reneé, três moças que têm o mesmo objetivo. Juntas, elas vão treinar muito para, um dia, provar seu valor. E essa oportunidade está mais perto do que elas imaginam. O malvado regente Felipe está conspirando contra o príncipe Louis para tomar poder. Agora, para desmascarar esse terrível vilão e salvar a vida de Louis, as quatro corajosas guerreiras vão precisar de todas as suas habilidades. E, quem sabe, ainda provar para o príncipe que são dignas de se juntar aos soldados do reino.",
+    "poster": "https://image.tmdb.org/t/p/w200/aulv0DUM41tmEM9BoDVaczBojsz.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.2/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "6cLfhQSyZa4CeP9hx8YX",
+    "title": "Simplesmente Amor / Love Actually",
+    "genre": "Comédia, Romance, Drama",
+    "year": "2003",
+    "duration": "135",
+    "imdbRating": "7.5",
+    "metascore": "55",
+    "synopsis": "Nove histórias que se entrelaçam mostrando as complexidades da emoção que nos conecta a todos: o amor. Entre os personagens, o belo recém-eleito primeiro-ministro britânico, David, que se apaixona por uma jovem funcionária. Uma desenhista gráfica, Sarah, cuja devoção a seu irmão, doente mental, complica sua vida amorosa. Harry, um homem casado tentado por sua atraente nova secretária. São vidas e amores que se misturam na romântica Londres, e atingem o seu clímax na noite de Natal.",
+    "poster": "https://image.tmdb.org/t/p/w200/zoZvqAlIt6U8XWyo2ROU2SpTVAc.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "64%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "55/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "6qIXYscI0M9VnmSi8h1b",
+    "title": "High School Musical / High School Musical",
+    "genre": "Comédia, Drama, Família, Música, Romance, Cinema TV",
+    "year": "2006",
+    "duration": "98",
+    "imdbRating": "5.6",
+    "metascore": "N/A",
+    "synopsis": "Troy, o popular capitão do time de basquete, e a bela Gabriella, quebram todas as regras do East High Society quando resolvem fazer um teste secreto para cantar no evento de música da escola. Em busca dos seus sonhos, eles acabam vivendo um bonito romance durante os ensaios para o musical, e aprendem a importância do trabalho em equipe e de serem eles mesmos.",
+    "poster": "https://image.tmdb.org/t/p/w200/3AywI4DpqhZvRyIn9o82p6Og22P.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "67%"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 7,
+        "comment": "Como um filme, é um bom musical"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8.5,
+        "comment": "WHAT TEAM? WILDCATS!! WHAT TEAM? WILDCATS!!!!!!!!!"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7,
+        "comment": ""
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 5.5,
+        "comment": "Eu acho paia\nMas consigo ver o valor dele \nEntão fico em cima do muro"
+      }
+    ],
+    "updatedAt": "2026-02-22T07:48:11.737Z"
+  },
+  {
+    "_firebaseId": "70D4IHU6yJKVEyep7O2V",
+    "title": "O Último Mestre do Ar / The Last Airbender",
+    "genre": "Ação, Aventura, Fantasia",
+    "year": "2010",
+    "duration": "103",
+    "imdbRating": "4.0",
+    "metascore": "20",
+    "synopsis": "As quatro nações, Ar, Água, Terra e Fogo, viviam em harmonia, até que a nação do Fogo declarou guerra com o objetivo de dominar o mundo. Um século depois, não há perspectiva para o fim da destruição, até que um avatar chamado Aang descobre ter o poder de controlar os quatro elementos. Ele se une aos irmãos Katara e Sokka, da Água, e juntos partem em uma grande e perigosa aventura em busca da paz, para restaurar o equilíbrio e a harmonia.",
+    "poster": "https://image.tmdb.org/t/p/w200/sQGFIDDScR6tX3KXotHaQywewYU.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "4.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "5%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "20/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4,
+        "comment": "Rushado\nMal atuado\nRuim"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2,
+        "comment": "Sokka sokka tcheca sokka"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 3,
+        "comment": "Pov: eu atuando na aula de kung fu"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 1,
+        "comment": "\"Avatar: A lenda de Can't\""
+      }
+    ],
+    "watched": true
+  },
+  {
+    "_firebaseId": "7DanlALjoYefMqkb4Ot8",
     "title": "Identidade / Identity",
     "genre": "Mistério, Thriller",
     "year": "2003",
@@ -447,7 +1159,7 @@
     "watched": false
   },
   {
-    "_id": "7Dg0yXEPYvjkkCW7kJjG",
+    "_firebaseId": "7Dg0yXEPYvjkkCW7kJjG",
     "title": "Noite Passada em Soho / Last Night in Soho",
     "genre": "Terror, Mistério, Drama, Thriller",
     "year": "2021",
@@ -474,7 +1186,7 @@
     "watched": false
   },
   {
-    "_id": "7rIVeBE7cOnuZQXANbA4",
+    "_firebaseId": "7rIVeBE7cOnuZQXANbA4",
     "title": "Annabelle / Annabelle",
     "genre": "Terror",
     "year": "2014",
@@ -527,7 +1239,113 @@
     "poster": "https://image.tmdb.org/t/p/w500/jnvQCi7cO3f5oAceTrodDjVvQmB.jpg"
   },
   {
-    "_id": "8s4Cu8bLNJsAUhOsS8gp",
+    "_firebaseId": "8CI4UJPvguH5uSvKnAJ7",
+    "title": "Coraline e o Mundo Secreto / Coraline",
+    "genre": "Animação, Família, Fantasia",
+    "year": "2009",
+    "duration": "100",
+    "imdbRating": "7.8",
+    "metascore": "80",
+    "synopsis": "Entediada em sua nova casa, a pequena Coraline descobre uma porta secreta que contém um mundo parecido com o dela, porém melhor em muitas maneiras. Coraline se encanta com a descoberta, mas logo descobre que há algo de errado quando seus pais alternativos tentam mantê-la eternamente nesse mundo paralelo.",
+    "poster": "https://image.tmdb.org/t/p/w200/rranXmvqPT4NoXzmxhFtXr9nNYT.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "91%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "80/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "8SZwiLTJu1xnCFLebHs0",
+    "title": "Monstros S.A. / Monsters, Inc.",
+    "genre": "Animação, Comédia, Família",
+    "year": "2001",
+    "duration": "92",
+    "imdbRating": "8.1",
+    "metascore": "79",
+    "synopsis": "O astro do susto, Sulley, e seu falante assistente, Mike, trabalham na Monstros S.A., a maior fábrica de processamento de gritos da cidade de Monstrópolis. A principal fonte de energia do mundo dos monstros provém da coleta dos gritos das crianças humanas. Os monstros acreditam que as crianças são tóxicas, e entram em pânico quando uma menininha invade seu mundo. Sulley e Mike fazem de tudo para levar a garota de volta para casa, mas enfrentam desafios monstruosos e algumas situações hilárias em suas atrapalhadas aventuras.",
+    "poster": "https://image.tmdb.org/t/p/w200/5p6cdAeUevsLOX0oI1T4JIul4QO.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "96%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "79/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "8ieWkQIi2b3dDvCVb3kd",
+    "title": "High School Musical 2 / High School Musical 2",
+    "genre": "Comédia, Drama, Família, Música, Romance, Cinema TV",
+    "year": "2007",
+    "duration": "111",
+    "imdbRating": "5.3",
+    "metascore": "N/A",
+    "synopsis": "Os Wildcats de East High estão prontos para as melhores férias de suas vidas. Troy fica empolgado ao ser convidado para trabalhar no Country Club, sem desconfiar que isso seja parte do plano de Sharpay de afastá-lo de Gabriella. E agora? Essa e outras perguntas serão respondidas na noite do show de talentos.",
+    "poster": "https://image.tmdb.org/t/p/w200/la2kiVWDm2vuB4APZDgCCmuBh4K.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.3/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "83%"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "createdAt": "2026-02-25T02:58:19.298Z",
+    "averageUserRating": 0,
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 6.5,
+        "comment": ""
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8.5,
+        "comment": "Pelas musicas"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 9.5,
+        "comment": "We can work it out if we work together to bet on it and not dance, together, for summer and its fabulous."
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8.5,
+        "comment": "Propaganda anti capitalismo"
+      }
+    ],
+    "updatedAt": "2026-02-25T03:04:55.606Z"
+  },
+  {
+    "_firebaseId": "8s4Cu8bLNJsAUhOsS8gp",
     "title": "Eclipse Mortal / Pitch Black",
     "genre": "Thriller, Ficção científica, Ação",
     "year": "2000",
@@ -554,7 +1372,7 @@
     "watched": false
   },
   {
-    "_id": "91bgvOm6US7rtl8FaaHD",
+    "_firebaseId": "91bgvOm6US7rtl8FaaHD",
     "title": "Todo Mundo em Pânico / Scary Movie",
     "genre": "Comédia",
     "year": "2000",
@@ -578,10 +1396,213 @@
       }
     ],
     "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 7,
+        "comment": "Muito bom, só raiva da Cindy namorando,  algumas partes muito forçadas"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6,
+        "comment": "WAZZAAAAAAAAAAAAAAP"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 7.5,
+        "comment": "Humor muito besta\nMas como sei da tristeza que vem depois disso, considero esse um dos melhores da \"franquia\""
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7.5,
+        "comment": "Pprque eu sei q o Arthur vai mudar de ideia"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "9Ce5arRhOo47c20TUMSw",
+    "title": "anaceagrgwesrg",
+    "genre": "123",
+    "year": "123",
+    "duration": "123",
+    "imdbRating": "",
+    "metascore": "",
+    "synopsis": "",
+    "poster": "",
+    "ratings": [],
+    "user": "arthur.tragante@gmail.com",
     "watched": false
   },
   {
-    "_id": "AU7jM1Lc1mk0yTw9BgT7",
+    "_firebaseId": "A59r0ejkhArApUgQMEX8",
+    "title": "Oscar - Minha Filha quer Casar / Oscar",
+    "genre": "Comédia",
+    "year": "1991",
+    "duration": "109",
+    "imdbRating": "6.5",
+    "metascore": "47",
+    "synopsis": "No leito de morte, o pai de um gângster pede a seu filho que vire um homem honesto. Ele decide cumprir a vontade do pai, mas enfrenta problemas. Entre os quais, arranjar um noivo para a filha grávida.",
+    "poster": "https://image.tmdb.org/t/p/w200/6Avae1tJvq9GjM7Xhhis61fDYFa.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "12%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "47/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true
+  },
+  {
+    "_firebaseId": "ABzpFLsGNIptsiCfAgOb",
+    "title": "Todo Mundo em Pânico 3 / Scary Movie 3",
+    "genre": "Comédia",
+    "year": "2003",
+    "duration": "84",
+    "imdbRating": "5.6",
+    "metascore": "49",
+    "synopsis": "Tudo começa quando a apresentadora de telejornal Cindy Campbell descobre uma série de terríveis acontecimentos que ameaçam o planeta, envolvendo invasores extraterrestres, vídeos assassinos, assustadores círculos de plantações, profecias sobre o Escolhido, crianças com olhares sinistros, rappers brancos ambiciosos e até mesmo uma discussão com Michael Jackson.",
+    "poster": "https://image.tmdb.org/t/p/w200/y14q7jWS0vH8ZuWPS1v8t8qCmBO.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "36%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "49/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 5.5,
+        "comment": "So esse p recuperar do 2"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8,
+        "comment": "Porque a nota é minha"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 6,
+        "comment": "Besta\nMas tem algumas piadas melhores"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 7,
+        "comment": "Quase tão bom quanto o 1, mas ainda é meio cringe com cenas bestas demais"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "AKpGyqD0cUmiHOuAVdsE",
+    "title": "Meninas Malvadas / Mean Girls",
+    "genre": "Drama, Comédia",
+    "year": "2004",
+    "duration": "96",
+    "imdbRating": "7.1",
+    "metascore": "66",
+    "synopsis": "Criada na selva africana por seus pais zoólogos, Cady acha que sabe tudo sobre \"sobrevivência dos mais bem dotados\". Mas a lei da selva toma um significado totalmente novo, quando a garota de 15 anos, educada em casa, entra na escola pública pela primeira vez. Tentando encontrar seu lugar entre esportistas, cerebrais e outras subculturas, Cady cruza o caminho com a espécie mais perigosa: a Abelha Rainha, mais conhecida como a descolada e calculista Regina, líder da turma mais transada, As Poderosas. Mas quando Cady se apaixona pelo ex-namorado de Regina, a Abelha Rainha recebe a ferroada e trama para arruinar a vida social de Cady. As garras de Cady logo aparecem, quando ela pula de cabeça em uma hilariante \"guerra de garotas\", que vai fazer o colégio todo procurar abrigo.",
+    "poster": "https://image.tmdb.org/t/p/w200/iV7YxvjdmRZo0amjGA2BZW5kkAu.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "84%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "66/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "ANA7pIb5vH8Tifs1Yktj",
+    "title": "Sexta-Feira 13 / Friday the 13th",
+    "genre": "Terror",
+    "year": "1980",
+    "duration": "95",
+    "imdbRating": "6.4",
+    "metascore": "22",
+    "synopsis": "O Acampamento Crystal Lake será reaberto. Monitores ansiosos, seus olhos brilhando com nobres ideais, e seus hormônios à flor da pele, estão prontos para liderar as canções e brincadeiras dos hóspedes. Mas há um jogo que não constava na lista de atividades. Alguém resolveu brincar de \"Mate o Monitor.\"",
+    "poster": "https://image.tmdb.org/t/p/w200/rdrVW0qN16Ho8BDwmcqW9oLQtn3.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "68%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "22/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "createdAt": "2026-02-14T04:41:10.567Z",
+    "averageUserRating": 0,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 7,
+        "comment": "Xuxa Assassina"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 6,
+        "comment": "Da pra aprender a fazer um café"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 5,
+        "comment": "Lerdo como esperado para a época, atuação meio paia, mas é interessante e tem um bom plot twist"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8,
+        "comment": "Briga com uma véia que termina com ela decaptada..... 🫲cinema🫱"
+      }
+    ],
+    "watched": true,
+    "updatedAt": "2026-02-14T05:03:59.226Z"
+  },
+  {
+    "_firebaseId": "AU7jM1Lc1mk0yTw9BgT7",
     "title": "Crepúsculo / Twilight",
     "genre": "Fantasia, Drama, Romance",
     "year": "2008",
@@ -608,7 +1629,329 @@
     "watched": false
   },
   {
-    "_id": "CwXcGE14Mat7fMfSZmrz",
+    "_firebaseId": "AWrU7E5Zo0ByoZZL3rVe",
+    "title": "Programa de Proteção para Princesas / Princess Protection Program",
+    "genre": "Família, Cinema TV, Comédia, Drama",
+    "year": "2009",
+    "duration": "89",
+    "imdbRating": "5.7",
+    "metascore": "N/A",
+    "synopsis": "Quando a corte de um pequeno país é posta em risco, a princesa Rosalinda é colocada em um programa de proteção especial. Ela é levada para uma cidade rural e passa a lidar com os altos e baixos da vida de uma adolescente comum. Lá ela conhece Carter, com quem desenvolve uma bela amizade.",
+    "poster": "https://image.tmdb.org/t/p/w200/zuQDHKbFgtBMtFqUMX0J8orEfAT.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.7/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "60%"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "BJAtaZvQsJDJwqQf826e",
+    "title": "Barbie como Rapunzel / Barbie as Rapunzel",
+    "genre": "Animação, Família",
+    "year": "2002",
+    "duration": "84",
+    "imdbRating": "6.5",
+    "metascore": "N/A",
+    "synopsis": "Nessa versão animada com a boneca Barbie a heroína vive a bela Rapunzel, dona dos mais lindos cabelos que alguém já viu. Mas Rapunzel é uma serviçal e torna-se prisioneira de uma bruxa muito poderosa e ciumenta. Presa numa torre, Rapunzel irá da janela conhecer e se apaixonar pelo Príncipe Stefan, o único que pode salvá-la.",
+    "poster": "https://image.tmdb.org/t/p/w200/2FgdtwT3Ln5PX4Sa0mkA70IPVXt.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.5/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "Bdsgs0B70lmA7L4Blg4S",
+    "title": "Brinquedo Assassino / Child's Play",
+    "genre": "Terror",
+    "year": "1988",
+    "duration": "87",
+    "imdbRating": "6.7",
+    "metascore": "58",
+    "synopsis": "Após a babá do garotinho de seis anos, Andy Barclay, ser violentamente arremessada pela janela, ninguém acredita nele quando diz que \"Chucky\", o boneco que ganhou de aniversário, foi o culpado! Até que as coisas começam a dar errado... mortalmente errado. E quando uma série de terríveis assassinatos leva um detetive de volta ao mesmo brinquedo, ele descobre que o verdadeiro terror tinha apenas começado – o boneco perturbado planeja transferir seu espírito mau para um ser vivo – o pequeno Andy.",
+    "poster": "https://image.tmdb.org/t/p/w200/pdnXDnuAWIc9pwobTQ5XknlcbbS.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.7/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "64%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "58/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "createdAt": "2026-02-15T04:50:25.528Z",
+    "averageUserRating": 0,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8,
+        "comment": "NO ONE BELIEVES YOU ABOUT CHUCKY"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8.5,
+        "comment": "Muito divertido e interessante, só muita raiva de ninguém acreditar no boneco"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 8.5,
+        "comment": "Surpreendentemente bom. "
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8.5,
+        "comment": "\"You stupid bitch, filth slut\""
+      }
+    ],
+    "watched": true,
+    "updatedAt": "2026-02-15T05:03:45.791Z"
+  },
+  {
+    "_firebaseId": "Bg6TeoGeGuwuJYLjo7SL",
+    "title": "Barbie Butterfly: A Nova Aventura em Fairytopia / Barbie Mariposa",
+    "genre": "Animação, Fantasia, Família",
+    "year": "2008",
+    "duration": "75",
+    "imdbRating": "6.0",
+    "metascore": "N/A",
+    "synopsis": "A doce Borboleta deve encontrar forças para derrotar a mlavada Fada Henna e salvar a Borboleta-rainha.",
+    "poster": "https://image.tmdb.org/t/p/w200/trsrW7gDWxYSOUnW9pdSYPNXvVf.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.0/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "BgGD1ieazz4eWcwkngD7",
+    "title": "D.U.F.F. / The DUFF",
+    "genre": "Romance, Comédia",
+    "year": "2015",
+    "duration": "100",
+    "imdbRating": "6.4",
+    "metascore": "56",
+    "synopsis": "A percepção que Bianca tinha sobre sua vida social desmorona quando descobre que é considerada a mais feia do seu grupo de amigas. Decidida a mudar sua imagem, recorre aos conselhos de Wesley, um atraente esportista de sua escola.",
+    "poster": "https://image.tmdb.org/t/p/w200/9dzuS72mJx3jaN6LgGtOwsiRKuK.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "73%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "56/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6,
+        "comment": "Oh God that was so much worse than I remembered...."
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 6,
+        "comment": ""
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 6,
+        "comment": "Vergonha daquilo que não vivi"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 6,
+        "comment": ""
+      }
+    ]
+  },
+  {
+    "_firebaseId": "Bl9OIaoI3QNdrFnn50Sf",
+    "title": "A Bruxa de Blair / The Blair Witch Project",
+    "genre": "Terror, Mistério",
+    "year": "1999",
+    "duration": "81",
+    "imdbRating": "6.5",
+    "metascore": "80",
+    "synopsis": "Três estudantes de cinema embrenham-se nas matas do estado de Maryland para fazer um documentário sobre a lenda da bruxa de Blair e desaparecem misteriosamente. Um ano depois, uma sacola cheia de rolos de filmes e fitas de vídeo é encontrada na mata. As imagens registradas pelo trio dão algumas pistas sobre seu macabro destino.",
+    "poster": "https://image.tmdb.org/t/p/w200/jAKX4midH0vSm2XT54g5TWluQqw.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "86%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "80/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 6,
+        "comment": "Eu gosto do que o filme tenta fazer\nEle não faz bem\nMas eu gosto do que ele tenta"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 1,
+        "comment": "N quero mais viver me devolve o Vin Diesel"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 1,
+        "comment": "Saudades Vin Diesel"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7,
+        "comment": ""
+      }
+    ]
+  },
+  {
+    "_firebaseId": "C6NPnu39jL3fbEnjf4An",
+    "title": "tick, tick...BOOM! / tick, tick... BOOM!",
+    "genre": "Drama, Música",
+    "year": "2021",
+    "duration": "120",
+    "imdbRating": "7.5",
+    "metascore": "74",
+    "synopsis": "Prestes a fazer 30 anos, o compositor Jonathan Larson reluta para levar adiante seu sonho de escrever um grande musical.",
+    "poster": "https://image.tmdb.org/t/p/w200/DPmfcuR8fh8ROYXgdjrAjSGA0o.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "88%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "74/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "ClmVbF65KnNcy1xXRmTv",
+    "title": "1408 / 1408",
+    "genre": "Terror, Mistério",
+    "year": "2007",
+    "duration": "104",
+    "imdbRating": "6.8",
+    "metascore": "64",
+    "synopsis": "Mike é um famoso escritor de livros sobre lugares mal-assombrados. Ele resolve explorar o quarto 1408 do hotel Dolphin, local em que ninguém coloca os pés há muito tempo. Sem dar atenção às advertências do gerente, ele descobre o verdadeiro significado do terror quando passa uma noite no misterioso recinto.",
+    "poster": "https://image.tmdb.org/t/p/w200/nBwGQFymu3EhnBnhNSN1GX7zsZL.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "80%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "64/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "CuAWvvCgT48NmhcquHwG",
+    "title": "Barbie em as 12 Princesas Bailarinas / Barbie in the 12 Dancing Princesses",
+    "genre": "Animação, Família",
+    "year": "2006",
+    "duration": "83",
+    "imdbRating": "6.8",
+    "metascore": "N/A",
+    "synopsis": "Barbie está de volta em uma nova aventura mágica e musical, junto de suas irmãs princesas! Quando a malvada tia Rowena se muda para o castelo, ela proíbe que as princesas dancem ou cantem para sempre, pois ela acredita que não é o tipo de comportamento apropriado para uma princesa. As princesas descobrem um palácio mágico e secreto para onde fogem, mas quando Barbie fica sabendo que a sua tia está tramando para governar o reino, ela precisa voltar para ajudar o seu pai, o rei! Barbie estrela seu 7º filme em 'Barbie - As doze princesas bailarinas'. Desta vez, a Princesa Barbie e suas irmãs que amam dançar a noite inteira, estão em uma aventura encantada, com muita música. A nova animação, que traz uma belíssima arte criada por computador, irá encantar as meninas do mundo todo!",
+    "poster": "https://image.tmdb.org/t/p/w200/d1WbtY6ThUE2P7riFqmPIYCnUdi.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.8/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6,
+        "comment": "Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! Olá papai! "
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8,
+        "comment": "Nostálgico, mas 12 cérebros conseguiam pensar melhor"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8.5,
+        "comment": "Papagaio com sotaque é meu novo animal falante favorito"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 7.5,
+        "comment": "Não é muito original, mas é divertido\n"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "CwXcGE14Mat7fMfSZmrz",
     "title": "O Túmulo dos Vagalumes / Grave of the Fireflies",
     "genre": "Animação, Drama, Guerra",
     "year": "1988",
@@ -635,7 +1978,7 @@
     "watched": false
   },
   {
-    "_id": "DLyo9TtGZo1r6IdoUeLo",
+    "_firebaseId": "DLyo9TtGZo1r6IdoUeLo",
     "title": "O Exterminador do Futuro 3: A Rebelião das Máquinas / Terminator 3: Rise of the Machines",
     "genre": "Ação, Thriller, Ficção científica",
     "year": "2003",
@@ -662,7 +2005,7 @@
     "watched": false
   },
   {
-    "_id": "DS6oOjKKJxGCEWEcOxnf",
+    "_firebaseId": "DS6oOjKKJxGCEWEcOxnf",
     "title": "Transformers: A Era da Extinção / Transformers: Age of Extinction",
     "genre": "Ficção científica, Ação, Aventura",
     "year": "2014",
@@ -715,7 +2058,7 @@
     ]
   },
   {
-    "_id": "Df03PLyat50aR0KRzkwU",
+    "_firebaseId": "Df03PLyat50aR0KRzkwU",
     "title": "Memórias de um Assassino / Memories of Murder",
     "genre": "Crime, Drama, Thriller",
     "year": "2003",
@@ -738,7 +2081,7 @@
     "watched": false
   },
   {
-    "_id": "E4nedzMxKptpUG1iODyu",
+    "_firebaseId": "E4nedzMxKptpUG1iODyu",
     "title": "Janela Indiscreta / Rear Window",
     "genre": "Thriller, Mistério",
     "year": "1954",
@@ -765,7 +2108,7 @@
     "watched": false
   },
   {
-    "_id": "EW4c2ZaIi8GGObxoE0oH",
+    "_firebaseId": "EW4c2ZaIi8GGObxoE0oH",
     "title": "The Strange Thing About the Johnsons / The Strange Thing About the Johnsons",
     "genre": "Drama, Terror",
     "year": "2011",
@@ -784,7 +2127,34 @@
     "watched": false
   },
   {
-    "_id": "FZC2HIcZVEu59Ds5wOM0",
+    "_firebaseId": "FFOdVENnG4bwp8WBHP3H",
+    "title": "Ruby Sparks - A Namorada Perfeita / Ruby Sparks",
+    "genre": "Comédia, Romance, Fantasia, Drama",
+    "year": "2012",
+    "duration": "104",
+    "imdbRating": "7.2",
+    "metascore": "67",
+    "synopsis": "O romancista Calvin (Paul Dano) sofre com um bloqueio criativo que atrapalha o desenvolvimento de seu último livro. Com problemas também em sua vida pessoal, começa a criar uma personagem feminina poderia se apaixonar por ele. Daí nasce Ruby Sparks (Zoe Kazan), que inicialmente é uma personagem dentro de uma história, mas que pouco depois ganha vida e passa a conviver e se relacionar com Calvin pessoalmente.",
+    "poster": "https://image.tmdb.org/t/p/w200/1icxpBig1mpVvC7lYG3V8RXmxYF.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "79%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "67/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "FZC2HIcZVEu59Ds5wOM0",
     "title": "O Procurado / Wanted",
     "genre": "Ação, Thriller, Crime",
     "year": "2008",
@@ -808,10 +2178,55 @@
       }
     ],
     "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 7.5,
+        "comment": "Bom\nSó isso\nCenas de ação viajadas e é isso"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 7,
+        "comment": "Your name came up"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 6.5,
+        "comment": "Tinha que ser trasheira, covarde matando o pai segurando ele"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7.5,
+        "comment": "O filme é tão maluco q ele é blindado contra furo de roteiro"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "FchLynGh3SI7AWeXu2HO",
+    "title": "Barbie: O Quebra-Nozes / Barbie in the Nutcracker",
+    "genre": "Animação, Família",
+    "year": "2001",
+    "duration": "77",
+    "imdbRating": "6.3",
+    "metascore": "N/A",
+    "synopsis": "Como que por magia, Barbie ganha vida nesta prodigiosa adaptação do conto clássico de Hoffman, animado por computador. A história inicia-se quando Clara recebe um belo Quebra-Nozes de madeira como presente de sua tia favorita. Nessa noite, o Quebra-Nozes ganha vida para expulsar o Rei dos Ratos, que invadiu os aposentos de Clara. Ela acorda e ajuda o Quebra-Nozes, mas o Rei dos Ratos, através de um feitiço maléfico, a faz diminuir de tamanho. Clara e o Quebra-Nozes partem numa aventura fantástica para encontrar a Fada Açucarada, a única pessoa com poderes para quebrar o maléfico feitiço.",
+    "poster": "https://image.tmdb.org/t/p/w200/dm7IBahbPkjbc5FOD6pW0mjYVAA.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.3/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
     "watched": false
   },
   {
-    "_id": "Fjfy0L0F1NI8Vv9s4FbA",
+    "_firebaseId": "Fjfy0L0F1NI8Vv9s4FbA",
     "title": "Los Bandoleros / Los Bandoleros",
     "genre": "Ação, Drama",
     "year": "2009",
@@ -832,31 +2247,84 @@
       {
         "user": "shellyasmallman",
         "email": "shellyasmallman@gmail.com",
-        "rating": 1.5,
-        "comment": "Why"
+        "rating": 3.5,
+        "comment": "Fui injusta, tava certo o Arthur"
       },
       {
         "user": "pauluemmanuel",
         "email": "pauluemmanuel@hotmail.com",
-        "rating": 1.5,
+        "rating": 6,
         "comment": "Velozes e furiosos sem velozes e sem furiosos"
       },
       {
         "user": "homurarozen",
         "email": "homurarozen@gmail.com",
-        "rating": 1.5,
-        "comment": "O verdadeiro veloz é você querendo acabar de assistir"
+        "rating": 3.5,
+        "comment": "Desculpa, Vinvin"
       },
       {
         "user": "arthur.tragante",
         "email": "arthur.tragante@gmail.com",
-        "rating": 3,
+        "rating": 4.5,
         "comment": "Se voce é fã de Velozes e Furiosos, pode ser interessante, talvez?\n"
       }
     ]
   },
   {
-    "_id": "G8jtgFYnkVslF87SVPgZ",
+    "_firebaseId": "G7NvqMmrRNf3c3zf8JXT",
+    "title": "A Família do Futuro / Meet the Robinsons",
+    "genre": "Animação, Comédia, Família, Ficção científica, Aventura",
+    "year": "2007",
+    "duration": "95",
+    "imdbRating": "6.8",
+    "metascore": "61",
+    "synopsis": "Lewis (Daniel Hansen) é um jovem responsável por invenções brilhantes e surpreendentes. Seu mais recente trabalho é o escâner de memória, uma máquina que o ajudará a encontrar sua mãe biológica, o que permitirá que ele enfim tenha uma família. Porém antes mesmo de utilizá-la a máquina é roubada pelo Bandido do Chapéu Coco (Stephen J. Anderson). Lewis recebe então a visita de Wilbur Robinson (Wesley Singerman), um jovem misterioso que o leva em uma viagem no tempo. Já no futuro Lewis conhece os Robinsons, a família de Wilbur, que o ajudará a recuperar o escâner de memória.",
+    "poster": "https://image.tmdb.org/t/p/w200/uR9rV69x4saB2vh9yfgQ5PA5E0r.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "68%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "61/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 10,
+        "comment": "Bora p frente"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 10,
+        "comment": "Lindo, incrível, choro toda vez"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 10,
+        "comment": "Fofo demais\n"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 10,
+        "comment": "Absolutamente incrivel"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "G8jtgFYnkVslF87SVPgZ",
     "title": "A Colina Escarlate / Crimson Peak",
     "genre": "Terror, Mistério, Romance",
     "year": "2015",
@@ -909,7 +2377,7 @@
     ]
   },
   {
-    "_id": "Gg5L6PvMiONJlUr66B5Y",
+    "_firebaseId": "Gg5L6PvMiONJlUr66B5Y",
     "title": "Olhos Famintos / Jeepers Creepers",
     "genre": "Terror",
     "year": "2001",
@@ -936,7 +2404,7 @@
     "watched": false
   },
   {
-    "_id": "Gr7NvGQPAvwswvqqlAGm",
+    "_firebaseId": "Gr7NvGQPAvwswvqqlAGm",
     "title": "O Poderoso Chefão: Parte III / The Godfather Part III",
     "genre": "Crime, Drama, Thriller",
     "year": "1990",
@@ -963,7 +2431,7 @@
     "watched": false
   },
   {
-    "_id": "GxL9RlFvZGu1ov7INfts",
+    "_firebaseId": "GxL9RlFvZGu1ov7INfts",
     "title": "Boyhood: Da Infância à Juventude / Boyhood",
     "genre": "Drama",
     "year": "2014",
@@ -990,7 +2458,87 @@
     "watched": false
   },
   {
-    "_id": "HrQBMKFVPB92daVYKlim",
+    "_firebaseId": "HKfLxsVkBWeTOUFlCTY3",
+    "title": "Velozes & Furiosos 6 / Fast & Furious 6",
+    "genre": "Ação, Thriller, Crime",
+    "year": "2013",
+    "duration": "130",
+    "imdbRating": "7.0",
+    "metascore": "61",
+    "synopsis": "Desde que o golpe de Dom e Brian no Rio de Janeiro deixou o grupo com US$100 milhões, a equipe se espalhou pelo mundo. Um dia, Hobbs pede a Dom que reúna um grupo de elite em Londres e apreenda uma organização de mercenários nas ruas, cujo mentor é apoiado por Letty, a antiga namorada de Dom que ele acreditava estar morta. A recompensa? Absolvição a todos eles para poderem voltar para as suas casas e tornarem suas famílias completas novamente.",
+    "poster": "https://image.tmdb.org/t/p/w200/h8SD0Kkqv3PUBneQX9tFsDrFu8.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "71%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "61/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 6.5,
+        "comment": "Cena da ponte 10/10"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 4.5,
+        "comment": "\"Who the fuck are these people?\" -Letty, probably"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 5,
+        "comment": "Esquecível demais\nA história do filme é bem decepcionante\nPAIA"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 4,
+        "comment": ""
+      }
+    ]
+  },
+  {
+    "_firebaseId": "HfEI0nNfX25yyBSsRFLA",
+    "title": "Frankenstein / Frankenstein",
+    "genre": "Drama, Terror, Fantasia",
+    "year": "2025",
+    "duration": "150",
+    "imdbRating": "7.7",
+    "metascore": "78",
+    "synopsis": "Dr. Victor Frankenstein, um cientista brilhante, mas egoísta, dá vida a uma criatura em um experimento monstruoso que acaba levando à ruína tanto do criador quanto de sua trágica criação.",
+    "poster": "https://image.tmdb.org/t/p/w200/cXsMxClCcAF1oMwoXZvbKwWoNeS.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.7/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "86%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "78/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "HrQBMKFVPB92daVYKlim",
     "title": "A Casa do Medo - Incidente em Ghostland / Ghostland",
     "genre": "Terror, Mistério, Thriller",
     "year": "2018",
@@ -1017,7 +2565,53 @@
     "watched": false
   },
   {
-    "_id": "IRPrIIcaIETggqbvmwP5",
+    "_firebaseId": "Hv27nJp6kMEH9ImABxGp",
+    "title": "Barbie em a Princesa da Ilha / Barbie as the Island Princess",
+    "genre": "Animação, Família",
+    "year": "2007",
+    "duration": "85",
+    "imdbRating": "6.5",
+    "metascore": "N/A",
+    "synopsis": "Inspirado no musical de mesmo nome, o livro conta a história de Ro, uma menina que, após sofrer um naufrágio quando bebê, é criada por animais de uma ilha tropical. Sem ter lembranças de sua vida antes do acidente, ela passa os dias rodeada por música e amigos fiéis: o panda vermelho Sagi, o pavão Azul e a elefante-bebê Tika. Um dia, atraca na ilha o navio de um charmoso príncipe, que convence Ro a deixar a ilha para descobrir a verdade sobre seu passado e identidade. A garota e seus amigos animais partem então para o início de uma grande aventura. Uma história mágica de final surpreendente, que mostra como o amor é capaz de superar a ambição, a inveja e a traição.",
+    "poster": "https://image.tmdb.org/t/p/w200/o8JNJV3ZI7Oi6OxsX9wDtvBAwsQ.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.5/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "INVPksdG7cztzD7xajXf",
+    "title": "A Fantástica Fábrica de Chocolate / Willy Wonka & the Chocolate Factory",
+    "genre": "Família, Fantasia, Comédia",
+    "year": "1971",
+    "duration": "99",
+    "imdbRating": "7.8",
+    "metascore": "67",
+    "synopsis": "Um garoto pobre ganha o direito de visitar a fábrica de chocolates do excêntrico Willy Wonka. Acompanhado por seu avô e quatro crianças mimadas, ele vive aventuras inesquecíveis e aprende uma importante lição.",
+    "poster": "https://image.tmdb.org/t/p/w200/noanwChjqswpEz5FTaqdbztfSsB.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "90%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "67/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "IRPrIIcaIETggqbvmwP5",
     "title": "Tudo em Todo o Lugar ao Mesmo Tempo / Everything Everywhere All at Once",
     "genre": "Ação, Aventura, Ficção científica",
     "year": "2022",
@@ -1044,7 +2638,34 @@
     "watched": false
   },
   {
-    "_id": "IiKWMcLwUhj6j8hAQ06D",
+    "_firebaseId": "Ih6TOyk0qWx03JxX42Rs",
+    "title": "Qual Seu Número? / What's Your Number?",
+    "genre": "Comédia, Romance",
+    "year": "2011",
+    "duration": "106",
+    "imdbRating": "6.0",
+    "metascore": "35",
+    "synopsis": "Uma mulher decide procurar vestígios de sentimentos verdadeiros nas suas relações amorosas passadas. Será que algum dos 20 homens com os quais se envolveu realmente a amou?",
+    "poster": "https://image.tmdb.org/t/p/w200/lEL1HgLx4wmc1tkdpknAfuALiF4.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "23%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "35/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "IiKWMcLwUhj6j8hAQ06D",
     "title": "Transformers: O Lado Oculto da Lua / Transformers: Dark of the Moon",
     "genre": "Ação, Ficção científica, Aventura",
     "year": "2011",
@@ -1097,7 +2718,7 @@
     ]
   },
   {
-    "_id": "ImATyofdbDf1g9odAVTp",
+    "_firebaseId": "ImATyofdbDf1g9odAVTp",
     "title": "Corrente do Mal / It Follows",
     "genre": "Terror, Mistério",
     "year": "2015",
@@ -1124,7 +2745,7 @@
     "watched": false
   },
   {
-    "_id": "IsA8FzUbWQNXIluQleJT",
+    "_firebaseId": "IsA8FzUbWQNXIluQleJT",
     "title": "Chappie / Chappie",
     "genre": "Crime, Ação, Ficção científica",
     "year": "2015",
@@ -1151,7 +2772,34 @@
     "watched": false
   },
   {
-    "_id": "JGZN9QMLWHi4Nuqtwo5B",
+    "_firebaseId": "J3T6auPetQ9flfUJ9pws",
+    "title": "Wallace & Gromit - Avengança / Wallace & Gromit: Vengeance Most Fowl",
+    "genre": "Família, Comédia, Aventura, Animação",
+    "year": "2024",
+    "duration": "79",
+    "imdbRating": "7.5",
+    "metascore": "83",
+    "synopsis": "Uma invenção tecnológica de Wallace sai do controle, e ele é acusado de uma série de crimes suspeitos. Então, o cachorro Gromit entra em ação para salvar o tutor.",
+    "poster": "https://image.tmdb.org/t/p/w200/lD6b0UkdviQw9N3LpSDqAOQKu8i.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "100%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "83/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "JGZN9QMLWHi4Nuqtwo5B",
     "title": "Avatar / Avatar",
     "genre": "Ação, Aventura, Fantasia, Ficção científica",
     "year": "2009",
@@ -1178,7 +2826,7 @@
     "watched": false
   },
   {
-    "_id": "Jzn40LjkorXdlHg4SD2l",
+    "_firebaseId": "Jzn40LjkorXdlHg4SD2l",
     "title": "Casa Gucci / House of Gucci",
     "genre": "Drama, Crime, História",
     "year": "2021",
@@ -1205,7 +2853,47 @@
     "watched": false
   },
   {
-    "_id": "K7OcWOWRN2XY6Y3seG23",
+    "_firebaseId": "K0FkzQVnv7QkhSRsnumm",
+    "title": "The Texas Scamilton Slime Tutorial",
+    "genre": "Musical",
+    "year": "2023",
+    "duration": "134",
+    "synopsis": "",
+    "poster": "",
+    "ratings": [],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "imdbRating": "N/A",
+    "metascore": "N/A",
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 5,
+        "comment": "wOoRk!"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 5.5,
+        "comment": "Ma sHoH. "
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7,
+        "comment": "Say no to this NOoOoOoOo"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4,
+        "comment": "I'm erasing myself from the narrative"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "K7OcWOWRN2XY6Y3seG23",
     "title": "Velozes e Furiosos 4 / Fast & Furious",
     "genre": "Ação, Crime, Drama, Thriller",
     "year": "2009",
@@ -1258,7 +2946,26 @@
     ]
   },
   {
-    "_id": "LxPxbhA0uCvmrQTDLHb4",
+    "_firebaseId": "L5sd7CWgltF5ldFMT6ps",
+    "title": "Diário da Barbie / The Barbie Diaries",
+    "genre": "Família, Animação",
+    "year": "2006",
+    "duration": "70",
+    "imdbRating": "5.6",
+    "metascore": "N/A",
+    "synopsis": "Barbie relata em seu diário o início do segundo ano do colegial e de uma nova fase cheia de expectativas. Ela se apaixona por Todd, craque do time de futebol, que a convidou para o baile. Mas o convite é defeito quando Rachele, ex-namorada e garota mais popular do colégio, reata o namoro com o atleta. Além disso Rachele também fica com a vaga de apresentadora do jornal da escola.  Mas desde que Barbie começa a usar a pulseira que vem com seu diário, sua sorte muda. Ela inscreve sua banda no festival do baile da escola e anda conquista um admirador secreto, será que é o Todd? O que acontecerá? Só lendo seu Querido Diário.",
+    "poster": "https://image.tmdb.org/t/p/w200/nGKSNKrVYVeJznraEkuxXUScj6v.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.6/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "LxPxbhA0uCvmrQTDLHb4",
     "title": "Casablanca / Casablanca",
     "genre": "Drama, Romance",
     "year": "1943",
@@ -1285,7 +2992,26 @@
     "watched": false
   },
   {
-    "_id": "MEyz82b9fNufTMhcOTA5",
+    "_firebaseId": "MCcAxbch1sDXWQVvQrVx",
+    "title": "Barbie: Vida de Sereia / Barbie in A Mermaid Tale",
+    "genre": "Animação, Família, Fantasia",
+    "year": "2010",
+    "duration": "75",
+    "imdbRating": "6.3",
+    "metascore": "N/A",
+    "synopsis": "Barbie é Merliah, uma campeã de surf de Malibu. Em um momento ela é uma adolescente, e no outro descobre um chocante segredo de família: ela é uma sereia! Merliah e seu amigo golfinho, Zuma, partem para uma aventura no fundo do mar para resgatar sua mãe, a rainha de Oceana. Com ajuda das suas amigas sereias, Merliah salva o reino do mar. No final ela descobre que o que faz de você ser diferente, pode ser sua maior virtude.",
+    "poster": "https://image.tmdb.org/t/p/w200/rrD263RRyDPXqDY7FBtNP7gEuQZ.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.3/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "MEyz82b9fNufTMhcOTA5",
     "title": "Cidadão Kane / Citizen Kane",
     "genre": "Mistério, Drama",
     "year": "1941",
@@ -1312,7 +3038,57 @@
     "watched": false
   },
   {
-    "_id": "MXnBbEAfztXrROTYqxjS",
+    "_firebaseId": "MMvkxbeuD2gpWrDSf1Nb",
+    "title": "A Morte lhe Cai Bem / Death Becomes Her",
+    "genre": "Comédia, Fantasia, Terror",
+    "year": "1992",
+    "duration": "104",
+    "imdbRating": "6.7",
+    "metascore": "56",
+    "synopsis": "Uma famosa atriz egocêntrica (Meryl Streep) rouba de uma aspirante a escritora (Goldie Hawn) seu noivo (Bruce Willis), um famoso cirurgião plástico. A noiva rejeitada se torna extremamente complexada e gorda, mas após 14 anos, lança o livro “Eternamente Jovem” e na noite de autógrafos está mais linda do que nunca. Ela desperta a atenção de todos, principalmente da atriz que, sentindo-se cada dia mais velha, acaba indo se consultar com uma mulher sensual, bela e misteriosa (Isabella Rossellini), que tem uma poção da juventude que proporciona resultados inimagináveis.",
+    "poster": "https://image.tmdb.org/t/p/w200/wk9eHXLV8xvk8MQA5l7GMeTJUV7.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.7/10"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "56/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "MTewXHRxBBqiBXlakioS",
+    "title": "Feitiço do Tempo / Groundhog Day",
+    "genre": "Romance, Fantasia, Drama, Comédia",
+    "year": "1993",
+    "duration": "101",
+    "imdbRating": "8.0",
+    "metascore": "72",
+    "synopsis": "Phil, um arrogante meteorologista de um canal de televisão, fica preso em uma espécie de túnel do tempo, condenado a reviver indefinidamente o mesmo dia até que mude suas atitudes.",
+    "poster": "https://image.tmdb.org/t/p/w200/rhiOgetrHuYAIJkGjReCDkbEBJ5.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "94%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "72/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "MXnBbEAfztXrROTYqxjS",
     "title": "Drácula 2000 / Dracula 2000",
     "genre": "Thriller, Terror, Ação, Fantasia",
     "year": "2000",
@@ -1335,7 +3111,177 @@
     "watched": false
   },
   {
-    "_id": "Nse6O6XLgfGod4uNZ976",
+    "_firebaseId": "Mi4hbdoVdkKTNvey4Roe",
+    "title": "Transformers: O Último Cavaleiro / Transformers: The Last Knight",
+    "genre": "Ação, Aventura, Ficção científica",
+    "year": "2017",
+    "duration": "154",
+    "imdbRating": "5.2",
+    "metascore": "27",
+    "synopsis": "Optimus Prime encontra seu planeta natal, Cybertron, agora um planeta morto, e descobre que foi responsável por matá-lo.  Ele encontra uma maneira de trazer o planeta de volta à vida, mas para isso precisa encontrar um artefato que está na Terra.",
+    "poster": "https://image.tmdb.org/t/p/w200/7ugUPQw8JjGazfd28MIPADvDaUT.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "16%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "27/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 1,
+        "comment": "Sdd do Shia LaBeouf"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 1,
+        "comment": "Os caras tem dinheiro e quem paga o preço é nóis"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 2,
+        "comment": "Teve dinossauro, nave submarino, nave espacial, magia, MERLIN, mas de tudo isso, não se tira nada"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 1,
+        "comment": "Arthur esqueceu de falar que te nazista tbm"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "MvIuXy9pp0ynRFzpDt2j",
+    "title": "Velozes & Furiosos 7 / Furious 7",
+    "genre": "Ação, Crime, Thriller",
+    "year": "2015",
+    "duration": "139",
+    "imdbRating": "7.1",
+    "metascore": "67",
+    "synopsis": "Após os acontecimentos em Londres, Dom, Brian, Letty e o resto da equipe têm a chance de voltar para os Estados Unidos e recomeçar suas vidas. Mas a tranquilidade do grupo é destruída quando Deckard Shaw, um assassino profissional, quer vingança pelo acidente que deixou seu irmão em coma. Agora, a equipe tem de unir forças para deter um vilão novo e ainda mais perigoso. Dessa vez, não se trata apenas de uma questão de velocidade: a corrida é pela sobrevivência.",
+    "poster": "https://image.tmdb.org/t/p/w200/spydMyyD81HjGJVwZvjajkrWW1h.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "81%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "67/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6,
+        "comment": "For Paul"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9,
+        "comment": "Tinha veloz e tinha furiosos"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 5,
+        "comment": "Sequel secreta de sky high"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 5,
+        "comment": "Velozes e furiosos ou Marvel?"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "N53lrkH35JIRZ1OwXlmG",
+    "title": "Barbie em A Princesa e a Plebéia / Barbie as The Princess & the Pauper",
+    "genre": "Animação, Família, Comédia",
+    "year": "2004",
+    "duration": "86",
+    "imdbRating": "6.9",
+    "metascore": "N/A",
+    "synopsis": "Barbie interpreta Anneliese e sua melhor amiga Teresa interpreta Érika. Ambas sonham em serem livres, pois Anneliese está sendo obrigada a se casar com o rei Dominic para impedir que o reino fique muito pobre e Érika é uma costureira presa por um contrato. As duas são muito parecidas, o rosto e o corpo é praticamente igual exceto a cor dos cabelos e uma “marca de nascença real” que Anneliese possui e Érika nâo. Porém, logo após elas se conhecerem na aldeia, o invejoso conselheiro da rainha, Preminger, manda seus assistentes sequestrarem Anneliese e a levarem para uma cabana na floresta. Pela manhã, a rainha encontra um bilhete de Anneliese, que na verdade era de Preminger, no qual ela conta que fugiu para não se casar com o rei Dominic.",
+    "poster": "https://image.tmdb.org/t/p/w200/3ExQnuwf6HaA1rLk0xpL9FGbEWK.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.9/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 8,
+        "comment": "Não gosto de filme cantado\nFoi a melhor história até então, mas me incomoda o fato de ter muita musica"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 10,
+        "comment": "Incrível"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 9,
+        "comment": "EU SOUU IGUAL A VOCEEEEEEEEEE"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8.5,
+        "comment": "As partes que eu tava acordado me lembraram q eu gosto mtt desse"
+      }
+    ],
+    "watched": true
+  },
+  {
+    "_firebaseId": "N5xOxHyFPfV9pvRCBEo2",
+    "title": "Barbie Fairytopia: Mermaidia / Barbie Fairytopia: Mermaidia",
+    "genre": "Animação, Família, Aventura, Fantasia",
+    "year": "2006",
+    "duration": "76",
+    "imdbRating": "6.2",
+    "metascore": "N/A",
+    "synopsis": "No filme Barbie Fairytopia: Mermaidia,  Elina é uma bela fada do campo que vive em Fayritopia, um mundo mágico povoado de fadas e seres encantados. Ela finalmente ganha um par de asas para poder voar e ser como as outras fadas! Porém, para salvar o reino submarino de Mermaida, Elina terá que abandonar suas adoradas fadas para sempre! Está é a historia da fada do campo que se transforma em uma linda sereia e abre mão do que lhe é mais importante para ajudar um reino ameaçado pelo mal.",
+    "poster": "https://image.tmdb.org/t/p/w200/uBCvRThFwjvwNQeS3Vy7xMPc0Rh.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.2/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "Nse6O6XLgfGod4uNZ976",
     "title": "O Exterminador do Futuro: A Salvação / Terminator Salvation",
     "genre": "Ação, Ficção científica, Thriller",
     "year": "2009",
@@ -1362,7 +3308,7 @@
     "watched": false
   },
   {
-    "_id": "O6bNkDykGV2hfDafFOxN",
+    "_firebaseId": "O6bNkDykGV2hfDafFOxN",
     "title": "As Vozes / The Voices",
     "genre": "Comédia, Crime, Terror, Fantasia",
     "year": "2014",
@@ -1389,7 +3335,61 @@
     "watched": false
   },
   {
-    "_id": "OGqjXpNBZxW1EUvPjjGJ",
+    "_firebaseId": "ODLjNhIBcLpzCiA8MgY0",
+    "title": "Tá Dando Onda / Surf's Up",
+    "genre": "Animação, Comédia, Família",
+    "year": "2007",
+    "duration": "85",
+    "imdbRating": "6.7",
+    "metascore": "64",
+    "synopsis": "Cadu Maverick (Shia LaBeouf) é um jovem pinguim, que tem o lendário surfista Big Z como ídolo. Um dia ele decide deixar sua família e sua cidade, Shiverpool, na Antártida, para participar do Big Z Memorial Surf Off, um torneio de surf realizado na ilha Pen-Gu. Cadu acredita que caso vença o torneio ganhará respeito e admiração, seu grande sonho. Mas lá ele conhece um veterano surfista chamado Grego (Jeff Bridges), com quem aprende que o campeão nem sempre é aquele que chega em 1º lugar nas competições.",
+    "poster": "https://image.tmdb.org/t/p/w200/edR3BjwAwUGHtOQMXJTWRfMYBvt.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.7/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "78%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "64/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false,
+    "createdAt": "2026-03-13T02:47:01.412Z",
+    "updatedAt": "2026-03-13T02:47:01.412Z",
+    "userRatings": [],
+    "averageUserRating": 0
+  },
+  {
+    "_firebaseId": "ODsDw9jQhen2Iu7ReBNW",
+    "title": "Os Incríveis / The Incredibles",
+    "genre": "Ação, Aventura, Animação, Família",
+    "year": "2004",
+    "duration": "115",
+    "imdbRating": "8.0",
+    "metascore": "90",
+    "synopsis": "Beto Pêra e sua mulher Helena estavam entre os maiores super-heróis do mundo, salvando inúmeras vidas e combatendo o mal diariamente. Quinze anos depois, eles foram forçados a adotar novas identidades e a mudar-se para o subúrbio, onde vivem como cidadãos comuns com seus três filhos, Violeta, Flecha e Zezé. Louco para voltar à ação, Beto tem a sua chance quando uma misteriosa ligação o intima a comparecer a uma ilha distante para receber uma missão ultra-secreta. Ele logo descobre que só uma família inteira de super-heróis será capaz de salvar o mundo e impedir sua total destruição.",
+    "poster": "https://image.tmdb.org/t/p/w200/z8k5EhZZTLsCRF8NWjSe6snWNZg.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.0/10"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "90/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "OGqjXpNBZxW1EUvPjjGJ",
     "title": "Titanic / Titanic",
     "genre": "Drama, Romance",
     "year": "1997",
@@ -1416,7 +3416,7 @@
     "watched": false
   },
   {
-    "_id": "OiAjzmzsvCD1SOYvgMQM",
+    "_firebaseId": "OiAjzmzsvCD1SOYvgMQM",
     "title": "Viagem a Darjeeling / The Darjeeling Limited",
     "genre": "Aventura, Drama, Comédia",
     "year": "2007",
@@ -1443,7 +3443,7 @@
     "watched": false
   },
   {
-    "_id": "OwVYCzZ3g6oP1FyyVTOC",
+    "_firebaseId": "OwVYCzZ3g6oP1FyyVTOC",
     "title": "A Freira / The Nun",
     "genre": "Terror",
     "year": "2018",
@@ -1496,7 +3496,7 @@
     "poster": "https://image.tmdb.org/t/p/w500/8RkHWJFDuzm0mrsJUxTbPTnsPe7.jpg"
   },
   {
-    "_id": "PQn8WK791oRp4dttojvr",
+    "_firebaseId": "PQn8WK791oRp4dttojvr",
     "title": "Fim dos Tempos / The Happening",
     "genre": "Thriller, Ficção científica",
     "year": "2008",
@@ -1523,7 +3523,7 @@
     "watched": false
   },
   {
-    "_id": "PQxlxgPbDDTcpl7jIQjt",
+    "_firebaseId": "PQxlxgPbDDTcpl7jIQjt",
     "title": "Transformers / Transformers",
     "genre": "Aventura, Ficção científica, Ação",
     "year": "2007",
@@ -1576,7 +3576,53 @@
     "poster": "https://image.tmdb.org/t/p/w500/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg"
   },
   {
-    "_id": "PlHu5m0D5miwI1ZXF0dh",
+    "_firebaseId": "PSqB1t4Qm1FnwkvgYcAc",
+    "title": "Extermínio: O Templo dos Ossos / 28 Years Later: The Bone Temple",
+    "genre": "Terror, Thriller, Ficção científica",
+    "year": "2026",
+    "duration": "109",
+    "imdbRating": "7.6",
+    "metascore": "81",
+    "synopsis": "Dr. Kelson se vê envolvido num novo relacionamento chocante – com consequências que podem mudar o mundo como eles o conhecem – e o encontro de Spike com Jimmy Crystal se torna um pesadelo do qual ele não consegue escapar.",
+    "poster": "https://image.tmdb.org/t/p/w200/tbECC1mMbytgaynCnBhgVPzCZcd.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.6/10"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "81/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "createdAt": "2026-03-13T00:32:17.516Z",
+    "averageUserRating": 0,
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 7,
+        "comment": "Moon"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Me fez sentir igual o primeiro filme, muito boa a explicação do vírus, show de rosk incrível"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9,
+        "comment": "Funciona muito bem vom a primeira parte, e pra mim deixa o primeiro melhor tbm"
+      }
+    ],
+    "updatedAt": "2026-03-13T00:41:17.540Z"
+  },
+  {
+    "_firebaseId": "PlHu5m0D5miwI1ZXF0dh",
     "title": "Casamento Sangrento / Ready or Not",
     "genre": "Terror, Comédia",
     "year": "2019",
@@ -1629,7 +3675,7 @@
     "watched": true
   },
   {
-    "_id": "QUjdE1jSK9QDabBpZaZ1",
+    "_firebaseId": "QUjdE1jSK9QDabBpZaZ1",
     "title": "A Nova Onda do Kronk / Kronk's New Groove",
     "genre": "Animação, Comédia, Família",
     "year": "2005",
@@ -1678,7 +3724,7 @@
     ]
   },
   {
-    "_id": "QhVFtG97BLQq7eu4t6z3",
+    "_firebaseId": "QhVFtG97BLQq7eu4t6z3",
     "title": "Transformers: A Vingança dos Derrotados / Transformers: Revenge of the Fallen",
     "genre": "Ficção científica, Ação, Aventura",
     "year": "2009",
@@ -1731,7 +3777,60 @@
     ]
   },
   {
-    "_id": "RFPPM0SWUnQX8SzHvXXh",
+    "_firebaseId": "R28UDUF3jeANkspEwldI",
+    "title": "Todo Mundo em Pânico 4 / Scary Movie 4",
+    "genre": "Comédia",
+    "year": "2006",
+    "duration": "83",
+    "imdbRating": "5.1",
+    "metascore": "40",
+    "synopsis": "Mais uma continuação da franquia de filmes que faz sátiras das produções mais recentes de terror, como \"Jogos Mortais\" e \"O Grito\". Desta vez, duas jovens tentam salvar o mundo de uma invasão alienígena.",
+    "poster": "https://image.tmdb.org/t/p/w200/xcpPBUJe0Mq1V3ehrGyYNDERl97.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "34%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "40/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 6,
+        "comment": "Muitas cenas longas sem graça, mas hibachi benihana teriyaki"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 5.5,
+        "comment": "Paia. Muita piada infantilóide"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 6,
+        "comment": "Tem partes que gosto bastante, mas as ruins sao bem chatas"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2.5,
+        "comment": "Sashimiiiiii"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "RFPPM0SWUnQX8SzHvXXh",
     "title": "Invocação do Mal 2 / The Conjuring 2",
     "genre": "Terror",
     "year": "2016",
@@ -1784,7 +3883,7 @@
     "poster": "https://image.tmdb.org/t/p/w500/bLa1lt0ex45IVPwGT7aEuOojBjL.jpg"
   },
   {
-    "_id": "RHqI40oozTANnQmdroCM",
+    "_firebaseId": "RHqI40oozTANnQmdroCM",
     "title": "O Show de Truman: O Show da Vida / The Truman Show",
     "genre": "Comédia, Drama",
     "year": "1998",
@@ -1808,10 +3907,36 @@
       }
     ],
     "user": "arthur.tragante@gmail.com",
-    "watched": false
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 10,
+        "comment": "Good afternoon, Good Evening and Goodnight!"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8.5,
+        "comment": "Opnião pessoal porque a critica dele nao me afeta tanto assim"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Muito boa a ideia, mas os caras do próprio rolê cavaram o buraco deles"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9,
+        "comment": "Não é muito bom pra reassistir\nMas o filme é muito bom"
+      }
+    ],
+    "watched": true
   },
   {
-    "_id": "RI9YNmIMZj3KDu4vG5Cq",
+    "_firebaseId": "RI9YNmIMZj3KDu4vG5Cq",
     "title": "A Vida em Preto e Branco / Pleasantville",
     "genre": "Fantasia, Comédia, Drama",
     "year": "1998",
@@ -1838,7 +3963,7 @@
     "watched": false
   },
   {
-    "_id": "RJEyklCu2mhsPvHLCypQ",
+    "_firebaseId": "RJEyklCu2mhsPvHLCypQ",
     "title": "Speed Racer / Speed Racer",
     "genre": "Família, Ação, Aventura, Comédia",
     "year": "2008",
@@ -1865,7 +3990,7 @@
     "watched": false
   },
   {
-    "_id": "S1nL4gplCX73kUNeW4nN",
+    "_firebaseId": "S1nL4gplCX73kUNeW4nN",
     "title": "Um Estranho no Ninho / One Flew Over the Cuckoo's Nest",
     "genre": "Drama",
     "year": "1975",
@@ -1892,7 +4017,7 @@
     "watched": false
   },
   {
-    "_id": "SCWsrkAAu9sQFhosRTsl",
+    "_firebaseId": "SCWsrkAAu9sQFhosRTsl",
     "title": "Entre Irmãos / Brothers",
     "genre": "Drama, Thriller, Guerra",
     "year": "2009",
@@ -1945,7 +4070,7 @@
     ]
   },
   {
-    "_id": "SEfREb9KyFDsbGeeQq96",
+    "_firebaseId": "SEfREb9KyFDsbGeeQq96",
     "title": "Ouija Shark / Ouija Shark",
     "genre": "Terror, Comédia",
     "year": "2020",
@@ -1990,7 +4115,34 @@
     "watched": true
   },
   {
-    "_id": "SPdvLbjekPOTeYytEhki",
+    "_firebaseId": "SKruzCHDbLqv4jxHMmja",
+    "title": "Herbie: Meu Fusca Turbinado / Herbie Fully Loaded",
+    "genre": "Comédia, Família, Aventura, Fantasia, Romance",
+    "year": "2005",
+    "duration": "101",
+    "imdbRating": "4.9",
+    "metascore": "47",
+    "synopsis": "Maggie Peyton sempre foi proibida de seguir seus sonhos de corrida por seu pai superprotetor e não tem ideia de que sua vida está prestes a dar uma enorme guinada. Depois de descobrir o irresistível Herbie em um ferro-velho, eles formam uma equipe mágica que vai salvar sua família e reescrever os livros de recordes de corrida.",
+    "poster": "https://image.tmdb.org/t/p/w200/z3dDSU387L19TNEJkYhYAMjU4Sr.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "4.9/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "40%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "47/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "SPdvLbjekPOTeYytEhki",
     "title": "Velozes e Furiosos / The Fast and the Furious",
     "genre": "Ação, Crime, Thriller",
     "year": "2001",
@@ -2043,7 +4195,30 @@
     ]
   },
   {
-    "_id": "T5lhcEL4Lpsfr84JfKIW",
+    "_firebaseId": "Sbtj70taMrngelEJABvr",
+    "title": "Gato de Botas 2: O Último Pedido / Puss in Boots: The Last Wish",
+    "genre": "Animação, Aventura, Fantasia, Comédia, Família",
+    "year": "2022",
+    "duration": "103",
+    "imdbRating": "7.8",
+    "metascore": "73",
+    "synopsis": "O Gato de Botas descobre que sua paixão pela aventura cobrou seu preço: ele queimou oito de suas nove vidas, deixando-o com apenas uma vida restante. Gato parte em uma jornada épica para encontrar o mítico Último Desejo e restaurar suas nove vidas.",
+    "poster": "https://image.tmdb.org/t/p/w200/t8F7R3y7Yar2JA8IVHN6fjg2RwX.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.8/10"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "73/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "T5lhcEL4Lpsfr84JfKIW",
     "title": "Super Mario Bros. / Super Mario Bros.",
     "genre": "Aventura, Fantasia, Comédia, Família",
     "year": "1993",
@@ -2070,7 +4245,26 @@
     "watched": false
   },
   {
-    "_id": "TefvKEUFI82o74FpxMJU",
+    "_firebaseId": "T9QHwx4rMEvnafFIlRd3",
+    "title": "Barbie e a Magia de Aladus / Barbie and the Magic of Pegasus",
+    "genre": "Animação, Família, Romance",
+    "year": "2005",
+    "duration": "85",
+    "imdbRating": "6.5",
+    "metascore": "N/A",
+    "synopsis": "Barbie alça vôo nesse maravilhoso conto de fadas de princesa em Barbie e a Magia de Aladus! A princesa Annika (Barbie) foge das garras de um malvado feiticeiro, explora as maravilhas do Reino das Nuvens e se junta a um magnífico cavalo alado para derrotar o feiticeiro e quebrar o encanto que aprisiona sua família. Espetaculares cenas em 3D adicionam muito mais encanto a esta extraordinária aventura!",
+    "poster": "https://image.tmdb.org/t/p/w200/kt1vDenokouevJ8WeG9eNsyNaze.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.5/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "TefvKEUFI82o74FpxMJU",
     "title": "Um Corpo Que Cai / Vertigo",
     "genre": "Mistério, Romance, Thriller",
     "year": "1958",
@@ -2097,7 +4291,7 @@
     "watched": false
   },
   {
-    "_id": "U572w1UIKFwYDiTH9D3A",
+    "_firebaseId": "U572w1UIKFwYDiTH9D3A",
     "title": "O Exterminador do Futuro: Destino Sombrio / Terminator: Dark Fate",
     "genre": "Ficção científica, Ação, Aventura, Thriller",
     "year": "2019",
@@ -2124,7 +4318,7 @@
     "watched": false
   },
   {
-    "_id": "UEAHrv8FKdXGQAMNJAGK",
+    "_firebaseId": "UEAHrv8FKdXGQAMNJAGK",
     "title": "Sobrenatural / Insidious",
     "genre": "Terror, Thriller",
     "year": "2011",
@@ -2151,7 +4345,7 @@
     "watched": false
   },
   {
-    "_id": "UI7KxoVPQcvqGtOsYDz0",
+    "_firebaseId": "UI7KxoVPQcvqGtOsYDz0",
     "title": "A Noviça Rebelde / The Sound of Music",
     "genre": "Drama, Família, Música, Romance",
     "year": "1965",
@@ -2178,7 +4372,7 @@
     "watched": false
   },
   {
-    "_id": "UcJ1M8ooNU2BLclfFROf",
+    "_firebaseId": "UcJ1M8ooNU2BLclfFROf",
     "title": "Monster Hunter / Monster Hunter",
     "genre": "Ação, Fantasia, Aventura",
     "year": "2020",
@@ -2201,7 +4395,80 @@
     "watched": false
   },
   {
-    "_id": "W7Ea2HHImNgVwY9ZdZ0h",
+    "_firebaseId": "VZ7df7ibIWD2BOtVJ2rS",
+    "title": "Barbie: Vida de Sereia 2 / Barbie in A Mermaid Tale 2",
+    "genre": "Animação, Família",
+    "year": "2012",
+    "duration": "74",
+    "imdbRating": "6.1",
+    "metascore": "N/A",
+    "synopsis": "Nesta nova aventura, Merliah aproveita sua vida de surfista nas ondas da Austrália, enquanto curte o fundo do mar como sereia. Até que uma rival muito competitiva ameaça a segurança do Oceano ao libertar a malvada Eris. Merliah precisará da ajuda de seus amigos e das sereias embaixadoras para tentar salvar o oceano e ganhar a competição de surfe. Será que ela conseguirá?",
+    "poster": "https://image.tmdb.org/t/p/w200/iECvqAtlvUIihc9b2Dyr2uUaqNW.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.1/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "VnJCZGX9YRQBkvPi2xJC",
+    "title": "Piratas do Caribe: A Maldição do Pérola Negra / Pirates of the Caribbean: The Curse of the Black Pearl",
+    "genre": "Aventura, Fantasia, Ação",
+    "year": "2003",
+    "duration": "143",
+    "imdbRating": "8.1",
+    "metascore": "63",
+    "synopsis": "O pirata Jack Sparrow tem seu navio saqueado e roubado pelo capitão Barbossa e sua tripulação. Com o navio de Sparrow, Barbossa invade a cidade de Port Royal, levando consigo Elizabeth Swann, filha do governador. Para recuperar sua embarcação, Sparrow recebe a ajuda de Will Turner, um grande amigo de Elizabeth. Eles desbravam os mares em direção à misteriosa Ilha da Morte, tentando impedir que os piratas-esqueleto derramem o sangue de Elizabeth para desfazer a maldição que os assola.",
+    "poster": "https://image.tmdb.org/t/p/w200/9Xcg7Ar4ketv4rl8yeK32yp9zQA.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "79%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "63/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 9,
+        "comment": "You best start believing in ghost stories, YOUR IN ONE"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9,
+        "comment": "\"I feel cold\" (  ○)(○  )"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Muita coisa acontece, mas os efeitos são muito bons e o Jack é maravilhoso"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9.5,
+        "comment": ""
+      }
+    ],
+    "updatedAt": "2026-02-16T03:59:03.204Z"
+  },
+  {
+    "_firebaseId": "W7Ea2HHImNgVwY9ZdZ0h",
     "title": "Carros 3 / Cars 3",
     "genre": "Animação, Aventura, Comédia, Família",
     "year": "2017",
@@ -2254,7 +4521,7 @@
     "watched": true
   },
   {
-    "_id": "W7hwSCfWQP5gWxLE7GlN",
+    "_firebaseId": "W7hwSCfWQP5gWxLE7GlN",
     "title": "Onde os Fracos Não Têm Vez / No Country for Old Men",
     "genre": "Crime, Thriller, Faroeste",
     "year": "2007",
@@ -2281,7 +4548,7 @@
     "watched": false
   },
   {
-    "_id": "WER0McZaqhhpUX4FahV1",
+    "_firebaseId": "WER0McZaqhhpUX4FahV1",
     "title": "Annabelle 3: De Volta para Casa / Annabelle Comes Home",
     "genre": "Terror",
     "year": "2019",
@@ -2334,7 +4601,7 @@
     "poster": "https://image.tmdb.org/t/p/w500/xQesP4oRskVR8fUMvilhY7DUMJt.jpg"
   },
   {
-    "_id": "WvTZ69ssYvGCACy4bBNc",
+    "_firebaseId": "WvTZ69ssYvGCACy4bBNc",
     "title": "O Código Da Vinci / The Da Vinci Code",
     "genre": "Thriller, Mistério",
     "year": "2006",
@@ -2361,7 +4628,7 @@
     "watched": false
   },
   {
-    "_id": "XEG9tqdMw67SQje2uh3r",
+    "_firebaseId": "XEG9tqdMw67SQje2uh3r",
     "title": "A Freira 2 / The Nun II",
     "genre": "Terror",
     "year": "2023",
@@ -2414,7 +4681,61 @@
     "poster": "https://image.tmdb.org/t/p/w500/omV2IW2OlFTSw6Hih13hz6lFdvP.jpg"
   },
   {
-    "_id": "XgQEzlrDAqHCaRy6E8hV",
+    "_firebaseId": "XVIiGO7HXsW2kE8SmVlG",
+    "title": "Batman: O Cavaleiro das Trevas / The Dark Knight",
+    "genre": "Ação, Crime, Thriller",
+    "year": "2008",
+    "duration": "152",
+    "imdbRating": "9.1",
+    "metascore": "85",
+    "synopsis": "Após dois anos desde o surgimento do Batman, os criminosos de Gotham City têm muito o que temer. Com a ajuda do tenente James Gordon e do promotor público Harvey Dent, Batman luta contra o crime organizado. Acuados com o combate, os chefes do crime aceitam a proposta feita pelo Coringa e o contratam para combater o Homem-Morcego.",
+    "poster": "https://image.tmdb.org/t/p/w200/4lj1ikfsSmMZNyfdi8R8Tv5tsgb.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "9.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "94%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "85/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "XYwRGxovl5NANB0jp6PZ",
+    "title": "Pequena Miss Sunshine / Little Miss Sunshine",
+    "genre": "Comédia, Drama",
+    "year": "2006",
+    "duration": "102",
+    "imdbRating": "7.8",
+    "metascore": "80",
+    "synopsis": "Nenhuma família é verdadeiramente normal, mas a família Hoover extrapola. O pai desenvolveu um método de auto-ajuda que é um fracasso, o filho mais velho fez voto de silêncio, o cunhado é um professor suicida e o avô foi expulso de uma casa de repouso por usar heroína. Nada funciona para o clã, até que a filha caçula, a desajeitada Olive (Abigail Breslin), é convidada para participar de um concurso de beleza para meninas pré-adolescentes. Durante três dias eles deixam todas as suas diferenças de lado e se unem para atravessar o país numa kombi amarela enferrujada.",
+    "poster": "https://image.tmdb.org/t/p/w200/gwLPVYqe1efIxkx6LQT7piZweH2.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "91%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "80/100"
+      }
+    ],
+    "user": "pauluemmanuel@hotmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "XgQEzlrDAqHCaRy6E8hV",
     "title": "Fale Comigo / Talk to Me",
     "genre": "Terror",
     "year": "2023",
@@ -2463,7 +4784,34 @@
     ]
   },
   {
-    "_id": "YXZgNfZlCl5vAdtrAIYn",
+    "_firebaseId": "XqE1no7l3DL4ocBRwbdV",
+    "title": "Uma Linda Mulher / Pretty Woman",
+    "genre": "Romance, Comédia",
+    "year": "1990",
+    "duration": "120",
+    "imdbRating": "7.1",
+    "metascore": "51",
+    "synopsis": "Um magnata perdido pede ajuda à uma prostituta que \"trabalha\" no Hollywood Boulevard e acaba contratando-a por uma semana. Neste período, ela se transforma em uma elegante jovem para poder acompanhá-lo em seus compromissos sociais, mas os dois começam a se envolver e a relação patrão/empregada se modifica para um relacionamento entre homem e mulher.",
+    "poster": "https://image.tmdb.org/t/p/w200/biKuy0cj1ABfitVwMgnRqIPRfPB.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "65%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "51/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "YXZgNfZlCl5vAdtrAIYn",
     "title": "Dredd: O Juiz do Apocalipse / Dredd",
     "genre": "Ação, Ficção científica",
     "year": "2012",
@@ -2490,7 +4838,34 @@
     "watched": false
   },
   {
-    "_id": "YoeHOo3Pz3ZulP9f6aIZ",
+    "_firebaseId": "YbXy3wuEXhvkIMpoEarc",
+    "title": "O Mistério dos Escavadores / Holes",
+    "genre": "Aventura, Família, Drama, Comédia",
+    "year": "2003",
+    "duration": "117",
+    "imdbRating": "7.0",
+    "metascore": "71",
+    "synopsis": "Talvez por culpa de uma maldição que atinge os homens de sua família, o jovem Stanley Yelnats IV (Shia Labeouf) é condenado injustamente de ter roubado os tênis de Clyde Livingston (Rick Fox), um famoso atleta que os doara para um orfanato, para serem leiloados. Stanley precisa escolher entre ir para a prisão ou ir para o Acampamento do Lago Verde. Ele escolhe a 2ª opção, mas ao chegar lá vê que não há nenhum lago, pois o \"acampamento\" fica no deserto. Lá Stanley é forçado a cavar um enorme buraco todos os dias, assim como os outros jovens internos. A razão \"oficial\" deste esforço é que ajuda a moldar o caráter, mas a verdade é que a diretora Warden , juntamente com seus assistentes Mr. Sir (Jon Voight) e Dr. Pendanski , querem achar o tesouro ent pela pistoleira \"Beijoqueira\" Kate Barlow , que beijava os corpos de quem tinha matado.",
+    "poster": "https://image.tmdb.org/t/p/w200/kxdmkyKXS31wOjGAhJFYkj2KnBg.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "78%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "71/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "YoeHOo3Pz3ZulP9f6aIZ",
     "title": "A Vida Marinha com Steve Zissou / The Life Aquatic with Steve Zissou",
     "genre": "Aventura, Comédia, Drama",
     "year": "2004",
@@ -2517,7 +4892,34 @@
     "watched": false
   },
   {
-    "_id": "ZcgMoCOnsISDjGLnXBE5",
+    "_firebaseId": "ZBSxL9jxOkO7C9aM2sWw",
+    "title": "Mulan / Mulan",
+    "genre": "Animação, Família, Aventura",
+    "year": "1998",
+    "duration": "88",
+    "imdbRating": "7.7",
+    "metascore": "72",
+    "synopsis": "Na antiga China, durante a guerra, todos os homens são convocados para lutar. Mas, um pobre velho, que pela idade não poderia mais lutar, descobre que sua filha Mulan toma o seu lugar, vestindo-se como homem e permanecendo em segredo. Se isso for descoberto, o castigo será severo. Agora, durante a guerra, Mulan ganha a proteção de um pequeno dragão, cuja missão é cuidar para que ela volte a salvo.",
+    "poster": "https://image.tmdb.org/t/p/w200/jAbexAtB0aSfP5Ay4TpWHARyVnG.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.7/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "91%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "72/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "ZcgMoCOnsISDjGLnXBE5",
     "title": "O Virgem de 40 Anos / The 40 Year Old Virgin",
     "genre": "Comédia, Romance",
     "year": "2005",
@@ -2544,7 +4946,7 @@
     "watched": false
   },
   {
-    "_id": "aJ7rfalKWh3BC5S2RI43",
+    "_firebaseId": "aJ7rfalKWh3BC5S2RI43",
     "title": "Namorados para Sempre / Blue Valentine",
     "genre": "Drama, Romance",
     "year": "2010",
@@ -2579,7 +4981,7 @@
     ]
   },
   {
-    "_id": "aKz7zaEAzBDnttw6YBt8",
+    "_firebaseId": "aKz7zaEAzBDnttw6YBt8",
     "title": "A Hora da Sua Morte / Countdown",
     "genre": "Terror, Thriller",
     "year": "2019",
@@ -2606,7 +5008,45 @@
     "watched": false
   },
   {
-    "_id": "aghNNPO3cL2cJmBlftuq",
+    "_firebaseId": "aPb7Eirk3A33jY1ud57z",
+    "title": "Barbie e o Castelo de Diamante / Barbie and the Diamond Castle",
+    "genre": "Animação, Família",
+    "year": "2008",
+    "duration": "78",
+    "imdbRating": "6.4",
+    "metascore": "N/A",
+    "synopsis": "Barbie e Teresa vivem em um chalezinho na floresta. Um dia elas encontram um espelho encantado, que aprisiona uma das 3 musas da músisa dentro do espelho. Juntas, embarcaram em uma grande aventura para salvar a mais nova amiga. Nessa linda história de amizade, encontram o mais belo castelo dos contos de fadas, o \"Castelo de Diamante\".",
+    "poster": "https://image.tmdb.org/t/p/w200/9TtBy4l0yFZoUhR8dVwI3x5PJ5a.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.4/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "aZdpaz7mRiDY1DHrWbAy",
+    "title": "Barbie Fairytopia - A Magia do Arco-Íris / Barbie Fairytopia: Magic of the Rainbow",
+    "genre": "Animação, Família, Fantasia, Romance",
+    "year": "2007",
+    "duration": "75",
+    "imdbRating": "6.2",
+    "metascore": "N/A",
+    "synopsis": "Elina e seu amigo Bibble viajam para a escola de Fadas no Palácio de Cristal. Lá encontram outras fadas escolhidas para aprender o ritual anual que dá vida ao Primeiro Arco-Íris da Primavera. Mas a terrível Laverna planeja acabar com o ritual, punindo Fairytopia com um rigoroso inverno de 10 anos. Elina e suas novas amigas devem aprender que \"a união faz a força\". Mas será que são poderosas o bastante para derrotar Laverna e trazer à vida o primeiro Arco-Íris da Primavera?",
+    "poster": "https://image.tmdb.org/t/p/w200/lmpV251dgf9EZ4TIBxOQDCRq6kX.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.2/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "aghNNPO3cL2cJmBlftuq",
     "title": "O Macaco / The Monkey",
     "genre": "Terror, Comédia",
     "year": "2025",
@@ -2659,7 +5099,91 @@
     ]
   },
   {
-    "_id": "bcpjWD2hi7Hbi4bz1Tgd",
+    "_firebaseId": "avBc6GTGvy113zrclYlx",
+    "title": "Space Jam: O Jogo do Século / Space Jam",
+    "genre": "Comédia, Animação, Família, Ficção científica",
+    "year": "1996",
+    "duration": "87",
+    "imdbRating": "6.5",
+    "metascore": "57",
+    "synopsis": "Um poderoso vilão intergalático decide que Pernalonga e sua turma são a atração perfeita para seu novo parque de diversões. Ele envia um grupo de pequenos alienígenas para capturá-los. Para evitar o seu próprio sequestro, Pernalonga propõe um jogo de basquete em troca de sua liberdade. Mas os pequenos alienígenas têm uma arma secreta: Eles roubaram as habilidades dos melhores jogadores da NBA e formaram um time da pesada. Agora só existe uma chance de Pernalonga e seus amigos ganharem esta partida. Eles precisam da ajuda do mais famoso jogador de basquete de todos os tempos: Michael Jordan!",
+    "poster": "https://image.tmdb.org/t/p/w200/zgenqfTIvoEs6jcmokKfbi1ZURS.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "44%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "57/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false,
+    "createdAt": "2026-02-21T04:32:29.180Z",
+    "updatedAt": "2026-02-21T04:32:29.180Z",
+    "userRatings": [],
+    "averageUserRating": 0
+  },
+  {
+    "_firebaseId": "bHKF9HZeIlnmgbuO1OKo",
+    "title": "Velozes & Furiosos: Hobbs & Shaw / Fast & Furious Presents: Hobbs & Shaw",
+    "genre": "Ação, Aventura, Comédia",
+    "year": "2019",
+    "duration": "137",
+    "imdbRating": "6.4",
+    "metascore": "60",
+    "synopsis": "O corpulento policial Luke Hobbs se junta ao fora da lei Deckard Shaw para combater um terrorista geneticamente melhorado que tem força sobre-humana.",
+    "poster": "https://image.tmdb.org/t/p/w200/w5HWdAJyAbfpXbXDmEt5OIpf6kQ.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "67%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "60/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 0.5,
+        "comment": "UMA BOSTA UMA BOSTA UMA BOSTA"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2,
+        "comment": "Amanda melhor cronômetro"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 5,
+        "comment": "The Rock Carregou nas costas\n"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 2,
+        "comment": "Saudades corridinha vrum vrum"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "bcpjWD2hi7Hbi4bz1Tgd",
     "title": "Beleza Americana / American Beauty",
     "genre": "Drama",
     "year": "1999",
@@ -2686,7 +5210,60 @@
     "watched": false
   },
   {
-    "_id": "bkTkPVKmjlfCeHctZhkQ",
+    "_firebaseId": "bfl0fxMXUOlnDYJfBgZa",
+    "title": "Extermínio 2 / 28 Weeks Later",
+    "genre": "Terror, Thriller, Ficção científica",
+    "year": "2007",
+    "duration": "99",
+    "imdbRating": "6.8",
+    "metascore": "78",
+    "synopsis": "Seis meses depois de um vírus ter destruído um grande número de pessoas na Grã-Betanha, o exército americano declara que o perigo já passou e começa a reconstrução da cidade. Os refugiados retornam, mas um deles carrega um segredo mortal. O vírus não está morto e agora está mais perigoso.",
+    "poster": "https://image.tmdb.org/t/p/w200/mZVFtNKPv3aiESKKeUDV61DaQ90.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "73%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "78/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4.5,
+        "comment": "Pra mim esse filme não faz sentido nenhum\nPorque colocar uma pessoa imune se você não vai usar isso pra nada???\nE que porra de ponto de controle é esse que não controla nada e faz de tudo só pra matar seus sobreviventes?"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 4,
+        "comment": "It's just us."
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8,
+        "comment": "Mais viajado que o primeiro, mas ainda me diverte bastante"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7.5,
+        "comment": "A historia é troncha, mas a parte de terror me agrada"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "bkTkPVKmjlfCeHctZhkQ",
     "title": "Acampamento Sinistro / Sleepaway Camp",
     "genre": "Terror",
     "year": "1983",
@@ -2713,7 +5290,7 @@
     "watched": false
   },
   {
-    "_id": "bknYRVi2lCVd09wKY1gh",
+    "_firebaseId": "bknYRVi2lCVd09wKY1gh",
     "title": "Invocação do Mal 3: A Ordem do Demônio / The Conjuring: The Devil Made Me Do It",
     "genre": "Terror, Mistério, Thriller",
     "year": "2021",
@@ -2766,7 +5343,38 @@
     "poster": "https://image.tmdb.org/t/p/w500/tLmaOXT9rMb17ISQDURKQIu3Okk.jpg"
   },
   {
-    "_id": "cnQirdJ5LhPCoZrP2Jv7",
+    "_firebaseId": "ckAIUQ85EEs9FCmRW64d",
+    "title": "Garra de Ferro / The Iron Claw",
+    "genre": "História, Drama",
+    "year": "2023",
+    "duration": "132",
+    "imdbRating": "7.6",
+    "metascore": "73",
+    "synopsis": "A história real dos inseparáveis ​​irmãos Von Erich, que fizeram história no mundo extremamente competitivo do wrestling profissional no início dos anos 1980.",
+    "poster": "https://image.tmdb.org/t/p/w200/wzYxCgCsllrLwhMR4gbTk2gfFm6.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "89%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "73/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": false,
+    "createdAt": "2026-02-22T07:50:38.324Z",
+    "updatedAt": "2026-02-22T07:50:38.324Z",
+    "userRatings": [],
+    "averageUserRating": 0
+  },
+  {
+    "_firebaseId": "cnQirdJ5LhPCoZrP2Jv7",
     "title": "Cães de Aluguel / Reservoir Dogs",
     "genre": "Crime, Thriller",
     "year": "1992",
@@ -2793,7 +5401,63 @@
     "watched": false
   },
   {
-    "_id": "dI7FpYo9iDazB2xdsrIn",
+    "_firebaseId": "cvcXrxEMDMIeqdhe1yR5",
+    "title": "A Hora do Pesadelo / A Nightmare on Elm Street",
+    "genre": "Terror",
+    "year": "1984",
+    "duration": "91",
+    "imdbRating": "7.4",
+    "metascore": "76",
+    "synopsis": "Um grupo de adolescentes tem pesadelos horríveis, onde são atacados por um homem deformado com garras de aço. Ele apenas aparece durante o sono e, para escapar, é preciso acordar. Os crimes vão ocorrendo seguidamente, até que se descobre que o ser misterioso é na verdade Freddy Krueger, um homem que molestou crianças na rua Elm e que foi queimado vivo pela vizinhança. Agora Krueger pode retornar para se vingar daqueles que o mataram, através do sono.",
+    "poster": "https://image.tmdb.org/t/p/w200/8cXxfVhSdTL1tC5ivC0mX74QQyI.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "94%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "76/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "createdAt": "2026-02-19T04:03:49.152Z",
+    "averageUserRating": 0,
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 8,
+        "comment": "O Cara se diverte muito matando os cara"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6.5,
+        "comment": "Meio ponto pelo monólogo fofo do Paulo"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8.5,
+        "comment": "O cara é muito carismático!!!!!"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8.5,
+        "comment": "Bom pacing, personagem divertido, família e namorado burros"
+      }
+    ],
+    "updatedAt": "2026-02-19T04:15:24.856Z"
+  },
+  {
+    "_firebaseId": "dI7FpYo9iDazB2xdsrIn",
     "title": "Carros / Cars",
     "genre": "Animação, Aventura, Comédia, Família",
     "year": "2006",
@@ -2846,7 +5510,7 @@
     ]
   },
   {
-    "_id": "dIXx0kDoGiQinITAczV0",
+    "_firebaseId": "dIXx0kDoGiQinITAczV0",
     "title": "Death Note / Death Note",
     "genre": "Crime, Fantasia, Terror",
     "year": "2017",
@@ -2873,7 +5537,63 @@
     "watched": false
   },
   {
-    "_id": "doC2KVgPH9E4j3Nil7Ie",
+    "_firebaseId": "dOJ4q2rVmionUkLCRi75",
+    "title": "[REC] / [REC]",
+    "genre": "Terror, Mistério",
+    "year": "2007",
+    "duration": "78",
+    "imdbRating": "7.4",
+    "metascore": "71",
+    "synopsis": "Ao longo de uma noite, uma repórter e seu cameraman acompanham um grupo de bombeiros chamados para resgatar uma mulher presa em um edifício, com resultados apavorantes. Antes de se darem conta, moradores, ajudantes e equipe de resgate são trancados dentro do edifício devido a um vírus desconhecido.",
+    "poster": "https://image.tmdb.org/t/p/w200/hJx9gqUJgWXRkFpIbCcNYrkqAQX.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "90%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "71/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "createdAt": "2026-02-21T06:30:04.426Z",
+    "averageUserRating": 0,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9,
+        "comment": "Saudades Pablo... Gone too soon"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2,
+        "comment": "[Rip Pablo] also, sorry amigos"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9,
+        "comment": "Um dos meus found footage preferidos, otimo pacing"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8,
+        "comment": "Pablo, o melhor...personagens chatíssimos, mas muito bom pelo gênero"
+      }
+    ],
+    "updatedAt": "2026-02-21T06:31:50.563Z"
+  },
+  {
+    "_firebaseId": "doC2KVgPH9E4j3Nil7Ie",
     "title": "Clube de Compras Dallas / Dallas Buyers Club",
     "genre": "Drama, História",
     "year": "2013",
@@ -2897,10 +5617,36 @@
       }
     ],
     "user": "arthur.tragante@gmail.com",
-    "watched": false
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 8.5,
+        "comment": "Jared diva, filme triste, real, mas muito sad"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8.5,
+        "comment": "Jared Diva ♡ Me fez chorar mtt mas mtt bom"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9.5,
+        "comment": "Filme quase perfeito\nEle bate diferente. E bate onde dói"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9.5,
+        "comment": "Melhor filme do Jared Leto"
+      }
+    ]
   },
   {
-    "_id": "e54VqEcJQngcCWL1JFCV",
+    "_firebaseId": "e54VqEcJQngcCWL1JFCV",
     "title": "Entre Irmãos",
     "genre": "Drama, Thriller, Guerra",
     "year": "2009",
@@ -2927,7 +5673,7 @@
     "watched": false
   },
   {
-    "_id": "f0NG2NXOJSM0o8sXMKDq",
+    "_firebaseId": "f0NG2NXOJSM0o8sXMKDq",
     "title": "Mundo Animal / Animal World",
     "genre": "Drama, Ação, Aventura, Thriller",
     "year": "2018",
@@ -2950,7 +5696,7 @@
     "watched": false
   },
   {
-    "_id": "fD8hMRoUfBTQhP5lZCzP",
+    "_firebaseId": "fD8hMRoUfBTQhP5lZCzP",
     "title": "A Criada / The Handmaiden",
     "genre": "Thriller, Drama, Romance",
     "year": "2016",
@@ -3003,7 +5749,90 @@
     ]
   },
   {
-    "_id": "fxInaXwiI70ukzUb6y2s",
+    "_firebaseId": "fKUshJ0X0I9daNFgGGUm",
+    "title": "High School Musical 3: Ano da Formatura / High School Musical 3: Senior Year",
+    "genre": "Comédia, Romance, Drama, Família, Música",
+    "year": "2008",
+    "duration": "117",
+    "imdbRating": "5.0",
+    "metascore": "57",
+    "synopsis": "Em meio a preparativos para um campeonato de basquete, baile e formatura, os namorados Troy Bolton e Gabriella Montez curtem cada momento, sabendo que a faculdade coloca o futuro de seu relacionamento em jogo. Um elaborado musical de primavera é apenas mais uma oportunidade para os dois Wildcats e seus colegas expressarem os medos e as esperanças para o futuro.",
+    "poster": "https://image.tmdb.org/t/p/w200/njFge8HpADMmpY1CDgxQu9BMr5I.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.0/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "64%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "57/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "createdAt": "2026-02-27T00:57:47.895Z",
+    "averageUserRating": 0,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4,
+        "comment": "SO CRAZY!!!!"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6,
+        "comment": "IMAGINE HAVING EVERYTHING WE EVER DREAMED?!?!?"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 5,
+        "comment": "Remendo de filme"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 5,
+        "comment": "Dor, sofrimento, the boys shouldn't be back, mas as músicas são majoritariamente muito boas"
+      }
+    ],
+    "watched": true,
+    "updatedAt": "2026-03-12T22:34:45.274Z"
+  },
+  {
+    "_firebaseId": "fOplMW2WoZb79bVUfYSm",
+    "title": "Batman Begins / Batman Begins",
+    "genre": "Drama, Crime, Ação",
+    "year": "2005",
+    "duration": "140",
+    "imdbRating": "8.2",
+    "metascore": "70",
+    "synopsis": "Marcado pelo assassinato de seus pais quando ainda era criança, o milionário Bruce Wayne decide viajar pelo mundo em busca de encontrar meios que lhe permitam combater a injustiça e provocar medo em seus adversários. Após retornar a Gotham City, sua cidade-natal, ele idealiza seu alter-ego: Batman, um justiceiro mascarado que usa força, inteligência e um arsenal tecnológico para combater o crime.",
+    "poster": "https://image.tmdb.org/t/p/w200/7EyhcdfiLtH0xa6CZkyYuoWL2GJ.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "85%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "70/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "fxInaXwiI70ukzUb6y2s",
     "title": "Animais Noturnos / Nocturnal Animals",
     "genre": "Drama, Thriller",
     "year": "2016",
@@ -3030,7 +5859,7 @@
     "watched": false
   },
   {
-    "_id": "g3aLDD2fVLhUTfI77eyd",
+    "_firebaseId": "g3aLDD2fVLhUTfI77eyd",
     "title": "O Fabuloso Destino de Amélie Poulain / Amélie",
     "genre": "Comédia, Romance",
     "year": "2001",
@@ -3057,7 +5886,7 @@
     "watched": false
   },
   {
-    "_id": "g3hvCqyqJSnXwoz2uKJV",
+    "_firebaseId": "g3hvCqyqJSnXwoz2uKJV",
     "title": "Sr. Ninguém / Mr. Nobody",
     "genre": "Ficção científica, Drama, Romance",
     "year": "2009",
@@ -3110,7 +5939,34 @@
     "watched": true
   },
   {
-    "_id": "gbS0tQH2neASz25cVsjh",
+    "_firebaseId": "gBCdxVJC1cX9CRKYVuob",
+    "title": "Eu, Eu Mesmo & Irene / Me, Myself & Irene",
+    "genre": "Comédia",
+    "year": "2000",
+    "duration": "117",
+    "imdbRating": "6.6",
+    "metascore": "49",
+    "synopsis": "Charlie faz parte da força policial de Rhode Island há 17 anos. Trabalhador, honesto, pai de três filhos e sempre disposto a ajudar, Charlie amado por todos sua volta. Mas ele tem um problema: sofre da Síndrome de Dupla Personalidade. Se deixar de tomar seus remédios, sua segunda personalidade, Hank, vem tona. Hank não tem nada em comum com Charlie: beberrão, agressivo e grosso com todos. Até que ambos conhecem e se apaixonam por Irene Waters e passam a lutar consigo mesmo para terem o domínio do mesmo corpo.",
+    "poster": "https://image.tmdb.org/t/p/w200/gzoeXKICGubWgdQ0EYRNZceVpPs.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "47%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "49/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "gbS0tQH2neASz25cVsjh",
     "title": "Barbie: Moda e Magia / Barbie: A Fashion Fairytale",
     "genre": "Família, Animação",
     "year": "2010",
@@ -3149,13 +6005,13 @@
       {
         "user": "shellyasmallman",
         "email": "shellyasmallman@gmail.com",
-        "rating": 8,
+        "rating": 9,
         "comment": "Nostalgia me cega msm, fodasse"
       }
     ]
   },
   {
-    "_id": "gulBTkqUhbDStlsvgRvm",
+    "_firebaseId": "gulBTkqUhbDStlsvgRvm",
     "title": "Joias Brutas / Uncut Gems",
     "genre": "Drama, Thriller, Crime",
     "year": "2019",
@@ -3182,7 +6038,7 @@
     "watched": false
   },
   {
-    "_id": "hUBUWUqfYetyl4NX8y5s",
+    "_firebaseId": "hUBUWUqfYetyl4NX8y5s",
     "title": "A Nova Onda do Imperador / The Emperor's New Groove",
     "genre": "Aventura, Animação, Comédia, Família, Fantasia",
     "year": "2000",
@@ -3209,7 +6065,34 @@
     "watched": false
   },
   {
-    "_id": "hxk1C4y4VGs4LxRSEwMk",
+    "_firebaseId": "hlIeYTpJs40WxfVtxQXK",
+    "title": "A Longa Marcha: Caminhe ou Morra / The Long Walk",
+    "genre": "Thriller, Ficção científica, Terror",
+    "year": "2025",
+    "duration": "108",
+    "imdbRating": "6.8",
+    "metascore": "71",
+    "synopsis": "Um grupo de adolescentes compete em uma competição anual conhecida como \"A Longa Marcha\", onde eles devem manter uma certa velocidade de caminhada ou levar um tiro.",
+    "poster": "https://image.tmdb.org/t/p/w200/qE0XKOHZvXtiM4aBLlTPUVZiIc5.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "88%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "71/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "hxk1C4y4VGs4LxRSEwMk",
     "title": "Todo Mundo Quase Morto / Shaun of the Dead",
     "genre": "Terror, Comédia",
     "year": "2004",
@@ -3262,7 +6145,7 @@
     ]
   },
   {
-    "_id": "iIvt2OkNn371TbQviC4P",
+    "_firebaseId": "iIvt2OkNn371TbQviC4P",
     "title": "A Caçada ao Outubro Vermelho / The Hunt for Red October",
     "genre": "Ação, Aventura, Thriller",
     "year": "1990",
@@ -3289,7 +6172,7 @@
     "watched": false
   },
   {
-    "_id": "ihEOh1DosoOCR4tW0o5u",
+    "_firebaseId": "ihEOh1DosoOCR4tW0o5u",
     "title": "Peixe Grande e Suas Histórias Maravilhosas / Big Fish",
     "genre": "Aventura, Fantasia, Drama",
     "year": "2003",
@@ -3316,7 +6199,34 @@
     "watched": false
   },
   {
-    "_id": "iqHaxdqaYdOSyeACYrGp",
+    "_firebaseId": "ijhJTKtFVW9HP6FtX7W4",
+    "title": "Uma Noite Alucinante: A Morte do Demônio / The Evil Dead",
+    "genre": "Terror",
+    "year": "1981",
+    "duration": "85",
+    "imdbRating": "7.4",
+    "metascore": "71",
+    "synopsis": "Cinco estudantes da Universidade de Michigan decidem passar um final de semana em uma casa isolada. Lá eles encontram o livro dos mortos, um documento que data da época da Babilônia e que está relacionado ao livro dos mortos egípcio. Enquanto vasculham a casa os amigos gravam em fita alguns encantamentos demoníacos, escritos no livro. A partir de então eles são possuídos por espíritos, um a um. O primeiro alvo é Cheryl, brutalmente estuprada pelas forças do mal. Ash, seu irmão, resolve levá-la a uma cidade próxima, mas descobre que a única ponte que leva ao local está destruída. Logo a transformação de Cheryl em demônio é concluída, resultando em seu ataque aos amigos.",
+    "poster": "https://image.tmdb.org/t/p/w200/dCdXagFYR7WwaHuVmZgzw4F0KpP.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "85%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "71/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "iqHaxdqaYdOSyeACYrGp",
     "title": "A Vida dos Outros / The Lives of Others",
     "genre": "Drama, Thriller",
     "year": "2006",
@@ -3343,7 +6253,34 @@
     "watched": false
   },
   {
-    "_id": "jAoK3emJiBxdvdDrzxj7",
+    "_firebaseId": "j6QaGLZ6NaoIF4sGR30j",
+    "title": "Como Se Fosse a Primeira Vez / 50 First Dates",
+    "genre": "Comédia, Romance",
+    "year": "2004",
+    "duration": "99",
+    "imdbRating": "6.8",
+    "metascore": "48",
+    "synopsis": "Henry Roth vive uma vida invejável em um paraíso havaiano, passando todas as noites com turistas exuberantes à procura de diversão na ilha. É uma bela vida, sem compromissos... até que ele conhece Lucy. Ele e Lucy se dão bem desde o início, mas, no dia seguinte, ela age como se não o conhecesse. Será que ele está levando o troco por todos os anos de cafajeste ou o quê? Na verdade, Lucy sofre de perda de memória recente, então, à noite, todo o seu dia é apagado de sua mente. Mas um homem apaixonado irá tentar de tudo para conquistar a mulher dos seus sonhos, e se isso significa ter que encontrar jeitos criativos de conquistá-la todos os dias, então Henry topa o desafio.",
+    "poster": "https://image.tmdb.org/t/p/w200/h0st50VJ755VG1kzSc2FgwtDHdk.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "45%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "48/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "jAoK3emJiBxdvdDrzxj7",
     "title": "Velocidade Máxima / Speed",
     "genre": "Ação, Thriller",
     "year": "1994",
@@ -3370,7 +6307,65 @@
     "watched": false
   },
   {
-    "_id": "jOBROiDtSfoOaCRFn28x",
+    "_firebaseId": "jIgTSlA2TesnIXNyKZ4n",
+    "title": "Hairspray: Em Busca da Fama / Hairspray",
+    "genre": "Comédia, Romance, Drama",
+    "year": "2007",
+    "duration": "117",
+    "imdbRating": "6.7",
+    "metascore": "81",
+    "synopsis": "Estamos nos anos 60. O sonho de todo adolescente da época é aparecer no \"The Corny Collins Show\", o programa de dança mais famoso da TV. Tracy Turnblad, uma grande garota com grande cabelo e coração maior ainda, tem só uma paixão na vida: dançar. Mesmo sendo gordinha para os padrões locais, ela impressiona os juízes com seu estilo e ganha espaço na atração. A garota se torna um sucesso, ameaçando a hegemonia de Amber von Tussle. O público ama Tracy. Mas a disputa se torna pessoal mesmo quando as duas passam a lutar pelo amor do jovem Link.",
+    "poster": "https://image.tmdb.org/t/p/w200/6xIvGhsiZeY5wKTKw8o0Fi7bey8.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.7/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "92%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "81/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false,
+    "createdAt": "2026-02-22T07:51:23.688Z",
+    "updatedAt": "2026-02-22T07:51:23.688Z",
+    "userRatings": [],
+    "averageUserRating": 0
+  },
+  {
+    "_firebaseId": "jJL40QYbQ04PD0e5iesp",
+    "title": "Atividade Paranormal / Paranormal Activity",
+    "genre": "Terror, Mistério",
+    "year": "2007",
+    "duration": "86",
+    "imdbRating": "6.3",
+    "metascore": "68",
+    "synopsis": "Desde criança Katie (Katie Featherston) ouve ruídos estranhos, sussurros e sente sensações inesperadas. Já adulta, ela mora com seu namorado Micah (Micah Sloat), que, meio cético quanto aos depoimentos, resolve usar uma câmera para gravar tudo o que acontece enquanto eles dormem e vivem dentro da casa. O que era para ser apenas uma forma de esclarecer o mistério torna-se uma experiência intrigante e assustadora.",
+    "poster": "https://image.tmdb.org/t/p/w200/jV5eAsOTf7zsL4glY51gTW6Vb05.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.3/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "82%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "68/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "jOBROiDtSfoOaCRFn28x",
     "title": "Annabelle 2: A Criação do Mal / Annabelle: Creation",
     "genre": "Terror",
     "year": "2017",
@@ -3423,7 +6418,34 @@
     "poster": "https://image.tmdb.org/t/p/w500/AtlcH0f8mEQGKVIBSgV4GgkTZMr.jpg"
   },
   {
-    "_id": "jf3qq8TXX8pIZUv19c6l",
+    "_firebaseId": "jOJem6WqxWlRuUDRxBwj",
+    "title": "Batman / The Batman",
+    "genre": "Crime, Mistério, Thriller",
+    "year": "2022",
+    "duration": "177",
+    "imdbRating": "7.8",
+    "metascore": "72",
+    "synopsis": "Em seu segundo ano de combate ao crime, Batman descobre corrupção em Gotham City que se conecta à sua própria família enquanto enfrenta um serial killer conhecido como Charada.",
+    "poster": "https://image.tmdb.org/t/p/w200/wd7b4Nv9QBHDTIjc2m7sr0IUMoh.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.8/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "85%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "72/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "jf3qq8TXX8pIZUv19c6l",
     "title": "Suspíria: A Dança do Medo / Suspiria",
     "genre": "Terror, Mistério, Drama",
     "year": "2018",
@@ -3450,7 +6472,7 @@
     "watched": false
   },
   {
-    "_id": "kCSFMalFK03OYF72tMfF",
+    "_firebaseId": "kCSFMalFK03OYF72tMfF",
     "title": "O Telefone Preto / The Black Phone",
     "genre": "Terror, Thriller",
     "year": "2022",
@@ -3477,7 +6499,7 @@
     "watched": false
   },
   {
-    "_id": "kY0xEShJnC3wslWG7g2Z",
+    "_firebaseId": "kY0xEShJnC3wslWG7g2Z",
     "title": "Peter Pan Goes Wrong / Peter Pan Goes Wrong",
     "genre": "Comédia, Família, Música",
     "year": "2016",
@@ -3496,7 +6518,7 @@
     "watched": false
   },
   {
-    "_id": "kaiOSxvkwdcdyuCDWQbT",
+    "_firebaseId": "kaiOSxvkwdcdyuCDWQbT",
     "title": "Terminator 2 / Shocking Dark",
     "genre": "Ação, Ficção científica, Terror",
     "year": "1989",
@@ -3515,7 +6537,7 @@
     "watched": false
   },
   {
-    "_id": "kbA1d4NwfKLt57jHSVRj",
+    "_firebaseId": "kbA1d4NwfKLt57jHSVRj",
     "title": "Green Book: O Guia / Green Book",
     "genre": "Drama, Comédia, História",
     "year": "2018",
@@ -3542,7 +6564,34 @@
     "watched": false
   },
   {
-    "_id": "kzWaDCiJ7p1Wb8Y5TMZf",
+    "_firebaseId": "kyDsnMbsaOdWu9CgusSV",
+    "title": "Bee Movie: A História de uma Abelha / Bee Movie",
+    "genre": "Família, Animação, Aventura, Comédia",
+    "year": "2007",
+    "duration": "91",
+    "imdbRating": "6.1",
+    "metascore": "54",
+    "synopsis": "O ambicioso jovem Barry B. Benson cai no mundo com os respeitados Ases do Pólen em busca de néctar e aventura. Mas quando quebra uma das regras fundamentais do mundo das abelhas e fala com humanos, Barry provoca uma incrível série de fatos, que provam que até uma pequena abelha pode fazer a grande diferença!",
+    "poster": "https://image.tmdb.org/t/p/w200/puW6ynGLcCowqiYvhPhdbNH8Zzj.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "49%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "54/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "kzWaDCiJ7p1Wb8Y5TMZf",
     "title": "Harry Potter e a Pedra Filosofal / Harry Potter and the Philosopher's Stone",
     "genre": "Aventura, Fantasia",
     "year": "2001",
@@ -3569,7 +6618,7 @@
     "watched": false
   },
   {
-    "_id": "lEjXZtc9mkLF0uX5JG8e",
+    "_firebaseId": "lEjXZtc9mkLF0uX5JG8e",
     "title": "Invocação do Mal - O Último Ritual / The Conjuring: Last Rites",
     "genre": "Terror",
     "year": "2025",
@@ -3618,7 +6667,7 @@
     "poster": "https://image.tmdb.org/t/p/w500/40nHGUfypLhlr7gJx8At1IbYkaK.jpg"
   },
   {
-    "_id": "mHD0a8LUYdumFNONE5Of",
+    "_firebaseId": "mHD0a8LUYdumFNONE5Of",
     "title": "Invocação do Mal / The Conjuring",
     "genre": "Terror, Thriller",
     "year": "2013",
@@ -3671,7 +6720,60 @@
     "poster": "https://image.tmdb.org/t/p/w500/1NxHKZW5DPbUFtbF3MxbdSyxRqU.jpg"
   },
   {
-    "_id": "mJ96myEFeeSTxRtyW92L",
+    "_firebaseId": "mHgoO8Dj8JYTsSssWBU2",
+    "title": "Extermínio / 28 Days Later",
+    "genre": "Terror, Thriller, Ficção científica",
+    "year": "2002",
+    "duration": "113",
+    "imdbRating": "7.5",
+    "metascore": "73",
+    "synopsis": "Um poderoso vírus está a solta. Transmitido em uma gota de sangue e com efeito devastador em alguns segundos, o vírus mantém os infectados em um estado permanente de descontrole assassino. Dentro de 28 dias, o país está tomado e um punhado de sobreviventes inicia esforços para garantir algum futuro à raça humana, mas o que não percebem é que o vírus mortal não é a única coisa que os ameaça.",
+    "poster": "https://image.tmdb.org/t/p/w200/pVTtJSvJoOofD1YoyPSGwWEWmJd.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.5/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "87%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "73/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9,
+        "comment": "Um dos melhores filmes de zumbi que tem por ai\nPAU NO CU DOS MILICO!!!"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Só peca no final e na atuação da Hannah, o resto very very good"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8,
+        "comment": "Hello"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8.5,
+        "comment": "Hell-o"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "mJ96myEFeeSTxRtyW92L",
     "title": "Louca Obsessão / Misery",
     "genre": "Drama, Thriller",
     "year": "1990",
@@ -3698,7 +6800,87 @@
     "watched": false
   },
   {
-    "_id": "msrrHxYpGh9uELGCCRHy",
+    "_firebaseId": "mZaDu32Tejbp21V4tGHP",
+    "title": "Todo Mundo em Pânico 2 / Scary Movie 2",
+    "genre": "Comédia",
+    "year": "2001",
+    "duration": "82",
+    "imdbRating": "5.4",
+    "metascore": "29",
+    "synopsis": "Brincando com o terror, o professor Oldman e Dwight seu assistente, preparam um final de semana hilariante e super especial. Um experiência sobre exorcismo, onde Cindy e \"aquele\" grupo de jovens malucos e assustados deverão ficar sem dormir. A incrível arapuca terá lugar na \"Casa do Inferno\", um casarão mal-assombrado afastado da cidade, e onde não falta nem o repulsivo mordono sempre presente nas melhores histórias de terror. Como alvos desta comédia escrachada, encontramos \"O Exorcista\", \"Poltergeist\", \"A Casa da Colina\", \"Revelação\" e até mesmo \"As Panteras\" e \"Missão Impossível 2\". Agora muito mais engraçado. Imperdível!",
+    "poster": "https://image.tmdb.org/t/p/w200/549UoU38uoikbqgXG09rkkfIEWf.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "13%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "29/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 6,
+        "comment": "Tem umas piadas q eu acho mais engraçadas do que o 1, mas no geral as piadas são bem piores"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 5,
+        "comment": "Imbecil\nApenas isso mesmo\nNada mais além disso"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 1.5,
+        "comment": "My germs!"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 6.5,
+        "comment": "Memorável por algum motivo, mas o humor é meio cringe"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "mdcjtfk3e0ypPDxxYATu",
+    "title": "Scooby-Doo: O Filme / Scooby-Doo",
+    "genre": "Mistério, Aventura, Comédia",
+    "year": "2002",
+    "duration": "87",
+    "imdbRating": "5.3",
+    "metascore": "35",
+    "synopsis": "Dois anos depois de separarem-se após resolverem seu último caso, a equipe da Mystery Inc. une-se para investigar estranhos acontecimentos em um parque mal-assombrado chamado Spook Island. A atração parece assombrar jovens visitantes de maneiras muito estranhas, mas cabe a Scooby, Salsicha e todo o grupo desvendar o mistério.",
+    "poster": "https://image.tmdb.org/t/p/w200/Nu9v0wUacgq73ggOAKsz4ZtZ2K.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.3/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "32%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "35/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "msrrHxYpGh9uELGCCRHy",
     "title": "Ouija Shark 2 / Ouija Shark 2",
     "genre": "Terror, Fantasia, Comédia",
     "year": "2023",
@@ -3717,7 +6899,7 @@
     "watched": false
   },
   {
-    "_id": "n341vRXVoVIrVceG5h7g",
+    "_firebaseId": "n341vRXVoVIrVceG5h7g",
     "title": "A Maldição da Chorona / The Curse of La Llorona",
     "genre": "Terror",
     "year": "2019",
@@ -3770,7 +6952,7 @@
     "poster": "https://image.tmdb.org/t/p/w500/rfYcu44y5YFoxwR96etAimfsDwO.jpg"
   },
   {
-    "_id": "nJzMkivycufiWzNBhgdp",
+    "_firebaseId": "nJzMkivycufiWzNBhgdp",
     "title": "Guerreiras do K-Pop / KPop Demon Hunters",
     "genre": "Fantasia, Música, Comédia, Animação",
     "year": "2025",
@@ -3797,7 +6979,7 @@
     "watched": false
   },
   {
-    "_id": "nvwEZgABDqVI83EXNCQK",
+    "_firebaseId": "nvwEZgABDqVI83EXNCQK",
     "title": "Zumbilândia / Zombieland",
     "genre": "Comédia, Terror",
     "year": "2009",
@@ -3824,7 +7006,45 @@
     "watched": false
   },
   {
-    "_id": "op5Fv5XIi3qU32hBd2xM",
+    "_firebaseId": "o4rVqRVwvp8v3S07tfns",
+    "title": "Barbie Fairytopia / Barbie: Fairytopia",
+    "genre": "Animação, Família",
+    "year": "2005",
+    "duration": "70",
+    "imdbRating": "6.0",
+    "metascore": "N/A",
+    "synopsis": "Logo após o arco-íris, em um mundo chamado Fairytopia, vive Elina, uma bela fada das flores, que sonha em ter asas. Ela vive em uma flor enorme com seu amigo Bibble, um bicinho engraçado e adorável. Um dia Elina descobre que sua casa de flor está doente, e que seus amigos não podem mais voar! Cheia de coragem, ela então parte em uma fantástica jornada para encontrar Azura, quem ela acredita que possa resolver todo esse problema. Ela conhecerá novas pessoas que testarão sua coragem e aprenderá o valor da verdadeira amizade. Mas poderá uma fada sem assas salvar todo o mundo de Fairytopia?",
+    "poster": "https://image.tmdb.org/t/p/w200/a0VPQHpLNCWWmiXwjD7aJVRaH78.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.0/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "oNgWYrMMqifu3ls1MoTi",
+    "title": "Barbie - A Estrela do Rock / Barbie and the Rockers: Out of This World",
+    "genre": "Animação, Música, Cinema TV",
+    "year": "1987",
+    "duration": "25",
+    "imdbRating": "6.2",
+    "metascore": "N/A",
+    "synopsis": "A banda de rock da Barbie acaba de completar uma bem-sucedida turnê mundial e decide realizar um último concerto no espaço, para promover a paz mundial. Em seguida, na Parte 2 (\"Barbie and the Sensations\"), quando a Barbie e sua banda voltam para a Terra, eles acabam viajando no tempo para 1959 (ano em que as primeiras bonecas Barbie, começaram a ser produzidas).",
+    "poster": "https://image.tmdb.org/t/p/w200/6wtDymu06JzOdF5FANz9Nl6Erqs.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.2/10"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "op5Fv5XIi3qU32hBd2xM",
     "title": "A Christmas Carol Goes Wrong / A Christmas Carol Goes Wrong",
     "genre": "Comédia, Cinema TV",
     "year": "2017",
@@ -3843,7 +7063,30 @@
     "watched": false
   },
   {
-    "_id": "oyPof44LYMtnJYwuJNwu",
+    "_firebaseId": "owyZ1qnBpWFMEvUGTWQb",
+    "title": "Hell House LLC / Hell House LLC",
+    "genre": "Terror, Mistério",
+    "year": "2015",
+    "duration": "96",
+    "imdbRating": "6.4",
+    "metascore": "N/A",
+    "synopsis": "Cinco anos após um defeito inexplicável causar a morte de 15 turistas na noite de inauguração da casa \"Mal Assombra de Halloween\", uma equipe vai fazer um documentário na cena da tragédia para tentar descobrir o que realmente aconteceu.",
+    "poster": "https://image.tmdb.org/t/p/w200/xUSCQEbbAy3Lv6r00RfXtdxhRDX.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "73%"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "oyPof44LYMtnJYwuJNwu",
     "title": "Triângulo do Medo / Triangle",
     "genre": "Terror",
     "year": "2009",
@@ -3866,7 +7109,7 @@
     "watched": false
   },
   {
-    "_id": "p9gkHFhfZRsaHTL9Xhii",
+    "_firebaseId": "p9gkHFhfZRsaHTL9Xhii",
     "title": "Matrix / The Matrix",
     "genre": "Ação, Ficção científica",
     "year": "1999",
@@ -3893,7 +7136,7 @@
     "watched": false
   },
   {
-    "_id": "paIvCLhO0lho5ePzGGOs",
+    "_firebaseId": "paIvCLhO0lho5ePzGGOs",
     "title": "O Meme do Mal / Grimcutty",
     "genre": "Terror",
     "year": "2022",
@@ -3916,7 +7159,61 @@
     "watched": false
   },
   {
-    "_id": "qE1yDzCR8QNfQKzzaPvD",
+    "_firebaseId": "q9zZxyb2urFSzcpfqfqG",
+    "title": "A Casa Monstro / Monster House",
+    "genre": "Animação, Comédia, Família, Fantasia",
+    "year": "2006",
+    "duration": "91",
+    "imdbRating": "6.7",
+    "metascore": "68",
+    "synopsis": "D.J. Walters é um garoto de 12 anos que acredita que há algo de estranho na casa do velho Epaminondas, localizada do outro lado da rua. Tudo que passa perto da casa simplesmente desaparece, incluindo triciclos, brinquedos e animais de estimação. Na véspera do Dia das Bruxas, D.J. e seu amigo Bocão deixam a bola de basquete com a qual estão jogando cair no terreno de Epaminondas, que logo some misteriosamente. Logo em seguida, a casa tenta devorar Jenny, uma vendedora de doces, que é salva do ataque. Eles tentam avisar a todos do perigo que é a casa, mas ninguém acredita neles.",
+    "poster": "https://image.tmdb.org/t/p/w200/9aGEF4J3ZYBs8sakzjJwTlH9b3g.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.7/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "75%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "68/100"
+      }
+    ],
+    "user": "homurarozen@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 10,
+        "comment": "O responsavel por me fazer gostar filmes de terror, um dos meus filmes favoritos de quando eu era criança."
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 10,
+        "comment": "Quando eu tinha 10 anos, eu tinha uma pica. Ah que pica maneira... eu botava ela lá no alto, mal dava pra ver... um dia, a pica caiu...\n"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8.5,
+        "comment": "Sinistro"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Tu não é nada, otário"
+      }
+    ],
+    "updatedAt": "2026-03-13T02:53:10.326Z"
+  },
+  {
+    "_firebaseId": "qE1yDzCR8QNfQKzzaPvD",
     "title": "Scott Pilgrim Contra o Mundo / Scott Pilgrim vs. the World",
     "genre": "Ação, Comédia, Romance",
     "year": "2010",
@@ -3943,7 +7240,7 @@
     "watched": false
   },
   {
-    "_id": "qK0CZXXGldj0eqb3zx8E",
+    "_firebaseId": "qK0CZXXGldj0eqb3zx8E",
     "title": "True Lies / True Lies",
     "genre": "Ação, Thriller",
     "year": "1994",
@@ -3996,7 +7293,7 @@
     ]
   },
   {
-    "_id": "qPY9wk1r8wjFAnp2N8bh",
+    "_firebaseId": "qPY9wk1r8wjFAnp2N8bh",
     "title": "O Exterminador do Futuro / The Terminator",
     "genre": "Ação, Thriller, Ficção científica",
     "year": "1984",
@@ -4023,7 +7320,7 @@
     "watched": false
   },
   {
-    "_id": "r8KO0xiH9ZxEVCuCLyyI",
+    "_firebaseId": "r8KO0xiH9ZxEVCuCLyyI",
     "title": "Anaconda / Anaconda",
     "genre": "Aventura, Terror, Thriller",
     "year": "1997",
@@ -4047,10 +7344,36 @@
       }
     ],
     "user": "arthur.tragante@gmail.com",
-    "watched": false
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 3.5,
+        "comment": "My anaconda dont want none"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4,
+        "comment": "Chato demais\n1:30 que passa muito arrastado"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 3,
+        "comment": "Podia ter sido um email, there isnt any conda"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 7,
+        "comment": "Monkey blood"
+      }
+    ]
   },
   {
-    "_id": "rHeoHn0pj52zyEmRDIkC",
+    "_firebaseId": "rHeoHn0pj52zyEmRDIkC",
     "title": "A Entidade / Sinister",
     "genre": "Terror, Thriller, Mistério",
     "year": "2012",
@@ -4077,7 +7400,88 @@
     "watched": false
   },
   {
-    "_id": "s8qSLliURKSHyc013RIr",
+    "_firebaseId": "rORUovL4QHXGxhPTCIst",
+    "title": "Extermínio: A Evolução / 28 Years Later",
+    "genre": "Terror, Thriller, Ficção científica",
+    "year": "2025",
+    "duration": "115",
+    "imdbRating": "6.6",
+    "metascore": "77",
+    "synopsis": "Já se passaram quase três décadas desde que o vírus da raiva escapou de um laboratório de armas biológicas. Agora, sob uma quarentena rigidamente imposta, alguns conseguiram encontrar maneiras de sobreviver em meio aos infectados. Um desses grupos vive em uma pequena ilha, ligada ao continente por uma única passagem fortemente protegida. Quando um dos membros parte em uma missão rumo ao sombrio coração do continente, ele descobre segredos, maravilhas e horrores que transformaram não apenas os infectados, mas também outros sobreviventes.",
+    "poster": "https://image.tmdb.org/t/p/w200/c7M0eV2HjmqlDXSzLQ490lzluDH.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "89%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "77/100"
+      }
+    ],
+    "user": "pauluemmanuel@hotmail.com",
+    "userRatings": [
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 3,
+        "comment": "BOOTS BOOTS BOOTS "
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 6,
+        "comment": "Moving up and down again"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 6.5,
+        "comment": "Intrigada com as possibilidades para o próximo filme, mas meio paia, men men"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 8,
+        "comment": "Pq esqueci de dar nota no dia"
+      }
+    ],
+    "watched": true,
+    "updatedAt": "2026-03-12T22:33:39.965Z"
+  },
+  {
+    "_firebaseId": "rlswWgqtxCK9SsQXjfVN",
+    "title": "Dirty Dancing: Ritmo Quente / Dirty Dancing",
+    "genre": "Drama, Música, Romance",
+    "year": "1987",
+    "duration": "100",
+    "imdbRating": "7.1",
+    "metascore": "65",
+    "synopsis": "Na esperança de curtir sua juventude, uma jovem fica decepcionada ao descobrir que seus pais passarão o verão de 1963 com ela em um resort na sonolenta região de Catskills. Mas sua sorte muda quando ela conhece o instrutor de dança do resort, Johnny, um rapaz com um passado bem diferente do dela. Quando ele a coloca como sua nova parceira, os dois acabam se apaixonando. Apesar do pai proibi-la de ver Johnny, ela não dá a mínima.",
+    "poster": "https://image.tmdb.org/t/p/w200/mUVIRUpqKQa8uKDgyYrQHs6rlbz.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.1/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "72%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "65/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "s8qSLliURKSHyc013RIr",
     "title": "Tubarão / Jaws",
     "genre": "Terror, Thriller, Aventura",
     "year": "1975",
@@ -4104,7 +7508,7 @@
     "watched": false
   },
   {
-    "_id": "sLAO0mQFYO5twDmo6gSd",
+    "_firebaseId": "sLAO0mQFYO5twDmo6gSd",
     "title": "A Liga Extraordinária / The League of Extraordinary Gentlemen",
     "genre": "Fantasia, Ação, Thriller, Ficção científica",
     "year": "2003",
@@ -4131,7 +7535,103 @@
     "watched": false
   },
   {
-    "_id": "tQUUHfxrNc68CzxmI9Cy",
+    "_firebaseId": "sLprbQu8bKIubNbnPspq",
+    "title": "Velozes & Furiosos 9 / F9",
+    "genre": "Ação, Aventura, Crime",
+    "year": "2021",
+    "duration": "143",
+    "imdbRating": "5.2",
+    "metascore": "58",
+    "synopsis": "Dominic Toretto e sua família precisam enfrentar o seu irmão mais novo Jakob, um assassino mortal que está trabalhando com uma antiga inimiga, a cyber-terrorista Cipher.",
+    "poster": "https://image.tmdb.org/t/p/w200/6TuEPZ3ItlBO8WmH8BmY2aGLhes.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "5.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "59%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "58/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "createdAt": "2026-02-22T04:35:04.331Z",
+    "averageUserRating": 0,
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 3.5,
+        "comment": "VOCÊ NÃO MERECE O NOME TORETTO"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 0.5,
+        "comment": "O corte de tigela tinha mais profundidade, que filme absurdo de ruim"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2.5,
+        "comment": "What in the Sputnik?\nSdds carrinho vroom vroom e paz na familia..."
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 4,
+        "comment": "Filme bem caguei!"
+      }
+    ],
+    "updatedAt": "2026-02-22T05:27:24.283Z"
+  },
+  {
+    "_firebaseId": "sozXOjm9yu1n2dfPxU6w",
+    "ratings": [],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 5.5,
+        "comment": "Compilado de cena de piadinha"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 7.5,
+        "comment": "Achei interessante\nNão ter um Michael Bay de Duração e só por isso já ganha pontos\nTem o John Cena!!!\nE não depender do optimus já deu mais graça"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 6,
+        "comment": "Finalmente um design dos robô q vale a pena"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 6,
+        "comment": "And his name is...J...b-127"
+      }
+    ],
+    "year": "2018",
+    "genre": "Action, Adventure, Sci-Fi",
+    "synopsis": "Bumblebee teams up with a teenage girl to protect the world while the Decepticons hunt him with the help of a secret agency.",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjUwNjU5NDMyNF5BMl5BanBnXkFtZTgwNzgxNjM2NzM@._V1_SX300.jpg",
+    "metascore": "66",
+    "imdbRating": "6.7",
+    "duration": "114",
+    "title": "Bumblebee / Bumblebee"
+  },
+  {
+    "_firebaseId": "tQUUHfxrNc68CzxmI9Cy",
     "title": "Dragonball Evolution / Dragonball Evolution",
     "genre": "Ação, Aventura, Fantasia, Ficção científica, Thriller",
     "year": "2009",
@@ -4155,10 +7655,36 @@
       }
     ],
     "user": "arthur.tragante@gmail.com",
-    "watched": false
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 1.5,
+        "comment": "Mudanças de história sem motivo nenhum\nGoku Colegial\nMestre Kame novissimo\nKuririn???\nAtuações péssimas\n\nMais e mais e mais\nEnfim. 1.5 de dó"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2,
+        "comment": "DRAGON!"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 4,
+        "comment": "Ação 10/10, deram a vida e a carreira artística em nome do filme, melhor que Avatar. Deslizada de cabeça no carro 10/10"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 1.5,
+        "comment": "Eu sinto que eu dormi durante o filme mesmo estando totalmente acordado."
+      }
+    ]
   },
   {
-    "_id": "tSDybiey33xWlLXz8f5B",
+    "_firebaseId": "tSDybiey33xWlLXz8f5B",
     "title": "Não! Não Olhe! / Nope",
     "genre": "Terror, Ficção científica, Thriller",
     "year": "2022",
@@ -4185,7 +7711,7 @@
     "watched": false
   },
   {
-    "_id": "tedjlcjjpjec1uC1tpU3",
+    "_firebaseId": "tedjlcjjpjec1uC1tpU3",
     "title": "Bom Dia, Vietnã / Good Morning, Vietnam",
     "genre": "Comédia, Drama, Guerra",
     "year": "1987",
@@ -4212,7 +7738,7 @@
     "watched": false
   },
   {
-    "_id": "tnyAAmk1Ha7ke2AH9Vbv",
+    "_firebaseId": "tnyAAmk1Ha7ke2AH9Vbv",
     "title": "Street Fighter: A Última Batalha / Street Fighter",
     "genre": "Ação, Aventura, Comédia, Thriller",
     "year": "1994",
@@ -4239,7 +7765,7 @@
     "watched": false
   },
   {
-    "_id": "u4t33w7yBwKCJrMjcOjP",
+    "_firebaseId": "u4t33w7yBwKCJrMjcOjP",
     "title": "Assombrosas / Phenomena",
     "genre": "Comédia, Terror, Thriller",
     "year": "2023",
@@ -4262,7 +7788,116 @@
     "watched": false
   },
   {
-    "_id": "vSndgxMVYGWE2dPZtwi8",
+    "_firebaseId": "uD2UBA7xZhcbhL7yn4gJ",
+    "title": "Velozes & Furiosos 8 / The Fate of the Furious",
+    "genre": "Ação, Crime, Thriller",
+    "year": "2017",
+    "duration": "136",
+    "imdbRating": "6.6",
+    "metascore": "56",
+    "synopsis": "Depois que Brian e Mia se aposentaram, e o resto da equipe foi exonerado, Dom e Letty estão em lua de mel e levam uma vida pacata e completamente normal. Mas a adrenalina do passado volta com tudo quando uma mulher misteriosa faz com que Dom retorne ao mundo do crime e da velocidade.",
+    "poster": "https://image.tmdb.org/t/p/w200/38RVo4cX1O7Ia6k9WXcxkxprHm.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.6/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "67%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "56/100"
+      }
+    ],
+    "user": "arthur.tragante@gmail.com",
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 2.5,
+        "comment": "Tudo isso por um bebê, inacreditável"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 2,
+        "comment": "Daddy's staying home"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 4,
+        "comment": "Saudades Carro Vrum Vrum \nGuerra pelo Bebê"
+      },
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 4,
+        "comment": "Cade o vrom vrom??? Jason State unica coisa que gostei"
+      }
+    ]
+  },
+  {
+    "_firebaseId": "vSA1BSfDH68V67xqviKa",
+    "title": "Shrek / Shrek",
+    "genre": "Animação, Comédia, Fantasia, Aventura, Família",
+    "year": "2001",
+    "duration": "90",
+    "imdbRating": "7.9",
+    "metascore": "84",
+    "synopsis": "Há muito tempo, em um pântano muito remoto, vivia um ogro feroz chamado Shrek. Um dia, sua solidão é interrompida por uma invasão de personagens surpreendentes. Há pequenos ratos cegos em sua comida, um enorme e péssimo lobo em sua cama, três porquinhos sem teto e outros seres que foram deportados de suas terras pelo maligno lorde Farquaad. Para salvar seu território, Shrek faz um pacto com Farquaad e parte em uma jornada para fazer a linda princesa Fiona concordar em ser a noiva do Senhor. Em uma missão tão importante, ele é acompanhado por um burro divertido, pronto para fazer qualquer coisa por Shrek: tudo, exceto ficar em silêncio.",
+    "poster": "https://image.tmdb.org/t/p/w200/wxeqfC221YMptRRdzxlijAh7q8l.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "7.9/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "88%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "84/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "createdAt": "2026-02-27T03:18:11.722Z",
+    "averageUserRating": 0,
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 9,
+        "comment": "Excelente filme, mas não acho que ele é a perfeição pra ser mais alto"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 8.5,
+        "comment": "SOMEBODY! once told me..."
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Só parece meio simples a história, mas é um filme muito bom, piadas top independente da idade"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9.5,
+        "comment": "Ogros são como cebolas!!!"
+      }
+    ],
+    "updatedAt": "2026-02-27T03:26:29.989Z"
+  },
+  {
+    "_firebaseId": "vSndgxMVYGWE2dPZtwi8",
     "title": "Jurassic Park: O Parque dos Dinossauros / Jurassic Park",
     "genre": "Aventura, Ficção científica",
     "year": "1993",
@@ -4286,10 +7921,36 @@
       }
     ],
     "user": "arthur.tragante@gmail.com",
-    "watched": false
+    "watched": true,
+    "userRatings": [
+      {
+        "user": "pauluemmanuel",
+        "email": "pauluemmanuel@hotmail.com",
+        "rating": 10,
+        "comment": "Um dos filmes que atingem a perfeição pro meu contexto"
+      },
+      {
+        "user": "shellyasmallman",
+        "email": "shellyasmallman@gmail.com",
+        "rating": 9,
+        "comment": "Meus braços são muito curtos e minha cabeça é muito grande 🦖 rawr 🦖"
+      },
+      {
+        "user": "homurarozen",
+        "email": "homurarozen@gmail.com",
+        "rating": 9,
+        "comment": "Algumas partes chatas, mas muito bem feito, efeitos, atuação, very good"
+      },
+      {
+        "user": "arthur.tragante",
+        "email": "arthur.tragante@gmail.com",
+        "rating": 9,
+        "comment": "Bão\nA nostalgia estava certa dessa vez"
+      }
+    ]
   },
   {
-    "_id": "wJh167jN52YtCmG9BB6U",
+    "_firebaseId": "wJh167jN52YtCmG9BB6U",
     "title": "+ Velozes + Furiosos / 2 Fast 2 Furious",
     "genre": "Ação, Crime, Thriller",
     "year": "2003",
@@ -4342,7 +8003,7 @@
     ]
   },
   {
-    "_id": "wvfHwPIKS6iNpqChIhs6",
+    "_firebaseId": "wvfHwPIKS6iNpqChIhs6",
     "title": "O VelociPastor / The VelociPastor",
     "genre": "Ação, Terror, Comédia",
     "year": "2018",
@@ -4365,7 +8026,34 @@
     "watched": false
   },
   {
-    "_id": "x8O5kaDBW2eVcj6nODG8",
+    "_firebaseId": "x1yaUWcNKiT3ROB6dC4h",
+    "title": "Matadores de Velhinha / The Ladykillers",
+    "genre": "Comédia, Crime, Thriller",
+    "year": "2004",
+    "duration": "104",
+    "imdbRating": "6.2",
+    "metascore": "56",
+    "synopsis": "O professor G.H. Dorr tem um grande plano para assaltar um cassino. Ele aluga um quarto na casa de uma senhora, onde convoca seus comparsas para discutir o plano de ação. A situação se complica quando a senhora descobre o plano, o que faz com que os ladrões tenham que eliminá-la de qualquer maneira.",
+    "poster": "https://image.tmdb.org/t/p/w200/xT3o0tIpUjNsOhhsBUDINUl2wN.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "54%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "56/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "x8O5kaDBW2eVcj6nODG8",
     "title": "Carros 2 / Cars 2",
     "genre": "Animação, Família, Aventura, Comédia",
     "year": "2011",
@@ -4418,7 +8106,7 @@
     ]
   },
   {
-    "_id": "xE1HhHywUlLkuzM3RioM",
+    "_firebaseId": "xE1HhHywUlLkuzM3RioM",
     "title": "Indiana Jones e os Caçadores da Arca Perdida / Raiders of the Lost Ark",
     "genre": "Aventura, Ação",
     "year": "1981",
@@ -4445,7 +8133,34 @@
     "watched": false
   },
   {
-    "_id": "xab1hk4v4hHWoyPvNJVE",
+    "_firebaseId": "xIvMQ3Jn57pQ7zPxneF8",
+    "title": "Homem-Aranha: No Aranhaverso / Spider-Man: Into the Spider-Verse",
+    "genre": "Animação, Ação, Aventura, Ficção científica",
+    "year": "2018",
+    "duration": "117",
+    "imdbRating": "8.4",
+    "metascore": "87",
+    "synopsis": "Miles Morales é um jovem negro do Brooklyn que se tornou o Homem-Aranha inspirado no legado de Peter Parker, já falecido. Entretanto, ao visitar o túmulo de seu ídolo em uma noite chuvosa, ele é surpreendido com a presença do próprio Peter, vestindo o traje do herói aracnídeo sob um sobretudo. A surpresa fica ainda maior quando Miles descobre que ele veio de uma dimensão paralela, assim como outras variações do Homem-Aranha.",
+    "poster": "https://image.tmdb.org/t/p/w200/voO5GpUKdMfryPHxqxdPBj319ky.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.4/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "97%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "87/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "xab1hk4v4hHWoyPvNJVE",
     "title": "O Profissional / Léon: The Professional",
     "genre": "Crime, Drama, Ação",
     "year": "1994",
@@ -4472,7 +8187,7 @@
     "watched": false
   },
   {
-    "_id": "xc0BB70ay3bWoIaj9wZK",
+    "_firebaseId": "xc0BB70ay3bWoIaj9wZK",
     "title": "Era Uma Vez em… Hollywood / Once Upon a Time... in Hollywood",
     "genre": "Comédia, Drama, Thriller",
     "year": "2019",
@@ -4499,7 +8214,7 @@
     "watched": false
   },
   {
-    "_id": "yT9uQMzRBHB2aqXv64KL",
+    "_firebaseId": "yT9uQMzRBHB2aqXv64KL",
     "title": "Velozes e Furiosos: Turbo-Charged Prelude / The Turbo Charged Prelude for 2 Fast 2 Furious",
     "genre": "Ação",
     "year": "2003",
@@ -4518,7 +8233,65 @@
     "watched": false
   },
   {
-    "_id": "zmRaNJswWTfFZNpyZQM9",
+    "_firebaseId": "ycu7fgJrboCI0wuYRPhE",
+    "title": "O Enigma de Outro Mundo / The Thing",
+    "genre": "Terror, Mistério, Ficção científica",
+    "year": "1982",
+    "duration": "109",
+    "imdbRating": "8.2",
+    "metascore": "57",
+    "synopsis": "Na remota Antártida, um grupo de cientistas americanos é perturbado em sua base quando, de um helicóptero, alguém atira em um cão do acampamento. À medida que socorrem o cão baleado, o bicho começa a atacar os cientistas e os outros cachorros e logo eles descobrem que o animal pode assumir a forma de suas vítimas. Isto significa que membros da equipe podem ser mortos e a cópia assumir o lugar deles. Com isso, um piloto e um médico precisam capturar a fera antes que seja tarde demais.",
+    "poster": "https://image.tmdb.org/t/p/w200/bazlgJAKWCBF7OllC3JtyJ2DV1n.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "8.2/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "85%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "57/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false,
+    "createdAt": "2026-03-01T02:45:01.606Z",
+    "updatedAt": "2026-03-01T02:45:01.606Z",
+    "userRatings": [],
+    "averageUserRating": 0
+  },
+  {
+    "_firebaseId": "z6pUf9y7wTRVeFEkNQWm",
+    "title": "De Repente 30 / 13 Going on 30",
+    "genre": "Comédia, Fantasia, Romance",
+    "year": "2004",
+    "duration": "98",
+    "imdbRating": "6.3",
+    "metascore": "57",
+    "synopsis": "Com a ajuda de um pó mágico, Jenna Rick, de 13 anos, se torna uma deslumbrante mulher de 30 anos da noite para o dia, com tudo que sempre quis, menos seu melhor amigo Matt. Agora, essa mulher madura precisa criar uma mágica própria para ajudar a garotinha dentro dela a recuperar o verdadeiro amor que deixou para trás.",
+    "poster": "https://image.tmdb.org/t/p/w200/wTIZLDE1tXAl8jTm8CuvjHDUwgi.jpg",
+    "ratings": [
+      {
+        "Source": "Internet Movie Database",
+        "Value": "6.3/10"
+      },
+      {
+        "Source": "Rotten Tomatoes",
+        "Value": "65%"
+      },
+      {
+        "Source": "Metacritic",
+        "Value": "57/100"
+      }
+    ],
+    "user": "shellyasmallman@gmail.com",
+    "watched": false
+  },
+  {
+    "_firebaseId": "zmRaNJswWTfFZNpyZQM9",
     "title": "As Aventuras de Paddington / Paddington",
     "genre": "Comédia, Aventura, Família",
     "year": "2014",
@@ -4545,7 +8318,7 @@
     "watched": false
   },
   {
-    "_id": "ztKnoCEivUmVrpvh2iPs",
+    "_firebaseId": "ztKnoCEivUmVrpvh2iPs",
     "title": "O Exterminador do Futuro: Gênesis / Terminator Genisys",
     "genre": "Ficção científica, Ação, Thriller, Aventura",
     "year": "2015",
@@ -4572,7 +8345,7 @@
     "watched": false
   },
   {
-    "_id": "zxOyCw676RV9GV63uHJJ",
+    "_firebaseId": "zxOyCw676RV9GV63uHJJ",
     "title": "Velozes & Furiosos 5: Operação Rio / Fast Five",
     "genre": "Ação, Thriller, Crime",
     "year": "2011",

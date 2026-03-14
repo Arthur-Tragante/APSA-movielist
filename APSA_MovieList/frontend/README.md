@@ -22,7 +22,6 @@ Acesse: http://localhost:5173
 
 Edite o arquivo `.env` com suas credenciais:
 
-- **Firebase**: Web SDK do console Firebase
 - **TMDB**: Bearer Token de themoviedb.org
 - **OMDB**: API Key de omdbapi.com
 
