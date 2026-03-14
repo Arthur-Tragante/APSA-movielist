@@ -3,6 +3,6 @@
  */
 
 export * from './api.constants';
-export * from './firebase.constants';
+export * from './app.constants';
 export * from './mensagens.constants';
 

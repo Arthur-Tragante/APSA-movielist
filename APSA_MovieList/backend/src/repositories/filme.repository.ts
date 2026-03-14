@@ -1,13 +1,9 @@
 import { FilmeModel } from '../models';
 import { Filme, CriarFilmeDTO, AtualizarFilmeDTO } from '../types';
 import { filmeMongoParaApp, filmeAppParaMongo, atualizacaoFilmeParaMongo } from '../utils/mappers.util';
-import { firestore } from '../config/firebase.config';
-import { env } from '../config/env.config';
-
-const COLECAO_FILMES = 'movies';
 
 /**
- * Repository para operações de filmes (MongoDB ou Firestore)
+ * Repository para operações de filmes (MongoDB)
  */
 class FilmeRepository {
 
@@ -15,48 +11,27 @@ class FilmeRepository {
    * Busca todos os filmes de um usuário
    */
   async buscarPorUsuario(emailUsuario: string): Promise<Filme[]> {
-    if (env.MONGODB_ENABLED) {
-      const filmes = await FilmeModel.find({ user: emailUsuario }).sort({ createdAt: -1 }).lean();
-      return filmes.map((filme) => 
-        filmeMongoParaApp({ id: filme._id.toString(), ...filme })
-      );
-    }
-
-    if (!firestore) return [];
-    const snapshot = await firestore.collection(COLECAO_FILMES)
-      .where('user', '==', emailUsuario)
-      .get();
-    return snapshot.docs.map(doc => filmeMongoParaApp({ id: doc.id, ...doc.data() }));
+    const filmes = await FilmeModel.find({ user: emailUsuario }).sort({ createdAt: -1 }).lean();
+    return filmes.map((filme) => 
+      filmeMongoParaApp({ id: filme._id.toString(), ...filme })
+    );
   }
 
   /**
    * Busca filme por ID
    */
   async buscarPorId(id: string): Promise<Filme | null> {
-    if (env.MONGODB_ENABLED) {
-      const filme = await FilmeModel.findById(id).lean();
-      if (!filme) return null;
-      return filmeMongoParaApp({ id: filme._id.toString(), ...filme });
-    }
-
-    if (!firestore) return null;
-    const doc = await firestore.collection(COLECAO_FILMES).doc(id).get();
-    if (!doc.exists) return null;
-    return filmeMongoParaApp({ id: doc.id, ...doc.data() });
+    const filme = await FilmeModel.findById(id).lean();
+    if (!filme) return null;
+    return filmeMongoParaApp({ id: filme._id.toString(), ...filme });
   }
 
   /**
    * Busca todos os filmes do sistema
    */
   async buscarTodos(): Promise<Filme[]> {
-    if (env.MONGODB_ENABLED) {
-      const filmes = await FilmeModel.find().sort({ createdAt: -1 }).lean();
-      return filmes.map((filme) => filmeMongoParaApp({ id: filme._id.toString(), ...filme }));
-    }
-
-    if (!firestore) return [];
-    const snapshot = await firestore.collection(COLECAO_FILMES).get();
-    return snapshot.docs.map(doc => filmeMongoParaApp({ id: doc.id, ...doc.data() }));
+    const filmes = await FilmeModel.find().sort({ createdAt: -1 }).lean();
+    return filmes.map((filme) => filmeMongoParaApp({ id: filme._id.toString(), ...filme }));
   }
 
   /**
@@ -70,21 +45,7 @@ class FilmeRepository {
       usuario: emailUsuario,
     });
 
-    if (env.MONGODB_ENABLED) {
-      const novoFilme = new FilmeModel({
-        ...filmeMongo,
-        user: emailUsuario,
-        createdAt: agora,
-        updatedAt: agora,
-        userRatings: [],
-        averageUserRating: 0,
-      });
-      await novoFilme.save();
-      return novoFilme._id.toString();
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    const docRef = await firestore.collection(COLECAO_FILMES).add({
+    const novoFilme = new FilmeModel({
       ...filmeMongo,
       user: emailUsuario,
       createdAt: agora,
@@ -92,7 +53,8 @@ class FilmeRepository {
       userRatings: [],
       averageUserRating: 0,
     });
-    return docRef.id;
+    await novoFilme.save();
+    return novoFilme._id.toString();
   }
 
   /**
@@ -101,27 +63,14 @@ class FilmeRepository {
   async atualizar(id: string, dadosFilme: AtualizarFilmeDTO): Promise<void> {
     const agora = new Date().toISOString();
     const dadosMongo = atualizacaoFilmeParaMongo(dadosFilme);
-
-    if (env.MONGODB_ENABLED) {
-      await FilmeModel.findByIdAndUpdate(id, { ...dadosMongo, updatedAt: agora });
-      return;
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    await firestore.collection(COLECAO_FILMES).doc(id).update({ ...dadosMongo, updatedAt: agora });
+    await FilmeModel.findByIdAndUpdate(id, { ...dadosMongo, updatedAt: agora });
   }
 
   /**
    * Deleta um filme
    */
   async deletar(id: string): Promise<void> {
-    if (env.MONGODB_ENABLED) {
-      await FilmeModel.findByIdAndDelete(id);
-      return;
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    await firestore.collection(COLECAO_FILMES).doc(id).delete();
+    await FilmeModel.findByIdAndDelete(id);
   }
 
   /**
@@ -171,17 +120,7 @@ class FilmeRepository {
       comment: av.comentario || '',
     }));
 
-    if (env.MONGODB_ENABLED) {
-      await FilmeModel.findByIdAndUpdate(idFilme, {
-        userRatings,
-        averageUserRating: media,
-        updatedAt: new Date().toISOString(),
-      });
-      return;
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    await firestore.collection(COLECAO_FILMES).doc(idFilme).update({
+    await FilmeModel.findByIdAndUpdate(idFilme, {
       userRatings,
       averageUserRating: media,
       updatedAt: new Date().toISOString(),
@@ -215,17 +154,7 @@ class FilmeRepository {
       comment: av.comentario || '',
     }));
 
-    if (env.MONGODB_ENABLED) {
-      await FilmeModel.findByIdAndUpdate(idFilme, {
-        userRatings,
-        averageUserRating: media,
-        updatedAt: new Date().toISOString(),
-      });
-      return;
-    }
-
-    if (!firestore) throw new Error('Firestore não disponível');
-    await firestore.collection(COLECAO_FILMES).doc(idFilme).update({
+    await FilmeModel.findByIdAndUpdate(idFilme, {
       userRatings,
       averageUserRating: media,
       updatedAt: new Date().toISOString(),

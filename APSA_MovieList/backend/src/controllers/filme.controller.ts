@@ -11,7 +11,7 @@ class FilmeController {
    * Lista todos os filmes do sistema
    * GET /api/filmes
    */
-  async listar(req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
+  async listar(_req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
     try {
       // Busca TODOS os filmes, não apenas do usuário logado
       const filmes = await filmeService.buscarTodos();

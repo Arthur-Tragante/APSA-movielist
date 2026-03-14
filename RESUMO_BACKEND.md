@@ -1,5 +1,7 @@
 # 📊 Resumo Executivo - Backend Our Horror Story
 
+> ⚠️ **NOTA**: Este documento foi criado quando o sistema usava Firebase. O sistema agora usa MongoDB + JWT próprio. Consulte [APSA_MovieList/DEPLOY_COMPLETO.md](APSA_MovieList/DEPLOY_COMPLETO.md) para arquitetura atual.
+
 ## ✅ O Que Foi Criado
 
 Um **backend completo, profissional e pronto para produção** para o gerenciador de filmes Our Horror Story.
@@ -9,7 +11,7 @@ Um **backend completo, profissional e pronto para produção** para o gerenciado
 ## 🎯 Funcionalidades Implementadas
 
 ### 1. Autenticação e Segurança ✅
-- ✅ Validação de tokens JWT do Firebase Auth
+- ✅ Validação de tokens JWT
 - ✅ Middleware de autenticação em todas as rotas
 - ✅ Headers de segurança com Helmet
 - ✅ CORS configurável

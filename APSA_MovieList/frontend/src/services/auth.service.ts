@@ -50,6 +50,15 @@ class AuthService {
   }
 
   /**
+   * Solicita recuperação de senha (placeholder - não implementado no backend)
+   */
+  async recuperarSenha(email: string): Promise<void> {
+    // TODO: Implementar endpoint de recuperação de senha no backend
+    console.log('Solicitação de recuperação de senha para:', email);
+    throw new Error('Funcionalidade de recuperação de senha não disponível no momento');
+  }
+
+  /**
    * Realiza logout
    */
   async sair(): Promise<void> {

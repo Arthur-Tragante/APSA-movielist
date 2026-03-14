@@ -1,5 +1,7 @@
 # 🚀 Guia de Deploy - Moicanos Backend
 
+> ⚠️ **NOTA**: Este documento foi criado quando o sistema usava Firebase. O sistema agora usa MongoDB. Consulte [DEPLOY_COMPLETO.md](../DEPLOY_COMPLETO.md) para instruções atualizadas de deploy.
+
 Instruções detalhadas para deploy em diferentes plataformas.
 
 ---

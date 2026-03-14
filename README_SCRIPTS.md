@@ -1,8 +1,10 @@
 # 🛠️ Scripts de Manutenção
 
+> ⚠️ **NOTA**: Este documento foi criado quando o sistema usava Firebase. O sistema agora usa MongoDB.
+
 ## 📷 Adicionar Capas aos Filmes Existentes
 
-Este script busca todos os filmes na collection `movies` do Firestore e adiciona capas (posters) automaticamente buscando no TMDB.
+Este script busca todos os filmes na collection `movies` do MongoDB e adiciona capas (posters) automaticamente buscando no TMDB.
 
 ### Como Usar:
 
@@ -13,11 +15,11 @@ npm run script:capas
 
 ### O que o script faz:
 
-1. ✅ Lista todos os filmes no Firestore
+1. ✅ Lista todos os filmes no MongoDB
 2. 🔍 Para cada filme **sem capa**:
    - Busca no TMDB pelo título
    - Pega a URL do poster (alta qualidade)
-   - Salva no campo `poster` do Firestore
+   - Salva no campo `poster` do MongoDB
 3. ⏱️ Aguarda 250ms entre cada requisição (evita rate limit)
 4. 📊 Mostra relatório final
 
@@ -34,12 +36,12 @@ npm run script:capas
 🎬 [2/25] Annabelle / Annabelle
    🔍 Buscando: "Annabelle" (2014)
    ✅ Capa encontrada: https://image.tmdb.org/t/p/w500/...
-   💾 Poster salvo no Firestore
+   💾 Poster salvo no MongoDB
 
 🎬 [3/25] O Exorcista / The Exorcist
    🔍 Buscando: "O Exorcista" (1973)
    ✅ Capa encontrada: https://image.tmdb.org/t/p/w500/...
-   💾 Poster salvo no Firestore
+   💾 Poster salvo no MongoDB
 
 ...
 

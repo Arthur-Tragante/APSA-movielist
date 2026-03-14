@@ -5,7 +5,7 @@ Sistema completo de gerenciamento de filmes com avaliações de usuários e inte
 ## 📋 Sobre o Projeto
 
 Aplicação full-stack para cadastro, listagem e avaliação de filmes, com:
-- 🔐 Autenticação via Firebase
+- 🔐 Autenticação via JWT + MongoDB
 - 🎥 Busca automática de filmes (TMDB)
 - ⭐ Sistema de avaliação (0-10 com meio ponto)
 - 📊 Ratings externos (IMDb, Rotten Tomatoes, Metacritic)
@@ -42,14 +42,14 @@ APSA_MovieList/
 ### Frontend
 - **React 18** + **TypeScript**
 - **Vite** (Build tool)
-- **Firebase** (Auth + Firestore)
 - **React Router** (Navegação)
 - **Axios** (HTTP client)
 
 ### Backend
 - **Node.js** + **Express**
 - **TypeScript**
-- **Firebase Admin SDK** (Firestore)
+- **MongoDB** + **Mongoose** (Database)
+- **JWT** (Autenticação)
 - **Axios** (APIs externas)
 - **Redis** (Cache - opcional)
 - **Joi** (Validação)
@@ -64,8 +64,8 @@ APSA_MovieList/
 ### 1. Pré-requisitos
 
 - Node.js 18+
+- MongoDB 7+
 - npm ou yarn
-- Conta Firebase
 - Chaves de API (TMDB e OMDB)
 
 ### 2. Clonar o repositório
@@ -89,10 +89,12 @@ Crie o arquivo `.env`:
 PORT=3001
 NODE_ENV=development
 
-# Firebase Admin SDK
-FIREBASE_PROJECT_ID=seu-project-id
-FIREBASE_CLIENT_EMAIL=seu-client-email
-FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+# MongoDB
+MONGODB_ENABLED=true
+MONGODB_URI=mongodb://localhost:27017/apsa-movielist
+
+# JWT
+JWT_SECRET=sua-chave-secreta-aqui
 
 # APIs Externas
 TMDB_API_KEY=seu_bearer_token_tmdb
@@ -105,8 +107,6 @@ REDIS_ENABLED=false
 CORS_ORIGIN=http://localhost:5173
 ```
 
-**📖 Como obter as chaves:** Veja `COMO_OBTER_CHAVES_API.md`
-
 ### 4. Configurar Frontend
 
 ```bash
@@ -117,14 +117,6 @@ npm install
 Crie o arquivo `.env`:
 
 ```env
-# Firebase Web SDK
-VITE_FIREBASE_API_KEY=sua-api-key
-VITE_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=seu-project-id
-VITE_FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=123456789
-VITE_FIREBASE_APP_ID=1:123456789:web:abc123
-
 # Backend API
 VITE_API_URL=http://localhost:3001/api
 ```
@@ -174,7 +166,7 @@ Aplicação rodando em: `http://localhost:5173`
 ## 🔒 Segurança
 
 - ✅ Chaves de API no backend (não expostas no frontend)
-- ✅ Autenticação JWT (Firebase)
+- ✅ Autenticação JWT
 - ✅ Rate limiting
 - ✅ CORS configurado
 - ✅ Helmet (security headers)
