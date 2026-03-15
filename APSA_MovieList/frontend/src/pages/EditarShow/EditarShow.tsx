@@ -41,6 +41,7 @@ const EditarShow: React.FC = () => {
   const [notasEpisodios, setNotasEpisodios] = useState<Record<string, number>>({});
   const [comentariosEpisodios, setComentariosEpisodios] = useState<Record<string, string>>({});
   const [salvandoEpisodio, setSalvandoEpisodio] = useState<string | null>(null);
+  const [vinculandoTmdb, setVinculandoTmdb] = useState(false);
 
   const checkboxLockRef = useRef(false);
   const comentarioCarregadoRef = useRef(false);
@@ -222,6 +223,43 @@ const EditarShow: React.FC = () => {
     const episodio = temporada.episodios.find(e => e.numero === numEpisodio);
     if (!episodio) return [];
     return (episodio.avaliacoesEpisodio || []).filter(av => av.email !== usuario?.email);
+  };
+
+  const handleVincularTmdb = async () => {
+    if (!id || !show) return;
+    setVinculandoTmdb(true);
+    try {
+      // Extract first part of title (before " / ")
+      const tituloParaBusca = show.titulo.split(' / ')[0].trim();
+      const resultados = await apiExternaService.buscarSeriesPorTitulo(tituloParaBusca);
+
+      if (resultados.length > 0) {
+        const tmdbId = Number(resultados[0].id);
+        await showService.atualizar(id, { idTmdb: tmdbId } as any);
+
+        // Refresh show data
+        const showAtualizado = await showService.buscarPorId(id);
+        if (showAtualizado) {
+          setShow(showAtualizado);
+        }
+
+        setMensagemModal('TMDB vinculado com sucesso! Episódios disponíveis.');
+        setTipoModal('sucesso');
+        setNavegarAoFechar(false);
+        setExibirModal(true);
+      } else {
+        setMensagemModal('Série não encontrada no TMDB.');
+        setTipoModal('erro');
+        setExibirModal(true);
+      }
+    } catch (error: any) {
+      console.error('Erro ao vincular TMDB:', error);
+      setMensagemModal(`Erro ao vincular TMDB: ${error.message}`);
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setVinculandoTmdb(false);
+    }
   };
 
   const totalTemporadas = parseInt(temporadas) || 1;
@@ -642,7 +680,15 @@ const EditarShow: React.FC = () => {
 
         {!show.idTmdb && (
           <div className="secao-episodios-indisponivel">
-            <p>Para ver e avaliar episódios, a série precisa ter sido adicionada via busca TMDB.</p>
+            <p>Episódios não disponíveis. Vincule ao TMDB para carregar a lista de episódios.</p>
+            <button
+              type="button"
+              className="btn-vincular-tmdb"
+              onClick={handleVincularTmdb}
+              disabled={vinculandoTmdb}
+            >
+              {vinculandoTmdb ? 'Buscando...' : 'Vincular ao TMDB'}
+            </button>
           </div>
         )}
 

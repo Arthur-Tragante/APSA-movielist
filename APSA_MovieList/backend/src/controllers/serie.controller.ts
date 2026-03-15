@@ -52,6 +52,7 @@ class SerieController {
     try {
       const emailUsuario = req.usuario!.email;
       const dadosSerie: CriarSerieDTO = req.body;
+      console.log('[DEBUG] Criando série - idTmdb recebido:', dadosSerie.idTmdb, '| body.idTmdb:', req.body.idTmdb);
 
       const idSerie = await serieService.criar(emailUsuario, dadosSerie);
 
