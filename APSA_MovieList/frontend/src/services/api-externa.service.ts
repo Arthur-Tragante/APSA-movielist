@@ -174,6 +174,25 @@ class ApiExternaService {
       return null;
     }
   }
+  /**
+   * Busca episódios de uma temporada de série no TMDB (via backend)
+   */
+  async buscarEpisodiosTemporada(
+    idTmdb: number,
+    numeroTemporada: number,
+    idioma: string = 'pt-BR'
+  ): Promise<any> {
+    try {
+      const response = await apiClient.get(
+        `/buscar/serie/${idTmdb}/temporada/${numeroTemporada}`,
+        { params: { idioma } }
+      );
+      return response.data.dados || null;
+    } catch (error) {
+      console.error('Erro ao buscar episódios:', error);
+      return null;
+    }
+  }
 }
 
 export default new ApiExternaService();

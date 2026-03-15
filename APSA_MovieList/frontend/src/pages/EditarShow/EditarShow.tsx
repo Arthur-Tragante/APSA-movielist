@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Header, Modal, AvaliacaoEstrelas, Carregando } from '../../components';
 import { useAuth } from '../../hooks';
-import { showService } from '../../services';
+import { showService, apiExternaService } from '../../services';
 import { Show } from '../../types';
 import { MENSAGENS_ERRO } from '../../constants';
 import './EditarShow.css';
@@ -33,6 +33,15 @@ const EditarShow: React.FC = () => {
   const [mensagemModal, setMensagemModal] = useState('');
   const [tipoModal, setTipoModal] = useState<'sucesso' | 'erro' | 'informacao'>('informacao');
   
+  // Episode states
+  const [temporadaSelecionada, setTemporadaSelecionada] = useState(1);
+  const [episodiosTmdb, setEpisodiosTmdb] = useState<any[]>([]);
+  const [carregandoEpisodios, setCarregandoEpisodios] = useState(false);
+  const [episodiosCarregados, setEpisodiosCarregados] = useState<Record<number, any[]>>({});
+  const [notasEpisodios, setNotasEpisodios] = useState<Record<string, number>>({});
+  const [comentariosEpisodios, setComentariosEpisodios] = useState<Record<string, string>>({});
+  const [salvandoEpisodio, setSalvandoEpisodio] = useState<string | null>(null);
+
   const checkboxLockRef = useRef(false);
   const comentarioCarregadoRef = useRef(false);
   const dadosCarregadosRef = useRef(false);
@@ -97,6 +106,126 @@ const EditarShow: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  // Load episodes from TMDB when season tab changes
+  const carregarEpisodios = useCallback(async (numTemporada: number) => {
+    if (!show?.idTmdb) return;
+
+    // Check if already loaded
+    if (episodiosCarregados[numTemporada]) {
+      setEpisodiosTmdb(episodiosCarregados[numTemporada]);
+      return;
+    }
+
+    setCarregandoEpisodios(true);
+    try {
+      const resultado = await apiExternaService.buscarEpisodiosTemporada(
+        show.idTmdb,
+        numTemporada
+      );
+
+      if (resultado?.episodios) {
+        setEpisodiosTmdb(resultado.episodios);
+        setEpisodiosCarregados(prev => ({ ...prev, [numTemporada]: resultado.episodios }));
+
+        // Load existing ratings for these episodes
+        const temporadaExistente = show.temporadasEpisodios?.find(t => t.numero === numTemporada);
+        if (temporadaExistente && usuario) {
+          const novasNotas: Record<string, number> = {};
+          const novosComentarios: Record<string, string> = {};
+          temporadaExistente.episodios.forEach(ep => {
+            const avaliacao = ep.avaliacoesEpisodio?.find(
+              av => av.email === usuario.email
+            );
+            if (avaliacao) {
+              const chave = `${numTemporada}-${ep.numero}`;
+              novasNotas[chave] = avaliacao.nota;
+              novosComentarios[chave] = avaliacao.comentario || '';
+            }
+          });
+          setNotasEpisodios(prev => ({ ...prev, ...novasNotas }));
+          setComentariosEpisodios(prev => ({ ...prev, ...novosComentarios }));
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao carregar episódios:', error);
+    } finally {
+      setCarregandoEpisodios(false);
+    }
+  }, [show, episodiosCarregados, usuario]);
+
+  // Load episodes when season tab changes
+  useEffect(() => {
+    if (show?.idTmdb) {
+      carregarEpisodios(temporadaSelecionada);
+    }
+  }, [temporadaSelecionada, show?.idTmdb, carregarEpisodios]);
+
+  const handleSalvarAvaliacaoEpisodio = async (numTemporada: number, numEpisodio: number, ep: any) => {
+    if (!id || !usuario) return;
+
+    const chave = `${numTemporada}-${numEpisodio}`;
+    const nota = notasEpisodios[chave];
+    const comentario = comentariosEpisodios[chave] || '';
+
+    if (!nota || nota <= 0) {
+      setMensagemModal('Selecione uma nota para o episódio');
+      setTipoModal('erro');
+      setExibirModal(true);
+      return;
+    }
+
+    setSalvandoEpisodio(chave);
+    try {
+      // First ensure the episode exists in the backend
+      await showService.adicionarEpisodio(id, numTemporada, {
+        numero: numEpisodio,
+        titulo: ep.titulo,
+        sinopse: ep.sinopse || '',
+        dataLancamento: ep.dataLancamento || '',
+      });
+
+      // Then rate it
+      await showService.avaliarEpisodio(id, numTemporada, numEpisodio, nota, comentario);
+
+      // Refresh show data
+      const showAtualizado = await showService.buscarPorId(id);
+      if (showAtualizado) {
+        setShow(showAtualizado);
+      }
+
+      setMensagemModal(`Episódio ${numEpisodio} avaliado com sucesso!`);
+      setTipoModal('sucesso');
+      setNavegarAoFechar(false);
+      setExibirModal(true);
+    } catch (error: any) {
+      console.error('Erro ao avaliar episódio:', error);
+      setMensagemModal(`Erro ao avaliar episódio: ${error.message}`);
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setSalvandoEpisodio(null);
+    }
+  };
+
+  const obterNotaExistente = (numTemporada: number, numEpisodio: number): number | null => {
+    const temporada = show?.temporadasEpisodios?.find(t => t.numero === numTemporada);
+    if (!temporada) return null;
+    const episodio = temporada.episodios.find(e => e.numero === numEpisodio);
+    if (!episodio || !usuario) return null;
+    const avaliacao = episodio.avaliacoesEpisodio?.find(av => av.email === usuario.email);
+    return avaliacao?.nota ?? null;
+  };
+
+  const obterAvaliacoesOutros = (numTemporada: number, numEpisodio: number) => {
+    const temporada = show?.temporadasEpisodios?.find(t => t.numero === numTemporada);
+    if (!temporada) return [];
+    const episodio = temporada.episodios.find(e => e.numero === numEpisodio);
+    if (!episodio) return [];
+    return (episodio.avaliacoesEpisodio || []).filter(av => av.email !== usuario?.email);
+  };
+
+  const totalTemporadas = parseInt(temporadas) || 1;
+
   const validarCampos = (): boolean => {
     if (!titulo || !temporadas || !genero || !ano) {
       setMensagemModal(MENSAGENS_ERRO.CAMPOS_OBRIGATORIOS);
@@ -132,8 +261,9 @@ const EditarShow: React.FC = () => {
 
       setMensagemModal('Série atualizada com sucesso!');
       setTipoModal('sucesso');
+      setNavegarAoFechar(true);
       setExibirModal(true);
-      
+
       setTimeout(() => {
         navigate('/series');
       }, 1500);
@@ -167,9 +297,11 @@ const EditarShow: React.FC = () => {
     }, 300);
   };
 
+  const [navegarAoFechar, setNavegarAoFechar] = useState(false);
+
   const fecharModal = () => {
     setExibirModal(false);
-    if (tipoModal === 'sucesso') {
+    if (tipoModal === 'sucesso' && navegarAoFechar) {
       navigate('/series');
     }
   };
@@ -413,6 +545,106 @@ const EditarShow: React.FC = () => {
             </button>
           </div>
         </form>
+
+        {/* Seção de Episódios */}
+        {show.idTmdb && totalTemporadas > 0 && (
+          <div className="secao-episodios">
+            <h3>Episódios</h3>
+
+            <div className="temporadas-tabs">
+              {Array.from({ length: totalTemporadas }, (_, i) => i + 1).map(num => (
+                <button
+                  key={num}
+                  type="button"
+                  className={`tab-temporada ${temporadaSelecionada === num ? 'ativa' : ''}`}
+                  onClick={() => setTemporadaSelecionada(num)}
+                >
+                  T{num}
+                </button>
+              ))}
+            </div>
+
+            {carregandoEpisodios ? (
+              <div className="episodios-carregando">Carregando episódios...</div>
+            ) : episodiosTmdb.length > 0 ? (
+              <div className="lista-episodios">
+                {episodiosTmdb.map((ep) => {
+                  const chave = `${temporadaSelecionada}-${ep.numero}`;
+                  const notaExistente = obterNotaExistente(temporadaSelecionada, ep.numero);
+                  const avaliacoesOutros = obterAvaliacoesOutros(temporadaSelecionada, ep.numero);
+                  const notaAtual = notasEpisodios[chave] ?? notaExistente ?? 0;
+
+                  return (
+                    <div key={ep.numero} className="episodio-card">
+                      <div className="episodio-header">
+                        <div className="episodio-info">
+                          <span className="episodio-numero">E{ep.numero}</span>
+                          <span className="episodio-titulo">{ep.titulo}</span>
+                          {ep.dataLancamento && (
+                            <span className="episodio-data">{ep.dataLancamento}</span>
+                          )}
+                        </div>
+                        {ep.duracao && (
+                          <span className="episodio-duracao">{ep.duracao} min</span>
+                        )}
+                      </div>
+
+                      {ep.sinopse && (
+                        <p className="episodio-sinopse">{ep.sinopse}</p>
+                      )}
+
+                      <div className="episodio-avaliacao">
+                        <div className="episodio-nota-container">
+                          <AvaliacaoEstrelas
+                            nota={notaAtual}
+                            aoMudarNota={(nota) => {
+                              setNotasEpisodios(prev => ({ ...prev, [chave]: nota }));
+                            }}
+                          />
+                          <input
+                            type="text"
+                            className="episodio-comentario-input"
+                            placeholder="Comentário..."
+                            value={comentariosEpisodios[chave] || ''}
+                            onChange={(e) => {
+                              setComentariosEpisodios(prev => ({ ...prev, [chave]: e.target.value }));
+                            }}
+                          />
+                          <button
+                            type="button"
+                            className="btn-avaliar-episodio"
+                            onClick={() => handleSalvarAvaliacaoEpisodio(temporadaSelecionada, ep.numero, ep)}
+                            disabled={salvandoEpisodio === chave}
+                          >
+                            {salvandoEpisodio === chave ? '...' : notaExistente ? 'Atualizar' : 'Avaliar'}
+                          </button>
+                        </div>
+
+                        {avaliacoesOutros.length > 0 && (
+                          <div className="episodio-avaliacoes-outros">
+                            {avaliacoesOutros.map((av, idx) => (
+                              <span key={idx} className="episodio-avaliacao-badge" title={av.comentario || ''}>
+                                {av.usuario || av.email.split('@')[0]}: {av.nota}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="episodios-vazio">Nenhum episódio encontrado para esta temporada.</p>
+            )}
+          </div>
+        )}
+
+        {!show.idTmdb && (
+          <div className="secao-episodios-indisponivel">
+            <p>Para ver e avaliar episódios, a série precisa ter sido adicionada via busca TMDB.</p>
+          </div>
+        )}
 
         {show.avaliacoesUsuarios && show.avaliacoesUsuarios.length > 0 && (
           <div className="secao-avaliacoes-outros">

@@ -15,6 +15,7 @@ export const criar = async (show: ShowCadastro): Promise<string> => {
     const response = await apiClient.post('/series', {
       titulo: show.titulo,
       tituloOriginal: show.titulo,
+      idTmdb: show.idTmdb,
       ano: show.ano,
       temporadas: show.temporadas,
       genero: show.genero,

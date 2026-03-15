@@ -41,6 +41,7 @@ export interface Serie {
   id: string;
   titulo: string;
   tituloOriginal: string;
+  idTmdb?: number;
   ano: string;
   temporadas: string;
   genero: string;
@@ -62,6 +63,7 @@ export interface Serie {
 export interface CriarSerieDTO {
   titulo: string;
   tituloOriginal?: string;
+  idTmdb?: number;
   ano: string;
   temporadas: string;
   genero: string;
@@ -78,6 +80,7 @@ export interface CriarSerieDTO {
 export interface AtualizarSerieDTO {
   titulo?: string;
   tituloOriginal?: string;
+  idTmdb?: number;
   ano?: string;
   temporadas?: string;
   genero?: string;

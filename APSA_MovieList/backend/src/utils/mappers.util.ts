@@ -121,6 +121,7 @@ export const serieMongoParaApp = (doc: any): any => {
     id: doc.id,
     titulo: doc.title || '',
     tituloOriginal: doc.originalTitle || '',
+    idTmdb: doc.tmdbId || null,
     genero: doc.genre || '',
     ano: doc.year || '',
     temporadas: doc.seasons || '',
@@ -170,6 +171,7 @@ export const serieAppParaMongo = (serie: any): any => {
   const mongoData: any = {
     title: serie.titulo,
     originalTitle: serie.tituloOriginal || '',
+    tmdbId: serie.idTmdb || null,
     genre: serie.genero,
     year: serie.ano,
     seasons: serie.temporadas,
@@ -222,6 +224,7 @@ export const atualizacaoSerieParaMongo = (dados: any): any => {
 
   if (dados.titulo !== undefined) mongoData.title = dados.titulo;
   if (dados.tituloOriginal !== undefined) mongoData.originalTitle = dados.tituloOriginal;
+  if (dados.idTmdb !== undefined) mongoData.tmdbId = dados.idTmdb;
   if (dados.genero !== undefined) mongoData.genre = dados.genero;
   if (dados.ano !== undefined) mongoData.year = dados.ano;
   if (dados.temporadas !== undefined) mongoData.seasons = dados.temporadas;

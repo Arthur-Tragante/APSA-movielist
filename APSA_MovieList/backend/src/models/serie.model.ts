@@ -26,6 +26,7 @@ interface SeasonEpisode {
 export interface ISerie extends Document {
   title: string;
   originalTitle?: string;
+  tmdbId?: number;
   genre: string;
   year: string;
   seasons: string;
@@ -49,6 +50,7 @@ export interface ISerie extends Document {
 const SerieSchema = new Schema<ISerie>({
   title: { type: String, required: true },
   originalTitle: { type: String },
+  tmdbId: { type: Number },
   genre: { type: String, required: true },
   year: { type: String, required: true },
   seasons: { type: String, required: true },

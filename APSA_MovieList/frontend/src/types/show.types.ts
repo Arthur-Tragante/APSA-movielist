@@ -40,6 +40,7 @@ export interface Temporada {
 export interface Show {
   id: string;
   titulo: string;
+  idTmdb?: number;
   genero: string;
   ano: string;
   temporadas: string;
@@ -61,6 +62,7 @@ export interface Show {
 
 export interface ShowCadastro {
   titulo: string;
+  idTmdb?: number;
   genero: string;
   ano: string;
   temporadas: string;

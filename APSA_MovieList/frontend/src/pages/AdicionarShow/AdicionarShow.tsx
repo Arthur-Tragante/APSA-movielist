@@ -24,6 +24,7 @@ const AdicionarShow: React.FC = () => {
 
   const [tituloBusca, setTituloBusca] = useState('');
   const [titulo, setTitulo] = useState('');
+  const [idTmdb, setIdTmdb] = useState<number | undefined>(undefined);
   const [temporadas, setTemporadas] = useState('');
   const [genero, setGenero] = useState('');
   const [ano, setAno] = useState('');
@@ -54,6 +55,7 @@ const AdicionarShow: React.FC = () => {
       const info = await buscarInformacoesCompletas(serie.id);
 
       if (info) {
+        setIdTmdb(Number(serie.id));
         setTitulo(`${info.tituloPt} / ${info.tituloEn}`);
         setTemporadas(info.temporadas?.toString() || '');
         setGenero(info.generos);
@@ -98,6 +100,7 @@ const AdicionarShow: React.FC = () => {
     try {
       const idShow = await showService.criar({
         titulo,
+        idTmdb,
         temporadas,
         genero,
         ano,
