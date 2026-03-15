@@ -112,6 +112,7 @@ export const serieSchemas = {
       'string.max': 'Título deve ter no máximo 200 caracteres',
     }),
     tituloOriginal: Joi.string().allow('').trim().max(200),
+    idTmdb: Joi.number().integer().allow(null).optional(),
     ano: Joi.string().required(),
     temporadas: Joi.string().required().messages({
       'string.empty': 'Número de temporadas é obrigatório',
@@ -147,6 +148,7 @@ export const serieSchemas = {
   atualizar: Joi.object({
     titulo: Joi.string().trim().max(200),
     tituloOriginal: Joi.string().allow('').trim().max(200),
+    idTmdb: Joi.number().integer().allow(null).optional(),
     ano: Joi.string(),
     temporadas: Joi.string(),
     genero: Joi.string().trim().max(200),
