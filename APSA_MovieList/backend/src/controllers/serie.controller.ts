@@ -1,19 +1,19 @@
 import { Response, NextFunction } from 'express';
 import { serieService } from '../services';
 import { RequisicaoAutenticada, CriarSerieDTO, AtualizarSerieDTO, AvaliarSerieDTO, Episodio, AvaliarEpisodioDTO } from '../types';
+import { MENSAGENS_SUCESSO } from '../constants/mensagens.constants';
 
 /**
  * Controller para operações de séries
  */
 class SerieController {
   /**
-   * Lista todas as séries do usuário
+   * Lista todas as séries do sistema
    * GET /api/series
    */
-  async listar(req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
+  async listar(_req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
     try {
-      const emailUsuario = req.usuario!.email;
-      const series = await serieService.buscarSeriesUsuario(emailUsuario);
+      const series = await serieService.buscarTodas();
 
       res.json({
         sucesso: true,
@@ -57,7 +57,7 @@ class SerieController {
 
       res.status(201).json({
         sucesso: true,
-        mensagem: 'Série criada com sucesso',
+        mensagem: MENSAGENS_SUCESSO.SERIE_CRIADA,
         dados: { id: idSerie },
       });
     } catch (erro) {
@@ -79,7 +79,7 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Série atualizada com sucesso',
+        mensagem: MENSAGENS_SUCESSO.SERIE_ATUALIZADA,
       });
     } catch (erro) {
       next(erro);
@@ -99,7 +99,7 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Série deletada com sucesso',
+        mensagem: MENSAGENS_SUCESSO.SERIE_DELETADA,
       });
     } catch (erro) {
       next(erro);
@@ -114,15 +114,8 @@ class SerieController {
     try {
       const { id } = req.params;
       const emailUsuario = req.usuario!.email;
-      const nomeUsuario = req.usuario!.nome || '';
+      const nomeUsuario = req.usuario!.nome || emailUsuario.split('@')[0];
       const { nota, comentario }: AvaliarSerieDTO = req.body;
-
-      if (!nota || nota < 0 || nota > 10) {
-        return res.status(400).json({
-          sucesso: false,
-          erro: 'Nota deve estar entre 0 e 10',
-        });
-      }
 
       await serieService.atualizarAvaliacaoUsuario(
         id,
@@ -134,7 +127,7 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Avaliação registrada com sucesso',
+        mensagem: MENSAGENS_SUCESSO.SERIE_AVALIACAO_SALVA,
       });
     } catch (erro) {
       next(erro);
@@ -154,7 +147,7 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Avaliação removida com sucesso',
+        mensagem: MENSAGENS_SUCESSO.SERIE_AVALIACAO_REMOVIDA,
       });
     } catch (erro) {
       next(erro);
@@ -182,7 +175,7 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Episódio adicionado com sucesso',
+        mensagem: MENSAGENS_SUCESSO.EPISODIO_ADICIONADO,
       });
     } catch (erro) {
       next(erro);
@@ -211,7 +204,7 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Episódio removido com sucesso',
+        mensagem: MENSAGENS_SUCESSO.EPISODIO_REMOVIDO,
       });
     } catch (erro) {
       next(erro);
@@ -226,7 +219,7 @@ class SerieController {
     try {
       const { id, temporada, episodio } = req.params;
       const emailUsuario = req.usuario!.email;
-      const nomeUsuario = req.usuario!.nome || '';
+      const nomeUsuario = req.usuario!.nome || emailUsuario.split('@')[0];
       const { nota, comentario }: AvaliarEpisodioDTO = req.body;
       const numeroTemporada = parseInt(temporada, 10);
       const numeroEpisodio = parseInt(episodio, 10);
@@ -235,13 +228,6 @@ class SerieController {
         return res.status(400).json({
           sucesso: false,
           erro: 'numeroTemporada e numeroEpisodio devem ser números',
-        });
-      }
-
-      if (!nota || nota < 0 || nota > 10) {
-        return res.status(400).json({
-          sucesso: false,
-          erro: 'Nota deve estar entre 0 e 10',
         });
       }
 
@@ -257,7 +243,7 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Episódio avaliado com sucesso',
+        mensagem: MENSAGENS_SUCESSO.EPISODIO_AVALIADO,
       });
     } catch (erro) {
       next(erro);
@@ -286,9 +272,29 @@ class SerieController {
 
       res.json({
         sucesso: true,
-        mensagem: 'Avaliação do episódio removida com sucesso',
+        mensagem: MENSAGENS_SUCESSO.EPISODIO_AVALIACAO_REMOVIDA,
       });
     } catch (erro) {
+      next(erro);
+    }
+  }
+  /**
+   * POST /api/series/sortear
+   * Recebe lista de séries do frontend e realiza o sorteio
+   */
+  async sortearSerie(req: RequisicaoAutenticada, res: Response, next: NextFunction): Promise<any> {
+    try {
+      const { series, webhook } = req.body;
+      if (!series || !Array.isArray(series) || series.length === 0) {
+        throw new Error('Nenhuma série enviada para o sorteio.');
+      }
+      const resultado = await serieService.sortearSeriesEnviadas(series, webhook);
+      res.json({
+        sucesso: true,
+        mensagem: `Sorteio encerrado! O vencedor foi: ${resultado.vencedor}`,
+        dados: resultado
+      });
+    } catch (erro: any) {
       next(erro);
     }
   }

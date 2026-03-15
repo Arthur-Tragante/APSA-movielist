@@ -239,6 +239,66 @@ class ApiExternaService {
       return null;
     }
   }
+  /**
+   * Busca episódios de uma temporada de uma série no TMDB
+   */
+  async buscarEpisodiosTemporada(idTmdb: number, numeroTemporada: number, idioma: string = 'pt-BR'): Promise<any> {
+    const chaveCache = `${CACHE_PREFIXES.TMDB_SEASON}${idTmdb}_${numeroTemporada}_${idioma}`;
+
+    const cacheado = await cacheService.obter(chaveCache);
+    if (cacheado) {
+      return JSON.parse(cacheado);
+    }
+
+    try {
+      const resposta = await axios.get(
+        `${API_URLS.TMDB_SEASON_DETAILS}/${idTmdb}/season/${numeroTemporada}`,
+        {
+          params: {
+            language: idioma,
+          },
+          headers: {
+            Authorization: `Bearer ${env.TMDB_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const dados = resposta.data;
+
+      const episodios = (dados.episodes || []).map((ep: any) => ({
+        numero: ep.episode_number,
+        titulo: ep.name || `Episódio ${ep.episode_number}`,
+        sinopse: ep.overview || '',
+        dataLancamento: ep.air_date || '',
+        duracao: ep.runtime || null,
+        notaTmdb: ep.vote_average || 0,
+        votosTmdb: ep.vote_count || 0,
+        imagem: ep.still_path ? `${API_URLS.TMDB_IMAGE_BASE}${ep.still_path}` : null,
+      }));
+
+      const resultado = {
+        idTmdb: dados.id,
+        nomeTemporada: dados.name || `Temporada ${numeroTemporada}`,
+        sinopse: dados.overview || '',
+        poster: dados.poster_path ? `${API_URLS.TMDB_IMAGE_BASE}${dados.poster_path}` : null,
+        dataLancamento: dados.air_date || '',
+        numeroTemporada: dados.season_number,
+        episodios,
+      };
+
+      await cacheService.definir(
+        chaveCache,
+        JSON.stringify(resultado),
+        env.CACHE_TTL_TMDB
+      );
+
+      return resultado;
+    } catch (erro) {
+      console.error('Erro ao buscar episódios da temporada no TMDB:', erro);
+      return null;
+    }
+  }
 }
 
 export default new ApiExternaService();

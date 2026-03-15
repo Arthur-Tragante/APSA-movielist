@@ -22,6 +22,12 @@ router.get('/', serieController.listar);
 router.get('/:id', serieController.buscarPorId);
 
 /**
+ * POST /api/series/sortear
+ * Sorteia uma série até uma ser sorteada 5 vezes
+ */
+router.post('/sortear', serieController.sortearSerie);
+
+/**
  * POST /api/series
  * Cria uma nova série
  */

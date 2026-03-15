@@ -14,6 +14,13 @@ export const MENSAGENS_ERRO = {
   ERRO_DELETAR_FILME: 'Erro ao deletar filme',
   ERRO_BUSCAR_FILMES: 'Erro ao buscar filmes',
   CAMPOS_OBRIGATORIOS: 'Preencha todos os campos obrigatórios',
+
+  // Séries
+  SERIE_NAO_ENCONTRADA: 'Série não encontrada',
+  ERRO_CRIAR_SERIE: 'Erro ao criar série',
+  ERRO_ATUALIZAR_SERIE: 'Erro ao atualizar série',
+  ERRO_DELETAR_SERIE: 'Erro ao deletar série',
+  ERRO_BUSCAR_SERIES: 'Erro ao buscar séries',
   
   // APIs Externas
   ERRO_BUSCAR_TMDB: 'Erro ao buscar filme no TMDB',
@@ -40,5 +47,15 @@ export const MENSAGENS_SUCESSO = {
   FILME_ATUALIZADO: 'Filme atualizado com sucesso',
   FILME_DELETADO: 'Filme deletado com sucesso',
   AVALIACAO_SALVA: 'Avaliação salva com sucesso',
+
+  SERIE_CRIADA: 'Série criada com sucesso',
+  SERIE_ATUALIZADA: 'Série atualizada com sucesso',
+  SERIE_DELETADA: 'Série deletada com sucesso',
+  SERIE_AVALIACAO_SALVA: 'Avaliação da série salva com sucesso',
+  SERIE_AVALIACAO_REMOVIDA: 'Avaliação da série removida com sucesso',
+  EPISODIO_ADICIONADO: 'Episódio adicionado com sucesso',
+  EPISODIO_REMOVIDO: 'Episódio removido com sucesso',
+  EPISODIO_AVALIADO: 'Episódio avaliado com sucesso',
+  EPISODIO_AVALIACAO_REMOVIDA: 'Avaliação do episódio removida com sucesso',
 };
 

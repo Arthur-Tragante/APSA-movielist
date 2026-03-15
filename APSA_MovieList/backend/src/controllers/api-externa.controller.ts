@@ -154,6 +154,49 @@ class ApiExternaController {
       next(erro);
     }
   }
+  /**
+   * Busca episódios de uma temporada de série no TMDB
+   * GET /api/buscar/serie/:id/temporada/:temporada
+   */
+  async buscarEpisodiosTemporada(req: Request, res: Response, next: NextFunction): Promise<any> {
+    try {
+      const { id, temporada } = req.params;
+      const { idioma } = req.query;
+      const idTmdb = parseInt(id, 10);
+      const numeroTemporada = parseInt(temporada, 10);
+
+      if (isNaN(idTmdb)) {
+        return res.status(400).json({
+          sucesso: false,
+          erro: 'ID inválido',
+        });
+      }
+
+      if (isNaN(numeroTemporada) || numeroTemporada < 0) {
+        return res.status(400).json({
+          sucesso: false,
+          erro: 'Número da temporada inválido',
+        });
+      }
+
+      const idiomaString = typeof idioma === 'string' ? idioma : 'pt-BR';
+      const resultado = await apiExternaService.buscarEpisodiosTemporada(idTmdb, numeroTemporada, idiomaString);
+
+      if (!resultado) {
+        return res.status(404).json({
+          sucesso: false,
+          erro: 'Temporada não encontrada',
+        });
+      }
+
+      return res.json({
+        sucesso: true,
+        dados: resultado,
+      });
+    } catch (erro) {
+      next(erro);
+    }
+  }
 }
 
 export default new ApiExternaController();

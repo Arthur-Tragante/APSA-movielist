@@ -40,5 +40,11 @@ router.get('/serie', apiExternaController.buscarSerie);
  */
 router.get('/serie/detalhes/:id', apiExternaController.buscarDetalhesSerie);
 
+/**
+ * GET /api/buscar/serie/:id/temporada/:temporada
+ * Busca episódios de uma temporada de série no TMDB
+ */
+router.get('/serie/:id/temporada/:temporada', apiExternaController.buscarEpisodiosTemporada);
+
 export default router;
 
