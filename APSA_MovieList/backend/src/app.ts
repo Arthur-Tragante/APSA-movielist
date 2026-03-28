@@ -37,7 +37,6 @@ export const createApp = (): Application => {
       
       // Permite se estiver na lista ou for ngrok
       if (allowedOrigins.includes(origin) || origin.includes('ngrok')) {
-        console.log('✅ CORS permitido para:', origin);
         callback(null, true);
       } else {
         console.warn('⚠️ CORS bloqueado para:', origin);
@@ -46,7 +45,7 @@ export const createApp = (): Application => {
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning', 'X-Requested-With'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning', 'X-Requested-With', 'X-User-Email'],
     exposedHeaders: ['Content-Length', 'Content-Type'],
     preflightContinue: false,
     optionsSuccessStatus: 204
