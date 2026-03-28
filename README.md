@@ -1,39 +1,39 @@
-# 🎬 APSA MovieList - Our Horror Story
+# 🎬 APSA MovieList — Our Horror Story
 
-Backend e Frontend para o gerenciador de filmes Our Horror Story.
+Backend and Frontend for the Our Horror Story movie manager.
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- ✅ **Autenticação JWT** com MongoDB
-- ✅ **CRUD completo** de filmes e séries
-- ✅ **Sistema de avaliações** (0-10 com meias estrelas + comentários)
-- ✅ **Proxy seguro** para APIs externas (TMDB, OMDB)
-- ✅ **Cache inteligente** (Redis + fallback em memória)
-- ✅ **Rate limiting** por endpoint
-- ✅ **Validações server-side** com Joi
-- ✅ **Segurança** com Helmet e CORS
-- ✅ **Docker** com Nginx Proxy Manager
-- ✅ **Backup automático** para Google Drive
+- ✅ **JWT Authentication** with MongoDB
+- ✅ **Full CRUD** for movies and TV shows
+- ✅ **Rating system** (0–10 with half-star steps + comments)
+- ✅ **Secure proxy** for external APIs (TMDB, OMDB)
+- ✅ **Intelligent caching** (Redis + in-memory fallback)
+- ✅ **Rate limiting** per endpoint
+- ✅ **Server-side validation** with Joi
+- ✅ **Security** with Helmet and CORS
+- ✅ **Docker** with Nginx Proxy Manager
+- ✅ **Automatic backup** to Google Drive
 
 ---
 
-## 🚀 Deploy em Produção (Docker + Nginx Proxy Manager)
+## 🚀 Production Deploy (Docker + Nginx Proxy Manager)
 
-### Pré-requisitos
+### Prerequisites
 
 - Docker Desktop
-- MongoDB instalado localmente (ou via Docker)
-- Domínios configurados (ex: ourhorrorstory.com.br, home.ourhorrorstory.com.br)
-- Portas abertas no router: 8000 (HTTPS), 3001 (opcional)
+- MongoDB installed locally (or via Docker)
+- Configured domains (e.g. ourhorrorstory.com.br, home.ourhorrorstory.com.br)
+- Open router ports: 8000 (HTTPS), 3001 (optional)
 
-### Estrutura de Deploy
+### Deploy Structure
 
 ```
 C:\Users\Arthur\reverse-proxy\npm\
-├── docker-compose.yml      # Orquestra todos os containers
+├── docker-compose.yml      # Orchestrates all containers
 ├── npm/
-│   ├── data/               # Dados do Nginx Proxy Manager
-│   └── letsencrypt/        # Certificados SSL
+│   ├── data/               # Nginx Proxy Manager data
+│   └── letsencrypt/        # SSL certificates
 ```
 
 ### docker-compose.yml
@@ -47,9 +47,9 @@ services:
     container_name: nginx_proxy_manager
     restart: unless-stopped
     ports:
-      - "3000:80"     # HTTP interno
-      - "8000:443"    # HTTPS externo
-      - "8081:81"     # painel admin NPM
+      - "3000:80"     # Internal HTTP
+      - "8000:443"    # External HTTPS
+      - "8081:81"     # NPM admin panel
     volumes:
       - ./npm/data:/data
       - ./npm/letsencrypt:/etc/letsencrypt
@@ -79,10 +79,10 @@ services:
       - PORT=3001
       - MONGODB_ENABLED=true
       - MONGODB_URI=mongodb://host.docker.internal:27017/apsa-movielist
-      - JWT_SECRET=sua-chave-secreta-aqui
+      - JWT_SECRET=your-secret-key-here
       - CORS_ORIGIN=https://ourhorrorstory.com.br:8000
-      - TMDB_API_KEY=seu_token_tmdb
-      - OMDB_API_KEY=sua_chave_omdb
+      - TMDB_API_KEY=your_tmdb_token
+      - OMDB_API_KEY=your_omdb_key
       - REDIS_ENABLED=false
     networks:
       - proxy-net
@@ -92,16 +92,16 @@ networks:
     driver: bridge
 ```
 
-### Comandos Docker
+### Docker Commands
 
 ```bash
-# Ir para diretório do docker-compose
+# Navigate to docker-compose directory
 cd C:\Users\Arthur\reverse-proxy\npm
 
-# Subir todos os containers
+# Start all containers
 docker-compose up -d
 
-# Rebuild frontend (após mudanças)
+# Rebuild frontend (after changes)
 docker-compose build --no-cache apsa-frontend
 docker-compose up -d apsa-frontend
 
@@ -109,35 +109,35 @@ docker-compose up -d apsa-frontend
 docker-compose build --no-cache apsa-backend
 docker-compose up -d apsa-backend
 
-# Ver logs
+# View logs
 docker-compose logs -f apsa-backend
 docker-compose logs -f apsa-frontend
 
-# Reiniciar tudo
+# Restart everything
 docker-compose down && docker-compose up -d
 ```
 
-### Configurar Nginx Proxy Manager
+### Configure Nginx Proxy Manager
 
-1. Acesse http://localhost:8081
-2. Login: admin@example.com / changeme (primeira vez)
-3. Criar Proxy Hosts:
+1. Access http://localhost:8081
+2. Login: admin@example.com / changeme (first time)
+3. Create Proxy Hosts:
 
 **Frontend (ourhorrorstory.com.br:8000)**
 - Domain: ourhorrorstory.com.br
 - Forward Hostname: apsa_frontend
 - Forward Port: 80
-- SSL: Certificado customizado
+- SSL: Custom certificate
 
 **Backend (home.ourhorrorstory.com.br:8000)**
 - Domain: home.ourhorrorstory.com.br
 - Forward Hostname: apsa_backend
 - Forward Port: 3001
-- SSL: Certificado customizado
+- SSL: Custom certificate
 
-### URLs de Produção
+### Production URLs
 
-| Serviço | URL |
+| Service | URL |
 |---------|-----|
 | Frontend | https://ourhorrorstory.com.br:8000 |
 | Backend API | https://home.ourhorrorstory.com.br:8000/api |
@@ -147,94 +147,94 @@ docker-compose down && docker-compose up -d
 
 ## 💾 MongoDB
 
-### Instalação Local (Windows)
+### Local Installation (Windows)
 
 ```powershell
 winget install MongoDB.Server
 ```
 
-### Banco de Dados
+### Database
 
-- **Nome:** apsa-movielist
+- **Name:** apsa-movielist
 - **Collections:** movies, shows, users, sorteio_filmes, sorteio_resultados
 
-### Acessar via Docker
+### Access via Docker
 
-O backend usa `host.docker.internal:27017` para conectar ao MongoDB instalado no Windows.
+The backend uses `host.docker.internal:27017` to connect to MongoDB installed on Windows.
 
 ---
 
-## 📦 Backup Automático
+## 📦 Automatic Backup
 
-Sistema de backup automático configurado para Google Drive. Veja [BACKUP.md](BACKUP.md) para detalhes completos.
+Automatic backup system configured for Google Drive. See [BACKUP.md](BACKUP.md) for full details.
 
-### Resumo
+### Summary
 
-| Item | Valor |
+| Item | Value |
 |------|-------|
-| **Frequência** | Diária às 6h |
-| **Destino** | Google Drive → Backups/mongodb/ |
-| **Retenção** | 7 dias na nuvem, 3 locais |
+| **Frequency** | Daily at 6am |
+| **Destination** | Google Drive → Backups/mongodb/ |
+| **Retention** | 7 days in the cloud, 3 locally |
 
-### Comandos Rápidos
+### Quick Commands
 
 ```powershell
-# Backup manual
+# Manual backup
 powershell -ExecutionPolicy Bypass -File C:\Scripts\backup-mongodb-gdrive.ps1
 
-# Ver próximo backup
+# Check next scheduled backup
 (Get-ScheduledTaskInfo -TaskName "MongoDB Backup to Google Drive").NextRunTime
 
-# Ver logs
+# View logs
 Get-Content C:\Scripts\logs\backup-mongodb.log -Tail 20
 ```
 
 ---
 
-## 🏗️ Arquitetura
+## 🏗️ Architecture
 
 ```
 backend/
 ├── src/
-│   ├── config/           # Configurações (MongoDB, Redis, Env)
-│   ├── constants/        # Constantes da aplicação
-│   ├── types/            # Tipos TypeScript
-│   ├── repositories/     # Acesso ao MongoDB
-│   ├── services/         # Lógica de negócio
-│   ├── middlewares/      # Auth, validação, rate limit, errors
-│   ├── controllers/      # Controllers HTTP
-│   ├── routes/           # Definição de rotas
-│   ├── app.ts            # Configuração do Express
-│   └── server.ts         # Inicialização do servidor
+│   ├── config/           # Configuration (MongoDB, Redis, Env)
+│   ├── constants/        # Application constants
+│   ├── types/            # TypeScript types
+│   ├── repositories/     # MongoDB access layer
+│   ├── services/         # Business logic
+│   ├── middlewares/      # Auth, validation, rate limit, errors
+│   ├── controllers/      # HTTP controllers
+│   ├── routes/           # Route definitions
+│   ├── app.ts            # Express configuration
+│   └── server.ts         # Server initialization
 ├── Dockerfile
 ├── docker-compose.yml
 └── package.json
 ```
 
-### Padrões Implementados
+### Design Patterns
 
-- **Repository Pattern** - Abstração do MongoDB
-- **Service Layer** - Lógica de negócio separada
-- **Dependency Injection** - Inversão de controle
-- **Error Handling** - Tratamento centralizado de erros
-- **Validation Layer** - Validações com Joi
-- **Caching Strategy** - Redis com fallback
+- **Repository Pattern** — MongoDB abstraction
+- **Service Layer** — Separated business logic
+- **Dependency Injection** — Inversion of control
+- **Error Handling** — Centralized error handling
+- **Validation Layer** — Joi validations
+- **Caching Strategy** — Redis with in-memory fallback
 
 ---
 
-## 📋 Pré-requisitos
+## 📋 Prerequisites
 
 - Node.js 20+
-- MongoDB 7+ (local ou Docker)
-- Docker Desktop (para produção)
-- Chaves TMDB e OMDB
-- rclone (para backup automático)
+- MongoDB 7+ (local or Docker)
+- Docker Desktop (for production)
+- TMDB and OMDB API keys
+- rclone (for automatic backup)
 
 ---
 
-## 🛠️ Desenvolvimento Local
+## 🛠️ Local Development
 
-### 1. Instalar Dependências
+### 1. Install Dependencies
 
 ```bash
 # Backend
@@ -246,10 +246,10 @@ cd APSA_MovieList/frontend
 npm install
 ```
 
-### 2. Configurar Backend (.env)
+### 2. Configure Backend (.env)
 
 ```env
-# Servidor
+# Server
 PORT=3001
 NODE_ENV=development
 
@@ -258,33 +258,33 @@ MONGODB_ENABLED=true
 MONGODB_URI=mongodb://localhost:27017/apsa-movielist
 
 # JWT
-JWT_SECRET=sua-chave-secreta-desenvolvimento
+JWT_SECRET=your-development-secret-key
 
-# APIs Externas
-TMDB_API_KEY=seu_bearer_token_tmdb
-OMDB_API_KEY=sua_chave_omdb
+# External APIs
+TMDB_API_KEY=your_tmdb_bearer_token
+OMDB_API_KEY=your_omdb_key
 
-# Redis (opcional)
+# Redis (optional)
 REDIS_ENABLED=false
 
 # CORS
 CORS_ORIGIN=http://localhost:5173
 ```
 
-### 3. Configurar Frontend (.env)
+### 3. Configure Frontend (.env)
 
 ```env
 VITE_API_URL=http://localhost:3001/api
 ```
 
-### 4. Executar
+### 4. Run
 
 ```bash
-# Terminal 1 - Backend
+# Terminal 1 — Backend
 cd APSA_MovieList/backend
 npm run dev
 
-# Terminal 2 - Frontend
+# Terminal 2 — Frontend
 cd APSA_MovieList/frontend
 npm run dev
 ```
@@ -299,7 +299,7 @@ npm run dev
 GET /api/health
 ```
 
-**Resposta:**
+**Response:**
 ```json
 {
   "sucesso": true,
@@ -310,23 +310,23 @@ GET /api/health
 
 ---
 
-### Filmes
+### Movies
 
-#### Listar Filmes do Usuário
+#### List User Movies
 
 ```http
 GET /api/filmes
 Authorization: Bearer {jwt_token}
 ```
 
-**Resposta:**
+**Response:**
 ```json
 {
   "sucesso": true,
   "dados": [
     {
       "id": "abc123",
-      "titulo": "Interestelar",
+      "titulo": "Interstellar",
       "ano": "2014",
       "notaImdb": "8.7",
       "avaliacoesUsuarios": [...],
@@ -336,14 +336,14 @@ Authorization: Bearer {jwt_token}
 }
 ```
 
-#### Buscar Filme por ID
+#### Get Movie by ID
 
 ```http
 GET /api/filmes/:id
 Authorization: Bearer {jwt_token}
 ```
 
-#### Criar Filme
+#### Create Movie
 
 ```http
 POST /api/filmes
@@ -351,11 +351,11 @@ Authorization: Bearer {jwt_token}
 Content-Type: application/json
 
 {
-  "titulo": "Interestelar",
+  "titulo": "Interstellar",
   "tituloOriginal": "Interstellar",
   "ano": "2014",
   "duracao": "169 min",
-  "genero": "Ficção Científica, Drama",
+  "genero": "Science Fiction, Drama",
   "sinopse": "...",
   "poster": "https://...",
   "notaImdb": "8.7",
@@ -366,7 +366,7 @@ Content-Type: application/json
 }
 ```
 
-**Resposta:**
+**Response:**
 ```json
 {
   "sucesso": true,
@@ -377,7 +377,7 @@ Content-Type: application/json
 }
 ```
 
-#### Atualizar Filme
+#### Update Movie
 
 ```http
 PUT /api/filmes/:id
@@ -385,19 +385,19 @@ Authorization: Bearer {jwt_token}
 Content-Type: application/json
 
 {
-  "titulo": "Novo Título",
+  "titulo": "New Title",
   "assistido": true
 }
 ```
 
-#### Deletar Filme
+#### Delete Movie
 
 ```http
 DELETE /api/filmes/:id
 Authorization: Bearer {jwt_token}
 ```
 
-#### Avaliar Filme
+#### Rate Movie
 
 ```http
 POST /api/filmes/:id/avaliar
@@ -406,11 +406,11 @@ Content-Type: application/json
 
 {
   "nota": 8.5,
-  "comentario": "Filme incrível!"
+  "comentario": "Amazing movie!"
 }
 ```
 
-#### Remover Avaliação
+#### Remove Rating
 
 ```http
 DELETE /api/filmes/:id/avaliar
@@ -419,23 +419,23 @@ Authorization: Bearer {jwt_token}
 
 ---
 
-### APIs Externas (Proxy)
+### External APIs (Proxy)
 
-#### Buscar Filme no TMDB
+#### Search Movie on TMDB
 
 ```http
-GET /api/buscar/filme?titulo=interestelar
+GET /api/buscar/filme?titulo=interstellar
 Authorization: Bearer {jwt_token}
 ```
 
-**Resposta:**
+**Response:**
 ```json
 {
   "sucesso": true,
   "dados": [
     {
       "id": 157336,
-      "titulo": "Interestelar",
+      "titulo": "Interstellar",
       "tituloOriginal": "Interstellar",
       "ano": "2014",
       "sinopse": "...",
@@ -445,14 +445,14 @@ Authorization: Bearer {jwt_token}
 }
 ```
 
-#### Buscar Detalhes do Filme
+#### Get Movie Details
 
 ```http
 GET /api/buscar/detalhes/:tmdbId
 Authorization: Bearer {jwt_token}
 ```
 
-#### Buscar Ratings (OMDB)
+#### Get Ratings (OMDB)
 
 ```http
 GET /api/buscar/ratings/:imdbId
@@ -461,14 +461,20 @@ Authorization: Bearer {jwt_token}
 
 ---
 
-## 🔐 Autenticação
+## 🔐 Authentication
 
-Todas as rotas (exceto health check) requerem autenticação via Firebase JWT:
+All routes (except health check) require JWT authentication:
 
 ```javascript
-// Frontend
-const token = await firebase.auth().currentUser.getIdToken();
+// Login to get token
+const response = await fetch('http://localhost:3001/api/auth/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, password })
+});
+const { token } = await response.json();
 
+// Use token in requests
 fetch('http://localhost:3001/api/filmes', {
   headers: {
     'Authorization': `Bearer ${token}`,
@@ -479,68 +485,68 @@ fetch('http://localhost:3001/api/filmes', {
 
 ---
 
-## 🛡️ Segurança
+## 🛡️ Security
 
-### Implementado
+### Implemented
 
-- ✅ **Helmet** - Headers de segurança HTTP
-- ✅ **CORS** - Controle de origem cruzada
-- ✅ **Rate Limiting** - Proteção contra abuso
-- ✅ **JWT Validation** - Autenticação robusta
-- ✅ **Input Validation** - Validação com Joi
-- ✅ **Chaves Protegidas** - APIs externas via proxy
+- ✅ **Helmet** — HTTP security headers
+- ✅ **CORS** — Cross-origin request control
+- ✅ **Rate Limiting** — Abuse prevention
+- ✅ **JWT Validation** — Robust authentication
+- ✅ **Input Validation** — Joi schema validation
+- ✅ **Protected Keys** — External APIs accessed via proxy
 
 ### Rate Limits
 
-| Endpoint | Limite |
-|----------|--------|
+| Endpoint | Limit |
+|----------|-------|
 | Global | 100 req/15min |
-| APIs Externas | 20 req/min |
-| Criação de Recursos | 10 req/min |
+| External APIs | 20 req/min |
+| Resource Creation | 10 req/min |
 
 ---
 
 ## 💾 Cache
 
-### Redis (Recomendado)
+### Redis (Recommended)
 
 ```bash
-# Instalar Redis
+# Install Redis
 brew install redis  # macOS
 sudo apt install redis  # Ubuntu
 
-# Iniciar
+# Start
 redis-server
 ```
 
-### Fallback em Memória
+### In-Memory Fallback
 
-Se Redis não estiver disponível, o sistema usa cache em memória automaticamente.
+If Redis is unavailable, the system automatically falls back to in-memory cache.
 
 ### TTLs
 
-- **Busca TMDB**: 24 horas
-- **Ratings OMDB**: 24 horas
-- **Filmes do Usuário**: 5 minutos
-- **Filme Individual**: 5 minutos
+- **TMDB Search**: 24 hours
+- **OMDB Ratings**: 24 hours
+- **User Movies**: 5 minutes
+- **Single Movie**: 5 minutes
 
 ---
 
 ## 🐳 Docker
 
-### Desenvolvimento
+### Development
 
 ```bash
 docker-compose up
 ```
 
-### Produção
+### Production
 
 ```bash
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
-### Comandos Úteis
+### Useful Commands
 
 ```bash
 # Logs
@@ -558,7 +564,7 @@ docker-compose up --build
 
 ---
 
-## 🧪 Testes
+## 🧪 Tests
 
 ```bash
 # Unit tests
@@ -573,7 +579,7 @@ npm run test:watch
 
 ---
 
-## 📊 Monitoramento
+## 📊 Monitoring
 
 ### Health Check
 
@@ -584,7 +590,7 @@ curl http://localhost:3001/api/health
 ### Logs
 
 ```bash
-# Desenvolvimento
+# Development
 tail -f logs/combined.log
 
 # Docker
@@ -593,23 +599,22 @@ docker-compose logs -f backend
 
 ---
 
-## 🔄 Integração com Frontend
+## 🔄 Frontend Integration
 
-### Atualizar Frontend para Usar Backend
+### Update Frontend to Use Backend
 
-1. **Criar arquivo de configuração API:**
+1. **Create API config file:**
 
 ```typescript
 // frontend/src/config/api.config.ts
 export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 ```
 
-2. **Criar cliente HTTP:**
+2. **Create HTTP client:**
 
 ```typescript
 // frontend/src/services/api.client.ts
 import axios from 'axios';
-import { auth } from './firebase.config';
 import { API_URL } from '../config/api.config';
 
 const apiClient = axios.create({
@@ -619,11 +624,10 @@ const apiClient = axios.create({
   },
 });
 
-// Interceptor para adicionar token
-apiClient.interceptors.request.use(async (config) => {
-  const usuario = auth.currentUser;
-  if (usuario) {
-    const token = await usuario.getIdToken();
+// Interceptor to attach JWT token
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
@@ -632,7 +636,7 @@ apiClient.interceptors.request.use(async (config) => {
 export default apiClient;
 ```
 
-3. **Atualizar services do frontend:**
+3. **Update frontend services:**
 
 ```typescript
 // frontend/src/services/filme.service.ts
@@ -648,28 +652,28 @@ async criar(filme: CriarFilmeDTO): Promise<string> {
   return response.data.dados.id;
 }
 
-// ... outros métodos
+// ... other methods
 ```
 
 ---
 
 ## 📈 Performance
 
-### Otimizações Implementadas
+### Optimizations
 
-- ✅ **Cache Redis** - Reduz chamadas às APIs externas
-- ✅ **Compression** - Resposta gzip
-- ✅ **Connection Pooling** - MongoDB otimizado
-- ✅ **Rate Limiting** - Previne sobrecarga
+- ✅ **Redis Cache** — Reduces external API calls
+- ✅ **Compression** — Gzip responses
+- ✅ **Connection Pooling** — Optimized MongoDB connections
+- ✅ **Rate Limiting** — Prevents overload
 
 ### Benchmarks
 
-| Endpoint | Média | 95th Percentile |
-|----------|-------|-----------------|
+| Endpoint | Avg | 95th Percentile |
+|----------|-----|-----------------|
 | GET /filmes | 15ms | 30ms |
 | POST /filmes | 120ms | 200ms |
-| GET /buscar/filme (cache) | 5ms | 10ms |
-| GET /buscar/filme (sem cache) | 800ms | 1200ms |
+| GET /buscar/filme (cache hit) | 5ms | 10ms |
+| GET /buscar/filme (cache miss) | 800ms | 1200ms |
 
 ---
 
@@ -677,7 +681,7 @@ async criar(filme: CriarFilmeDTO): Promise<string> {
 
 ### VS Code
 
-Adicione em `.vscode/launch.json`:
+Add to `.vscode/launch.json`:
 
 ```json
 {
@@ -701,50 +705,49 @@ Adicione em `.vscode/launch.json`:
 
 ## 🚨 Troubleshooting
 
-### Erro: "Variáveis de ambiente faltando"
+### Error: "Missing environment variables"
 
-Verifique se o `.env` está configurado corretamente.
+Check that your `.env` file is correctly configured.
 
-### Erro: "Token inválido"
+### Error: "Invalid token"
 
-O token Firebase expirou. Faça login novamente no frontend.
+JWT token has expired. Log in again from the frontend.
 
-### Erro: "Redis connection failed"
+### Error: "Redis connection failed"
 
-Redis não está rodando. Inicie com `redis-server` ou desabilite com `REDIS_ENABLED=false`.
+Redis is not running. Start it with `redis-server` or disable with `REDIS_ENABLED=false`.
 
-### Erro: "API externa indisponível"
+### Error: "External API unavailable"
 
-Verifique suas chaves TMDB/OMDB no `.env`.
+Check your TMDB/OMDB keys in `.env`.
 
 ---
 
-## 📚 Stack Tecnológica
+## 📚 Tech Stack Summary
 
 - **Runtime:** Node.js 20
 - **Framework:** Express 4
-- **Linguagem:** TypeScript 5
-- **Banco:** Firebase MongoDB
-- **Autenticação:** Firebase Auth
+- **Language:** TypeScript 5
+- **Database:** MongoDB
+- **Authentication:** JWT
 - **Cache:** Redis 7
-- **Validação:** Joi
+- **Validation:** Joi
 - **Rate Limiting:** express-rate-limit
-- **Segurança:** Helmet + CORS
-- **APIs Externas:** TMDB + OMDB
+- **Security:** Helmet + CORS
+- **External APIs:** TMDB + OMDB
 
 ---
 
-## 📄 Licença
+## 📄 License
 
 ISC
 
 ---
 
-## 👥 Contato
+## 👥 Contact
 
-Para dúvidas ou sugestões, abra uma issue no repositório.
+For questions or suggestions, open an issue in the repository.
 
 ---
 
-**Backend profissional e pronto para produção!** 🚀
-
+**Production-ready backend!** 🚀

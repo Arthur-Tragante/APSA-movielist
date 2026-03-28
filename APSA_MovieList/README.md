@@ -1,18 +1,18 @@
 # 🎬 APSA MovieList
 
-Sistema completo de gerenciamento de filmes com avaliações de usuários e integração com APIs externas (TMDB e OMDB).
+A full-stack movie management system with user ratings and integration with external APIs (TMDB and OMDB).
 
-## 📋 Sobre o Projeto
+## 📋 About
 
-Aplicação full-stack para cadastro, listagem e avaliação de filmes, com:
-- 🔐 Autenticação via JWT + MongoDB
-- 🎥 Busca automática de filmes (TMDB)
-- ⭐ Sistema de avaliação (0-10 com meio ponto)
-- 📊 Ratings externos (IMDb, Rotten Tomatoes, Metacritic)
-- 💬 Comentários em avaliações
-- 👥 Visualização de avaliações de todos os usuários
+A full-stack application for registering, listing, and rating movies, with:
+- 🔐 Authentication via JWT + MongoDB
+- 🎥 Automatic movie search (TMDB)
+- ⭐ Rating system (0–10, half-point steps)
+- 📊 External ratings (IMDb, Rotten Tomatoes, Metacritic)
+- 💬 Comments on ratings
+- 👥 View ratings from all users
 
-## 🏗️ Arquitetura
+## 🏗️ Architecture
 
 ```
 APSA_MovieList/
@@ -37,55 +37,55 @@ APSA_MovieList/
 └── README.md
 ```
 
-## 🚀 Tecnologias
+## 🚀 Tech Stack
 
 ### Frontend
 - **React 18** + **TypeScript**
-- **Vite** (Build tool)
-- **React Router** (Navegação)
+- **Vite** (build tool)
+- **React Router** (navigation)
 - **Axios** (HTTP client)
 
 ### Backend
 - **Node.js** + **Express**
 - **TypeScript**
-- **MongoDB** + **Mongoose** (Database)
-- **JWT** (Autenticação)
-- **Axios** (APIs externas)
-- **Redis** (Cache - opcional)
-- **Joi** (Validação)
-- **Helmet** + **CORS** (Segurança)
+- **MongoDB** + **Mongoose** (database)
+- **JWT** (authentication)
+- **Axios** (external APIs)
+- **Redis** (cache — optional)
+- **Joi** (validation)
+- **Helmet** + **CORS** (security)
 
-### APIs Externas
-- **TMDB** - The Movie Database (busca e detalhes)
-- **OMDB** - Open Movie Database (ratings)
+### External APIs
+- **TMDB** — The Movie Database (search and details)
+- **OMDB** — Open Movie Database (ratings)
 
-## ⚙️ Configuração
+## ⚙️ Setup
 
-### 1. Pré-requisitos
+### 1. Prerequisites
 
 - Node.js 18+
 - MongoDB 7+
-- npm ou yarn
-- Chaves de API (TMDB e OMDB)
+- npm or yarn
+- API keys (TMDB and OMDB)
 
-### 2. Clonar o repositório
+### 2. Clone the repository
 
 ```bash
-git clone <url-do-repositorio>
+git clone <repository-url>
 cd APSA_MovieList
 ```
 
-### 3. Configurar Backend
+### 3. Configure the Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Crie o arquivo `.env`:
+Create a `.env` file:
 
 ```env
-# Servidor
+# Server
 PORT=3001
 NODE_ENV=development
 
@@ -94,34 +94,34 @@ MONGODB_ENABLED=true
 MONGODB_URI=mongodb://localhost:27017/apsa-movielist
 
 # JWT
-JWT_SECRET=sua-chave-secreta-aqui
+JWT_SECRET=your-secret-key-here
 
-# APIs Externas
-TMDB_API_KEY=seu_bearer_token_tmdb
-OMDB_API_KEY=sua_chave_omdb
+# External APIs
+TMDB_API_KEY=your_tmdb_bearer_token
+OMDB_API_KEY=your_omdb_key
 
-# Redis (opcional)
+# Redis (optional)
 REDIS_ENABLED=false
 
 # CORS
 CORS_ORIGIN=http://localhost:5173
 ```
 
-### 4. Configurar Frontend
+### 4. Configure the Frontend
 
 ```bash
 cd ../frontend
 npm install
 ```
 
-Crie o arquivo `.env`:
+Create a `.env` file:
 
 ```env
 # Backend API
 VITE_API_URL=http://localhost:3001/api
 ```
 
-## 🎯 Executar o Projeto
+## 🎯 Running the Project
 
 ### Backend
 
@@ -130,7 +130,7 @@ cd backend
 npm run dev
 ```
 
-Servidor rodando em: `http://localhost:3001`
+Server running at: `http://localhost:3001`
 
 ### Frontend
 
@@ -139,40 +139,40 @@ cd frontend
 npm run dev
 ```
 
-Aplicação rodando em: `http://localhost:5173`
+App running at: `http://localhost:5173`
 
-## 📱 Funcionalidades
+## 📱 Features
 
-### Autenticação
-- ✅ Login com email/senha
-- ✅ Cadastro de usuários
-- ✅ Recuperação de senha
+### Authentication
+- ✅ Login with email/password
+- ✅ User registration
+- ✅ Password recovery
 - ✅ Logout
 
-### Filmes
-- ✅ Busca automática (TMDB)
-- ✅ Cadastro com preenchimento automático
-- ✅ Edição de filmes
-- ✅ Exclusão de filmes
-- ✅ Listagem com filtros
+### Movies
+- ✅ Automatic search (TMDB)
+- ✅ Add movie with auto-fill from API
+- ✅ Edit movies
+- ✅ Delete movies
+- ✅ List with filters
 
-### Avaliações
-- ✅ Sistema de estrelas (0-10, meio ponto)
-- ✅ Comentários opcionais
-- ✅ Visualização de avaliações de todos os usuários
-- ✅ Média de avaliações
-- ✅ Ratings externos (IMDb, Rotten Tomatoes, Metacritic)
+### Ratings
+- ✅ Star system (0–10, half-point)
+- ✅ Optional comments
+- ✅ View all users' ratings
+- ✅ Average rating
+- ✅ External ratings (IMDb, Rotten Tomatoes, Metacritic)
 
-## 🔒 Segurança
+## 🔒 Security
 
-- ✅ Chaves de API no backend (não expostas no frontend)
-- ✅ Autenticação JWT
+- ✅ API keys kept on the backend (not exposed to the frontend)
+- ✅ JWT authentication
 - ✅ Rate limiting
-- ✅ CORS configurado
+- ✅ Configured CORS
 - ✅ Helmet (security headers)
-- ✅ Validação de dados (Joi)
+- ✅ Input validation (Joi)
 
-## 📦 Build para Produção
+## 📦 Production Build
 
 ### Backend
 
@@ -189,37 +189,24 @@ cd frontend
 npm run build
 ```
 
-Os arquivos de produção estarão em `frontend/dist/`
+Production files will be in `frontend/dist/`
 
-## 🐳 Docker (Opcional)
+## 🐳 Docker (Optional)
 
 ```bash
 cd backend
 docker-compose up -d
 ```
 
-## 📄 Documentação Adicional
+## 📄 Additional Documentation
 
-- `COMO_OBTER_CHAVES_API.md` - Como obter chaves TMDB/OMDB
-- `backend/README.md` - Documentação detalhada da API
-- `backend/DEPLOY.md` - Guia de deploy do backend
+- `backend/README.md` — detailed API documentation
+- `backend/DEPLOY.md` — backend deployment guide
 
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT.
-
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
 **Arthur Tragante**
 
 ---
 
-⭐ Se este projeto foi útil, deixe uma estrela!
+⭐ If this project was useful, leave a star!
