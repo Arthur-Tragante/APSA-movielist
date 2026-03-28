@@ -1,23 +1,17 @@
 /**
- * Mapeadores para converter entre o formato do código (PT) e Firestore (EN)
+ * Mapeadores para converter entre o formato do código (PT) e MongoDB (EN)
  */
 
 import { Filme, FilmeCadastro, Show, ShowCadastro } from '../types';
 
 /**
- * Converte filme do Firestore (EN) para o formato da aplicação (PT)
+ * Converte filme do MongoDB (EN) para o formato da aplicação (PT)
  */
 export const filmeFirestoreParaApp = (doc: any): Filme => {
-  console.log('🎬 Convertendo filme do Firestore:', doc.title || doc.id);
-  console.log('   userRatings:', doc.userRatings);
-  console.log('   averageUserRating:', doc.averageUserRating);
-  
   // Usa a média do banco se existir, senão calcula localmente
   const mediaCalculada = doc.averageUserRating !== undefined 
     ? doc.averageUserRating 
     : calcularMediaAvaliacoes(doc.userRatings || []);
-  
-  console.log('   Média final:', mediaCalculada);
   
   return {
     id: doc.id,
@@ -47,7 +41,7 @@ export const filmeFirestoreParaApp = (doc: any): Filme => {
 };
 
 /**
- * Converte filme da aplicação (PT) para Firestore (EN)
+ * Converte filme da aplicação (PT) para MongoDB (EN)
  */
 export const filmeAppParaFirestore = (filme: FilmeCadastro): any => {
   return {
@@ -69,7 +63,7 @@ export const filmeAppParaFirestore = (filme: FilmeCadastro): any => {
 };
 
 /**
- * Converte usuário do Firestore (EN) para a aplicação (PT)
+ * Converte usuário do MongoDB (EN) para a aplicação (PT)
  */
 export const usuarioFirestoreParaApp = (doc: any): any => {
   const nome = doc.name || doc.nome || doc.email?.split('@')[0] || 'Usuário';
@@ -82,7 +76,7 @@ export const usuarioFirestoreParaApp = (doc: any): any => {
 };
 
 /**
- * Converte usuário da aplicação (PT) para Firestore (EN)
+ * Converte usuário da aplicação (PT) para MongoDB (EN)
  */
 export const usuarioAppParaFirestore = (usuario: any): any => {
   return {
@@ -92,7 +86,7 @@ export const usuarioAppParaFirestore = (usuario: any): any => {
 };
 
 /**
- * Converte série do Firestore (EN) para o formato da aplicação (PT)
+ * Converte série do MongoDB (EN) para o formato da aplicação (PT)
  */
 export const showFirestoreParaApp = (doc: any): Show => {
   const mediaCalculada = doc.averageUserRating !== undefined 
@@ -129,7 +123,7 @@ export const showFirestoreParaApp = (doc: any): Show => {
 };
 
 /**
- * Converte série da aplicação (PT) para Firestore (EN)
+ * Converte série da aplicação (PT) para MongoDB (EN)
  */
 export const showAppParaFirestore = (show: ShowCadastro): any => {
   return {

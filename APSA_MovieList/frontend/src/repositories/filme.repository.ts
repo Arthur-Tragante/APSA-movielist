@@ -1,125 +1,77 @@
-import {
-  collection,
-  addDoc,
-  getDocs,
-  getDoc,
-  doc,
-  updateDoc,
-  deleteDoc,
-  query,
-  where,
-  QueryConstraint,
-  QueryDocumentSnapshot,
-} from 'firebase/firestore';
-import { db } from '../config/firebase.config';
-import { COLECOES } from '../constants';
+import apiClient from '../services/api.client';
 import { Filme, FilmeCadastro, FilmeEdicao } from '../types';
-import { filmeFirestoreParaApp, filmeAppParaFirestore } from '../utils/mappers.util';
 
 /**
- * Repository para operações de filmes no Firestore
+ * Repository para operações de filmes via API Backend
  * Responsável apenas por queries e manipulação de dados
+ * Backend já retorna os dados no formato português correto
  */
 class FilmeRepository {
-  private colecao = collection(db, COLECOES.FILMES);
+  private baseUrl = '/filmes';
 
   /**
    * Busca todos os filmes
    */
   async buscarTodos(): Promise<Filme[]> {
-    const querySnapshot = await getDocs(this.colecao);
-    return querySnapshot.docs.map((doc: QueryDocumentSnapshot) => 
-      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
-    );
+    const response = await apiClient.get(this.baseUrl);
+    return response.data.dados;
   }
 
   /**
    * Busca um filme por ID
    */
   async buscarPorId(id: string): Promise<Filme | null> {
-    const docRef = doc(this.colecao, id);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      return filmeFirestoreParaApp({ id: docSnap.id, ...docSnap.data() });
+    try {
+      const response = await apiClient.get(`${this.baseUrl}/${id}`);
+      return response.data.dados;
+    } catch (error) {
+      return null;
     }
-
-    return null;
   }
 
   /**
-   * Busca filmes com filtros personalizados
+   * Busca filmes com filtros personalizados (mantido para compatibilidade)
    */
-  async buscarComFiltros(filtros: QueryConstraint[]): Promise<Filme[]> {
-    const q = query(this.colecao, ...filtros);
-    const querySnapshot = await getDocs(q);
-
-    return querySnapshot.docs.map((doc: QueryDocumentSnapshot) => 
-      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
-    );
+  async buscarComFiltros(filtros: any[]): Promise<Filme[]> {
+    // Por enquanto, retorna todos os filmes
+    // Pode ser implementado com query params no futuro
+    return this.buscarTodos();
   }
 
   /**
    * Busca filmes por usuário
    */
   async buscarPorUsuario(emailUsuario: string): Promise<Filme[]> {
-    const q = query(this.colecao, where('user', '==', emailUsuario));
-    const querySnapshot = await getDocs(q);
-
-    return querySnapshot.docs.map((doc: QueryDocumentSnapshot) => 
-      filmeFirestoreParaApp({ id: doc.id, ...doc.data() })
-    );
+    const response = await apiClient.get(`${this.baseUrl}?user=${emailUsuario}`);
+    return response.data.dados;
   }
 
   /**
    * Cria um novo filme
    */
   async criar(filme: FilmeCadastro): Promise<string> {
-    const filmeFirestore = filmeAppParaFirestore(filme);
-    const docRef = await addDoc(this.colecao, filmeFirestore);
-    return docRef.id;
+    // Adiciona tituloOriginal se não existir (backend requer)
+    const payload = {
+      ...filme,
+      tituloOriginal: filme.titulo,
+    };
+    
+    const response = await apiClient.post(this.baseUrl, payload);
+    return response.data.dados.id || response.data.dados._id;
   }
 
   /**
    * Atualiza um filme existente
    */
   async atualizar(id: string, filme: Partial<FilmeEdicao>): Promise<void> {
-    const docRef = doc(this.colecao, id);
-    
-    // Converte campos PT para EN
-    const dadosFirestore: any = {};
-    if (filme.titulo) dadosFirestore.title = filme.titulo;
-    if (filme.genero) dadosFirestore.genre = filme.genero;
-    if (filme.ano) dadosFirestore.year = filme.ano;
-    if (filme.duracao) dadosFirestore.duration = filme.duracao;
-    if (filme.notaImdb) dadosFirestore.imdbRating = filme.notaImdb;
-    if (filme.metascore) dadosFirestore.metascore = filme.metascore;
-    if (filme.sinopse) dadosFirestore.synopsis = filme.sinopse;
-    if (filme.assistido !== undefined) dadosFirestore.watched = filme.assistido;
-    if (filme.avaliacoes) {
-      dadosFirestore.ratings = filme.avaliacoes.map(av => ({
-        Source: av.fonte,
-        Value: av.valor,
-      }));
-    }
-    if (filme.avaliacoesUsuarios) {
-      dadosFirestore.userRatings = filme.avaliacoesUsuarios.map(av => ({
-        user: av.usuario,
-        email: av.email,
-        rating: av.nota,
-        comment: av.comentario || '',
-      }));
-    }
-    
-    await updateDoc(docRef, dadosFirestore);
+    await apiClient.put(`${this.baseUrl}/${id}`, filme);
   }
 
   /**
    * Deleta um filme
    */
   async deletar(id: string): Promise<void> {
-    const docRef = doc(this.colecao, id);
-    await deleteDoc(docRef);
+    await apiClient.delete(`${this.baseUrl}/${id}`);
   }
 }
 

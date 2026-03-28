@@ -28,8 +28,8 @@ export interface Episodio {
   numero: number;
   titulo: string;
   sinopse?: string;
-  dateLançamento?: string;
-  avaliações?: AvaliacaoEpisodio[];
+  dataLancamento?: string;
+  avaliacoesEpisodio?: AvaliacaoEpisodio[];
 }
 
 export interface Temporada {

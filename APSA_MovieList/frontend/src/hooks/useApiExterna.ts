@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { apiExternaService } from '../services';
 import { ResultadoFilmeTMDB } from '../types';
 
@@ -20,14 +20,15 @@ export const useApiExterna = () => {
     if (!titulo || titulo.length < 2) {
       setResultados([]);
       setErro(null);
+      setCarregando(false);
       return;
     }
 
-    setCarregando(true);
     setErro(null);
 
     // Debounce de 500ms
     timeoutRef.current = setTimeout(async () => {
+      setCarregando(true);
       try {
         const resultadosBusca = await apiExternaService.buscarFilmesPorTitulo(titulo);
         setResultados(resultadosBusca);
@@ -78,6 +79,15 @@ export const useApiExterna = () => {
     setResultados([]);
     setErro(null);
   };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return {
     resultados,

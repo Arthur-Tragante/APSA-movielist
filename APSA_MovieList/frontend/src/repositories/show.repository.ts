@@ -1,73 +1,52 @@
 /**
- * Repository de séries - gerencia interação com Firestore
+ * Repository de séries - gerencia interação com a API Backend
  */
 
-import { collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { db } from '../config/firebase.config';
+import apiClient from '../services/api.client';
 import { ShowCadastro, Show, ShowEdicao } from '../types';
-import { showFirestoreParaApp, showAppParaFirestore } from '../utils/mappers.util';
 
-const COLLECTION = 'shows';
+const BASE_URL = '/series';
 
 /**
  * Cria uma nova série
  */
 export const criar = async (show: ShowCadastro): Promise<string> => {
-  const showFirestore = showAppParaFirestore(show);
-  
-  const docRef = await addDoc(collection(db, COLLECTION), {
-    ...showFirestore,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  });
-
-  return docRef.id;
+  const response = await apiClient.post(BASE_URL, show);
+  return response.data.dados.id || response.data.dados._id;
 };
 
 /**
  * Busca todas as séries
  */
 export const buscarTodos = async (): Promise<Show[]> => {
-  const snapshot = await getDocs(collection(db, COLLECTION));
-
-  return snapshot.docs.map((docSnapshot) =>
-    showFirestoreParaApp({ id: docSnapshot.id, ...docSnapshot.data() })
-  );
+  const response = await apiClient.get(BASE_URL);
+  return response.data.dados || [];
 };
 
 /**
  * Busca série por ID
  */
 export const buscarPorId = async (id: string): Promise<Show | null> => {
-  const docRef = doc(db, COLLECTION, id);
-  const docSnapshot = await getDoc(docRef);
-
-  if (!docSnapshot.exists()) {
+  try {
+    const response = await apiClient.get(`${BASE_URL}/${id}`);
+    return response.data.dados || null;
+  } catch (error) {
     return null;
   }
-
-  return showFirestoreParaApp({ id: docSnapshot.id, ...docSnapshot.data() });
 };
 
 /**
  * Atualiza série existente
  */
 export const atualizar = async (id: string, show: Partial<ShowEdicao>): Promise<void> => {
-  const showFirestore = showAppParaFirestore(show as ShowCadastro);
-  
-  const docRef = doc(db, COLLECTION, id);
-  await updateDoc(docRef, {
-    ...showFirestore,
-    updatedAt: new Date().toISOString(),
-  });
+  await apiClient.put(`${BASE_URL}/${id}`, show);
 };
 
 /**
  * Deleta série
  */
 export const deletar = async (id: string): Promise<void> => {
-  const docRef = doc(db, COLLECTION, id);
-  await deleteDoc(docRef);
+  await apiClient.delete(`${BASE_URL}/${id}`);
 };
 
 export default {
