@@ -36,6 +36,14 @@ export const env = {
   // Cache TTL
   CACHE_TTL_TMDB: parseInt(process.env.CACHE_TTL_TMDB || '86400', 10),
   CACHE_TTL_OMDB: parseInt(process.env.CACHE_TTL_OMDB || '86400', 10),
+
+  // Email (SMTP)
+  SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
+  SMTP_PORT: parseInt(process.env.SMTP_PORT || '587', 10),
+  SMTP_USER: process.env.SMTP_USER || '',
+  SMTP_PASS: process.env.SMTP_PASS || '',
+  EMAIL_FROM: process.env.EMAIL_FROM || '',
+  FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:5173',
 };
 
 /**

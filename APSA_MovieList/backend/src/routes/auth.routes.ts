@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import { UsuarioModel } from '../models/usuario.model';
 import { env } from '../config/env.config';
+import { enviarEmailRecuperacaoSenha } from '../services/email.service';
 
 const router = Router();
 
@@ -173,6 +174,80 @@ router.post('/trocar-senha', async (req: Request, res: Response) => {
     return res.json({ sucesso: true, mensagem: 'Senha alterada com sucesso' });
   } catch (erro) {
     console.error('Erro ao trocar senha:', erro);
+    return res.status(500).json({ sucesso: false, erro: 'Erro interno no servidor' });
+  }
+});
+
+/**
+ * POST /api/auth/recuperar-senha
+ */
+router.post('/recuperar-senha', async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ sucesso: false, erro: 'Email é obrigatório' });
+    }
+
+    const usuario = await UsuarioModel.findOne({ email }).lean();
+
+    // Responde com sucesso mesmo se o email não existir (evita enumeração de usuários)
+    if (!usuario) {
+      return res.json({ sucesso: true, mensagem: 'Se o email existir, você receberá as instruções em breve.' });
+    }
+
+    const token = crypto.randomBytes(32).toString('hex');
+    const expiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hora
+
+    await UsuarioModel.findByIdAndUpdate(usuario._id, {
+      resetToken: token,
+      resetTokenExpiry: expiry,
+    } as any);
+
+    const nome = (usuario as any).nome || (usuario as any).name || email.split('@')[0];
+    await enviarEmailRecuperacaoSenha(email, nome, token);
+
+    return res.json({ sucesso: true, mensagem: 'Se o email existir, você receberá as instruções em breve.' });
+  } catch (erro) {
+    console.error('Erro ao enviar email de recuperação:', erro);
+    return res.status(500).json({ sucesso: false, erro: 'Erro ao enviar email de recuperação' });
+  }
+});
+
+/**
+ * POST /api/auth/redefinir-senha
+ */
+router.post('/redefinir-senha', async (req: Request, res: Response) => {
+  try {
+    const { token, novaSenha } = req.body;
+
+    if (!token || !novaSenha) {
+      return res.status(400).json({ sucesso: false, erro: 'Token e nova senha são obrigatórios' });
+    }
+
+    if (novaSenha.length < 6) {
+      return res.status(400).json({ sucesso: false, erro: 'A senha deve ter pelo menos 6 caracteres' });
+    }
+
+    const usuario = await UsuarioModel.findOne({
+      resetToken: token,
+      resetTokenExpiry: { $gt: new Date() },
+    }).lean();
+
+    if (!usuario) {
+      return res.status(400).json({ sucesso: false, erro: 'Token inválido ou expirado' });
+    }
+
+    const hashedPassword = hashPassword(novaSenha);
+    await UsuarioModel.findByIdAndUpdate(usuario._id, {
+      password: hashedPassword,
+      resetToken: null,
+      resetTokenExpiry: null,
+    } as any);
+
+    return res.json({ sucesso: true, mensagem: 'Senha redefinida com sucesso' });
+  } catch (erro) {
+    console.error('Erro ao redefinir senha:', erro);
     return res.status(500).json({ sucesso: false, erro: 'Erro interno no servidor' });
   }
 });
