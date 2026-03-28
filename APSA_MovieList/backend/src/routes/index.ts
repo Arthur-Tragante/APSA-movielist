@@ -2,6 +2,7 @@ import { Router } from 'express';
 import filmeRoutes from './filme.routes';
 import serieRoutes from './serie.routes';
 import apiExternaRoutes from './api-externa.routes';
+import sorteioRoutes from './sorteio.routes';
 
 const router = Router();
 
@@ -30,6 +31,11 @@ router.use('/series', serieRoutes);
  * Rotas de APIs externas
  */
 router.use('/buscar', apiExternaRoutes);
+
+/**
+ * Rotas de sorteio
+ */
+router.use('/sorteio', sorteioRoutes);
 
 export default router;
 

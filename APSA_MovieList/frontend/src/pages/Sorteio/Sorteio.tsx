@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ref, push, onValue, remove } from 'firebase/database';
 import { Header, Modal, Carregando } from '../../components';
 import { useAuth } from '../../hooks';
-import { database } from '../../config/firebase.config';
 import './Sorteio.css';
-import apiClient from '../../services/api.client';
+import sorteioRepository from '../../repositories/sorteio.repository';
+import websocketService from '../../services/websocket.service';
 
 interface FilmeSorteio {
   id: string;
@@ -29,7 +28,7 @@ const Sorteio: React.FC = () => {
   const [tituloFilme, setTituloFilme] = useState('');
   const [filmesSorteio, setFilmesSorteio] = useState<FilmeSorteio[]>([]);
   const [resultado, setResultado] = useState<ResultadoSorteio | null>(null);
-  const [carregando, setCarregando] = useState(false);
+  const [carregando, setCarregando] = useState(true);
   const [exibirModal, setExibirModal] = useState(false);
   const [mensagemModal, setMensagemModal] = useState('');
   const [tipoModal, setTipoModal] = useState<'sucesso' | 'erro' | 'informacao'>('informacao');
@@ -37,46 +36,50 @@ const Sorteio: React.FC = () => {
   useEffect(() => {
     if (!usuario) return;
 
-    // Listener em tempo real para filmes do sorteio
-    const filmesRef = ref(database, 'Movies');
-    const unsubscribeFilmes = onValue(filmesRef, (snapshot) => {
-      const filmes: FilmeSorteio[] = [];
-      const data = snapshot.val();
-      
-      if (data) {
-        for (const id in data) {
-          filmes.push({ 
-            id, 
-            titulo: data[id].title || data[id].titulo || '',
-            usuario: data[id].user || data[id].usuario || '',
-            email: data[id].email || ''
-          });
-        }
-      }
-      setFilmesSorteio(filmes);
-    }, (error) => {
-      console.error('Erro ao buscar filmes:', error);
-    });
+    // Conecta ao WebSocket
+    websocketService.connect();
 
-    // Listener em tempo real para resultado
-    const resultadoRef = ref(database, 'Results');
-    const unsubscribeResultado = onValue(resultadoRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        setResultado({
-          allPicks: data.allPicks || [],
-          winner: data.winner || '',
-        });
-      } else {
-        setResultado(null);
-      }
-    }, (error) => {
-      console.error('Erro ao buscar resultado:', error);
-    });
+    // Handlers para eventos WebSocket
+    const handleEstadoInicial = (estado: any) => {
+      setFilmesSorteio(estado.filmes);
+      setResultado(estado.resultado);
+      setCarregando(false);
+    };
 
+    const handleFilmeAdicionado = (filme: FilmeSorteio) => {
+      setFilmesSorteio(prev => [...prev, filme]);
+    };
+
+    const handleFilmeRemovido = (data: { id: string }) => {
+      setFilmesSorteio(prev => prev.filter(f => f.id !== data.id));
+    };
+
+    const handleResultado = (res: ResultadoSorteio) => {
+      setResultado(res);
+    };
+
+    const handleResultadoLimpo = () => {
+      setResultado(null);
+    };
+
+    const handleFilmesLimpos = () => {
+      setFilmesSorteio([]);
+    };
+
+    // Registra listeners
+    websocketService.onEstadoInicial(handleEstadoInicial);
+    websocketService.onFilmeAdicionado(handleFilmeAdicionado);
+    websocketService.onFilmeRemovido(handleFilmeRemovido);
+    websocketService.onResultado(handleResultado);
+    websocketService.onResultadoLimpo(handleResultadoLimpo);
+    websocketService.onFilmesLimpos(handleFilmesLimpos);
+
+    // Solicita estado inicial
+    websocketService.obterEstadoSorteio();
+
+    // Cleanup: apenas remove listeners, mantém conexão ativa
     return () => {
-      unsubscribeFilmes();
-      unsubscribeResultado();
+      websocketService.removeAllListeners();
     };
   }, [usuario]);
 
@@ -110,12 +113,7 @@ const Sorteio: React.FC = () => {
 
     try {
       setCarregando(true);
-      const filmesRef = ref(database, 'Movies');
-      await push(filmesRef, {
-        title: tituloFilme,
-        user: usuario.nome,
-        email: usuario.email,
-      });
+      await sorteioRepository.adicionarFilme(tituloFilme.trim());
 
       setTituloFilme('');
       setMensagemModal('Filme adicionado com sucesso!');
@@ -123,7 +121,7 @@ const Sorteio: React.FC = () => {
       setExibirModal(true);
     } catch (erro: any) {
       console.error('Erro ao adicionar filme:', erro);
-      setMensagemModal(`Erro ao adicionar filme: ${erro.message}`);
+      setMensagemModal(erro.response?.data?.mensagem || `Erro ao adicionar filme: ${erro.message}`);
       setTipoModal('erro');
       setExibirModal(true);
     } finally {
@@ -134,8 +132,8 @@ const Sorteio: React.FC = () => {
   const handleRemoverFilme = async (id: string) => {
     try {
       setCarregando(true);
-      const filmeRef = ref(database, `Movies/${id}`);
-      await remove(filmeRef);
+      await sorteioRepository.removerFilme(id);
+      
       setMensagemModal('Filme removido com sucesso!');
       setTipoModal('sucesso');
       setExibirModal(true);
@@ -156,33 +154,16 @@ const Sorteio: React.FC = () => {
     setExibirModal(false);
 
     try {
-      const resposta = await apiClient.post('/filmes/sortear', {
-        filmes: filmesSorteio,
-        webhook: 'https://discordapp.com/api/webhooks/1438341625326604423/AJ3Qr7X4PxzogGkUNZYouF-99l59x8OsfiIQ5WjJT8j25bzdyL4LHdNtM8887_GNfYpY'
-      });
-      if (resposta.data && resposta.data.sucesso) {
-        // Salva o resultado no Firebase para que todos os usuários vejam
-        const resultadoRef = ref(database, 'Results');
-        await push(resultadoRef, {
-          allPicks: resposta.data.dados.sorteios,
-          winner: resposta.data.dados.vencedor,
-          timestamp: new Date().toISOString(),
-        });
+      const resultado = await sorteioRepository.sortear(
+        import.meta.env.VITE_DISCORD_WEBHOOK_URL
+      );
 
-        setResultado({
-          allPicks: resposta.data.dados.sorteios,
-          winner: resposta.data.dados.vencedor
-        });
-        setMensagemModal(`Filme sorteado: ${resposta.data.dados.vencedor}`);
-        setTipoModal('sucesso');
-        setExibirModal(true);
-      } else {
-        setMensagemModal(resposta.data.mensagem || 'Erro inesperado no sorteio.');
-        setTipoModal('erro');
-        setExibirModal(true);
-      }
+      setMensagemModal(`Filme sorteado: ${resultado.vencedor}`);
+      setTipoModal('sucesso');
+      setExibirModal(true);
     } catch (erro: any) {
-      setMensagemModal(erro.message || 'Erro ao sortear filme.');
+      console.error('Erro ao sortear:', erro);
+      setMensagemModal(erro.response?.data?.mensagem || erro.message || 'Erro ao sortear filme.');
       setTipoModal('erro');
       setExibirModal(true);
     } finally {
@@ -193,10 +174,8 @@ const Sorteio: React.FC = () => {
   const handleLimparResultado = async () => {
     try {
       setCarregando(true);
-      const resultadoRef = ref(database, 'Results');
-      await remove(resultadoRef);
+      await sorteioRepository.limparResultado();
 
-      setResultado(null);
       setMensagemModal('Resultado limpo com sucesso!');
       setTipoModal('sucesso');
       setExibirModal(true);
@@ -237,7 +216,7 @@ const Sorteio: React.FC = () => {
               placeholder="Digite o título do filme..."
               value={tituloFilme}
               onChange={(e) => setTituloFilme(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleAdicionarFilme()}
+              onKeyDown={(e) => e.key === 'Enter' && handleAdicionarFilme()}
               disabled={carregando || usuarioJaAdicionou()}
             />
             <button
