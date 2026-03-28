@@ -1,66 +1,58 @@
 import Cookies from 'js-cookie';
 import { COOKIES, VALIDADE_COOKIE_DIAS } from '../constants';
 import { DadosLogin, DadosRegistro, Usuario } from '../types';
+import apiClient from './api.client';
 
 /**
- * Service para autenticação simplificada (sem Firebase)
+ * Service para autenticação via JWT
  */
 class AuthService {
   /**
-   * Realiza login com email e senha (simplificado)
+   * Realiza login com email e senha
    */
   async entrar(dados: DadosLogin): Promise<string> {
-    const { email, senha: _senha } = dados;
-    
-    // TODO: Implementar validação real de senha
-    // Por enquanto, aceita qualquer senha
-    
-    // Salva email nos cookies
-    Cookies.set(COOKIES.EMAIL, email, { expires: VALIDADE_COOKIE_DIAS });
-    
-    // Usa parte do email como nome
-    const nome = email.split('@')[0];
-    Cookies.set(COOKIES.NOME, nome, { expires: VALIDADE_COOKIE_DIAS });
-    
-    // Token fictício
-    const token = 'mock-token-' + Date.now();
+    const { email, senha } = dados;
+
+    const response = await apiClient.post('/auth/login', { email, senha });
+    const { token, usuario } = response.data.dados;
+
     Cookies.set(COOKIES.TOKEN, token, { expires: VALIDADE_COOKIE_DIAS });
-    
+    Cookies.set(COOKIES.EMAIL, usuario.email, { expires: VALIDADE_COOKIE_DIAS });
+    Cookies.set(COOKIES.NOME, usuario.nome, { expires: VALIDADE_COOKIE_DIAS });
+
     return token;
   }
 
   /**
-   * Registra um novo usuário (simplificado)
+   * Registra um novo usuário
    */
   async registrar(dados: DadosRegistro): Promise<string> {
-    const { nome, email } = dados;
-    
-    // Salva dados nos cookies
-    Cookies.set(COOKIES.EMAIL, email, { expires: VALIDADE_COOKIE_DIAS });
-    Cookies.set(COOKIES.NOME, nome, { expires: VALIDADE_COOKIE_DIAS });
-    
-    // Token fictício
-    const token = 'mock-token-' + Date.now();
+    const { nome, email, senha } = dados;
+
+    const response = await apiClient.post('/auth/registrar', { nome, email, senha });
+    const { token, usuario } = response.data.dados;
+
     Cookies.set(COOKIES.TOKEN, token, { expires: VALIDADE_COOKIE_DIAS });
-    
-    // TODO: Criar usuário no MongoDB via API
-    
+    Cookies.set(COOKIES.EMAIL, usuario.email, { expires: VALIDADE_COOKIE_DIAS });
+    Cookies.set(COOKIES.NOME, usuario.nome, { expires: VALIDADE_COOKIE_DIAS });
+
     return token;
   }
 
   /**
-   * Envia email de recuperação de senha (desabilitado)
+   * Troca a senha do usuário
    */
-  async recuperarSenha(_email: string): Promise<void> {
-    console.warn('Recuperação de senha não implementada');
-    // TODO: Implementar recuperação de senha própria
+  async trocarSenha(senhaAtual: string, novaSenha: string): Promise<void> {
+    const email = Cookies.get(COOKIES.EMAIL);
+    if (!email) throw new Error('Usuário não autenticado');
+
+    await apiClient.post('/auth/trocar-senha', { email, senhaAtual, novaSenha });
   }
 
   /**
    * Realiza logout
    */
   async sair(): Promise<void> {
-    // Remove cookies
     Cookies.remove(COOKIES.TOKEN);
     Cookies.remove(COOKIES.EMAIL);
     Cookies.remove(COOKIES.NOME);
@@ -79,17 +71,23 @@ class AuthService {
   obterUsuarioLogado(): Usuario | null {
     const email = Cookies.get(COOKIES.EMAIL);
     const nome = Cookies.get(COOKIES.NOME);
-    
+
     if (email) {
-      return { 
-        email, 
-        nome: nome || email.split('@')[0] 
+      return {
+        email,
+        nome: nome || email.split('@')[0],
       };
     }
-    
+
     return null;
+  }
+
+  /**
+   * Retorna o token JWT armazenado
+   */
+  obterToken(): string | undefined {
+    return Cookies.get(COOKIES.TOKEN);
   }
 }
 
 export default new AuthService();
-
