@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks';
 import { Modal } from '../../components';
 import { MENSAGENS_SUCESSO } from '../../constants';
@@ -21,12 +22,13 @@ const Login: React.FC = () => {
   const [tipoModal, setTipoModal] = useState<'sucesso' | 'erro' | 'informacao'>('informacao');
 
   const { entrar, registrar, recuperarSenha, estaAutenticado, carregando, erro } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (estaAutenticado()) {
-      window.location.href = '/lista';
+      navigate('/lista', { replace: true });
     }
-  }, [estaAutenticado]);
+  }, [estaAutenticado, navigate]);
 
   useEffect(() => {
     if (erro) {
