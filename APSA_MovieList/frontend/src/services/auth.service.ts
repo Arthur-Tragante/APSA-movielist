@@ -50,12 +50,17 @@ class AuthService {
   }
 
   /**
-   * Solicita recuperação de senha (placeholder - não implementado no backend)
+   * Solicita recuperação de senha via email
    */
   async recuperarSenha(email: string): Promise<void> {
-    // TODO: Implementar endpoint de recuperação de senha no backend
-    console.log('Solicitação de recuperação de senha para:', email);
-    throw new Error('Funcionalidade de recuperação de senha não disponível no momento');
+    await apiClient.post('/auth/recuperar-senha', { email });
+  }
+
+  /**
+   * Redefine a senha usando o token recebido por email
+   */
+  async redefinirSenha(token: string, novaSenha: string): Promise<void> {
+    await apiClient.post('/auth/redefinir-senha', { token, novaSenha });
   }
 
   /**

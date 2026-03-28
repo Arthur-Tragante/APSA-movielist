@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Login, ListaFilmes, AdicionarFilme, EditarFilme, ListaShows, AdicionarShow, EditarShow, Sorteio } from './pages';
+import { Login, ListaFilmes, AdicionarFilme, EditarFilme, ListaShows, AdicionarShow, EditarShow, Sorteio, RedefinirSenha } from './pages';
 import { ErrorBoundary } from './components';
 import { authService } from './services';
 
@@ -87,6 +87,7 @@ const App: React.FC = () => {
             </RotaProtegida>
           }
         />
+        <Route path="/redefinir-senha" element={<RedefinirSenha />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
