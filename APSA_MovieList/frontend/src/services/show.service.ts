@@ -215,6 +215,7 @@ export const removerAvaliacaoEpisodio = async (
     throw error;
   }
 };
+};
 
 export default {
   criar,
