@@ -3,6 +3,7 @@ import filmeRoutes from './filme.routes';
 import serieRoutes from './serie.routes';
 import apiExternaRoutes from './api-externa.routes';
 import sorteioRoutes from './sorteio.routes';
+import authRoutes from './auth.routes';
 
 const router = Router();
 
@@ -16,6 +17,11 @@ router.get('/health', (_req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+/**
+ * Rotas de autenticação (públicas)
+ */
+router.use('/auth', authRoutes);
 
 /**
  * Rotas de filmes

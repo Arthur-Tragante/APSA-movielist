@@ -7,6 +7,7 @@ export interface IUsuario extends Document {
   name?: string;
   nome?: string;
   email: string;
+  password?: string;
 }
 
 /**
@@ -15,7 +16,8 @@ export interface IUsuario extends Document {
 const UsuarioSchema = new Schema<IUsuario>({
   name: { type: String },
   nome: { type: String },
-  email: { type: String, required: true, unique: true, index: true }
+  email: { type: String, required: true, unique: true, index: true },
+  password: { type: String },
 }, {
   collection: 'users',
   versionKey: false
