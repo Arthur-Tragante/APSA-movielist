@@ -8,6 +8,8 @@ export interface IUsuario extends Document {
   nome?: string;
   email: string;
   password?: string;
+  resetToken?: string;
+  resetTokenExpiry?: Date;
 }
 
 /**
@@ -18,6 +20,8 @@ const UsuarioSchema = new Schema<IUsuario>({
   nome: { type: String },
   email: { type: String, required: true, unique: true, index: true },
   password: { type: String },
+  resetToken: { type: String },
+  resetTokenExpiry: { type: Date },
 }, {
   collection: 'users',
   versionKey: false
