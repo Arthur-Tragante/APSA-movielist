@@ -43,9 +43,9 @@ export const filmeSchemas = {
       }),
     duracao: Joi.string()
       .required()
-      .pattern(/^\d+ min$/)
+      .pattern(/^\d+( min)?$/)
       .messages({
-        'string.pattern.base': 'Duração deve estar no formato "XXX min"',
+        'string.pattern.base': 'Duração deve ser um número',
       }),
     genero: Joi.string().required().trim().max(200),
     sinopse: Joi.string().allow('').max(5000),
@@ -60,13 +60,14 @@ export const filmeSchemas = {
       })
     ),
     assistido: Joi.boolean().required(),
+    usuario: Joi.string().email().optional(), // Aceita usuario opcional do frontend
   }),
 
   atualizar: Joi.object({
     titulo: Joi.string().trim().max(200),
     tituloOriginal: Joi.string().trim().max(200),
     ano: Joi.string().pattern(/^\d{4}$/),
-    duracao: Joi.string().pattern(/^\d+ min$/),
+    duracao: Joi.string().pattern(/^\d+( min)?$/),
     genero: Joi.string().trim().max(200),
     sinopse: Joi.string().allow('').max(5000),
     poster: Joi.string().uri().allow(''),
@@ -77,6 +78,15 @@ export const filmeSchemas = {
       Joi.object({
         fonte: Joi.string().required(),
         valor: Joi.string().required(),
+      })
+    ),
+    avaliacoesUsuarios: Joi.array().items(
+      Joi.object({
+        usuario: Joi.string(),
+        email: Joi.string().email(),
+        nota: Joi.number().min(0).max(10),
+        assistido: Joi.boolean(),
+        comentario: Joi.string().allow(''),
       })
     ),
     assistido: Joi.boolean(),
@@ -127,7 +137,7 @@ export const serieSchemas = {
             numero: Joi.number().required(),
             titulo: Joi.string().required(),
             sinopse: Joi.string().allow(''),
-            dateLançamento: Joi.string().allow(''),
+            dataLancamento: Joi.string().allow(''),
           })
         ),
       })
@@ -160,7 +170,7 @@ export const serieSchemas = {
             numero: Joi.number().required(),
             titulo: Joi.string().required(),
             sinopse: Joi.string().allow(''),
-            dateLançamento: Joi.string().allow(''),
+            dataLancamento: Joi.string().allow(''),
           })
         ),
       })
@@ -193,7 +203,7 @@ export const serieSchemas = {
       numero: Joi.number().required(),
       titulo: Joi.string().required(),
       sinopse: Joi.string().allow(''),
-      dateLançamento: Joi.string().allow(''),
+      dataLancamento: Joi.string().allow(''),
     }).required(),
   }),
 };

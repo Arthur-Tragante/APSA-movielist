@@ -49,6 +49,7 @@ export interface CriarFilmeDTO {
   metascore: string;
   avaliacoes: Avaliacao[];
   assistido: boolean;
+  usuario?: string; // Opcional - usa o do header se não vier
 }
 
 export interface AtualizarFilmeDTO {

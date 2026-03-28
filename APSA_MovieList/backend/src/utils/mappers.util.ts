@@ -1,11 +1,28 @@
 /**
- * Mapeadores para converter entre formato da aplicação (PT) e Firestore (EN)
+ * Mapeadores para converter entre formato da aplicação (PT) e MongoDB (EN)
  */
 
 /**
- * Converte filme do Firestore (EN) para formato da aplicação (PT)
+ * Converte filme do MongoDB (EN) para formato da aplicação (PT)
  */
-export const filmeFirestoreParaApp = (doc: any): any => {
+export const filmeMongoParaApp = (doc: any): any => {
+  // Calcula média das avaliações dos usuários
+  const avaliacoesUsuarios = (doc.userRatings || []).map((ur: any) => ({
+    usuario: ur.user || '',
+    email: ur.email || ur.user || '',
+    nota: ur.rating || 0,
+    assistido: doc.watched || false,
+    comentario: ur.comment || '',
+  }));
+
+  const notasValidas = avaliacoesUsuarios
+    .map((av: any) => av.nota)
+    .filter((nota: number) => nota > 0);
+  
+  const mediaAvaliacaoUsuarios = notasValidas.length > 0
+    ? notasValidas.reduce((acc: number, nota: number) => acc + nota, 0) / notasValidas.length
+    : undefined;
+
   return {
     id: doc.id,
     titulo: doc.title || '',
@@ -15,6 +32,7 @@ export const filmeFirestoreParaApp = (doc: any): any => {
     notaImdb: doc.imdbRating || 'N/A',
     metascore: doc.metascore || 'N/A',
     sinopse: doc.synopsis || '',
+    poster: doc.poster || '',
     avaliacoes: (doc.ratings || []).map((r: any) => ({
       fonte: r.Source || '',
       valor: r.Value || '',
@@ -23,21 +41,16 @@ export const filmeFirestoreParaApp = (doc: any): any => {
     assistido: doc.watched || false,
     criadoEm: doc.createdAt,
     atualizadoEm: doc.updatedAt,
-    avaliacoesUsuarios: (doc.userRatings || []).map((ur: any) => ({
-      usuario: ur.user || '',
-      email: ur.email || ur.user || '',
-      nota: ur.rating || 0,
-      assistido: doc.watched || false,
-      comentario: ur.comment || '',
-    })),
+    avaliacoesUsuarios,
+    mediaAvaliacaoUsuarios,
   };
 };
 
 /**
- * Converte filme da aplicação (PT) para Firestore (EN)
+ * Converte filme da aplicação (PT) para MongoDB (EN)
  */
-export const filmeAppParaFirestore = (filme: any): any => {
-  const firestoreData: any = {
+export const filmeAppParaMongo = (filme: any): any => {
+  const mongoData: any = {
     title: filme.titulo,
     genre: filme.genero,
     year: filme.ano,
@@ -45,6 +58,7 @@ export const filmeAppParaFirestore = (filme: any): any => {
     imdbRating: filme.notaImdb,
     metascore: filme.metascore,
     synopsis: filme.sinopse,
+    poster: filme.poster,
     ratings: (filme.avaliacoes || []).map((av: any) => ({
       Source: av.fonte,
       Value: av.valor,
@@ -54,7 +68,7 @@ export const filmeAppParaFirestore = (filme: any): any => {
   };
 
   if (filme.avaliacoesUsuarios) {
-    firestoreData.userRatings = filme.avaliacoesUsuarios.map((av: any) => ({
+    mongoData.userRatings = filme.avaliacoesUsuarios.map((av: any) => ({
       user: av.usuario,
       email: av.email,
       rating: av.nota,
@@ -62,33 +76,33 @@ export const filmeAppParaFirestore = (filme: any): any => {
     }));
   }
 
-  return firestoreData;
+  return mongoData;
 };
 
 /**
- * Converte atualização parcial de filme da aplicação (PT) para Firestore (EN)
+ * Converte atualização parcial de filme da aplicação (PT) para MongoDB (EN)
  */
-export const atualizacaoFilmeParaFirestore = (dados: any): any => {
-  const firestoreData: any = {};
+export const atualizacaoFilmeParaMongo = (dados: any): any => {
+  const mongoData: any = {};
 
-  if (dados.titulo) firestoreData.title = dados.titulo;
-  if (dados.genero) firestoreData.genre = dados.genero;
-  if (dados.ano) firestoreData.year = dados.ano;
-  if (dados.duracao) firestoreData.duration = dados.duracao;
-  if (dados.notaImdb) firestoreData.imdbRating = dados.notaImdb;
-  if (dados.metascore) firestoreData.metascore = dados.metascore;
-  if (dados.sinopse) firestoreData.synopsis = dados.sinopse;
-  if (dados.assistido !== undefined) firestoreData.watched = dados.assistido;
-  
+  if (dados.titulo !== undefined) mongoData.title = dados.titulo;
+  if (dados.genero !== undefined) mongoData.genre = dados.genero;
+  if (dados.ano !== undefined) mongoData.year = dados.ano;
+  if (dados.duracao !== undefined) mongoData.duration = dados.duracao;
+  if (dados.notaImdb !== undefined) mongoData.imdbRating = dados.notaImdb;
+  if (dados.metascore !== undefined) mongoData.metascore = dados.metascore;
+  if (dados.sinopse !== undefined) mongoData.synopsis = dados.sinopse;
+  if (dados.assistido !== undefined) mongoData.watched = dados.assistido;
+
   if (dados.avaliacoes) {
-    firestoreData.ratings = dados.avaliacoes.map((av: any) => ({
+    mongoData.ratings = dados.avaliacoes.map((av: any) => ({
       Source: av.fonte,
       Value: av.valor,
     }));
   }
 
   if (dados.avaliacoesUsuarios) {
-    firestoreData.userRatings = dados.avaliacoesUsuarios.map((av: any) => ({
+    mongoData.userRatings = dados.avaliacoesUsuarios.map((av: any) => ({
       user: av.usuario,
       email: av.email,
       rating: av.nota,
@@ -96,13 +110,13 @@ export const atualizacaoFilmeParaFirestore = (dados: any): any => {
     }));
   }
 
-  return firestoreData;
+  return mongoData;
 };
 
 /**
- * Converte série do Firestore (EN) para formato da aplicação (PT)
+ * Converte série do MongoDB (EN) para formato da aplicação (PT)
  */
-export const serieFirestoreParaApp = (doc: any): any => {
+export const serieMongoParaApp = (doc: any): any => {
   return {
     id: doc.id,
     titulo: doc.title || '',
@@ -135,8 +149,8 @@ export const serieFirestoreParaApp = (doc: any): any => {
         numero: ep.episodeNumber,
         titulo: ep.title,
         sinopse: ep.synopsis || '',
-        dateLançamento: ep.releaseDate || '',
-        avaliações: (ep.ratings || []).map((av: any) => ({
+        dataLancamento: ep.releaseDate || '',
+        avaliacoesEpisodio: (ep.ratings || []).map((av: any) => ({
           usuario: av.user,
           email: av.email,
           nota: av.rating,
@@ -150,10 +164,10 @@ export const serieFirestoreParaApp = (doc: any): any => {
 };
 
 /**
- * Converte série da aplicação (PT) para Firestore (EN)
+ * Converte série da aplicação (PT) para MongoDB (EN)
  */
-export const serieAppParaFirestore = (serie: any): any => {
-  const firestoreData: any = {
+export const serieAppParaMongo = (serie: any): any => {
+  const mongoData: any = {
     title: serie.titulo,
     originalTitle: serie.tituloOriginal || '',
     genre: serie.genero,
@@ -175,8 +189,8 @@ export const serieAppParaFirestore = (serie: any): any => {
         episodeNumber: ep.numero,
         title: ep.titulo,
         synopsis: ep.sinopse || '',
-        releaseDate: ep.dateLançamento || '',
-        ratings: (ep.avaliações || []).map((av: any) => ({
+        releaseDate: ep.dataLancamento || '',
+        ratings: (ep.avaliacoesEpisodio || []).map((av: any) => ({
           user: av.usuario,
           email: av.email,
           rating: av.nota,
@@ -189,7 +203,7 @@ export const serieAppParaFirestore = (serie: any): any => {
   };
 
   if (serie.avaliacoesUsuarios) {
-    firestoreData.userRatings = serie.avaliacoesUsuarios.map((av: any) => ({
+    mongoData.userRatings = serie.avaliacoesUsuarios.map((av: any) => ({
       user: av.usuario,
       email: av.email,
       rating: av.nota,
@@ -197,42 +211,42 @@ export const serieAppParaFirestore = (serie: any): any => {
     }));
   }
 
-  return firestoreData;
+  return mongoData;
 };
 
 /**
- * Converte atualização parcial de série da aplicação (PT) para Firestore (EN)
+ * Converte atualização parcial de série da aplicação (PT) para MongoDB (EN)
  */
-export const atualizacaoSerieParaFirestore = (dados: any): any => {
-  const firestoreData: any = {};
+export const atualizacaoSerieParaMongo = (dados: any): any => {
+  const mongoData: any = {};
 
-  if (dados.titulo) firestoreData.title = dados.titulo;
-  if (dados.tituloOriginal) firestoreData.originalTitle = dados.tituloOriginal;
-  if (dados.genero) firestoreData.genre = dados.genero;
-  if (dados.ano) firestoreData.year = dados.ano;
-  if (dados.temporadas) firestoreData.seasons = dados.temporadas;
-  if (dados.notaImdb) firestoreData.imdbRating = dados.notaImdb;
-  if (dados.metascore) firestoreData.metascore = dados.metascore;
-  if (dados.sinopse) firestoreData.synopsis = dados.sinopse;
-  if (dados.poster) firestoreData.poster = dados.poster;
-  if (dados.assistido !== undefined) firestoreData.watched = dados.assistido;
+  if (dados.titulo !== undefined) mongoData.title = dados.titulo;
+  if (dados.tituloOriginal !== undefined) mongoData.originalTitle = dados.tituloOriginal;
+  if (dados.genero !== undefined) mongoData.genre = dados.genero;
+  if (dados.ano !== undefined) mongoData.year = dados.ano;
+  if (dados.temporadas !== undefined) mongoData.seasons = dados.temporadas;
+  if (dados.notaImdb !== undefined) mongoData.imdbRating = dados.notaImdb;
+  if (dados.metascore !== undefined) mongoData.metascore = dados.metascore;
+  if (dados.sinopse !== undefined) mongoData.synopsis = dados.sinopse;
+  if (dados.poster !== undefined) mongoData.poster = dados.poster;
+  if (dados.assistido !== undefined) mongoData.watched = dados.assistido;
   
   if (dados.avaliacoes) {
-    firestoreData.ratings = dados.avaliacoes.map((av: any) => ({
+    mongoData.ratings = dados.avaliacoes.map((av: any) => ({
       Source: av.fonte,
       Value: av.valor,
     }));
   }
 
   if (dados.temporadasEpisodios) {
-    firestoreData.seasonEpisodes = dados.temporadasEpisodios.map((temp: any) => ({
+    mongoData.seasonEpisodes = dados.temporadasEpisodios.map((temp: any) => ({
       seasonNumber: temp.numero,
       episodes: (temp.episodios || []).map((ep: any) => ({
         episodeNumber: ep.numero,
         title: ep.titulo,
         synopsis: ep.sinopse || '',
-        releaseDate: ep.dateLançamento || '',
-        ratings: (ep.avaliações || []).map((av: any) => ({
+        releaseDate: ep.dataLancamento || '',
+        ratings: (ep.avaliacoesEpisodio || []).map((av: any) => ({
           user: av.usuario,
           email: av.email,
           rating: av.nota,
@@ -245,7 +259,7 @@ export const atualizacaoSerieParaFirestore = (dados: any): any => {
   }
 
   if (dados.avaliacoesUsuarios) {
-    firestoreData.userRatings = dados.avaliacoesUsuarios.map((av: any) => ({
+    mongoData.userRatings = dados.avaliacoesUsuarios.map((av: any) => ({
       user: av.usuario,
       email: av.email,
       rating: av.nota,
@@ -253,6 +267,6 @@ export const atualizacaoSerieParaFirestore = (dados: any): any => {
     }));
   }
 
-  return firestoreData;
+  return mongoData;
 };
 

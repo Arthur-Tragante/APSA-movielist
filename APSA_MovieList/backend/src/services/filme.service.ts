@@ -10,6 +10,26 @@ import axios from 'axios';
  */
 class FilmeService {
   /**
+   * Busca TODOS os filmes do sistema (independente do usuário)
+   */
+  async buscarTodos(): Promise<Filme[]> {
+    const chaveCache = `${CACHE_PREFIXES.FILMES_USUARIO}todos`;
+
+    // Verifica cache
+    const cacheado = await cacheService.obter(chaveCache);
+    if (cacheado) {
+      return JSON.parse(cacheado);
+    }
+
+    const filmes = await filmeRepository.buscarTodos();
+
+    // Salva no cache (5 minutos)
+    await cacheService.definir(chaveCache, JSON.stringify(filmes), 300);
+
+    return filmes;
+  }
+
+  /**
    * Busca todos os filmes do usuário
    */
   async buscarFilmesUsuario(emailUsuario: string): Promise<Filme[]> {
@@ -224,10 +244,8 @@ class FilmeService {
     // Dispara resultado no Discord
     const mensagem = `🎬 Resultado do Sorteio:\n\nVencedor: ${vencedor}\n\nSorteios:\n${sorteios.map((t, i) => `${i + 1}. ${t}`).join(' \n')}`;
     if (webhookUrl) {
-      console.log('Tentando enviar webhook Discord:', webhookUrl, '\nConteúdo:', mensagem);
       try {
         await axios.post(webhookUrl, { content: mensagem });
-        console.log('✅ Webhook Discord enviado com sucesso:', webhookUrl);
       } catch (error: any) {
         if (error.response) {
           console.error('❌ Erro ao enviar webhook Discord:', error.response.status, error.response.data);
@@ -235,8 +253,6 @@ class FilmeService {
           console.error('❌ Erro ao enviar webhook Discord:', error.message);
         }
       }
-    } else {
-      console.warn('Webhook Discord não informado, não será enviado!');
     }
 
     return { vencedor, sorteios, totais };
@@ -319,7 +335,6 @@ class FilmeService {
       try {
         // Envia tanto o conteúdo simples (com emojis) quanto o embed para melhor compatibilidade
         await axios.post(webhookUrl, { content: mensagemTexto, embeds: [embed] });
-        console.log('✅ Webhook Discord enviado com sucesso (content + embed):', webhookUrl);
       } catch (erro: any) {
         if (erro.response) {
           console.error('❌ Erro ao enviar webhook Discord:', erro.response.status, erro.response.data);
@@ -365,6 +380,8 @@ class FilmeService {
    */
   private async invalidarCacheFilme(idFilme: string): Promise<void> {
     await cacheService.remover(`${CACHE_PREFIXES.FILME}${idFilme}`);
+    // Também invalida cache geral de todos os filmes
+    await cacheService.remover(`${CACHE_PREFIXES.FILMES_USUARIO}todos`);
   }
 
   /**
@@ -372,6 +389,8 @@ class FilmeService {
    */
   private async invalidarCacheUsuario(emailUsuario: string): Promise<void> {
     await cacheService.remover(`${CACHE_PREFIXES.FILMES_USUARIO}${emailUsuario}`);
+    // Também invalida cache geral de todos os filmes
+    await cacheService.remover(`${CACHE_PREFIXES.FILMES_USUARIO}todos`);
   }
 }
 

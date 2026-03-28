@@ -1,10 +1,10 @@
 import { Response, NextFunction } from 'express';
-import { auth } from '../config/firebase.config';
 import { RequisicaoAutenticada } from '../types';
-import { MENSAGENS_ERRO } from '../constants/mensagens.constants';
+import { UsuarioModel } from '../models/usuario.model';
 
 /**
- * Middleware para validar autenticação via Firebase Auth
+ * Middleware de autenticação simplificado
+ * Valida se o email existe na collection users do MongoDB
  */
 export const autenticar = async (
   req: RequisicaoAutenticada,
@@ -12,40 +12,41 @@ export const autenticar = async (
   next: NextFunction
 ) => {
   try {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    // Pega email do header X-User-Email
+    const userEmail = req.headers['x-user-email'] as string;
+    
+    
+    if (!userEmail) {
       return res.status(401).json({
         sucesso: false,
-        erro: MENSAGENS_ERRO.TOKEN_NAO_FORNECIDO,
+        erro: 'Email de usuário não fornecido no header X-User-Email',
       });
     }
 
-    const token = authHeader.split('Bearer ')[1];
-
-    if (!token) {
-      return res.status(401).json({
+    // Verifica se o usuário existe no MongoDB
+    const usuario = await UsuarioModel.findOne({ email: userEmail }).lean();
+    
+    
+    if (!usuario) {
+      return res.status(403).json({
         sucesso: false,
-        erro: MENSAGENS_ERRO.TOKEN_NAO_FORNECIDO,
+        erro: 'Usuário não autorizado. Email não encontrado na base de dados.',
       });
     }
-
-    // Verifica token com Firebase Auth
-    const tokenDecodificado = await auth.verifyIdToken(token);
 
     // Adiciona informações do usuário na requisição
     req.usuario = {
-      uid: tokenDecodificado.uid,
-      email: tokenDecodificado.email || '',
-      nome: tokenDecodificado.name,
+      uid: usuario._id.toString(),
+      email: usuario.email,
+      nome: usuario.nome || usuario.name || usuario.email.split('@')[0],
     };
 
     return next();
   } catch (erro) {
-    console.error('Erro ao validar token:', erro);
-    return res.status(401).json({
+    console.error('🔐 AUTH - Erro no middleware:', erro);
+    return res.status(500).json({
       sucesso: false,
-      erro: MENSAGENS_ERRO.TOKEN_INVALIDO,
+      erro: 'Erro interno no servidor',
     });
   }
 };

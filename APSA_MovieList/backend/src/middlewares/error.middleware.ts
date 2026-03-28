@@ -10,7 +10,8 @@ export const tratarErros = (
   res: Response,
   _next: NextFunction
 ) => {
-  console.error('Erro capturado:', erro);
+  console.error('❌ Erro capturado:', erro.message);
+  console.error('Stack:', erro.stack);
 
   // Erros conhecidos
   if (erro.message === MENSAGENS_ERRO.FILME_NAO_ENCONTRADO) {
@@ -32,6 +33,7 @@ export const tratarErros = (
     erro.message.includes('inválido') ||
     erro.message.includes('Nota')
   ) {
+    console.error('🔴 Erro de validação:', erro.message);
     return res.status(400).json({
       sucesso: false,
       erro: erro.message,
