@@ -41,6 +41,11 @@ export const useFilmes = () => {
     }
   }, []);
 
+  const deletar = useCallback(async (id: string): Promise<void> => {
+    await filmeService.deletar(id);
+    setFilmes((prev) => prev.filter((f) => f.id !== id));
+  }, []);
+
   useEffect(() => {
     buscarTodos();
   }, [buscarTodos]);
@@ -49,6 +54,7 @@ export const useFilmes = () => {
     filmes,
     buscarTodos,
     buscarPorId,
+    deletar,
     carregando,
     erro,
   };

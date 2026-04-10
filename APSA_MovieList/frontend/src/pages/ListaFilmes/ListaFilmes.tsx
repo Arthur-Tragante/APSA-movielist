@@ -4,23 +4,41 @@ import { Header, Carregando } from '../../components';
 import { useFilmes, useAuth } from '../../hooks';
 import { Filme } from '../../types';
 import './ListaFilmes.css';
+import '../../components/Modal/Modal.css';
 
 /**
  * Página de listagem de filmes com filtros e ordenação
  */
 const ListaFilmes: React.FC = () => {
   const navigate = useNavigate();
-  const { filmes, carregando } = useFilmes();
+  const { filmes, carregando, deletar } = useFilmes();
   const { obterUsuarioLogado } = useAuth();
   const usuario = obterUsuarioLogado();
-  
+
   const [termoBusca, setTermoBusca] = useState('');
   const [navegando, setNavegando] = useState(false);
   const [abaAtiva, setAbaAtiva] = useState<'todos' | 'assistidos' | 'nao-assistidos'>('todos');
+  const [filmeParaExcluir, setFilmeParaExcluir] = useState<Filme | null>(null);
+  const [excluindo, setExcluindo] = useState(false);
+  const [erroExclusao, setErroExclusao] = useState<string | null>(null);
   const [ordenacao, setOrdenacao] = useState<{
     campo: keyof Filme | 'votos' | 'usuarioVotou' | null;
     direcao: 'asc' | 'desc';
   }>({ campo: 'mediaAvaliacaoUsuarios', direcao: 'desc' });
+
+  const confirmarExclusao = async () => {
+    if (!filmeParaExcluir) return;
+    setExcluindo(true);
+    setErroExclusao(null);
+    try {
+      await deletar(filmeParaExcluir.id);
+      setFilmeParaExcluir(null);
+    } catch (erro: any) {
+      setErroExclusao(erro.response?.data?.mensagem || erro.message || 'Erro ao excluir filme.');
+    } finally {
+      setExcluindo(false);
+    }
+  };
 
   const handleEditar = React.useCallback((id: string) => {
     if (navegando) return; // Previne cliques múltiplos
@@ -159,6 +177,39 @@ const ListaFilmes: React.FC = () => {
   return (
     <>
       <Header />
+
+      {filmeParaExcluir && (
+        <div className="modal-overlay" onClick={() => !excluindo && setFilmeParaExcluir(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header modal-header-erro">
+              <h3>Excluir Filme</h3>
+            </div>
+            <div className="modal-body">
+              <p>
+                Tem certeza que deseja excluir <strong>{filmeParaExcluir.titulo}</strong>?
+                Essa ação não pode ser desfeita.
+              </p>
+              {erroExclusao && <p className="modal-erro">{erroExclusao}</p>}
+            </div>
+            <div className="modal-footer modal-footer-confirmacao">
+              <button
+                className="btn-modal btn-modal-cancelar"
+                onClick={() => setFilmeParaExcluir(null)}
+                disabled={excluindo}
+              >
+                Cancelar
+              </button>
+              <button
+                className="btn-modal btn-modal-excluir"
+                onClick={confirmarExclusao}
+                disabled={excluindo}
+              >
+                {excluindo ? 'Excluindo...' : 'Excluir'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="lista-container">
         <div className="lista-cabecalho">
           <h2>Nossos Filmes</h2>
@@ -281,15 +332,24 @@ const ListaFilmes: React.FC = () => {
                         ? `${(filme.mediaAvaliacaoUsuarios || 0).toFixed(1)}/10`
                         : 'N/A'}
                     </td>
-                    <td>
-                      <button
-                        className="btn-editar"
-                        onClick={() => handleEditar(filme.id)}
-                        disabled={navegando}
-                        title="Editar filme"
-                      >
-                        {navegando ? 'Abrindo...' : 'Editar'}
-                      </button>
+                    <td className="celula-acoes">
+                      <div className="acoes-wrapper">
+                        <button
+                          className="btn-editar"
+                          onClick={() => handleEditar(filme.id)}
+                          disabled={navegando}
+                          title="Editar filme"
+                        >
+                          {navegando ? 'Abrindo...' : 'Editar'}
+                        </button>
+                        <button
+                          className="btn-excluir"
+                          onClick={() => setFilmeParaExcluir(filme)}
+                          title="Excluir filme"
+                        >
+                          Excluir
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

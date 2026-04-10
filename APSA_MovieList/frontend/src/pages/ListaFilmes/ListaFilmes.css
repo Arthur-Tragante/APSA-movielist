@@ -1,7 +1,7 @@
 .lista-container {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 32px 40px;
 }
 
 .lista-cabecalho {
@@ -170,6 +170,19 @@
   color: #0c5460;
 }
 
+.celula-acoes {
+  white-space: nowrap;
+  vertical-align: middle;
+  width: 1%;
+}
+
+.acoes-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .btn-editar {
   padding: 8px 16px;
   background-color: var(--primary-color);
@@ -191,6 +204,58 @@
   background-color: #cccccc;
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.btn-excluir {
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-excluir:hover {
+  background-color: #b02a37;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Modal de confirmação de exclusão */
+.modal-footer-confirmacao {
+  gap: 12px;
+}
+
+.modal-erro {
+  margin-top: 12px !important;
+  color: #dc3545 !important;
+  font-size: 13px !important;
+}
+
+.btn-modal-cancelar {
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-modal-cancelar:hover:not(:disabled) {
+  background-color: var(--border-color);
+}
+
+.btn-modal-excluir {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-modal-excluir:hover:not(:disabled) {
+  background-color: #b02a37;
+}
+
+.btn-modal:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
@@ -237,7 +302,7 @@
 
   .tabela-filmes {
     font-size: 13px;
-    min-width: 1200px; /* Força scroll horizontal (aumentado para acomodar novas colunas) */
+    min-width: 1350px; /* Força scroll horizontal (aumentado para acomodar botão excluir) */
   }
 
   .tabela-filmes th,
