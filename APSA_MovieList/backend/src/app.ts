@@ -13,6 +13,9 @@ import { rateLimiterGlobal, tratarErros, rotaNaoEncontrada } from './middlewares
 export const createApp = (): Application => {
   const app = express();
 
+  // Confiar no proxy reverso (Nginx Proxy Manager) para headers X-Forwarded-*
+  app.set('trust proxy', 1);
+
   // Segurança (ajustado para permitir CORS)
   app.use(helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
