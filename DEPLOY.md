@@ -86,9 +86,9 @@ Pré-requisito: o stack `shared-mongo` precisa estar rodando (a rede `shared-mon
 No Portainer -> Stacks -> Add stack -> nome `apsa-movielist`.
 
 - **Build context**: o Portainer precisa ter acesso ao código (os Dockerfiles do backend e frontend estão em `APSA_MovieList/backend/` e `APSA_MovieList/frontend/`). Opções:
-  1. **Git deploy**: aponta o stack pro repositório, branch e caminho `APSA_MovieList/docker-compose.yml`. Mais simples.
+  1. **Git deploy**: aponta o stack pro repositório, branch e caminho `docker-compose.yml`. Mais simples.
   2. **Upload**: empacota a pasta `APSA_MovieList/` e faz upload no Portainer.
-- **Environment variables**: copie tudo de `APSA_MovieList/.env.example` e preencha:
+- **Environment variables**: copie tudo de `.env.example` e preencha:
   - `MONGO_ROOT_USER` / `MONGO_ROOT_PASSWORD` -> mesmos do `shared-mongo`
   - `MONGO_DB_NAME` = `apsa-movielist`
   - `JWT_SECRET` -> gere com `openssl rand -hex 32`

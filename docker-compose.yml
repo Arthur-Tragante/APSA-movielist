@@ -1,41 +1,67 @@
-version: '3.8'
-
 services:
-  # Backend API
   backend:
     build:
-      context: .
+      context: ./APSA_MovieList/backend
       dockerfile: Dockerfile
-    container_name: moicanos-backend
+    container_name: apsa-backend
     restart: unless-stopped
     ports:
-      - "3001:3001"
+      - "${BACKEND_PORT:-3001}:3001"
     environment:
-      - NODE_ENV=production
-      - PORT=3001
-      - REDIS_URL=redis://redis:6379
-      - REDIS_ENABLED=true
-    env_file:
-      - .env
+      NODE_ENV: production
+      PORT: 3001
+      MONGODB_ENABLED: "true"
+      MONGODB_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@shared-mongo:27017/${MONGO_DB_NAME:-apsa-movielist}?authSource=admin
+      REDIS_URL: redis://redis:6379
+      REDIS_ENABLED: "true"
+      JWT_SECRET: ${JWT_SECRET}
+      TMDB_API_KEY: ${TMDB_API_KEY}
+      OMDB_API_KEY: ${OMDB_API_KEY}
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      RATE_LIMIT_WINDOW_MS: 900000
+      RATE_LIMIT_MAX_REQUESTS: 100
+      CACHE_TTL_TMDB: 86400
+      CACHE_TTL_OMDB: 86400
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+      FRONTEND_URL: ${FRONTEND_URL}
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
     networks:
-      - moicanos-network
+      - apsa-network
+      - shared-mongo-net
     volumes:
-      - ./logs:/app/logs
+      - backend-logs:/app/logs
 
-  # Redis para cache
+  frontend:
+    build:
+      context: ./APSA_MovieList/frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+        VITE_DISCORD_WEBHOOK_URL: ${VITE_DISCORD_WEBHOOK_URL:-}
+    container_name: apsa-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      - backend
+    networks:
+      - apsa-network
+
   redis:
     image: redis:7-alpine
-    container_name: moicanos-redis
+    container_name: apsa-redis
     restart: unless-stopped
-    ports:
-      - "6379:6379"
     command: redis-server --appendonly yes
     volumes:
       - redis-data:/data
     networks:
-      - moicanos-network
+      - apsa-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -43,9 +69,12 @@ services:
       retries: 5
 
 networks:
-  moicanos-network:
+  apsa-network:
     driver: bridge
+  shared-mongo-net:
+    name: shared-mongo-net
+    external: true
 
 volumes:
   redis-data:
-
+  backend-logs:
