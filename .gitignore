@@ -42,3 +42,9 @@ coverage/
 .cache/
 .eslintcache
 
+# Mongo dumps (não versionar - usar bind mount no host)
+mongodump_*/
+
+# Compose com credenciais hardcoded (uso local apenas)
+yaml-pronto.yml
+

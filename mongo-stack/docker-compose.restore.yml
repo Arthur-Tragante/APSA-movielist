@@ -1,0 +1,59 @@
+services:
+  restore:
+    image: mongo:7
+    container_name: shared-mongo-restore
+    restart: "no"
+    depends_on: []
+    environment:
+      MONGO_ROOT_USER: ${MONGO_ROOT_USER}
+      MONGO_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      DUMP_DB_NAME: ${DUMP_DB_NAME:-apsa-movielist}
+      TARGET_DB_NAME: ${TARGET_DB_NAME:-apsa-movielist}
+      DROP_BEFORE_RESTORE: ${DROP_BEFORE_RESTORE:-false}
+    volumes:
+      - ${DUMP_PATH}:/dump:ro
+    networks:
+      - shared-mongo-net
+    entrypoint:
+      - bash
+      - -c
+      - |
+        set -e
+        echo "Aguardando Mongo aceitar conexão..."
+        for i in $$(seq 1 30); do
+          if mongosh --quiet \
+              --host shared-mongo:27017 \
+              -u "$$MONGO_ROOT_USER" \
+              -p "$$MONGO_ROOT_PASSWORD" \
+              --authenticationDatabase admin \
+              --eval "db.adminCommand('ping').ok" >/dev/null 2>&1; then
+            echo "Mongo OK"
+            break
+          fi
+          echo "  tentativa $$i/30..."
+          sleep 2
+        done
+
+        DROP_FLAG=""
+        if [ "$$DROP_BEFORE_RESTORE" = "true" ]; then
+          DROP_FLAG="--drop"
+          echo "DROP_BEFORE_RESTORE=true -> usando --drop"
+        fi
+
+        echo "Restaurando $$DUMP_DB_NAME -> $$TARGET_DB_NAME"
+        mongorestore \
+          --host shared-mongo:27017 \
+          -u "$$MONGO_ROOT_USER" \
+          -p "$$MONGO_ROOT_PASSWORD" \
+          --authenticationDatabase admin \
+          --nsFrom "$$DUMP_DB_NAME.*" \
+          --nsTo "$$TARGET_DB_NAME.*" \
+          $$DROP_FLAG \
+          /dump
+
+        echo "Restore concluído."
+
+networks:
+  shared-mongo-net:
+    name: shared-mongo-net
+    external: true
