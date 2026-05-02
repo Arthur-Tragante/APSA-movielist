@@ -11,13 +11,34 @@ interface UserRating {
 }
 
 /**
- * Interface para Episódio
+ * Interface para Avaliação de Episódio
+ */
+interface EpisodeRating {
+  user: string;
+  email: string;
+  rating: number;
+  comment?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+/**
+ * Interface para Episódio individual
+ */
+interface Episode {
+  episodeNumber: number;
+  title: string;
+  synopsis?: string;
+  releaseDate?: string;
+  ratings?: EpisodeRating[];
+}
+
+/**
+ * Interface para Temporada (contém vários episódios)
  */
 interface SeasonEpisode {
-  season: number;
-  episode: number;
-  watched: boolean;
-  userRatings?: UserRating[];
+  seasonNumber: number;
+  episodes: Episode[];
 }
 
 /**
@@ -60,14 +81,20 @@ const SerieSchema = new Schema<ISerie>({
   user: { type: String, required: true, index: true },
   watched: { type: Boolean, default: false },
   seasonEpisodes: [{
-    season: { type: Number, required: true },
-    episode: { type: Number, required: true },
-    watched: { type: Boolean, default: false },
-    userRatings: [{
-      user: { type: String },
-      email: { type: String },
-      rating: { type: Number },
-      comment: { type: String }
+    seasonNumber: { type: Number, required: true },
+    episodes: [{
+      episodeNumber: { type: Number, required: true },
+      title: { type: String, required: true },
+      synopsis: { type: String, default: '' },
+      releaseDate: { type: String, default: '' },
+      ratings: [{
+        user: { type: String },
+        email: { type: String },
+        rating: { type: Number },
+        comment: { type: String, default: '' },
+        createdAt: { type: String },
+        updatedAt: { type: String }
+      }]
     }]
   }],
   userRatings: [{

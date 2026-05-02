@@ -4,7 +4,7 @@ import { Header, Modal, Carregando, AvaliacaoEstrelas } from '../../components';
 import { useAuth, useApiExternaSeries } from '../../hooks';
 import { showService } from '../../services';
 import { MENSAGENS_ERRO, MENSAGENS_SUCESSO, TMDB_IMAGE_BASE_URL } from '../../constants';
-import { ResultadoSerieTMDB } from '../../types';
+import { ResultadoSerieTMDB, Temporada } from '../../types';
 import './AdicionarShow.css';
 
 /**
@@ -31,6 +31,7 @@ const AdicionarShow: React.FC = () => {
   const [notaImdb, setNotaImdb] = useState('');
   const [metascore, setMetascore] = useState('');
   const [poster, setPoster] = useState('');
+  const [temporadasEpisodios, setTemporadasEpisodios] = useState<Temporada[]>([]);
   const [assistido, setAssistido] = useState(false);
   const [notaUsuario, setNotaUsuario] = useState(0);
   const [comentarioUsuario, setComentarioUsuario] = useState('');
@@ -62,6 +63,7 @@ const AdicionarShow: React.FC = () => {
         setNotaImdb(info.notaImdb);
         setMetascore(info.metascore);
         setPoster(serie.poster_path ? `${TMDB_IMAGE_BASE_URL}${serie.poster_path}` : '');
+        setTemporadasEpisodios(info.temporadasEpisodios || []);
       }
     } catch (error) {
       console.error('Erro ao buscar informações da série:', error);
@@ -108,6 +110,7 @@ const AdicionarShow: React.FC = () => {
         avaliacoes: [],
         usuario: usuario.nome,
         assistido,
+        temporadasEpisodios,
       });
 
       if (notaUsuario > 0) {
@@ -324,6 +327,17 @@ const AdicionarShow: React.FC = () => {
               rows={5}
             />
           </div>
+
+          {temporadasEpisodios.length > 0 && (
+            <div className="secao-episodios-preview">
+              <h3>
+                Episódios ({temporadasEpisodios.reduce((acc, t) => acc + t.episodios.length, 0)} episódios em {temporadasEpisodios.length} temporada{temporadasEpisodios.length > 1 ? 's' : ''})
+              </h3>
+              <p className="hint-episodios">
+                Os episódios serão salvos automaticamente e poderão ser avaliados individualmente depois.
+              </p>
+            </div>
+          )}
 
           <div className="form-grupo-checkbox">
             <button

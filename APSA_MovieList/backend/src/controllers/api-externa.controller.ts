@@ -120,6 +120,35 @@ class ApiExternaController {
   }
 
   /**
+   * Busca todas as temporadas (com episódios) de uma série no TMDB
+   * GET /api/buscar/serie/:id/temporadas
+   */
+  async buscarTemporadasSerie(req: Request, res: Response, next: NextFunction): Promise<any> {
+    try {
+      const { id } = req.params;
+      const { idioma } = req.query;
+      const idTmdb = parseInt(id, 10);
+
+      if (isNaN(idTmdb)) {
+        return res.status(400).json({
+          sucesso: false,
+          erro: 'ID inválido',
+        });
+      }
+
+      const idiomaString = typeof idioma === 'string' ? idioma : 'pt-BR';
+      const temporadas = await apiExternaService.buscarTemporadasSerie(idTmdb, idiomaString);
+
+      return res.json({
+        sucesso: true,
+        dados: temporadas,
+      });
+    } catch (erro) {
+      next(erro);
+    }
+  }
+
+  /**
    * Busca detalhes de uma série específica no TMDB
    * GET /api/buscar/serie/detalhes/:id
    */
