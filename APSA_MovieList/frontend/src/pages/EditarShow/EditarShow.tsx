@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Header, Modal, AvaliacaoEstrelas, Carregando } from '../../components';
 import { useAuth } from '../../hooks';
 import { showService } from '../../services';
-import { Show } from '../../types';
+import { Show, Temporada } from '../../types';
 import { MENSAGENS_ERRO } from '../../constants';
 import './EditarShow.css';
 
@@ -16,6 +16,9 @@ const EditarShow: React.FC = () => {
   const { obterUsuarioLogado } = useAuth();
 
   const [show, setShow] = useState<Show | null>(null);
+  const [temporadasEpisodios, setTemporadasEpisodios] = useState<Temporada[]>([]);
+  const [temporadaAberta, setTemporadaAberta] = useState<number | null>(null);
+  const [avaliandoEpisodio, setAvaliandoEpisodio] = useState<string | null>(null);
   const [titulo, setTitulo] = useState('');
   const [temporadas, setTemporadas] = useState('');
   const [genero, setGenero] = useState('');
@@ -58,7 +61,8 @@ const EditarShow: React.FC = () => {
         }
 
         setShow(showData);
-        
+        setTemporadasEpisodios(showData.temporadasEpisodios || []);
+
         if (!dadosCarregadosRef.current) {
           setTitulo(showData.titulo);
           setTemporadas(showData.temporadas);
@@ -145,6 +149,71 @@ const EditarShow: React.FC = () => {
     } finally {
       setSalvando(false);
     }
+  };
+
+  const handleAvaliarEpisodio = async (
+    numeroTemporada: number,
+    numeroEpisodio: number,
+    nota: number
+  ) => {
+    if (!id || !usuario) return;
+
+    const chave = `${numeroTemporada}-${numeroEpisodio}`;
+    setAvaliandoEpisodio(chave);
+
+    try {
+      await showService.avaliarEpisodio(id, numeroTemporada, numeroEpisodio, nota);
+
+      // Atualiza estado local: adiciona ou substitui a avaliação do usuário
+      setTemporadasEpisodios((prev) =>
+        prev.map((temp) => {
+          if (temp.numero !== numeroTemporada) return temp;
+          return {
+            ...temp,
+            episodios: temp.episodios.map((ep) => {
+              if (ep.numero !== numeroEpisodio) return ep;
+              const avaliacoes = [...(ep.avaliacoesEpisodio || [])];
+              const idx = avaliacoes.findIndex((a) => a.email === usuario.email);
+              const agora = new Date().toISOString();
+              if (idx > -1) {
+                avaliacoes[idx] = { ...avaliacoes[idx], nota, atualizadoEm: agora };
+              } else {
+                avaliacoes.push({
+                  usuario: usuario.nome,
+                  email: usuario.email,
+                  nota,
+                  criadoEm: agora,
+                  atualizadoEm: agora,
+                });
+              }
+              return { ...ep, avaliacoesEpisodio: avaliacoes };
+            }),
+          };
+        })
+      );
+    } catch (error: any) {
+      console.error('Erro ao avaliar episódio:', error);
+      setMensagemModal(`Erro ao avaliar episódio: ${error.message}`);
+      setTipoModal('erro');
+      setExibirModal(true);
+    } finally {
+      setAvaliandoEpisodio(null);
+    }
+  };
+
+  const obterNotaUsuarioEpisodio = (temporada: Temporada, numeroEpisodio: number): number => {
+    if (!usuario) return 0;
+    const ep = temporada.episodios.find((e) => e.numero === numeroEpisodio);
+    if (!ep) return 0;
+    const avaliacao = ep.avaliacoesEpisodio?.find((a) => a.email === usuario.email);
+    return avaliacao?.nota || 0;
+  };
+
+  const obterMediaEpisodio = (temporada: Temporada, numeroEpisodio: number): number | null => {
+    const ep = temporada.episodios.find((e) => e.numero === numeroEpisodio);
+    if (!ep?.avaliacoesEpisodio || ep.avaliacoesEpisodio.length === 0) return null;
+    const soma = ep.avaliacoesEpisodio.reduce((acc, a) => acc + a.nota, 0);
+    return soma / ep.avaliacoesEpisodio.length;
   };
 
   const handleCheckboxClick = (e: React.PointerEvent<HTMLButtonElement>) => {
@@ -413,6 +482,69 @@ const EditarShow: React.FC = () => {
             </button>
           </div>
         </form>
+
+        {temporadasEpisodios.length > 0 && (
+          <div className="secao-episodios">
+            <h3>Temporadas & Episódios</h3>
+            <p className="hint-episodios">Clique em uma temporada para expandir e avaliar episódio por episódio.</p>
+            <div className="lista-temporadas">
+              {[...temporadasEpisodios]
+                .sort((a, b) => a.numero - b.numero)
+                .map((temporada) => {
+                  const aberta = temporadaAberta === temporada.numero;
+                  return (
+                    <div key={temporada.numero} className="temporada-card">
+                      <button
+                        type="button"
+                        className="temporada-header"
+                        onClick={() => setTemporadaAberta(aberta ? null : temporada.numero)}
+                      >
+                        <span>Temporada {temporada.numero}</span>
+                        <span className="temporada-qtd">{temporada.episodios.length} ep.</span>
+                        <span className="temporada-toggle">{aberta ? '▲' : '▼'}</span>
+                      </button>
+                      {aberta && (
+                        <ul className="lista-episodios">
+                          {[...temporada.episodios]
+                            .sort((a, b) => a.numero - b.numero)
+                            .map((ep) => {
+                              const chave = `${temporada.numero}-${ep.numero}`;
+                              const notaUsuario = obterNotaUsuarioEpisodio(temporada, ep.numero);
+                              const media = obterMediaEpisodio(temporada, ep.numero);
+                              const avaliando = avaliandoEpisodio === chave;
+                              return (
+                                <li key={ep.numero} className="episodio-item">
+                                  <div className="episodio-info">
+                                    <strong>
+                                      E{ep.numero.toString().padStart(2, '0')} · {ep.titulo}
+                                    </strong>
+                                    {ep.sinopse && <p className="episodio-sinopse">{ep.sinopse}</p>}
+                                    {media !== null && (
+                                      <span className="episodio-media">
+                                        Média: {media.toFixed(1)}/10 ({ep.avaliacoesEpisodio?.length || 0} votos)
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="episodio-avaliacao">
+                                    <AvaliacaoEstrelas
+                                      nota={notaUsuario}
+                                      aoMudarNota={(nota) =>
+                                        handleAvaliarEpisodio(temporada.numero, ep.numero, nota)
+                                      }
+                                    />
+                                    {avaliando && <span className="episodio-salvando">Salvando...</span>}
+                                  </div>
+                                </li>
+                              );
+                            })}
+                        </ul>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        )}
 
         {show.avaliacoesUsuarios && show.avaliacoesUsuarios.length > 0 && (
           <div className="secao-avaliacoes-outros">

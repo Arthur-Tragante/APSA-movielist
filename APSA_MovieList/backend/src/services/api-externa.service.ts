@@ -200,6 +200,77 @@ class ApiExternaService {
   }
 
   /**
+   * Busca todas as temporadas (com episódios) de uma série no TMDB
+   * Faz uma requisição inicial para descobrir o número de temporadas e então
+   * busca cada temporada em paralelo.
+   */
+  async buscarTemporadasSerie(idTmdb: number, idioma: string = 'pt-BR'): Promise<Array<{ numero: number; episodios: Array<{ numero: number; titulo: string; sinopse?: string; dataLancamento?: string; }> }>> {
+    const chaveCache = `${CACHE_PREFIXES.TMDB_SERIES}${idTmdb}_temporadas_${idioma}`;
+
+    const cacheado = await cacheService.obter(chaveCache);
+    if (cacheado) {
+      return JSON.parse(cacheado);
+    }
+
+    try {
+      // Primeiro busca os detalhes da série para descobrir o número de temporadas
+      const detalhesResposta = await axios.get(`${API_URLS.TMDB_SERIES_DETAILS}/${idTmdb}`, {
+        params: { language: idioma },
+        headers: {
+          Authorization: `Bearer ${env.TMDB_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const seasonsList: Array<{ season_number: number }> = detalhesResposta.data.seasons || [];
+      // Filtra temporada 0 (especiais) se existir, mantendo só as numeradas >= 1
+      const temporadasValidas = seasonsList.filter((s) => s.season_number >= 1);
+
+      // Busca cada temporada em paralelo
+      const temporadasDetalhes = await Promise.all(
+        temporadasValidas.map((s) =>
+          axios
+            .get(`${API_URLS.TMDB_SERIES_DETAILS}/${idTmdb}/season/${s.season_number}`, {
+              params: { language: idioma },
+              headers: {
+                Authorization: `Bearer ${env.TMDB_API_KEY}`,
+                'Content-Type': 'application/json',
+              },
+            })
+            .then((res) => res.data)
+            .catch((err) => {
+              console.error(`Erro ao buscar temporada ${s.season_number}:`, err.message);
+              return null;
+            })
+        )
+      );
+
+      const temporadas = temporadasDetalhes
+        .filter((t): t is any => t !== null)
+        .map((t: any) => ({
+          numero: t.season_number,
+          episodios: (t.episodes || []).map((ep: any) => ({
+            numero: ep.episode_number,
+            titulo: ep.name || `Episódio ${ep.episode_number}`,
+            sinopse: ep.overview || '',
+            dataLancamento: ep.air_date || '',
+          })),
+        }));
+
+      await cacheService.definir(
+        chaveCache,
+        JSON.stringify(temporadas),
+        env.CACHE_TTL_TMDB
+      );
+
+      return temporadas;
+    } catch (erro) {
+      console.error('Erro ao buscar temporadas da série:', erro);
+      throw new Error(MENSAGENS_ERRO.ERRO_BUSCAR_TMDB);
+    }
+  }
+
+  /**
    * Busca detalhes de uma série específica no TMDB
    */
   async buscarDetalhesSerie(idTmdb: number, idioma: string = 'pt-BR'): Promise<DetalhesFilme | null> {

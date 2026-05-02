@@ -381,3 +381,26 @@
     font-size: 12px;
   }
 }
+
+
+.secao-episodios-preview {
+  margin: 16px 0 24px 0;
+  padding: 16px 20px;
+  background-color: #e3f2fd;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 6px;
+}
+
+.secao-episodios-preview h3 {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.hint-episodios {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+

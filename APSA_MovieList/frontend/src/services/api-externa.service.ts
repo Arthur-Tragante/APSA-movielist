@@ -137,13 +137,31 @@ class ApiExternaService {
   }
 
   /**
+   * Busca temporadas (com episódios) de uma série no TMDB (via backend)
+   */
+  async buscarTemporadasSerieTMDB(idTMDB: string) {
+    if (!idTMDB) return [];
+
+    try {
+      const response = await apiClient.get(`/buscar/serie/${idTMDB}/temporadas`, {
+        params: { idioma: 'pt-BR' },
+      });
+      return response.data.dados || [];
+    } catch (error) {
+      console.error('Erro ao buscar temporadas da série:', error);
+      return [];
+    }
+  }
+
+  /**
    * Busca informações completas de uma série combinando TMDB e OMDB (via backend)
    */
   async buscarInformacoesCompletasSerie(idTMDB: string) {
     try {
-      const [detalhesPt, detalhesEn] = await Promise.all([
+      const [detalhesPt, detalhesEn, temporadas] = await Promise.all([
         this.buscarDetalhesSerieTMDB(idTMDB, 'pt-BR'),
         this.buscarDetalhesSerieTMDB(idTMDB, 'en-US'),
+        this.buscarTemporadasSerieTMDB(idTMDB),
       ]);
 
       if (!detalhesPt || !detalhesEn) {
@@ -168,6 +186,7 @@ class ApiExternaService {
         notaImdb: ratingsData?.notaImdb || 'N/A',
         votosImdb: ratingsData?.votosImdb || 'N/A',
         metascore: ratingsData?.metascore || 'N/A',
+        temporadasEpisodios: temporadas,
       };
     } catch (error) {
       console.error('Erro ao buscar informações completas da série:', error);
